@@ -1,6 +1,6 @@
 import type { Response, NextFunction } from "express";
-import { ForbiddenError } from "../utils/errors.js";
-import type { AuthRequest } from "./auth.middleware.js";
+import { ForbiddenError } from "../utils/errors.ts";
+import type { AuthRequest } from "./auth.middleware.ts";
 
 export const authorize = (...roles: string[]) => {
   return (req: AuthRequest, res: Response, next: NextFunction): void => {

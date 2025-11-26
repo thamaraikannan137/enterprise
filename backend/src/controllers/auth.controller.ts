@@ -1,9 +1,9 @@
 import type { Response, NextFunction, Request } from "express";
-import authService from "../services/authService.js";
-import userService from "../services/userService.js";
-import { sendSuccess } from "../utils/response.js";
-import { SUCCESS_MESSAGES } from "../config/constants.js";
-import type { AuthRequest } from "../middlewares/auth.middleware.js";
+import authService from "../services/authService.ts";
+import userService from "../services/userService.ts";
+import { sendSuccess } from "../utils/response.ts";
+import { SUCCESS_MESSAGES } from "../config/constants.ts";
+import type { AuthRequest } from "../middlewares/auth.middleware.ts";
 
 class AuthController {
   async register(req: Request, res: Response, next: NextFunction): Promise<void> {

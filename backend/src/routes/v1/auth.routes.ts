@@ -1,13 +1,13 @@
 import { Router } from "express";
-import authController from "../../controllers/auth.controller.js";
-import { validate } from "../../middlewares/validation.middleware.js";
+import authController from "../../controllers/auth.controller.ts";
+import { validate } from "../../middlewares/validation.middleware.ts";
 import {
   registerSchema,
   loginSchema,
   refreshTokenSchema,
-} from "../../validators/auth.validator.js";
-import { authenticate } from "../../middlewares/auth.middleware.js";
-import { authRateLimiter } from "../../middlewares/rateLimit.middleware.js";
+} from "../../validators/auth.validator.ts";
+import { authenticate } from "../../middlewares/auth.middleware.ts";
+import { authRateLimiter } from "../../middlewares/rateLimit.middleware.ts";
 
 const router = Router();
 

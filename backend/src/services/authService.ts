@@ -1,5 +1,5 @@
-import { generateAccessToken, generateRefreshToken } from "../utils/jwt.js";
-import userService from "./userService.js";
+import { generateAccessToken, generateRefreshToken } from "../utils/jwt.ts";
+import userService from "./userService.ts";
 
 class AuthService {
   async register(data: {
@@ -60,7 +60,7 @@ class AuthService {
   }
 
   async refreshToken(refreshToken: string) {
-    const { verifyRefreshToken } = await import("../utils/jwt.js");
+    const { verifyRefreshToken } = await import("../utils/jwt.ts");
     const decoded = verifyRefreshToken(refreshToken);
 
     const user = await userService.getUserById(decoded.userId);

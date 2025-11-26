@@ -1,7 +1,7 @@
 import type { Response, NextFunction, Request } from "express";
-import userService from "../services/userService.js";
-import { sendSuccess } from "../utils/response.js";
-import { SUCCESS_MESSAGES } from "../config/constants.js";
+import userService from "../services/userService.ts";
+import { sendSuccess } from "../utils/response.ts";
+import { SUCCESS_MESSAGES } from "../config/constants.ts";
 
 class UserController {
   async getAllUsers(req: Request, res: Response, next: NextFunction): Promise<void> {

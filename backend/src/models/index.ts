@@ -1,6 +1,22 @@
-import User from "./User.js";
+import User from './User.ts';
+
+// Export HR models
+export {
+  Employee,
+  EmployeeContact,
+  EmployeeDocument,
+  EmployeeCompensation,
+  AllowanceType,
+  EmployeeAllowance,
+  DeductionType,
+  EmployeeDeduction,
+  LeaveType,
+  EmployeeLeaveEntitlement,
+  EmployeeCertification,
+  EmployeeQualification,
+  EmployeeWorkPass,
+  WorkPassDocument,
+  AuditLog,
+} from './HRModels.index.ts';
 
 export { User };
-
-// Add model associations here when needed
-// Example: User references, embedded documents, etc.

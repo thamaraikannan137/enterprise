@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from "express";
-import { verifyAccessToken } from "../utils/jwt.js";
-import { UnauthorizedError } from "../utils/errors.js";
+import { verifyAccessToken } from "../utils/jwt.ts";
+import { UnauthorizedError } from "../utils/errors.ts";
 
 export interface AuthRequest extends Request {
   user?: {

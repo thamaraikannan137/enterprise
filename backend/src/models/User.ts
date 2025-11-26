@@ -1,6 +1,6 @@
 import mongoose, { Document, Schema } from "mongoose";
-import type { UserRole } from "../config/constants.js";
-import { USER_ROLES } from "../config/constants.js";
+import type { UserRole } from "../config/constants.ts";
+import { USER_ROLES } from "../config/constants.ts";
 
 export interface IUser extends Document {
   _id: mongoose.Types.ObjectId;

@@ -2,13 +2,13 @@ import express from "express";
 import type { Request, Response } from "express";
 import cors from "cors";
 import helmet from "helmet";
-import env from "./config/env.js";
-import { connectDatabase } from "./config/database.js";
-import logger from "./config/logger.js";
-import { requestLogger } from "./middlewares/logging.middleware.js";
-import { apiRateLimiter } from "./middlewares/rateLimit.middleware.js";
-import { errorHandler, notFoundHandler } from "./middlewares/error.middleware.js";
-import routes from "./routes/index.js";
+import env from "./config/env.ts";
+import { connectDatabase } from "./config/database.ts";
+import logger from "./config/logger.ts";
+import { requestLogger } from "./middlewares/logging.middleware.ts";
+import { apiRateLimiter } from "./middlewares/rateLimit.middleware.ts";
+import { errorHandler, notFoundHandler } from "./middlewares/error.middleware.ts";
+import routes from "./routes/index.ts";
 
 const app = express();
 

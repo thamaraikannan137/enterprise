@@ -1,11 +1,11 @@
-import User, { type IUser } from "../models/User.js";
-import { hashPassword, comparePassword } from "../utils/bcrypt.js";
+import User, { type IUser } from "../models/User.ts";
+import { hashPassword, comparePassword } from "../utils/bcrypt.ts";
 import {
   ConflictError,
   NotFoundError,
   UnauthorizedError,
-} from "../utils/errors.js";
-import { USER_ROLES } from "../config/constants.js";
+} from "../utils/errors.ts";
+import { USER_ROLES } from "../config/constants.ts";
 
 export interface CreateUserData {
   email: string;

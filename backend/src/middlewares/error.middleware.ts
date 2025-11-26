@@ -1,8 +1,8 @@
 import type { Request, Response, NextFunction } from "express";
-import { AppError } from "../utils/errors.js";
-import { sendError } from "../utils/response.js";
-import logger from "../config/logger.js";
-import { HTTP_STATUS } from "../config/constants.js";
+import { AppError } from "../utils/errors.ts";
+import { sendError } from "../utils/response.ts";
+import logger from "../config/logger.ts";
+import { HTTP_STATUS } from "../config/constants.ts";
 
 export const errorHandler = (
   err: Error | AppError,

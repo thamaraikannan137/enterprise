@@ -1,8 +1,8 @@
 import { Router } from "express";
-import userController from "../../controllers/user.controller.js";
-import { authenticate } from "../../middlewares/auth.middleware.js";
-import { authorize } from "../../middlewares/authorize.middleware.js";
-import { USER_ROLES } from "../../config/constants.js";
+import userController from "../../controllers/user.controller.ts";
+import { authenticate } from "../../middlewares/auth.middleware.ts";
+import { authorize } from "../../middlewares/authorize.middleware.ts";
+import { USER_ROLES } from "../../config/constants.ts";
 
 const router = Router();
 

@@ -11,47 +11,47 @@ Modules
 1.5	Drivers
 1.6	Workers
 2.	Employees
-2.1	Personal Data
-2.2	Contact Information
-2.3	Emergency Information
-2.4	Passport information
-2.5	Qualifications
-2.6	Employment Details
-2.6.1	Basic Salary
-2.6.2	OT Charges
-2.6.3	Fixed Allowances
-2.6.3.1	Housing
-2.6.3.2	Transport
-2.6.3.3	Other Allowances
-2.6.4	Fixed Deductions
-2.6.4.1	Housing
-2.6.4.2	Transport
-2.6.4.3	Other deductions
-2.6.5	Annual Leave Eligibility
-2.6.6	Medical Leave Eligibility
-2.6.7	Bonus Eligibility
-2.7	Certifications
-2.7.1	Certification Name
-2.7.2	Certification type – new / renewal
-2.7.3	Upload Certification Copy
-2.7.4	Certification issue date/expiry date
-2.7.5	Certification ownership – by company or by employee himself
-2.8	Work Pass Details
-2.8.1	Work Pass Status – New/Renewal
-2.8.2	Work Permit Number
-2.8.3	FIN Number
-2.8.4	Date of Application
-2.8.5	Date of Issuance
-2.8.6	Expiry date of work pass
-2.8.7	Medical Date
-2.8.8	Documents
-2.8.8.1	Signed Work Pass Application
-2.8.8.2	Medical Documents
-2.8.8.3	Work Pass Issuance Document
-2.8.8.4	MOM Appointment Document
-2.9	Status of the worker
-2.9.1	currently employed
-2.9.2	left company
+    2.1	Personal Data
+    2.2	Contact Information
+    2.3	Emergency Information
+    2.4	Passport information
+    2.5	Qualifications
+    2.6	Employment Details
+        2.6.1	Basic Salary
+        2.6.2	OT Charges
+        2.6.3	Fixed Allowances
+        2.6.3.1	Housing
+        2.6.3.2	Transport
+        2.6.3.3	Other Allowances
+        2.6.4	Fixed Deductions
+        2.6.4.1	Housing
+        2.6.4.2	Transport
+        2.6.4.3	Other deductions
+        2.6.5	Annual Leave Eligibility
+        2.6.6	Medical Leave Eligibility
+        2.6.7	Bonus Eligibility
+    2.7	Certifications
+        2.7.1	Certification Name
+        2.7.2	Certification type – new / renewal
+        2.7.3	Upload Certification Copy
+        2.7.4	Certification issue date/expiry date
+        2.7.5	Certification ownership – by company or by employee himself
+    2.8	Work Pass Details
+        2.8.1	Work Pass Status – New/Renewal
+        2.8.2	Work Permit Number
+        2.8.3	FIN Number
+        2.8.4	Date of Application
+        2.8.5	Date of Issuance
+        2.8.6	Expiry date of work pass
+        2.8.7	Medical Date
+        2.8.8	Documents
+        2.8.8.1	Signed Work Pass Application
+        2.8.8.2	Medical Documents
+        2.8.8.3	Work Pass Issuance Document
+        2.8.8.4	MOM Appointment Document
+    2.9	Status of the worker
+        2.9.1	currently employed
+        2.9.2	left company
 3.	Budget
 3.1	Type of quotation
 3.1.1	Manpower + Tools + Materials

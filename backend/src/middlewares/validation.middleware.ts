@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from "express";
-import { ValidationError } from "../utils/errors.js";
+import { ValidationError } from "../utils/errors.ts";
 
 export type ValidationSchema = (data: {
   body?: any;

@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from "express";
 import morgan from "morgan";
-import logger from "../config/logger.js";
+import logger from "../config/logger.ts";
 
 morgan.token("body", (req: Request) => {
   return JSON.stringify(req.body);
