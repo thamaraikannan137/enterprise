@@ -7,7 +7,7 @@ export const certificationController = {
   async createCertification(req: Request, res: Response, next: NextFunction) {
     try {
       const certification = await certificationService.createCertification(req.body);
-      sendSuccess(res, certification, 'Certification created successfully', 201);
+      sendSuccess(res, 'Certification created successfully', certification, 201);
     } catch (error) {
       next(error);
     }
@@ -17,10 +17,10 @@ export const certificationController = {
   async getEmployeeCertifications(req: Request, res: Response, next: NextFunction) {
     try {
       const certifications = await certificationService.getEmployeeCertifications(
-        req.params.employeeId,
+        req.params.employeeId!,
         req.query
       );
-      sendSuccess(res, certifications, 'Certifications retrieved successfully');
+      sendSuccess(res, 'Certifications retrieved successfully', certifications);
     } catch (error) {
       next(error);
     }
@@ -29,8 +29,8 @@ export const certificationController = {
   // Get certification by ID
   async getCertificationById(req: Request, res: Response, next: NextFunction) {
     try {
-      const certification = await certificationService.getCertificationById(req.params.id);
-      sendSuccess(res, certification, 'Certification retrieved successfully');
+      const certification = await certificationService.getCertificationById(req.params.id!);
+      sendSuccess(res, 'Certification retrieved successfully', certification);
     } catch (error) {
       next(error);
     }
@@ -39,8 +39,8 @@ export const certificationController = {
   // Update certification
   async updateCertification(req: Request, res: Response, next: NextFunction) {
     try {
-      const certification = await certificationService.updateCertification(req.params.id, req.body);
-      sendSuccess(res, certification, 'Certification updated successfully');
+      const certification = await certificationService.updateCertification(req.params.id!, req.body);
+      sendSuccess(res, 'Certification updated successfully', certification);
     } catch (error) {
       next(error);
     }
@@ -49,8 +49,8 @@ export const certificationController = {
   // Delete certification
   async deleteCertification(req: Request, res: Response, next: NextFunction) {
     try {
-      const result = await certificationService.deleteCertification(req.params.id);
-      sendSuccess(res, result, 'Certification deleted successfully');
+      const result = await certificationService.deleteCertification(req.params.id!);
+      sendSuccess(res, 'Certification deleted successfully', result);
     } catch (error) {
       next(error);
     }
@@ -61,7 +61,7 @@ export const certificationController = {
     try {
       const daysThreshold = req.query.days ? parseInt(req.query.days as string) : 30;
       const certifications = await certificationService.getExpiringCertifications(daysThreshold);
-      sendSuccess(res, certifications, 'Expiring certifications retrieved successfully');
+      sendSuccess(res, 'Expiring certifications retrieved successfully', certifications);
     } catch (error) {
       next(error);
     }

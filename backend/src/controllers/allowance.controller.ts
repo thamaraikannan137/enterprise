@@ -7,7 +7,7 @@ export const allowanceController = {
   async createAllowanceType(req: Request, res: Response, next: NextFunction) {
     try {
       const allowanceType = await allowanceService.createAllowanceType(req.body);
-      sendSuccess(res, allowanceType, 'Allowance type created successfully', 201);
+      sendSuccess(res, 'Allowance type created successfully', allowanceType, 201);
     } catch (error) {
       next(error);
     }
@@ -16,7 +16,7 @@ export const allowanceController = {
   async getAllAllowanceTypes(req: Request, res: Response, next: NextFunction) {
     try {
       const allowanceTypes = await allowanceService.getAllAllowanceTypes(req.query);
-      sendSuccess(res, allowanceTypes, 'Allowance types retrieved successfully');
+      sendSuccess(res, 'Allowance types retrieved successfully', allowanceTypes);
     } catch (error) {
       next(error);
     }
@@ -24,8 +24,8 @@ export const allowanceController = {
 
   async getAllowanceTypeById(req: Request, res: Response, next: NextFunction) {
     try {
-      const allowanceType = await allowanceService.getAllowanceTypeById(req.params.id);
-      sendSuccess(res, allowanceType, 'Allowance type retrieved successfully');
+      const allowanceType = await allowanceService.getAllowanceTypeById(req.params.id!);
+      sendSuccess(res, 'Allowance type retrieved successfully', allowanceType);
     } catch (error) {
       next(error);
     }
@@ -33,8 +33,8 @@ export const allowanceController = {
 
   async updateAllowanceType(req: Request, res: Response, next: NextFunction) {
     try {
-      const allowanceType = await allowanceService.updateAllowanceType(req.params.id, req.body);
-      sendSuccess(res, allowanceType, 'Allowance type updated successfully');
+      const allowanceType = await allowanceService.updateAllowanceType(req.params.id!, req.body);
+      sendSuccess(res, 'Allowance type updated successfully', allowanceType);
     } catch (error) {
       next(error);
     }
@@ -42,8 +42,22 @@ export const allowanceController = {
 
   async deleteAllowanceType(req: Request, res: Response, next: NextFunction) {
     try {
-      const result = await allowanceService.deleteAllowanceType(req.params.id);
-      sendSuccess(res, result, 'Allowance type deleted successfully');
+      const result = await allowanceService.deleteAllowanceType(req.params.id!);
+      sendSuccess(res, 'Allowance type deleted successfully', result);
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  async bulkCreateAllowanceTypes(req: Request, res: Response, next: NextFunction) {
+    try {
+      const allowanceTypes = await allowanceService.bulkCreateAllowanceTypes(req.body);
+      sendSuccess(
+        res,
+        `${allowanceTypes.length} allowance type(s) created successfully`,
+        allowanceTypes,
+        201
+      );
     } catch (error) {
       next(error);
     }
@@ -53,7 +67,7 @@ export const allowanceController = {
   async createEmployeeAllowance(req: Request, res: Response, next: NextFunction) {
     try {
       const allowance = await allowanceService.createEmployeeAllowance(req.body);
-      sendSuccess(res, allowance, 'Employee allowance created successfully', 201);
+      sendSuccess(res, 'Employee allowance created successfully', allowance, 201);
     } catch (error) {
       next(error);
     }
@@ -61,8 +75,8 @@ export const allowanceController = {
 
   async getEmployeeAllowances(req: Request, res: Response, next: NextFunction) {
     try {
-      const allowances = await allowanceService.getEmployeeAllowances(req.params.employeeId, req.query);
-      sendSuccess(res, allowances, 'Employee allowances retrieved successfully');
+      const allowances = await allowanceService.getEmployeeAllowances(req.params.employeeId!, req.query);
+      sendSuccess(res, 'Employee allowances retrieved successfully', allowances);
     } catch (error) {
       next(error);
     }
@@ -70,8 +84,8 @@ export const allowanceController = {
 
   async getEmployeeAllowanceById(req: Request, res: Response, next: NextFunction) {
     try {
-      const allowance = await allowanceService.getEmployeeAllowanceById(req.params.id);
-      sendSuccess(res, allowance, 'Employee allowance retrieved successfully');
+      const allowance = await allowanceService.getEmployeeAllowanceById(req.params.id!);
+      sendSuccess(res, 'Employee allowance retrieved successfully', allowance);
     } catch (error) {
       next(error);
     }
@@ -79,8 +93,8 @@ export const allowanceController = {
 
   async updateEmployeeAllowance(req: Request, res: Response, next: NextFunction) {
     try {
-      const allowance = await allowanceService.updateEmployeeAllowance(req.params.id, req.body);
-      sendSuccess(res, allowance, 'Employee allowance updated successfully');
+      const allowance = await allowanceService.updateEmployeeAllowance(req.params.id!, req.body);
+      sendSuccess(res, 'Employee allowance updated successfully', allowance);
     } catch (error) {
       next(error);
     }
@@ -88,8 +102,8 @@ export const allowanceController = {
 
   async deleteEmployeeAllowance(req: Request, res: Response, next: NextFunction) {
     try {
-      const result = await allowanceService.deleteEmployeeAllowance(req.params.id);
-      sendSuccess(res, result, 'Employee allowance deleted successfully');
+      const result = await allowanceService.deleteEmployeeAllowance(req.params.id!);
+      sendSuccess(res, 'Employee allowance deleted successfully', result);
     } catch (error) {
       next(error);
     }

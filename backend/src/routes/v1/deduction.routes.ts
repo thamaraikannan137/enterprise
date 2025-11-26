@@ -9,6 +9,7 @@ router.use(authenticate);
 
 // DeductionType routes
 router.post('/types', deductionController.createDeductionType);
+router.post('/types/bulk', deductionController.bulkCreateDeductionTypes);
 router.get('/types', deductionController.getAllDeductionTypes);
 router.get('/types/:id', deductionController.getDeductionTypeById);
 router.put('/types/:id', deductionController.updateDeductionType);

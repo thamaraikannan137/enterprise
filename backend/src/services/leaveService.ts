@@ -57,6 +57,30 @@ export const leaveService = {
     return { message: 'Leave type deactivated successfully' };
   },
 
+  // Bulk create leave types
+  async bulkCreateLeaveTypes(dataArray: any[]) {
+    if (!Array.isArray(dataArray) || dataArray.length === 0) {
+      throw new Error('Invalid data: expected a non-empty array');
+    }
+
+    // Check for duplicate names in the input
+    const names = dataArray.map(item => item.name);
+    const uniqueNames = new Set(names);
+    if (names.length !== uniqueNames.size) {
+      throw new ConflictError('Duplicate names found in the input array');
+    }
+
+    // Check for existing names in database
+    const existingTypes = await LeaveType.find({ name: { $in: names } });
+    if (existingTypes.length > 0) {
+      const existingNames = existingTypes.map(t => t.name).join(', ');
+      throw new ConflictError(`Leave types with these names already exist: ${existingNames}`);
+    }
+
+    const created = await LeaveType.insertMany(dataArray);
+    return created;
+  },
+
   // EmployeeLeaveEntitlement CRUD
   async createLeaveEntitlement(data: any) {
     const employee = await Employee.findById(data.employee_id);

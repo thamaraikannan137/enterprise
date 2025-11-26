@@ -7,7 +7,7 @@ export const employeeCompensationController = {
   async createCompensation(req: Request, res: Response, next: NextFunction) {
     try {
       const compensation = await employeeCompensationService.createCompensation(req.body);
-      sendSuccess(res, compensation, 'Compensation created successfully', 201);
+      sendSuccess(res, 'Compensation created successfully', compensation, 201);
     } catch (error) {
       next(error);
     }
@@ -16,8 +16,8 @@ export const employeeCompensationController = {
   // Get employee compensations
   async getEmployeeCompensations(req: Request, res: Response, next: NextFunction) {
     try {
-      const compensations = await employeeCompensationService.getEmployeeCompensations(req.params.employeeId);
-      sendSuccess(res, compensations, 'Compensations retrieved successfully');
+      const compensations = await employeeCompensationService.getEmployeeCompensations(req.params.employeeId!);
+      sendSuccess(res, 'Compensations retrieved successfully', compensations);
     } catch (error) {
       next(error);
     }
@@ -26,8 +26,8 @@ export const employeeCompensationController = {
   // Get current compensation
   async getCurrentCompensation(req: Request, res: Response, next: NextFunction) {
     try {
-      const compensation = await employeeCompensationService.getCurrentCompensation(req.params.employeeId);
-      sendSuccess(res, compensation, 'Current compensation retrieved successfully');
+      const compensation = await employeeCompensationService.getCurrentCompensation(req.params.employeeId!);
+      sendSuccess(res, 'Current compensation retrieved successfully', compensation);
     } catch (error) {
       next(error);
     }
@@ -36,8 +36,8 @@ export const employeeCompensationController = {
   // Get compensation by ID
   async getCompensationById(req: Request, res: Response, next: NextFunction) {
     try {
-      const compensation = await employeeCompensationService.getCompensationById(req.params.id);
-      sendSuccess(res, compensation, 'Compensation retrieved successfully');
+      const compensation = await employeeCompensationService.getCompensationById(req.params.id!);
+      sendSuccess(res, 'Compensation retrieved successfully', compensation);
     } catch (error) {
       next(error);
     }
@@ -46,8 +46,8 @@ export const employeeCompensationController = {
   // Update compensation
   async updateCompensation(req: Request, res: Response, next: NextFunction) {
     try {
-      const compensation = await employeeCompensationService.updateCompensation(req.params.id, req.body);
-      sendSuccess(res, compensation, 'Compensation updated successfully');
+      const compensation = await employeeCompensationService.updateCompensation(req.params.id!, req.body);
+      sendSuccess(res, 'Compensation updated successfully', compensation);
     } catch (error) {
       next(error);
     }
@@ -56,8 +56,8 @@ export const employeeCompensationController = {
   // Delete compensation
   async deleteCompensation(req: Request, res: Response, next: NextFunction) {
     try {
-      const result = await employeeCompensationService.deleteCompensation(req.params.id);
-      sendSuccess(res, result, 'Compensation deleted successfully');
+      const result = await employeeCompensationService.deleteCompensation(req.params.id!);
+      sendSuccess(res, 'Compensation deleted successfully', result);
     } catch (error) {
       next(error);
     }

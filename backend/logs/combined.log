@@ -543,3 +543,523 @@
 {"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:01:52"}
 {"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:01:52"}
 {"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:01:52"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:03:14"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:03:14"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:03:14"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:07:01"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:07:01"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:07:01"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:09:40"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:09:40"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:09:40"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:09:51"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:09:51"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:09:51"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:10:17"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:10:17"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:10:17"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:10:49"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:10:49"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:10:49"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:13:25"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:13:25"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:13:25"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:13:26"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:13:26"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:13:26"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:13:27"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:13:27"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:13:27"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:13:28"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:13:28"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:13:28"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:13:29"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:13:29"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:13:29"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:13:30"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:13:30"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:13:30"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:13:31"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:13:31"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:13:31"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:13:32"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:13:32"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:13:32"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:13:33"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:13:33"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:13:33"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:13:40"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:13:40"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:13:40"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:13:41"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:13:41"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:13:41"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:13:42"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:13:42"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:13:42"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:13:43"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:13:43"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:13:43"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:13:44"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:13:44"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:13:44"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:13:45"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:13:45"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:13:45"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:13:47"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:13:47"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:13:47"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:13:48"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:13:48"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:13:48"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:13:49"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:13:49"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:13:49"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:13:50"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:13:50"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:13:50"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:13:51"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:13:51"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:13:51"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:13:52"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:13:52"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:13:52"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:13:53"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:13:53"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:13:53"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:04"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:04"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:04"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:05"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:05"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:05"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:06"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:06"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:06"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:07"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:07"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:07"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:08"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:08"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:08"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:10"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:10"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:10"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:11"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:11"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:11"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:12"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:12"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:12"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:13"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:13"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:13"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:15"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:15"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:15"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:16"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:16"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:16"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:17"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:17"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:17"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:18"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:18"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:18"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:20"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:20"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:20"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:21"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:21"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:21"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:23"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:23"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:23"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:24"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:24"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:24"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:25"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:25"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:25"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:32"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:32"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:32"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:33"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:33"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:33"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:34"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:34"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:34"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:35"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:35"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:35"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:37"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:37"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:37"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:38"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:38"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:38"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:39"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:39"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:39"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:40"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:40"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:40"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:41"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:41"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:41"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:43"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:43"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:43"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:44"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:44"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:44"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:45"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:45"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:45"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:46"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:46"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:46"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:48"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:48"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:48"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:49"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:49"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:49"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:50"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:50"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:50"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:51"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:51"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:51"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:52"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:52"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:52"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:54"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:54"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:54"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:55"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:55"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:55"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:56"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:56"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:56"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:57"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:57"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:57"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:14:58"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:14:58"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:14:58"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:15:00"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:15:00"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:15:00"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:15:01"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:15:01"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:15:01"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:15:02"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:15:02"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:15:02"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:15:03"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:15:03"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:15:03"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:15:04"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:15:04"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:15:04"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:15:06"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:15:06"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:15:06"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:15:07"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:15:07"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:15:07"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:15:08"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:15:08"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:15:08"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:15:09"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:15:09"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:15:09"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:15:11"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:15:11"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:15:11"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:15:12"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:15:12"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:15:12"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:15:13"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:15:13"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:15:13"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:15:33"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:15:33"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:15:33"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:16:22"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:16:22"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:16:22"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:16:23"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:16:23"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:16:23"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:16:25"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:16:25"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:16:25"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:16:26"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:16:26"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:16:26"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:16:27"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:16:27"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:16:27"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:16:28"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:16:28"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:16:28"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:16:30"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:16:30"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:16:30"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:16:31"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:16:31"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:16:31"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:16:32"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:16:32"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:16:32"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:16:34"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:16:34"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:16:34"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:16:35"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:16:35"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:16:35"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:16:37"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:16:37"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:16:37"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:16:38"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:16:38"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:16:38"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:16:39"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:16:39"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:16:39"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:16:40"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:16:40"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:16:40"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:16:50"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:16:50"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:16:50"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:16:51"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:16:51"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:16:51"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:16:53"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:16:53"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:16:53"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:16:54"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:16:54"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:16:54"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:16:55"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:16:55"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:16:55"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:16:57"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:16:57"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:16:57"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:16:58"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:16:58"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:16:58"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:16:59"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:16:59"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:16:59"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:01"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:01"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:01"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:02"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:02"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:02"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:03"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:03"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:03"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:05"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:05"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:05"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:06"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:06"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:06"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:07"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:07"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:07"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:08"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:08"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:08"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:09"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:09"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:09"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:11"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:11"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:11"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:12"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:12"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:12"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:13"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:13"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:13"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:14"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:14"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:14"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:15"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:15"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:15"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:16"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:16"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:16"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:18"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:18"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:18"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:19"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:19"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:19"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:20"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:20"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:20"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:21"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:21"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:21"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:23"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:23"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:23"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:24"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:24"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:24"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:25"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:25"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:25"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:27"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:27"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:27"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:28"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:28"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:28"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:29"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:29"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:29"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:30"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:30"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:30"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:32"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:32"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:32"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:33"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:33"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:33"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:34"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:34"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:34"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:36"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:36"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:36"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:37"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:37"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:37"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:54"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:54"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:54"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:55"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:55"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:55"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:56"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:56"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:56"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:58"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:58"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:58"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:17:59"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:17:59"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:17:59"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:18:00"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:18:00"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:18:00"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:18:01"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:18:01"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:18:01"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:18:02"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:18:02"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:18:02"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:18:03"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:18:03"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:18:03"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:18:05"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:18:05"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:18:05"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:18:07"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:18:07"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:18:07"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:18:15"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:18:15"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:18:15"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:22:57"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:22:57"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:22:57"}
+{"level":"info","message":"GET /api/v1/employees/6927539eb00742fa14d928e9 200 8.508 ms - 507","service":"api-service","timestamp":"2025-11-27 01:24:43"}
+{"level":"error","message":"AppError: Employee not found","method":"POST","path":"/api/v1/employee-contacts","service":"api-service","stack":"Error: Employee not found\n    at Object.createContact (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/src/services/employeeContactService.ts:11:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async createContact (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/src/controllers/employeeContact.controller.ts:9:23)","statusCode":404,"timestamp":"2025-11-27 01:25:46"}
+{"level":"info","message":"POST /api/v1/employee-contacts 404 4.286 ms - 87","service":"api-service","timestamp":"2025-11-27 01:25:46"}
+{"level":"info","message":"GET /api/v1/employees/6927539eb00742fa14d928e9 200 3.515 ms - 507","service":"api-service","timestamp":"2025-11-27 01:25:57"}
+{"level":"info","message":"POST /api/v1/employee-contacts 201 12.007 ms - 595","service":"api-service","timestamp":"2025-11-27 01:26:07"}
+{"level":"info","message":"POST /api/v1/employee-contacts 201 7.150 ms - 509","service":"api-service","timestamp":"2025-11-27 01:26:45"}
+{"level":"info","message":"GET /api/v1/employees/6927539eb00742fa14d928e9/details 200 12.102 ms - 1580","service":"api-service","timestamp":"2025-11-27 01:27:07"}
+{"level":"info","message":"POST /api/v1/employee-contacts 201 5.266 ms - 509","service":"api-service","timestamp":"2025-11-27 01:27:49"}
+{"level":"error","message":"Unexpected Error: Cannot read properties of undefined (reading 'employee_id')","method":"POST","name":"TypeError","path":"/api/v1/employee-documents","service":"api-service","stack":"TypeError: Cannot read properties of undefined (reading 'employee_id')\n    at Object.createDocument (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/src/services/employeeDocumentService.ts:9:51)\n    at createDocument (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/src/controllers/employeeDocument.controller.ts:9:54)\n    at Layer.handleRequest (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/router/lib/layer.js:152:17)\n    at next (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/router/lib/route.js:157:13)\n    at Route.dispatch (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/router/lib/route.js:117:3)\n    at handle (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/router/index.js:435:11)\n    at Layer.handleRequest (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/router/lib/layer.js:152:17)\n    at /Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/router/index.js:295:15\n    at processParams (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/router/index.js:582:12)\n    at next (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/router/index.js:291:5)","timestamp":"2025-11-27 01:32:07"}
+{"level":"info","message":"POST /api/v1/employee-documents 500 3.050 ms - 167","service":"api-service","timestamp":"2025-11-27 01:32:07"}
+{"level":"info","message":"POST /api/v1/employee-contacts 201 4.686 ms - 509","service":"api-service","timestamp":"2025-11-27 01:33:12"}
+{"level":"info","message":"POST /api/v1/employee-contacts 201 4.825 ms - 509","service":"api-service","timestamp":"2025-11-27 01:33:17"}
+{"level":"info","message":"POST /api/v1/employee-documents 201 4.182 ms - 528","service":"api-service","timestamp":"2025-11-27 01:34:03"}
+{"level":"info","message":"POST /api/v1/employee_compensation 404 0.564 ms - 114","service":"api-service","timestamp":"2025-11-27 01:43:36"}
+{"level":"info","message":"POST /api/v1/employee_compensation 404 0.419 ms - 114","service":"api-service","timestamp":"2025-11-27 01:44:22"}
+{"level":"info","message":"POST /api/v1/employee-compensation 201 10.361 ms - 489","service":"api-service","timestamp":"2025-11-27 01:44:53"}
+{"level":"info","message":"POST /api/v1/allowance-types 404 0.531 ms - 108","service":"api-service","timestamp":"2025-11-27 01:47:09"}
+{"level":"info","message":"POST /api/v1/allowance 404 0.460 ms - 102","service":"api-service","timestamp":"2025-11-27 01:47:19"}
+{"level":"info","message":"POST /api/v1/allowances 404 1.456 ms - 103","service":"api-service","timestamp":"2025-11-27 01:47:29"}
+{"level":"info","message":"POST /api/v1/allowances 404 0.893 ms - 103","service":"api-service","timestamp":"2025-11-27 01:47:33"}
+{"level":"info","message":"POST /api/v1/allowances/types 201 3.433 ms - 375","service":"api-service","timestamp":"2025-11-27 01:48:07"}
+{"level":"info","message":"POST /api/v1/allowances/types 201 4.485 ms - 353","service":"api-service","timestamp":"2025-11-27 01:48:24"}
+{"level":"info","message":"POST /api/v1/allowances/types 201 4.763 ms - 344","service":"api-service","timestamp":"2025-11-27 01:48:38"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:49:22"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:49:22"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:49:22"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:49:25"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:49:25"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:49:25"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:49:28"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:49:28"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:49:28"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:49:47"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:49:47"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:49:47"}
+{"level":"error","message":"AppError: Allowance types with these names already exist: Housing Allowance, Meal Allowance, Transport Allowance","method":"POST","path":"/api/v1/allowances/types/bulk","service":"api-service","stack":"Error: Allowance types with these names already exist: Housing Allowance, Meal Allowance, Transport Allowance\n    at Object.bulkCreateAllowanceTypes (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/src/services/allowanceService.ts:77:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async bulkCreateAllowanceTypes (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/src/controllers/allowance.controller.ts:54:30)","statusCode":409,"timestamp":"2025-11-27 01:49:58"}
+{"level":"info","message":"POST /api/v1/allowances/types/bulk 409 11.138 ms - 171","service":"api-service","timestamp":"2025-11-27 01:49:58"}
+{"level":"info","message":"POST /api/v1/allowances/types/bulk 201 13.035 ms - 2082","service":"api-service","timestamp":"2025-11-27 01:50:20"}
+{"level":"error","message":"AppError: Allowance types with these names already exist: Clothing Allowance, Communication Allowance, Education Allowance, Fuel Allowance, Housing Allowance, Meal Allowance, Medical Allowance, Transport Allowance","method":"POST","path":"/api/v1/allowances/types/bulk","service":"api-service","stack":"Error: Allowance types with these names already exist: Clothing Allowance, Communication Allowance, Education Allowance, Fuel Allowance, Housing Allowance, Meal Allowance, Medical Allowance, Transport Allowance\n    at Object.bulkCreateAllowanceTypes (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/src/services/allowanceService.ts:77:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async bulkCreateAllowanceTypes (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/src/controllers/allowance.controller.ts:54:30)","statusCode":409,"timestamp":"2025-11-27 01:50:36"}
+{"level":"info","message":"POST /api/v1/allowances/types/bulk 409 4.550 ms - 272","service":"api-service","timestamp":"2025-11-27 01:50:36"}
+{"level":"info","message":"POST /api/v1/allowances/employee 201 10.156 ms - 430","service":"api-service","timestamp":"2025-11-27 01:52:26"}
+{"level":"info","message":"GET /api/v1/employees/6927539eb00742fa14d928e9/details 200 15.478 ms - 4132","service":"api-service","timestamp":"2025-11-27 01:52:34"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:54:51"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:54:51"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:54:51"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:54:54"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:54:54"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:54:54"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:54:56"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:54:56"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:54:56"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:55:17"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:55:17"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:55:17"}
+{"level":"info","message":"POST /api/v1/leaves/types/bulk 201 11.079 ms - 2064","service":"api-service","timestamp":"2025-11-27 01:55:39"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:58:09"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:58:09"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:58:09"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:58:12"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:58:12"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:58:12"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:58:16"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:58:16"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:58:16"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-11-27 01:58:36"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-11-27 01:58:36"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-11-27 01:58:36"}
+{"level":"info","message":"POST /api/v1/deductions/types/bulk 201 15.220 ms - 1878","service":"api-service","timestamp":"2025-11-27 01:59:35"}
+{"level":"error","message":"AppError: Deduction type not found","method":"POST","path":"/api/v1/deductions/employee","service":"api-service","stack":"Error: Deduction type not found\n    at Object.createEmployeeDeduction (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/src/services/deductionService.ts:93:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async createEmployeeDeduction (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/src/controllers/deduction.controller.ts:69:25)","statusCode":404,"timestamp":"2025-11-27 02:01:01"}
+{"level":"info","message":"POST /api/v1/deductions/employee 404 8.105 ms - 93","service":"api-service","timestamp":"2025-11-27 02:01:01"}
+{"level":"info","message":"POST /api/v1/deductions/employee 201 9.618 ms - 389","service":"api-service","timestamp":"2025-11-27 02:01:22"}
+{"level":"info","message":"POST /api/v1/leave/entitlements 404 1.028 ms - 111","service":"api-service","timestamp":"2025-11-27 02:04:40"}
+{"level":"info","message":"POST /api/v1/leaves/entitlements 201 10.413 ms - 374","service":"api-service","timestamp":"2025-11-27 02:04:54"}
+{"level":"info","message":"POST /api/v1/certifications 201 5.920 ms - 492","service":"api-service","timestamp":"2025-11-27 02:07:09"}
+{"level":"info","message":"POST /api/v1/qualifications 201 5.078 ms - 490","service":"api-service","timestamp":"2025-11-27 02:08:13"}
+{"level":"info","message":"POST /api/v1/work-passes 201 8.314 ms - 523","service":"api-service","timestamp":"2025-11-27 02:11:27"}

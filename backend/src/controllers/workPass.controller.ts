@@ -7,7 +7,7 @@ export const workPassController = {
   async createWorkPass(req: Request, res: Response, next: NextFunction) {
     try {
       const workPass = await workPassService.createWorkPass(req.body);
-      sendSuccess(res, workPass, 'Work pass created successfully', 201);
+      sendSuccess(res, 'Work pass created successfully', workPass, 201);
     } catch (error) {
       next(error);
     }
@@ -16,8 +16,8 @@ export const workPassController = {
   // Get employee work passes
   async getEmployeeWorkPasses(req: Request, res: Response, next: NextFunction) {
     try {
-      const workPasses = await workPassService.getEmployeeWorkPasses(req.params.employeeId, req.query);
-      sendSuccess(res, workPasses, 'Work passes retrieved successfully');
+      const workPasses = await workPassService.getEmployeeWorkPasses(req.params.employeeId!, req.query);
+      sendSuccess(res, 'Work passes retrieved successfully', workPasses);
     } catch (error) {
       next(error);
     }
@@ -26,8 +26,8 @@ export const workPassController = {
   // Get work pass by ID
   async getWorkPassById(req: Request, res: Response, next: NextFunction) {
     try {
-      const workPass = await workPassService.getWorkPassById(req.params.id);
-      sendSuccess(res, workPass, 'Work pass retrieved successfully');
+      const workPass = await workPassService.getWorkPassById(req.params.id!);
+      sendSuccess(res, 'Work pass retrieved successfully', workPass);
     } catch (error) {
       next(error);
     }
@@ -36,8 +36,8 @@ export const workPassController = {
   // Update work pass
   async updateWorkPass(req: Request, res: Response, next: NextFunction) {
     try {
-      const workPass = await workPassService.updateWorkPass(req.params.id, req.body);
-      sendSuccess(res, workPass, 'Work pass updated successfully');
+      const workPass = await workPassService.updateWorkPass(req.params.id!, req.body);
+      sendSuccess(res, 'Work pass updated successfully', workPass);
     } catch (error) {
       next(error);
     }
@@ -46,8 +46,8 @@ export const workPassController = {
   // Delete work pass
   async deleteWorkPass(req: Request, res: Response, next: NextFunction) {
     try {
-      const result = await workPassService.deleteWorkPass(req.params.id);
-      sendSuccess(res, result, 'Work pass deleted successfully');
+      const result = await workPassService.deleteWorkPass(req.params.id!);
+      sendSuccess(res, 'Work pass deleted successfully', result);
     } catch (error) {
       next(error);
     }
@@ -58,7 +58,7 @@ export const workPassController = {
     try {
       const daysThreshold = req.query.days ? parseInt(req.query.days as string) : 30;
       const workPasses = await workPassService.getExpiringWorkPasses(daysThreshold);
-      sendSuccess(res, workPasses, 'Expiring work passes retrieved successfully');
+      sendSuccess(res, 'Expiring work passes retrieved successfully', workPasses);
     } catch (error) {
       next(error);
     }
@@ -68,7 +68,7 @@ export const workPassController = {
   async addWorkPassDocument(req: Request, res: Response, next: NextFunction) {
     try {
       const document = await workPassService.addWorkPassDocument(req.body);
-      sendSuccess(res, document, 'Work pass document added successfully', 201);
+      sendSuccess(res, 'Work pass document added successfully', document, 201);
     } catch (error) {
       next(error);
     }
@@ -76,8 +76,8 @@ export const workPassController = {
 
   async getWorkPassDocuments(req: Request, res: Response, next: NextFunction) {
     try {
-      const documents = await workPassService.getWorkPassDocuments(req.params.workPassId);
-      sendSuccess(res, documents, 'Work pass documents retrieved successfully');
+      const documents = await workPassService.getWorkPassDocuments(req.params.workPassId!);
+      sendSuccess(res, 'Work pass documents retrieved successfully', documents);
     } catch (error) {
       next(error);
     }
@@ -85,8 +85,8 @@ export const workPassController = {
 
   async deleteWorkPassDocument(req: Request, res: Response, next: NextFunction) {
     try {
-      const result = await workPassService.deleteWorkPassDocument(req.params.id);
-      sendSuccess(res, result, 'Work pass document deleted successfully');
+      const result = await workPassService.deleteWorkPassDocument(req.params.id!);
+      sendSuccess(res, 'Work pass document deleted successfully', result);
     } catch (error) {
       next(error);
     }

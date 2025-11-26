@@ -9,6 +9,7 @@ router.use(authenticate);
 
 // AllowanceType routes
 router.post('/types', allowanceController.createAllowanceType);
+router.post('/types/bulk', allowanceController.bulkCreateAllowanceTypes);
 router.get('/types', allowanceController.getAllAllowanceTypes);
 router.get('/types/:id', allowanceController.getAllowanceTypeById);
 router.put('/types/:id', allowanceController.updateAllowanceType);

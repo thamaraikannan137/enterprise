@@ -9,6 +9,7 @@ router.use(authenticate);
 
 // LeaveType routes
 router.post('/types', leaveController.createLeaveType);
+router.post('/types/bulk', leaveController.bulkCreateLeaveTypes);
 router.get('/types', leaveController.getAllLeaveTypes);
 router.get('/types/:id', leaveController.getLeaveTypeById);
 router.put('/types/:id', leaveController.updateLeaveType);

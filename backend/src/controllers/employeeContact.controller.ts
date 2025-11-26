@@ -7,7 +7,7 @@ export const employeeContactController = {
   async createContact(req: Request, res: Response, next: NextFunction) {
     try {
       const contact = await employeeContactService.createContact(req.body);
-      sendSuccess(res, contact, 'Contact created successfully', 201);
+      sendSuccess(res, 'Contact created successfully', contact, 201);
     } catch (error) {
       next(error);
     }
@@ -16,8 +16,8 @@ export const employeeContactController = {
   // Get employee contacts
   async getEmployeeContacts(req: Request, res: Response, next: NextFunction) {
     try {
-      const contacts = await employeeContactService.getEmployeeContacts(parseInt(req.params.employeeId));
-      sendSuccess(res, contacts, 'Contacts retrieved successfully');
+      const contacts = await employeeContactService.getEmployeeContacts(req.params.employeeId!);
+      sendSuccess(res, 'Contacts retrieved successfully', contacts);
     } catch (error) {
       next(error);
     }
@@ -26,8 +26,8 @@ export const employeeContactController = {
   // Get current contact
   async getCurrentContact(req: Request, res: Response, next: NextFunction) {
     try {
-      const contact = await employeeContactService.getCurrentContact(parseInt(req.params.employeeId));
-      sendSuccess(res, contact, 'Current contact retrieved successfully');
+      const contact = await employeeContactService.getCurrentContact(req.params.employeeId!);
+      sendSuccess(res, 'Current contact retrieved successfully', contact);
     } catch (error) {
       next(error);
     }
@@ -36,8 +36,8 @@ export const employeeContactController = {
   // Get contact by ID
   async getContactById(req: Request, res: Response, next: NextFunction) {
     try {
-      const contact = await employeeContactService.getContactById(parseInt(req.params.id));
-      sendSuccess(res, contact, 'Contact retrieved successfully');
+      const contact = await employeeContactService.getContactById(req.params.id!);
+      sendSuccess(res, 'Contact retrieved successfully', contact);
     } catch (error) {
       next(error);
     }
@@ -46,8 +46,8 @@ export const employeeContactController = {
   // Update contact
   async updateContact(req: Request, res: Response, next: NextFunction) {
     try {
-      const contact = await employeeContactService.updateContact(parseInt(req.params.id), req.body);
-      sendSuccess(res, contact, 'Contact updated successfully');
+      const contact = await employeeContactService.updateContact(req.params.id!, req.body);
+      sendSuccess(res, 'Contact updated successfully', contact);
     } catch (error) {
       next(error);
     }
@@ -56,8 +56,8 @@ export const employeeContactController = {
   // Delete contact
   async deleteContact(req: Request, res: Response, next: NextFunction) {
     try {
-      const result = await employeeContactService.deleteContact(parseInt(req.params.id));
-      sendSuccess(res, result, 'Contact deleted successfully');
+      const result = await employeeContactService.deleteContact(req.params.id!);
+      sendSuccess(res, 'Contact deleted successfully', result);
     } catch (error) {
       next(error);
     }
@@ -66,8 +66,8 @@ export const employeeContactController = {
   // Set as current contact
   async setCurrentContact(req: Request, res: Response, next: NextFunction) {
     try {
-      const contact = await employeeContactService.setCurrentContact(parseInt(req.params.id));
-      sendSuccess(res, contact, 'Contact set as current successfully');
+      const contact = await employeeContactService.setCurrentContact(req.params.id!);
+      sendSuccess(res, 'Contact set as current successfully', contact);
     } catch (error) {
       next(error);
     }

@@ -7,7 +7,7 @@ export const auditController = {
   async createAuditLog(req: Request, res: Response, next: NextFunction) {
     try {
       const auditLog = await auditService.createAuditLog(req.body);
-      sendSuccess(res, auditLog, 'Audit log created successfully', 201);
+      sendSuccess(res, 'Audit log created successfully', auditLog, 201);
     } catch (error) {
       next(error);
     }
@@ -17,7 +17,7 @@ export const auditController = {
   async getAuditLogs(req: Request, res: Response, next: NextFunction) {
     try {
       const result = await auditService.getAuditLogs(req.query);
-      sendSuccess(res, result, 'Audit logs retrieved successfully');
+      sendSuccess(res, 'Audit logs retrieved successfully', result);
     } catch (error) {
       next(error);
     }
@@ -27,8 +27,8 @@ export const auditController = {
   async getRecordAuditHistory(req: Request, res: Response, next: NextFunction) {
     try {
       const { tableName, recordId } = req.params;
-      const logs = await auditService.getRecordAuditHistory(tableName, recordId);
-      sendSuccess(res, logs, 'Record audit history retrieved successfully');
+      const logs = await auditService.getRecordAuditHistory(tableName!, recordId!);
+      sendSuccess(res, 'Record audit history retrieved successfully', logs);
     } catch (error) {
       next(error);
     }
@@ -37,8 +37,8 @@ export const auditController = {
   // Get user audit logs
   async getUserAuditLogs(req: Request, res: Response, next: NextFunction) {
     try {
-      const result = await auditService.getUserAuditLogs(req.params.userId, req.query);
-      sendSuccess(res, result, 'User audit logs retrieved successfully');
+      const result = await auditService.getUserAuditLogs(req.params.userId!, req.query);
+      sendSuccess(res, 'User audit logs retrieved successfully', result);
     } catch (error) {
       next(error);
     }

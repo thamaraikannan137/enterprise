@@ -16,6 +16,23 @@ const isValidStatus = (status: string): boolean => {
   return ['active', 'inactive', 'terminated'].includes(status);
 };
 
+const isValidMongoId = (id: string): boolean => {
+  return /^[0-9a-fA-F]{24}$/.test(id);
+};
+
+const isValidEmail = (email: string): boolean => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+
+const isValidContactType = (type: string): boolean => {
+  return ['primary', 'secondary', 'emergency'].includes(type);
+};
+
+const isValidDocumentType = (type: string): boolean => {
+  return ['passport', 'certificate', 'work_pass', 'qualification', 'other'].includes(type);
+};
+
 // Create employee validation
 export const createEmployeeSchema = (data: any) => {
   const errors: string[] = [];
@@ -93,6 +110,8 @@ export const updateEmployeeSchema = (data: any) => {
 
   if (!params || !params.id) {
     errors.push('Employee ID is required');
+  } else if (!isValidMongoId(params.id)) {
+    errors.push('Invalid employee ID format');
   }
 
   if (body) {

@@ -57,6 +57,30 @@ export const deductionService = {
     return { message: 'Deduction type deactivated successfully' };
   },
 
+  // Bulk create deduction types
+  async bulkCreateDeductionTypes(dataArray: any[]) {
+    if (!Array.isArray(dataArray) || dataArray.length === 0) {
+      throw new Error('Invalid data: expected a non-empty array');
+    }
+
+    // Check for duplicate names in the input
+    const names = dataArray.map(item => item.name);
+    const uniqueNames = new Set(names);
+    if (names.length !== uniqueNames.size) {
+      throw new ConflictError('Duplicate names found in the input array');
+    }
+
+    // Check for existing names in database
+    const existingTypes = await DeductionType.find({ name: { $in: names } });
+    if (existingTypes.length > 0) {
+      const existingNames = existingTypes.map(t => t.name).join(', ');
+      throw new ConflictError(`Deduction types with these names already exist: ${existingNames}`);
+    }
+
+    const created = await DeductionType.insertMany(dataArray);
+    return created;
+  },
+
   // EmployeeDeduction CRUD
   async createEmployeeDeduction(data: any) {
     const employee = await Employee.findById(data.employee_id);
