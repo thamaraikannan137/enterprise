@@ -1,6 +1,10 @@
 import User, { type IUser } from "../models/User.js";
 import { hashPassword, comparePassword } from "../utils/bcrypt.js";
-import { ConflictError, NotFoundError, UnauthorizedError } from "../utils/errors.js";
+import {
+  ConflictError,
+  NotFoundError,
+  UnauthorizedError,
+} from "../utils/errors.js";
 import { USER_ROLES } from "../config/constants.js";
 
 export interface CreateUserData {
@@ -18,6 +22,7 @@ export interface UpdateUserData {
 }
 
 class UserService {
+  //create user
   async createUser(data: CreateUserData): Promise<IUser> {
     const existingUser = await User.findOne({ email: data.email });
     if (existingUser) {
@@ -31,12 +36,15 @@ class UserService {
       password: hashedPassword,
       firstName: data.firstName,
       lastName: data.lastName,
-      role: (data.role as typeof USER_ROLES[keyof typeof USER_ROLES]) || USER_ROLES.USER,
+      role:
+        (data.role as (typeof USER_ROLES)[keyof typeof USER_ROLES]) ||
+        USER_ROLES.USER,
     });
 
     return user;
   }
 
+  //get user by id
   async getUserById(id: string): Promise<IUser> {
     const user = await User.findById(id);
     if (!user) {
@@ -45,10 +53,11 @@ class UserService {
     return user;
   }
 
+  //get user by email
   async getUserByEmail(email: string): Promise<IUser | null> {
     return User.findOne({ email });
   }
-
+  //update user
   async updateUser(id: string, data: UpdateUserData): Promise<IUser> {
     const user = await this.getUserById(id);
 
@@ -61,15 +70,15 @@ class UserService {
 
     Object.assign(user, data);
     await user.save();
-    
+
     return user;
   }
-
+  //delete user
   async deleteUser(id: string): Promise<void> {
     const user = await this.getUserById(id);
     await user.deleteOne();
   }
-
+  //verify password
   async verifyPassword(email: string, password: string): Promise<IUser> {
     const user = await this.getUserByEmail(email);
     if (!user) {
@@ -87,10 +96,13 @@ class UserService {
 
     return user;
   }
-
-  async getAllUsers(page: number = 1, limit: number = 10): Promise<{ users: IUser[]; total: number; pages: number }> {
+  //get all users
+  async getAllUsers(
+    page: number = 1,
+    limit: number = 10
+  ): Promise<{ users: IUser[]; total: number; pages: number }> {
     const skip = (page - 1) * limit;
-    
+
     const [users, total] = await Promise.all([
       User.find()
         .select("-password")
