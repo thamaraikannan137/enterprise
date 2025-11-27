@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { MuiCard, MuiButton } from '../../../common';
-import { Edit, Upload, Delete, Visibility, Save, Cancel } from '@mui/icons-material';
+import { Edit, Upload, Delete, Visibility, Cancel } from '@mui/icons-material';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Chip } from '@mui/material';
 import { employeeRelatedService } from '../../../../services/employeeRelatedService';
 import { useToast } from '../../../../contexts/ToastContext';
@@ -25,6 +25,7 @@ export const DocsTab = ({
   const employeeId = useMemo(() => employee?.id || employeeIdFromUrl, [employee?.id, employeeIdFromUrl]);
   const [documents, setDocuments] = useState<EmployeeDocument[]>([]);
   const [loading, setLoading] = useState(false);
+  const [showAddForm, setShowAddForm] = useState(false);
   const [newDocument, setNewDocument] = useState<CreateEmployeeDocumentInput>({
     employee_id: employeeId || '',
     document_type: 'other',
@@ -54,6 +55,12 @@ export const DocsTab = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [employeeId]);
 
+  useEffect(() => {
+    if (!isEditMode) {
+      setShowAddForm(false);
+    }
+  }, [isEditMode]);
+
   const handleAdd = async () => {
     if (!employeeId) {
       showError('Error: Employee ID is missing. Please refresh the page and try again.');
@@ -74,6 +81,7 @@ export const DocsTab = ({
         file_path: '',
         is_active: true,
       });
+      setShowAddForm(false);
     } catch (error: any) {
       console.error('Failed to create document:', error);
       const errorMessage = error?.message || error?.response?.data?.message || 'Failed to create document. Please try again.';
@@ -104,26 +112,16 @@ export const DocsTab = ({
       <MuiCard className="p-6">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold text-gray-900">Documents</h3>
-          <div className="flex gap-2">
+          {!isEditMode && (
             <MuiButton
               size="small"
               variant="outlined"
-              startIcon={<Upload />}
+              startIcon={<Edit />}
               onClick={() => onEditModeChange(true)}
             >
-              Upload
+              Edit
             </MuiButton>
-            {!isEditMode && (
-              <MuiButton
-                size="small"
-                variant="outlined"
-                startIcon={<Edit />}
-                onClick={() => onEditModeChange(true)}
-              >
-                Edit
-              </MuiButton>
-            )}
-          </div>
+          )}
         </div>
 
         {loading ? (
@@ -199,7 +197,19 @@ export const DocsTab = ({
           </TableContainer>
         )}
 
-        {isEditMode && (
+        {isEditMode && !showAddForm && (
+          <div className="mt-6">
+            <MuiButton
+              variant="outlined"
+              startIcon={<Upload />}
+              onClick={() => setShowAddForm(true)}
+            >
+              Add Document
+            </MuiButton>
+          </div>
+        )}
+
+        {isEditMode && showAddForm && (
           <div className="mt-6 p-4 border border-gray-200 rounded-lg">
             <h4 className="font-medium text-gray-900 mb-4">Add New Document</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -281,15 +291,17 @@ export const DocsTab = ({
                   </MuiButton>
                   <MuiButton
                     variant="outlined"
-                    startIcon={<Save />}
-                    onClick={() => onEditModeChange(false)}
-                  >
-                    Done
-                  </MuiButton>
-                  <MuiButton
-                    variant="outlined"
                     startIcon={<Cancel />}
-                    onClick={() => onEditModeChange(false)}
+                    onClick={() => {
+                      setNewDocument({
+                        employee_id: employeeId,
+                        document_type: 'other',
+                        document_name: '',
+                        file_path: '',
+                        is_active: true,
+                      });
+                      setShowAddForm(false);
+                    }}
                   >
                     Cancel
                   </MuiButton>

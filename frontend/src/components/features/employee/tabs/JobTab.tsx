@@ -1,5 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useForm, Controller } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { DevTool } from '@hookform/devtools';
+import { z } from 'zod';
 import { MuiCard, MuiButton } from '../../../common';
 import { Edit, Save, Cancel } from '@mui/icons-material';
 import { TextField, Grid, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
@@ -15,6 +19,17 @@ interface JobTabProps {
   onEditModeChange: (value: boolean) => void;
 }
 
+const jobInfoSchema = z.object({
+  designation: z.string().min(1, 'Designation is required').max(100, 'Designation must be less than 100 characters'),
+  department: z.string().min(1, 'Department is required').max(100, 'Department must be less than 100 characters'),
+  reporting_to: z.string().optional().or(z.literal('')),
+  employee_code: z.string().optional().or(z.literal('')),
+  hire_date: z.string().min(1, 'Hire date is required'),
+  termination_date: z.string().optional().or(z.literal('')),
+});
+
+type JobInfoFormData = z.infer<typeof jobInfoSchema>;
+
 export const JobTab = ({
   employee,
   isEditMode,
@@ -22,25 +37,36 @@ export const JobTab = ({
 }: JobTabProps) => {
   const dispatch = useAppDispatch();
   const { id: employeeIdFromUrl } = useParams<{ id: string }>();
-  const { showSuccess, showError, showWarning } = useToast();
-  const [saving, setSaving] = useState(false);
-  const { employees: managerOptions } = useEmployeeList({ 
+  const { showSuccess, showError } = useToast();
+  const { employees: managerOptions, loading: managerOptionsLoading } = useEmployeeList({ 
     status: 'active', 
     limit: 100,
     excludeId: employee.id 
   });
 
-  const [jobData, setJobData] = useState({
-    designation: employee.designation || '',
-    department: employee.department || '',
-    reporting_to: employee.reporting_to || '',
-    employee_code: employee.employee_code || '',
-    hire_date: employee.hire_date.split('T')[0],
-    termination_date: employee.termination_date?.split('T')[0] || '',
+  // Use employee.id if available, otherwise fall back to URL param
+  const employeeId = employee?.id || employeeIdFromUrl;
+
+  const {
+    control,
+    handleSubmit,
+    formState: { isSubmitting },
+    reset,
+  } = useForm<JobInfoFormData>({
+    resolver: zodResolver(jobInfoSchema),
+    mode: 'onChange',
+    defaultValues: {
+      designation: employee.designation || '',
+      department: employee.department || '',
+      reporting_to: employee.reporting_to || '',
+      employee_code: employee.employee_code || '',
+      hire_date: employee.hire_date.split('T')[0],
+      termination_date: employee.termination_date?.split('T')[0] || '',
+    },
   });
 
   useEffect(() => {
-    setJobData({
+    reset({
       designation: employee.designation || '',
       department: employee.department || '',
       reporting_to: employee.reporting_to || '',
@@ -48,37 +74,25 @@ export const JobTab = ({
       hire_date: employee.hire_date.split('T')[0],
       termination_date: employee.termination_date?.split('T')[0] || '',
     });
-  }, [employee]);
+  }, [employee, reset]);
 
-  // Use employee.id if available, otherwise fall back to URL param
-  const employeeId = employee?.id || employeeIdFromUrl;
-
-  const handleSave = async () => {
-    if (saving) return;
-    
+  const onSubmit = async (data: JobInfoFormData) => {
     // Validate employee ID
     if (!employeeId) {
       showError('Error: Employee ID is missing. Please refresh the page and try again.');
       console.error('Employee ID is missing:', { employeeId, employeeIdFromUrl, employee });
       return;
     }
-    
-    // Basic validation
-    if (!jobData.designation || !jobData.department || !jobData.hire_date) {
-      showWarning('Please fill in all required fields (Designation, Department, Hire Date)');
-      return;
-    }
 
-    setSaving(true);
     try {
       await dispatch(updateEmployee({
         id: employeeId,
         data: {
-          designation: jobData.designation,
-          department: jobData.department,
-          reporting_to: jobData.reporting_to || undefined,
-          hire_date: jobData.hire_date,
-          termination_date: jobData.termination_date || undefined,
+          designation: data.designation,
+          department: data.department,
+          reporting_to: data.reporting_to && data.reporting_to.trim() !== '' ? data.reporting_to : (null as any),
+          hire_date: data.hire_date,
+          termination_date: data.termination_date && data.termination_date.trim() !== '' ? data.termination_date : (null as any),
         },
       })).unwrap();
       
@@ -93,13 +107,11 @@ export const JobTab = ({
       console.error('Failed to update employee:', error);
       const errorMessage = error?.message || error?.response?.data?.message || 'Failed to save job information. Please try again.';
       showError(errorMessage);
-    } finally {
-      setSaving(false);
     }
   };
 
   const handleCancel = () => {
-    setJobData({
+    reset({
       designation: employee.designation || '',
       department: employee.department || '',
       reporting_to: employee.reporting_to || '',
@@ -110,21 +122,45 @@ export const JobTab = ({
     onEditModeChange(false);
   };
 
-  const handleChange = (field: string, value: string) => {
-    setJobData((prev) => ({ ...prev, [field]: value }));
-  };
-
   const getReportingManagerName = () => {
     if (!employee.reporting_to) return 'No Manager';
-    const manager = managerOptions.find(m => m.id === employee.reporting_to);
+    
+    // Check if reporting_to is a populated object (from backend)
+    if (typeof employee.reporting_to === 'object' && employee.reporting_to !== null) {
+      const reportingTo = employee.reporting_to as any;
+      const name = `${reportingTo.first_name || ''} ${reportingTo.last_name || ''}`.trim();
+      const designation = reportingTo.designation ? ` (${reportingTo.designation})` : '';
+      return name ? `${name}${designation}` : 'Unknown Manager';
+    }
+    
+    // If reporting_to is a string ID, try to find it in managerOptions
+    const reportingToId = typeof employee.reporting_to === 'string' ? employee.reporting_to : String(employee.reporting_to);
+    
+    // If managerOptions is still loading, show loading state
+    if (managerOptionsLoading) {
+      return 'Loading...';
+    }
+    
+    const manager = managerOptions.find(m => m.id === reportingToId);
     if (manager) {
       return `${manager.first_name} ${manager.last_name}${manager.designation ? ` (${manager.designation})` : ''}`;
     }
-    return 'Loading...';
+    
+    // If not found in managerOptions, check if there's a reportingToEmployee property
+    if ((employee as any).reportingToEmployee) {
+      const reportingTo = (employee as any).reportingToEmployee;
+      const name = `${reportingTo.first_name || ''} ${reportingTo.last_name || ''}`.trim();
+      const designation = reportingTo.designation ? ` (${reportingTo.designation})` : '';
+      return name ? `${name}${designation}` : 'Unknown Manager';
+    }
+    
+    // If still not found, return the ID or a fallback
+    return reportingToId || 'Unknown Manager';
   };
 
   return (
     <div className="space-y-6">
+      {import.meta.env.DEV && <DevTool control={control} />}
       <MuiCard className="p-6">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold text-gray-900">Job Information</h3>
@@ -141,100 +177,152 @@ export const JobTab = ({
         </div>
 
         {isEditMode ? (
-          <div className="space-y-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <Grid container spacing={3}>
               <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Designation"
-                  value={jobData.designation}
-                  onChange={(e) => handleChange('designation', e.target.value)}
-                  variant="outlined"
+                <Controller
+                  name="designation"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <TextField
+                      {...field}
+                      fullWidth
+                      label="Designation"
+                      error={!!fieldState.error}
+                      helperText={fieldState.error?.message}
+                      variant="outlined"
+                      required
+                    />
+                  )}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Department"
-                  value={jobData.department}
-                  onChange={(e) => handleChange('department', e.target.value)}
-                  variant="outlined"
+                <Controller
+                  name="department"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <TextField
+                      {...field}
+                      fullWidth
+                      label="Department"
+                      error={!!fieldState.error}
+                      helperText={fieldState.error?.message}
+                      variant="outlined"
+                      required
+                    />
+                  )}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <FormControl fullWidth>
-                  <InputLabel>Reporting To</InputLabel>
-                  <Select
-                    value={jobData.reporting_to || ''}
-                    onChange={(e) => handleChange('reporting_to', e.target.value)}
-                    label="Reporting To"
-                  >
-                    <MenuItem value="">No Manager</MenuItem>
-                    {managerOptions.map((manager) => {
-                      const name = `${manager.first_name} ${manager.last_name}`;
-                      const display = `${name}${(manager as any).designation ? ` (${(manager as any).designation})` : ''} - ${manager.employee_code}`;
-                      return (
-                        <MenuItem key={manager.id} value={manager.id}>
-                          {display}
-                        </MenuItem>
-                      );
-                    })}
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Employee Number"
-                  value={jobData.employee_code}
-                  disabled
-                  variant="outlined"
-                  helperText="Employee code cannot be changed"
+                <Controller
+                  name="reporting_to"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <FormControl fullWidth error={!!fieldState.error}>
+                      <InputLabel>Reporting To</InputLabel>
+                      <Select
+                        value={field.value || ''}
+                        onChange={(e) => {
+                          const value = e.target.value;
+                          field.onChange(value === '' ? '' : String(value));
+                        }}
+                        label="Reporting To"
+                      >
+                        <MenuItem value="">No Manager</MenuItem>
+                        {managerOptions.map((manager) => {
+                          const name = `${manager.first_name} ${manager.last_name}`;
+                          const display = `${name}${(manager as any).designation ? ` (${(manager as any).designation})` : ''} - ${manager.employee_code}`;
+                          return (
+                            <MenuItem key={manager.id} value={manager.id}>
+                              {display}
+                            </MenuItem>
+                          );
+                        })}
+                      </Select>
+                      {fieldState.error && (
+                        <div className="text-xs text-red-500 mt-1 ml-3">
+                          {fieldState.error.message}
+                        </div>
+                      )}
+                    </FormControl>
+                  )}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Hire Date"
-                  type="date"
-                  value={jobData.hire_date}
-                  onChange={(e) => handleChange('hire_date', e.target.value)}
-                  variant="outlined"
-                  InputLabelProps={{ shrink: true }}
+                <Controller
+                  name="employee_code"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      fullWidth
+                      label="Employee Number"
+                      disabled
+                      variant="outlined"
+                      helperText="Employee code cannot be changed"
+                    />
+                  )}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Termination Date"
-                  type="date"
-                  value={jobData.termination_date}
-                  onChange={(e) => handleChange('termination_date', e.target.value)}
-                  variant="outlined"
-                  InputLabelProps={{ shrink: true }}
+                <Controller
+                  name="hire_date"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <TextField
+                      {...field}
+                      fullWidth
+                      label="Hire Date"
+                      type="date"
+                      error={!!fieldState.error}
+                      helperText={fieldState.error?.message}
+                      variant="outlined"
+                      InputLabelProps={{ shrink: true }}
+                      required
+                    />
+                  )}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <Controller
+                  name="termination_date"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <TextField
+                      {...field}
+                      fullWidth
+                      label="Termination Date"
+                      type="date"
+                      error={!!fieldState.error}
+                      helperText={fieldState.error?.message}
+                      variant="outlined"
+                      InputLabelProps={{ shrink: true }}
+                    />
+                  )}
                 />
               </Grid>
             </Grid>
             <div className="flex gap-2">
               <MuiButton
+                type="submit"
                 variant="contained"
                 startIcon={<Save />}
-                onClick={handleSave}
-                disabled={saving}
-                isLoading={saving}
+                disabled={isSubmitting}
+                isLoading={isSubmitting}
               >
                 Save
               </MuiButton>
               <MuiButton
+                type="button"
                 variant="outlined"
                 startIcon={<Cancel />}
                 onClick={handleCancel}
-                disabled={saving}
+                disabled={isSubmitting}
               >
                 Cancel
               </MuiButton>
             </div>
-          </div>
+          </form>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>

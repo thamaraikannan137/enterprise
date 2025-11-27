@@ -41,29 +41,13 @@ export const workPassService = {
     }
 
     return await EmployeeWorkPass.find(query)
-      .populate({
-        path: 'documents',
-        model: 'WorkPassDocument',
-        populate: {
-          path: 'document_id',
-          model: 'EmployeeDocument',
-        },
-      })
       .sort({ application_date: -1 });
   },
 
   // Get work pass by ID
   async getWorkPassById(id: string) {
     const workPass = await EmployeeWorkPass.findById(id)
-      .populate('employee_id')
-      .populate({
-        path: 'documents',
-        model: 'WorkPassDocument',
-        populate: {
-          path: 'document_id',
-          model: 'EmployeeDocument',
-        },
-      });
+      .populate('employee_id');
     if (!workPass) {
       throw new NotFoundError('Work pass not found');
     }

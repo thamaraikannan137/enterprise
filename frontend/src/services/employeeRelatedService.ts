@@ -3,6 +3,7 @@ import { API_ENDPOINTS } from '../config/constants';
 import type {
   EmployeeContact,
   CreateEmployeeContactInput,
+  UpdateEmployeeContactInput,
   EmployeeCompensation,
   CreateEmployeeCompensationInput,
   UpdateEmployeeCompensationInput,
@@ -38,6 +39,41 @@ export const employeeRelatedService = {
       `${API_ENDPOINTS.EMPLOYEE_CONTACTS}/employee/${employeeId}`
     );
     return response.data;
+  },
+
+  updateContact: async (
+    contactId: string,
+    contactData: UpdateEmployeeContactInput
+  ): Promise<EmployeeContact> => {
+    if (!contactId) {
+      throw new Error('Contact ID is required');
+    }
+    
+    if (!contactData) {
+      throw new Error('Contact data is required');
+    }
+
+    try {
+      const response = await apiClient.put<ApiResponse<EmployeeContact>>(
+        `${API_ENDPOINTS.EMPLOYEE_CONTACTS}/${contactId}`,
+        contactData
+      );
+      
+      if (response && typeof response === 'object' && 'data' in response) {
+        return (response as ApiResponse<EmployeeContact>).data;
+      }
+      
+      return response as unknown as EmployeeContact;
+    } catch (error: any) {
+      console.error('updateContact service error:', error);
+      throw error;
+    }
+  },
+
+  deleteContact: async (contactId: string): Promise<void> => {
+    await apiClient.delete<ApiResponse<void>>(
+      `${API_ENDPOINTS.EMPLOYEE_CONTACTS}/${contactId}`
+    );
   },
 
   // ========== COMPENSATION ==========

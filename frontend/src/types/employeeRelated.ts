@@ -36,6 +36,21 @@ export interface CreateEmployeeContactInput {
   valid_to?: string;
 }
 
+export interface UpdateEmployeeContactInput {
+  contact_type?: ContactType;
+  phone?: string;
+  alternate_phone?: string;
+  email?: string;
+  address_line1?: string;
+  address_line2?: string;
+  city?: string;
+  postal_code?: string;
+  country?: string;
+  is_current?: boolean;
+  valid_from?: string;
+  valid_to?: string;
+}
+
 // Employee Compensation Types
 export interface EmployeeCompensation {
   id: string;

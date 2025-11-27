@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { MuiCard, MuiButton } from '../../../common';
-import { Edit, Save, Cancel, Add } from '@mui/icons-material';
+import { Edit, Cancel, Add } from '@mui/icons-material';
 import { TextField, Grid, Select, MenuItem, FormControl, InputLabel, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Chip } from '@mui/material';
 import { employeeRelatedService } from '../../../../services/employeeRelatedService';
 import { useToast } from '../../../../contexts/ToastContext';
@@ -25,6 +25,7 @@ export const WorkPassTab = ({
   const employeeId = useMemo(() => employee?.id || employeeIdFromUrl, [employee?.id, employeeIdFromUrl]);
   const [workPasses, setWorkPasses] = useState<EmployeeWorkPass[]>([]);
   const [loading, setLoading] = useState(false);
+  const [showAddForm, setShowAddForm] = useState(false);
   const [newWorkPass, setNewWorkPass] = useState<CreateEmployeeWorkPassInput>({
     employee_id: employeeId || '',
     status: 'new',
@@ -52,6 +53,12 @@ export const WorkPassTab = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [employeeId]);
 
+  useEffect(() => {
+    if (!isEditMode) {
+      setShowAddForm(false);
+    }
+  }, [isEditMode]);
+
   const handleAdd = async () => {
     if (!employeeId) {
       showError('Error: Employee ID is missing. Please refresh the page and try again.');
@@ -66,6 +73,7 @@ export const WorkPassTab = ({
         status: 'new',
         is_current: true,
       });
+      setShowAddForm(false);
     } catch (error: any) {
       console.error('Failed to create work pass:', error);
       const errorMessage = error?.message || error?.response?.data?.message || 'Failed to create work pass. Please try again.';
@@ -170,7 +178,19 @@ export const WorkPassTab = ({
           </div>
         )}
 
-        {isEditMode && (
+        {isEditMode && !showAddForm && (
+          <div className="mt-6">
+            <MuiButton
+              variant="outlined"
+              startIcon={<Add />}
+              onClick={() => setShowAddForm(true)}
+            >
+              Add Work Pass
+            </MuiButton>
+          </div>
+        )}
+
+        {isEditMode && showAddForm && (
           <div className="mt-6 p-4 border border-gray-200 rounded-lg">
             <h4 className="font-medium text-gray-900 mb-4">Add New Work Pass</h4>
             <Grid container spacing={2}>
@@ -275,15 +295,15 @@ export const WorkPassTab = ({
                   </MuiButton>
                   <MuiButton
                     variant="outlined"
-                    startIcon={<Save />}
-                    onClick={() => onEditModeChange(false)}
-                  >
-                    Done
-                  </MuiButton>
-                  <MuiButton
-                    variant="outlined"
                     startIcon={<Cancel />}
-                    onClick={() => onEditModeChange(false)}
+                    onClick={() => {
+                      setNewWorkPass({
+                        employee_id: employeeId,
+                        status: 'new',
+                        is_current: true,
+                      });
+                      setShowAddForm(false);
+                    }}
                   >
                     Cancel
                   </MuiButton>

@@ -18,8 +18,8 @@ interface FinancesTabProps {
   onEditModeChange: (value: boolean) => void;
 }
 
-// Schema for editing compensation
-const editCompensationSchema = z.object({
+// Schema for compensation (used for both editing and adding)
+const compensationSchema = z.object({
   basic_salary: z.coerce.number().min(0, 'Basic salary must be positive'),
   ot_hourly_rate: z.coerce.number().min(0, 'OT rate must be positive').optional().nullable(),
   effective_from: z.string().min(1, 'Effective from date is required'),
@@ -27,17 +27,7 @@ const editCompensationSchema = z.object({
   is_current: z.boolean(),
 });
 
-// Schema for new compensation
-const newCompensationSchema = z.object({
-  basic_salary: z.coerce.number().min(0, 'Basic salary must be positive'),
-  ot_hourly_rate: z.coerce.number().min(0, 'OT rate must be positive').optional().nullable(),
-  effective_from: z.string().min(1, 'Effective from date is required'),
-  effective_to: z.string().optional().nullable(),
-  is_current: z.boolean(),
-});
-
-type EditCompensationFormData = z.infer<typeof editCompensationSchema>;
-type NewCompensationFormData = z.infer<typeof newCompensationSchema>;
+type CompensationFormData = z.infer<typeof compensationSchema>;
 
 export const FinancesTab = ({
   employee,
@@ -51,16 +41,17 @@ export const FinancesTab = ({
   const [loading, setLoading] = useState(false);
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [saving, setSaving] = useState(false);
+  const [showAddForm, setShowAddForm] = useState(false);
 
   // Form for editing existing compensation
-  const editForm = useForm<EditCompensationFormData>({
-    resolver: zodResolver(editCompensationSchema),
+  const editForm = useForm<CompensationFormData>({
+    resolver: zodResolver(compensationSchema),
     mode: 'onChange',
   });
 
   // Form for adding new compensation
-  const newForm = useForm<NewCompensationFormData>({
-    resolver: zodResolver(newCompensationSchema),
+  const newForm = useForm<CompensationFormData>({
+    resolver: zodResolver(compensationSchema),
     mode: 'onChange',
     defaultValues: {
       basic_salary: 0,
@@ -91,7 +82,14 @@ export const FinancesTab = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [employeeId]);
 
-  const handleAdd = async (data: NewCompensationFormData) => {
+  useEffect(() => {
+    if (!isEditMode) {
+      setEditingIndex(null);
+      setShowAddForm(false);
+    }
+  }, [isEditMode]);
+
+  const handleAdd = async (data: CompensationFormData) => {
     if (!employeeId) {
       showError('Error: Employee ID is missing. Please refresh the page and try again.');
       return;
@@ -115,6 +113,7 @@ export const FinancesTab = ({
         effective_to: undefined,
         is_current: true,
       });
+      setShowAddForm(false);
     } catch (error: any) {
       console.error('Failed to create compensation:', error);
       const errorMessage = error?.message || error?.response?.data?.message || 'Failed to create compensation. Please try again.';
@@ -140,6 +139,7 @@ export const FinancesTab = ({
   };
 
   const handleSave = async (index: number) => {
+    console.log('handleSave', index);
     const compensation = compensations[index];
     if (!compensation?.id) {
       showError('Error: Compensation ID is missing. This record cannot be updated.');
@@ -234,72 +234,32 @@ export const FinancesTab = ({
               <div key={comp.id}>
                 <Paper variant="outlined" className="p-4">
                   {editingIndex === index ? (
-                    <div className="space-y-4">
-                      <div className="flex justify-between items-center mb-2">
-                        <h4 className="font-medium text-gray-900">Editing Compensation</h4>
-                        <Chip
-                          label={comp.is_current ? 'Current' : 'Historical'}
-                          color={comp.is_current ? 'success' : 'default'}
-                          size="small"
-                        />
-                      </div>
+                    <form onSubmit={editForm.handleSubmit(async () => await handleSave(index))}>
                       <div className="space-y-4">
-                        <div>
-                          <Controller
-                            name="basic_salary"
-                            control={editForm.control}
-                            render={({ field, fieldState }) => (
-                              <TextField
-                                {...field}
-                                fullWidth
-                                label="Basic Salary"
-                                type="number"
-                                value={field.value || 0}
-                                onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
-                                error={!!fieldState.error}
-                                helperText={fieldState.error?.message}
-                                inputProps={{ min: 0, step: 0.01 }}
-                                variant="outlined"
-                                size="small"
-                              />
-                            )}
+                        <div className="flex justify-between items-center mb-2">
+                          <h4 className="font-medium text-gray-900">Editing Compensation</h4>
+                          <Chip
+                            label={comp.is_current ? 'Current' : 'Historical'}
+                            color={comp.is_current ? 'success' : 'default'}
+                            size="small"
                           />
                         </div>
-                        <div>
-                          <Controller
-                            name="ot_hourly_rate"
-                            control={editForm.control}
-                            render={({ field, fieldState }) => (
-                              <TextField
-                                {...field}
-                                fullWidth
-                                label="OT Hourly Rate (optional)"
-                                type="number"
-                                value={field.value || ''}
-                                onChange={(e) => field.onChange(e.target.value ? parseFloat(e.target.value) : undefined)}
-                                error={!!fieldState.error}
-                                helperText={fieldState.error?.message}
-                                inputProps={{ min: 0, step: 0.01 }}
-                                variant="outlined"
-                                size="small"
-                              />
-                            )}
-                          />
-                        </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div className="space-y-4">
                           <div>
                             <Controller
-                              name="effective_from"
+                              name="basic_salary"
                               control={editForm.control}
                               render={({ field, fieldState }) => (
                                 <TextField
                                   {...field}
                                   fullWidth
-                                  label="Effective From"
-                                  type="date"
+                                  label="Basic Salary"
+                                  type="number"
+                                  value={field.value || 0}
+                                  onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
                                   error={!!fieldState.error}
                                   helperText={fieldState.error?.message}
-                                  InputLabelProps={{ shrink: true }}
+                                  inputProps={{ min: 0, step: 0.01 }}
                                   variant="outlined"
                                   size="small"
                                 />
@@ -308,73 +268,112 @@ export const FinancesTab = ({
                           </div>
                           <div>
                             <Controller
-                              name="effective_to"
+                              name="ot_hourly_rate"
                               control={editForm.control}
-                              render={({ field }) => (
+                              render={({ field, fieldState }) => (
                                 <TextField
                                   {...field}
                                   fullWidth
-                                  label="Effective To (optional)"
-                                  type="date"
+                                  label="OT Hourly Rate (optional)"
+                                  type="number"
                                   value={field.value || ''}
-                                  onChange={(e) => field.onChange(e.target.value || undefined)}
-                                  InputLabelProps={{ shrink: true }}
+                                  onChange={(e) => field.onChange(e.target.value ? parseFloat(e.target.value) : undefined)}
+                                  error={!!fieldState.error}
+                                  helperText={fieldState.error?.message}
+                                  inputProps={{ min: 0, step: 0.01 }}
                                   variant="outlined"
                                   size="small"
                                 />
                               )}
                             />
                           </div>
-                        </div>
-                        <div>
-                          <Controller
-                            name="is_current"
-                            control={editForm.control}
-                            render={({ field }) => (
-                              <label className="flex items-center gap-2">
-                                <input
-                                  type="checkbox"
-                                  checked={field.value || false}
-                                  onChange={field.onChange}
-                                  className="w-4 h-4"
-                                />
-                                <span className="text-sm text-gray-700">This is the current compensation</span>
-                              </label>
-                            )}
-                          />
-                        </div>
-                        <div>
-                          <div className="flex gap-2">
-                            <MuiButton
-                              size="small"
-                              variant="contained"
-                              startIcon={<Save />}
-                              onClick={async (e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                await handleSave(index);
-                              }}
-                              disabled={saving}
-                            >
-                              {saving ? 'Saving...' : 'Save'}
-                            </MuiButton>
-                            <MuiButton
-                              size="small"
-                              variant="outlined"
-                              startIcon={<Cancel />}
-                              onClick={(e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                handleCancelEdit();
-                              }}
-                              disabled={saving}
-                            >
-                              Cancel
-                            </MuiButton>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                              <Controller
+                                name="effective_from"
+                                control={editForm.control}
+                                render={({ field, fieldState }) => (
+                                  <TextField
+                                    {...field}
+                                    fullWidth
+                                    label="Effective From"
+                                    type="date"
+                                    error={!!fieldState.error}
+                                    helperText={fieldState.error?.message}
+                                    InputLabelProps={{ shrink: true }}
+                                    variant="outlined"
+                                    size="small"
+                                  />
+                                )}
+                              />
+                            </div>
+                            <div>
+                              <Controller
+                                name="effective_to"
+                                control={editForm.control}
+                                render={({ field }) => (
+                                  <TextField
+                                    {...field}
+                                    fullWidth
+                                    label="Effective To (optional)"
+                                    type="date"
+                                    value={field.value || ''}
+                                    onChange={(e) => field.onChange(e.target.value || undefined)}
+                                    InputLabelProps={{ shrink: true }}
+                                    variant="outlined"
+                                    size="small"
+                                  />
+                                )}
+                              />
+                            </div>
+                          </div>
+                          <div>
+                            <Controller
+                              name="is_current"
+                              control={editForm.control}
+                              render={({ field }) => (
+                                <label className="flex items-center gap-2">
+                                  <input
+                                    type="checkbox"
+                                    checked={field.value || false}
+                                    onChange={field.onChange}
+                                    className="w-4 h-4"
+                                  />
+                                  <span className="text-sm text-gray-700">This is the current compensation</span>
+                                </label>
+                              )}
+                            />
+                          </div>
+                          <div>
+                            <div className="flex gap-2">
+                              <MuiButton
+                                type="submit"
+                                size="small"
+                                variant="contained"
+                                startIcon={<Save />}
+                                disabled={saving || editForm.formState.isSubmitting}
+                              >
+                                {saving || editForm.formState.isSubmitting ? 'Saving...' : 'Save'}
+                              </MuiButton>
+                              <MuiButton
+                                type="button"
+                                size="small"
+                                variant="outlined"
+                                startIcon={<Cancel />}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  handleCancelEdit();
+                                }}
+                                disabled={saving || editForm.formState.isSubmitting}
+                              >
+                                Cancel
+                              </MuiButton>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </form>
                   ) : (
                     <div className="space-y-3">
                       <div className="flex justify-between items-start">
@@ -444,153 +443,144 @@ export const FinancesTab = ({
           </div>
         )}
 
-        {isEditMode && (
-          <div className="mt-6 p-4 border border-gray-200 rounded-lg">
-            <h4 className="font-medium text-gray-900 mb-4">Add New Compensation</h4>
-            <form onSubmit={newForm.handleSubmit(handleAdd)}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <Controller
-                    name="basic_salary"
-                    control={newForm.control}
-                    render={({ field, fieldState }) => (
-                      <TextField
-                        {...field}
-                        fullWidth
-                        label="Basic Salary"
-                        type="number"
-                        value={field.value || 0}
-                        onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
-                        error={!!fieldState.error}
-                        helperText={fieldState.error?.message}
-                        variant="outlined"
-                        inputProps={{ min: 0, step: 0.01 }}
-                      />
-                    )}
-                  />
-                </div>
-                <div>
-                  <Controller
-                    name="ot_hourly_rate"
-                    control={newForm.control}
-                    render={({ field, fieldState }) => (
-                      <TextField
-                        {...field}
-                        fullWidth
-                        label="OT Hourly Rate (optional)"
-                        type="number"
-                        value={field.value || ''}
-                        onChange={(e) => field.onChange(e.target.value ? parseFloat(e.target.value) : undefined)}
-                        error={!!fieldState.error}
-                        helperText={fieldState.error?.message}
-                        variant="outlined"
-                        inputProps={{ min: 0, step: 0.01 }}
-                      />
-                    )}
-                  />
-                </div>
-                <div>
-                  <Controller
-                    name="effective_from"
-                    control={newForm.control}
-                    render={({ field, fieldState }) => (
-                      <TextField
-                        {...field}
-                        fullWidth
-                        label="Effective From"
-                        type="date"
-                        error={!!fieldState.error}
-                        helperText={fieldState.error?.message}
-                        variant="outlined"
-                        InputLabelProps={{ shrink: true }}
-                      />
-                    )}
-                  />
-                </div>
-                <div>
-                  <Controller
-                    name="effective_to"
-                    control={newForm.control}
-                    render={({ field }) => (
-                      <TextField
-                        {...field}
-                        fullWidth
-                        label="Effective To (optional)"
-                        type="date"
-                        value={field.value || ''}
-                        onChange={(e) => field.onChange(e.target.value || undefined)}
-                        variant="outlined"
-                        InputLabelProps={{ shrink: true }}
-                      />
-                    )}
-                  />
-                </div>
-                <div className="sm:col-span-2">
-                  <Controller
-                    name="is_current"
-                    control={newForm.control}
-                    render={({ field }) => (
-                      <label className="flex items-center gap-2">
-                        <input
-                          type="checkbox"
-                          checked={field.value || false}
-                          onChange={field.onChange}
-                          className="w-4 h-4"
+        {isEditMode && !showAddForm && (
+          <div className="mt-6">
+            <MuiButton
+              variant="outlined"
+              startIcon={<Add />}
+              onClick={() => setShowAddForm(true)}
+            >
+              Add Compensation
+            </MuiButton>
+          </div>
+        )}
+
+        {isEditMode && showAddForm && (
+          <div className="mt-6 space-y-4">
+            <div className="p-4 border border-gray-200 rounded-lg">
+              <h4 className="font-medium text-gray-900 mb-4">Add New Compensation</h4>
+              <form onSubmit={newForm.handleSubmit(handleAdd)}>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <Controller
+                      name="basic_salary"
+                      control={newForm.control}
+                      render={({ field, fieldState }) => (
+                        <TextField
+                          {...field}
+                          fullWidth
+                          label="Basic Salary"
+                          type="number"
+                          value={field.value || 0}
+                          onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
+                          error={!!fieldState.error}
+                          helperText={fieldState.error?.message}
+                          variant="outlined"
+                          inputProps={{ min: 0, step: 0.01 }}
                         />
-                        <span className="text-sm text-gray-700">This is the current compensation</span>
-                      </label>
-                    )}
-                  />
-                </div>
-                <div className="sm:col-span-2">
-                  <div className="flex gap-2">
-                    <MuiButton
-                      type="submit"
-                      variant="contained"
-                      startIcon={<Add />}
-                      disabled={newForm.formState.isSubmitting}
-                    >
-                      {newForm.formState.isSubmitting ? 'Adding...' : 'Add Compensation'}
-                    </MuiButton>
-                    <MuiButton
-                      type="button"
-                      variant="outlined"
-                      startIcon={<Save />}
-                      onClick={async () => {
-                        if (editingIndex !== null) {
-                          try {
-                            await handleSave(editingIndex);
-                            onEditModeChange(false);
-                          } catch (error) {
-                            console.error('Failed to save before exiting:', error);
-                          }
-                        } else {
-                          onEditModeChange(false);
-                        }
-                      }}
-                      disabled={saving || newForm.formState.isSubmitting}
-                    >
-                      Done
-                    </MuiButton>
-                    <MuiButton
-                      type="button"
-                      variant="outlined"
-                      startIcon={<Cancel />}
-                      onClick={() => {
-                        if (editingIndex !== null) {
-                          handleCancelEdit();
-                        }
-                        newForm.reset();
-                        onEditModeChange(false);
-                      }}
-                      disabled={saving || newForm.formState.isSubmitting}
-                    >
-                      Cancel
-                    </MuiButton>
+                      )}
+                    />
+                  </div>
+                  <div>
+                    <Controller
+                      name="ot_hourly_rate"
+                      control={newForm.control}
+                      render={({ field, fieldState }) => (
+                        <TextField
+                          {...field}
+                          fullWidth
+                          label="OT Hourly Rate (optional)"
+                          type="number"
+                          value={field.value || ''}
+                          onChange={(e) => field.onChange(e.target.value ? parseFloat(e.target.value) : undefined)}
+                          error={!!fieldState.error}
+                          helperText={fieldState.error?.message}
+                          variant="outlined"
+                          inputProps={{ min: 0, step: 0.01 }}
+                        />
+                      )}
+                    />
+                  </div>
+                  <div>
+                    <Controller
+                      name="effective_from"
+                      control={newForm.control}
+                      render={({ field, fieldState }) => (
+                        <TextField
+                          {...field}
+                          fullWidth
+                          label="Effective From"
+                          type="date"
+                          error={!!fieldState.error}
+                          helperText={fieldState.error?.message}
+                          variant="outlined"
+                          InputLabelProps={{ shrink: true }}
+                        />
+                      )}
+                    />
+                  </div>
+                  <div>
+                    <Controller
+                      name="effective_to"
+                      control={newForm.control}
+                      render={({ field }) => (
+                        <TextField
+                          {...field}
+                          fullWidth
+                          label="Effective To (optional)"
+                          type="date"
+                          value={field.value || ''}
+                          onChange={(e) => field.onChange(e.target.value || undefined)}
+                          variant="outlined"
+                          InputLabelProps={{ shrink: true }}
+                        />
+                      )}
+                    />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <Controller
+                      name="is_current"
+                      control={newForm.control}
+                      render={({ field }) => (
+                        <label className="flex items-center gap-2">
+                          <input
+                            type="checkbox"
+                            checked={field.value || false}
+                            onChange={field.onChange}
+                            className="w-4 h-4"
+                          />
+                          <span className="text-sm text-gray-700">This is the current compensation</span>
+                        </label>
+                      )}
+                    />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <div className="flex gap-2">
+                      <MuiButton
+                        type="submit"
+                        variant="contained"
+                        startIcon={<Add />}
+                        disabled={newForm.formState.isSubmitting}
+                      >
+                        {newForm.formState.isSubmitting ? 'Adding...' : 'Add Compensation'}
+                      </MuiButton>
+                      <MuiButton
+                        type="button"
+                        variant="outlined"
+                        startIcon={<Cancel />}
+                        onClick={() => {
+                          newForm.reset();
+                          setShowAddForm(false);
+                        }}
+                        disabled={newForm.formState.isSubmitting}
+                      >
+                        Cancel
+                      </MuiButton>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         )}
       </MuiCard>

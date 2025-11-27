@@ -114,8 +114,10 @@ export const createEmployeeSchema = (data: any) => {
     errors.push('Invalid hire date format');
   }
 
-  if (body.termination_date !== undefined && (typeof body.termination_date !== 'string' || !isValidDate(body.termination_date))) {
-    errors.push('Invalid termination date format');
+  if (body.termination_date !== undefined && body.termination_date !== null) {
+    if (typeof body.termination_date !== 'string' || !isValidDate(body.termination_date)) {
+      errors.push('Invalid termination date format');
+    }
   }
 
   return errors.length > 0 ? { success: false, errors } : { success: true };
@@ -215,8 +217,10 @@ export const updateEmployeeSchema = (data: any) => {
       errors.push('Invalid hire date format');
     }
 
-    if (body.termination_date !== undefined && (typeof body.termination_date !== 'string' || !isValidDate(body.termination_date))) {
-      errors.push('Invalid termination date format');
+    if (body.termination_date !== undefined && body.termination_date !== null) {
+      if (typeof body.termination_date !== 'string' || !isValidDate(body.termination_date)) {
+        errors.push('Invalid termination date format');
+      }
     }
   }
 

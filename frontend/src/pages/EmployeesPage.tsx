@@ -17,7 +17,7 @@ export const EmployeesPage = () => {
     // Using 100 as default limit to avoid rate limiting issues
     const loadEmployees = async () => {
       try {
-        await dispatch(fetchEmployees({ page: 1, limit: 100 })).unwrap();
+        await dispatch(fetchEmployees({ page: 1, limit: 10 })).unwrap();
       } catch (err: any) {
         // Handle rate limit errors specifically
         if (err?.response?.status === 429 || err?.message?.includes('Too many requests')) {
