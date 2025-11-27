@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useParams } from 'react-router-dom';
 import { MuiCard, MuiButton } from '../../../common';
 import { Edit, Add, Delete } from '@mui/icons-material';
 import { TextField, Grid, Select, MenuItem, FormControl, InputLabel, Chip, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import { employeeRelatedService } from '../../../../services/employeeRelatedService';
+import { useToast } from '../../../../contexts/ToastContext';
 import type { EmployeeWithDetails } from '../../../../types/employee';
 import type {
   EmployeeQualification,
@@ -22,18 +24,22 @@ export const QualificationsTab = ({
   isEditMode,
   onEditModeChange,
 }: QualificationsTabProps) => {
+  const { id: employeeIdFromUrl } = useParams<{ id: string }>();
+  const { showSuccess, showError, showWarning } = useToast();
+  // Memoize employeeId to prevent unnecessary re-renders
+  const employeeId = useMemo(() => employee?.id || employeeIdFromUrl, [employee?.id, employeeIdFromUrl]);
   const [qualifications, setQualifications] = useState<EmployeeQualification[]>([]);
   const [certifications, setCertifications] = useState<EmployeeCertification[]>([]);
   const [loading, setLoading] = useState(false);
   const [newQualification, setNewQualification] = useState<CreateEmployeeQualificationInput>({
-    employee_id: employee.id,
+    employee_id: employeeId || '',
     degree: '',
     institution: '',
     completion_year: new Date().getFullYear(),
     verification_status: 'pending',
   });
   const [newCertification, setNewCertification] = useState<CreateEmployeeCertificationInput>({
-    employee_id: employee.id,
+    employee_id: employeeId || '',
     certification_name: '',
     certification_type: 'new',
     issue_date: new Date().toISOString().split('T')[0],
@@ -41,16 +47,14 @@ export const QualificationsTab = ({
     is_active: true,
   });
 
-  useEffect(() => {
-    loadData();
-  }, [employee.id]);
-
-  const loadData = async () => {
+  // Memoize loadData to prevent recreating on every render
+  const loadData = useCallback(async () => {
+    if (!employeeId) return;
     setLoading(true);
     try {
       const [quals, certs] = await Promise.all([
-        employeeRelatedService.getEmployeeQualifications(employee.id),
-        employeeRelatedService.getEmployeeCertifications(employee.id),
+        employeeRelatedService.getEmployeeQualifications(employeeId),
+        employeeRelatedService.getEmployeeCertifications(employeeId),
       ]);
       setQualifications(quals);
       setCertifications(certs);
@@ -59,46 +63,67 @@ export const QualificationsTab = ({
     } finally {
       setLoading(false);
     }
-  };
+  }, [employeeId]);
+
+  useEffect(() => {
+    if (employeeId) {
+      loadData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [employeeId]);
 
   const handleAddQualification = async () => {
+    if (!employeeId) {
+      showError('Error: Employee ID is missing. Please refresh the page and try again.');
+      return;
+    }
     if (!newQualification.degree || !newQualification.institution || !newQualification.completion_year) {
-      alert('Please fill in all required fields');
+      showWarning('Please fill in all required fields');
       return;
     }
     try {
-      await employeeRelatedService.createQualification(newQualification);
+      await employeeRelatedService.createQualification({ ...newQualification, employee_id: employeeId });
       await loadData();
+      showSuccess('Qualification added successfully!');
       setNewQualification({
-        employee_id: employee.id,
+        employee_id: employeeId,
         degree: '',
         institution: '',
         completion_year: new Date().getFullYear(),
         verification_status: 'pending',
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to create qualification:', error);
+      const errorMessage = error?.message || error?.response?.data?.message || 'Failed to create qualification. Please try again.';
+      showError(errorMessage);
     }
   };
 
   const handleAddCertification = async () => {
+    if (!employeeId) {
+      showError('Error: Employee ID is missing. Please refresh the page and try again.');
+      return;
+    }
     if (!newCertification.certification_name || !newCertification.issue_date) {
-      alert('Please fill in all required fields');
+      showWarning('Please fill in all required fields');
       return;
     }
     try {
-      await employeeRelatedService.createCertification(newCertification);
+      await employeeRelatedService.createCertification({ ...newCertification, employee_id: employeeId });
       await loadData();
+      showSuccess('Certification added successfully!');
       setNewCertification({
-        employee_id: employee.id,
+        employee_id: employeeId,
         certification_name: '',
         certification_type: 'new',
         issue_date: new Date().toISOString().split('T')[0],
         ownership: 'employee',
         is_active: true,
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to create certification:', error);
+      const errorMessage = error?.message || error?.response?.data?.message || 'Failed to create certification. Please try again.';
+      showError(errorMessage);
     }
   };
 
@@ -247,6 +272,16 @@ export const QualificationsTab = ({
       <MuiCard className="p-6">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold text-gray-900">Professional Certifications</h3>
+          {!isEditMode && (
+            <MuiButton
+              size="small"
+              variant="outlined"
+              startIcon={<Edit />}
+              onClick={() => onEditModeChange(true)}
+            >
+              Edit
+            </MuiButton>
+          )}
         </div>
 
         {loading ? (
@@ -382,13 +417,29 @@ export const QualificationsTab = ({
                 </FormControl>
               </Grid>
               <Grid item xs={12}>
-                <MuiButton
-                  variant="contained"
-                  startIcon={<Add />}
-                  onClick={handleAddCertification}
-                >
-                  Add Certification
-                </MuiButton>
+                <div className="flex gap-2">
+                  <MuiButton
+                    variant="contained"
+                    startIcon={<Add />}
+                    onClick={handleAddCertification}
+                  >
+                    Add Certification
+                  </MuiButton>
+                  <MuiButton
+                    variant="outlined"
+                    startIcon={<Save />}
+                    onClick={() => onEditModeChange(false)}
+                  >
+                    Done
+                  </MuiButton>
+                  <MuiButton
+                    variant="outlined"
+                    startIcon={<Cancel />}
+                    onClick={() => onEditModeChange(false)}
+                  >
+                    Cancel
+                  </MuiButton>
+                </div>
               </Grid>
             </Grid>
           </div>

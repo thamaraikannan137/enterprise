@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -21,11 +21,11 @@ const employeeCreateSchema = z.object({
   last_name: z.string().min(1, 'Last name is required').max(100, 'Last name must be less than 100 characters'),
   date_of_birth: z.string().min(1, 'Date of birth is required'),
   gender: z.enum(['male', 'female', 'other'], {
-    required_error: 'Gender is required',
+    errorMap: () => ({ message: 'Gender is required' }),
   }),
   nationality: z.string().min(1, 'Nationality is required').max(100, 'Nationality must be less than 100 characters'),
   marital_status: z.enum(['single', 'married', 'divorced', 'widowed'], {
-    required_error: 'Marital status is required',
+    errorMap: () => ({ message: 'Marital status is required' }),
   }),
   profile_photo_path: z.string().max(500, 'Profile photo path must be less than 500 characters').optional().or(z.literal('')),
   status: z.enum(['active', 'inactive', 'terminated']).optional(),
@@ -123,6 +123,7 @@ const TABS = [
 export const EmployeeCreateForm = ({ onSubmit, isLoading = false }: EmployeeCreateFormProps) => {
   const [activeTab, setActiveTab] = useState(0);
   const [tabErrors, setTabErrors] = useState<Record<number, boolean>>({});
+  const uploadPhotoRef = useRef<(() => Promise<void>) | null>(null);
 
   const methods = useForm<EmployeeCreateFormInputs>({
     resolver: zodResolver(employeeCreateSchema),
@@ -151,7 +152,7 @@ export const EmployeeCreateForm = ({ onSubmit, isLoading = false }: EmployeeCrea
     },
   });
 
-  const { handleSubmit, trigger, formState: { errors } } = methods;
+  const { handleSubmit, trigger, formState: { errors, isValid } } = methods;
 
   const getTabValidationFields = (tabIndex: number): string[] => {
     switch (tabIndex) {
@@ -182,36 +183,72 @@ export const EmployeeCreateForm = ({ onSubmit, isLoading = false }: EmployeeCrea
   };
 
   const handleFormSubmit = async (data: EmployeeCreateFormInputs) => {
-    // Prepare employee data
-    const employeeData = {
-      first_name: data.first_name,
-      last_name: data.last_name,
-      date_of_birth: data.date_of_birth,
-      gender: data.gender,
-      nationality: data.nationality,
-      marital_status: data.marital_status,
-      hire_date: data.hire_date,
-      designation: data.designation,
-      department: data.department,
-      ...(data.middle_name && { middle_name: data.middle_name }),
-      ...(data.profile_photo_path && { profile_photo_path: data.profile_photo_path }),
-      ...(data.status && { status: data.status }),
-      ...(data.reporting_to && { reporting_to: data.reporting_to }),
-      ...(data.termination_date && { termination_date: data.termination_date }),
-    };
+    try {
+      console.log('Form submitted with data:', data);
+      console.log('Form errors:', errors);
+      console.log('Form is valid:', isValid);
 
-    // Prepare related data
-    const relatedData: CreateEmployeeWithDetailsInput = {
-      employee: employeeData,
-      ...(data.contacts && data.contacts.length > 0 && { contacts: data.contacts }),
-      ...(data.compensation && { compensation: data.compensation }),
-      ...(data.documents && data.documents.length > 0 && { documents: data.documents }),
-      ...(data.workPass && { workPass: data.workPass }),
-      ...(data.qualifications && data.qualifications.length > 0 && { qualifications: data.qualifications }),
-      ...(data.certifications && data.certifications.length > 0 && { certifications: data.certifications }),
-    };
-    
-    await onSubmit(relatedData);
+      // Validate all required fields before proceeding
+      const requiredFields = [
+        'first_name', 'last_name', 'date_of_birth', 'gender', 
+        'nationality', 'marital_status', 'designation', 
+        'department', 'hire_date'
+      ];
+      
+      const validationResult = await trigger(requiredFields as any);
+      console.log('Validation result:', validationResult);
+      
+      if (!validationResult) {
+        console.error('Form validation failed. Errors:', errors);
+        // Navigate to first tab with errors
+        const errorFields = Object.keys(errors);
+        if (errorFields.length > 0) {
+          const firstErrorField = errorFields[0];
+          if (['first_name', 'last_name', 'date_of_birth', 'gender', 'nationality', 'marital_status'].includes(firstErrorField)) {
+            setActiveTab(0);
+          } else if (['designation', 'department', 'hire_date'].includes(firstErrorField)) {
+            setActiveTab(1);
+          }
+        }
+        return; // Don't proceed if validation fails
+      }
+
+      // Prepare employee data
+      const employeeData = {
+        first_name: data.first_name,
+        last_name: data.last_name,
+        date_of_birth: data.date_of_birth,
+        gender: data.gender,
+        nationality: data.nationality,
+        marital_status: data.marital_status,
+        hire_date: data.hire_date,
+        designation: data.designation,
+        department: data.department,
+        ...(data.middle_name && { middle_name: data.middle_name }),
+        ...(data.profile_photo_path && { profile_photo_path: data.profile_photo_path }),
+        ...(data.status && { status: data.status }),
+        ...(data.reporting_to && { reporting_to: data.reporting_to }),
+        ...(data.termination_date && { termination_date: data.termination_date }),
+      };
+
+      // Prepare related data
+      const relatedData: CreateEmployeeWithDetailsInput = {
+        employee: employeeData,
+        ...(data.contacts && data.contacts.length > 0 && { contacts: data.contacts }),
+        ...(data.compensation && { compensation: data.compensation }),
+        ...(data.documents && data.documents.length > 0 && { documents: data.documents }),
+        ...(data.workPass && { workPass: data.workPass }),
+        ...(data.qualifications && data.qualifications.length > 0 && { qualifications: data.qualifications }),
+        ...(data.certifications && data.certifications.length > 0 && { certifications: data.certifications }),
+      };
+      
+      console.log('Calling onSubmit with:', relatedData);
+      await onSubmit(relatedData);
+      console.log('onSubmit completed successfully');
+    } catch (error) {
+      console.error('Error in handleFormSubmit:', error);
+      throw error;
+    }
   };
 
   const handlePrevious = () => {
@@ -222,6 +259,19 @@ export const EmployeeCreateForm = ({ onSubmit, isLoading = false }: EmployeeCrea
 
   const handleNext = async () => {
     const fieldsToValidate = getTabValidationFields(activeTab);
+    
+    // If on Personal Info tab (tab 0), upload profile photo if selected
+    if (activeTab === 0 && uploadPhotoRef.current) {
+      try {
+        await uploadPhotoRef.current();
+      } catch (error: any) {
+        console.error('Failed to upload profile photo - full error:', error);
+        const errorMessage = error?.message || error?.response?.data?.message || 'Failed to upload profile photo. Please try again.';
+        alert(errorMessage);
+        // Don't proceed if upload fails
+        return;
+      }
+    }
     
     if (fieldsToValidate.length > 0) {
       const isValidTab = await trigger(fieldsToValidate as any);
@@ -239,7 +289,22 @@ export const EmployeeCreateForm = ({ onSubmit, isLoading = false }: EmployeeCrea
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-6">
+      <form 
+        onSubmit={handleSubmit(handleFormSubmit, (errors) => {
+          console.error('Form validation errors:', errors);
+          // Navigate to first tab with errors
+          const errorFields = Object.keys(errors);
+          if (errorFields.length > 0) {
+            const firstErrorField = errorFields[0];
+            if (['first_name', 'last_name', 'date_of_birth', 'gender', 'nationality', 'marital_status'].includes(firstErrorField)) {
+              setActiveTab(0);
+            } else if (['designation', 'department', 'hire_date'].includes(firstErrorField)) {
+              setActiveTab(1);
+            }
+          }
+        })} 
+        className="space-y-6"
+      >
         <div className="bg-white rounded-lg shadow-sm">
           {/* Header */}
           <div className="px-6 py-4 border-b border-gray-200">
@@ -294,7 +359,7 @@ export const EmployeeCreateForm = ({ onSubmit, isLoading = false }: EmployeeCrea
 
           {/* Tab Content */}
           <div className="p-6 min-h-[400px]">
-            {activeTab === 0 && <PersonalInfoTab />}
+            {activeTab === 0 && <PersonalInfoTab uploadPhotoRef={uploadPhotoRef} />}
             {activeTab === 1 && <JobInfoTab />}
             {activeTab === 2 && <ContactInfoTab />}
             {activeTab === 3 && <CompensationTab />}

@@ -1,8 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useParams } from 'react-router-dom';
+import { useForm, Controller } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { DevTool } from '@hookform/devtools';
+import { z } from 'zod';
 import { MuiCard, MuiButton } from '../../../common';
 import { Edit, Add, Delete, Save, Cancel } from '@mui/icons-material';
-import { TextField, Grid, Select, MenuItem, FormControl, InputLabel, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Chip } from '@mui/material';
+import { TextField, Grid, Select, MenuItem, FormControl, InputLabel, Chip } from '@mui/material';
 import { employeeRelatedService } from '../../../../services/employeeRelatedService';
+import { useToast } from '../../../../contexts/ToastContext';
 import type { EmployeeWithDetails } from '../../../../types/employee';
 import type { EmployeeContact, CreateEmployeeContactInput } from '../../../../types/employeeRelated';
 
@@ -12,63 +18,124 @@ interface ContactTabProps {
   onEditModeChange: (value: boolean) => void;
 }
 
+const contactSchema = z.object({
+  contact_type: z.enum(['primary', 'secondary', 'emergency']),
+  phone: z.string().optional(),
+  alternate_phone: z.string().optional(),
+  email: z.string().email('Invalid email').optional().or(z.literal('')),
+  address_line1: z.string().optional(),
+  address_line2: z.string().optional(),
+  city: z.string().optional(),
+  postal_code: z.string().optional(),
+  country: z.string().optional(),
+  is_current: z.boolean().optional(),
+  valid_from: z.string().min(1, 'Valid from date is required'),
+  valid_to: z.string().optional().or(z.literal('')),
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
+
 export const ContactTab = ({
   employee,
   isEditMode,
   onEditModeChange,
 }: ContactTabProps) => {
+  const { id: employeeIdFromUrl } = useParams<{ id: string }>();
+  const { showSuccess, showError } = useToast();
+  const employeeId = useMemo(() => employee?.id || employeeIdFromUrl, [employee?.id, employeeIdFromUrl]);
   const [contacts, setContacts] = useState<EmployeeContact[]>([]);
   const [loading, setLoading] = useState(false);
-  const [editingIndex, setEditingIndex] = useState<number | null>(null);
-  const [newContact, setNewContact] = useState<CreateEmployeeContactInput>({
-    employee_id: employee.id,
-    contact_type: 'primary',
-    phone: '',
-    email: '',
-    address_line1: '',
-    city: '',
-    country: '',
-    is_current: true,
-    valid_from: new Date().toISOString().split('T')[0],
+
+  const {
+    control,
+    handleSubmit,
+    formState: { isSubmitting },
+    reset,
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
+    mode: 'onChange',
+    defaultValues: {
+      contact_type: 'primary',
+      phone: '',
+      alternate_phone: '',
+      email: '',
+      address_line1: '',
+      address_line2: '',
+      city: '',
+      postal_code: '',
+      country: '',
+      is_current: true,
+      valid_from: new Date().toISOString().split('T')[0],
+      valid_to: '',
+    },
   });
 
-  useEffect(() => {
-    loadContacts();
-  }, [employee.id]);
-
-  const loadContacts = async () => {
+  const loadContacts = useCallback(async () => {
+    if (!employeeId) return;
     setLoading(true);
     try {
-      const data = await employeeRelatedService.getEmployeeContacts(employee.id);
+      const data = await employeeRelatedService.getEmployeeContacts(employeeId);
       setContacts(data);
     } catch (error) {
       console.error('Failed to load contacts:', error);
     } finally {
       setLoading(false);
     }
-  };
+  }, [employeeId]);
 
-  const handleAdd = async () => {
+  useEffect(() => {
+    if (employeeId) {
+      loadContacts();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [employeeId]);
+
+  const onSubmit = async (data: ContactFormData) => {
+    if (!employeeId) {
+      showError('Error: Employee ID is missing. Please refresh the page and try again.');
+      return;
+    }
     try {
-      await employeeRelatedService.createContact(newContact);
+      const payload: CreateEmployeeContactInput = {
+        employee_id: employeeId,
+        contact_type: data.contact_type,
+        phone: data.phone || undefined,
+        alternate_phone: data.alternate_phone || undefined,
+        email: data.email || undefined,
+        address_line1: data.address_line1 || undefined,
+        address_line2: data.address_line2 || undefined,
+        city: data.city || undefined,
+        postal_code: data.postal_code || undefined,
+        country: data.country || undefined,
+        is_current: data.is_current ?? true,
+        valid_from: data.valid_from,
+        valid_to: data.valid_to || undefined,
+      };
+      await employeeRelatedService.createContact(payload);
       await loadContacts();
-      setNewContact({
-        employee_id: employee.id,
+      showSuccess('Contact added successfully!');
+      reset({
         contact_type: 'secondary',
         phone: '',
+        alternate_phone: '',
         email: '',
         address_line1: '',
+        address_line2: '',
         city: '',
+        postal_code: '',
         country: '',
         is_current: false,
         valid_from: new Date().toISOString().split('T')[0],
+        valid_to: '',
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to create contact:', error);
+      const errorMessage = error?.message || error?.response?.data?.message || 'Failed to create contact. Please try again.';
+      showError(errorMessage);
     }
   };
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (_id: string) => {
     if (window.confirm('Are you sure you want to delete this contact?')) {
       // TODO: Implement delete API call
       await loadContacts();
@@ -86,6 +153,7 @@ export const ContactTab = ({
 
   return (
     <div className="space-y-6">
+      {import.meta.env.DEV && <DevTool control={control} />}
       <MuiCard className="p-6">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold text-gray-900">Contact Information</h3>
@@ -190,145 +258,252 @@ export const ContactTab = ({
         {isEditMode && (
           <div className="mt-6 p-4 border border-gray-200 rounded-lg">
             <h4 className="font-medium text-gray-900 mb-4">Add New Contact</h4>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <FormControl fullWidth>
-                  <InputLabel>Contact Type</InputLabel>
-                  <Select
-                    value={newContact.contact_type}
-                    onChange={(e) => setNewContact({
-                      ...newContact,
-                      contact_type: e.target.value as any,
-                    })}
-                    label="Contact Type"
-                  >
-                    <MenuItem value="primary">Primary</MenuItem>
-                    <MenuItem value="secondary">Secondary</MenuItem>
-                    <MenuItem value="emergency">Emergency</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Phone"
-                  value={newContact.phone}
-                  onChange={(e) => setNewContact({ ...newContact, phone: e.target.value })}
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Alternate Phone"
-                  value={newContact.alternate_phone || ''}
-                  onChange={(e) => setNewContact({ ...newContact, alternate_phone: e.target.value })}
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Email"
-                  type="email"
-                  value={newContact.email || ''}
-                  onChange={(e) => setNewContact({ ...newContact, email: e.target.value })}
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  fullWidth
-                  label="Address Line 1"
-                  value={newContact.address_line1 || ''}
-                  onChange={(e) => setNewContact({ ...newContact, address_line1: e.target.value })}
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  fullWidth
-                  label="Address Line 2"
-                  value={newContact.address_line2 || ''}
-                  onChange={(e) => setNewContact({ ...newContact, address_line2: e.target.value })}
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                <TextField
-                  fullWidth
-                  label="City"
-                  value={newContact.city || ''}
-                  onChange={(e) => setNewContact({ ...newContact, city: e.target.value })}
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                <TextField
-                  fullWidth
-                  label="Postal Code"
-                  value={newContact.postal_code || ''}
-                  onChange={(e) => setNewContact({ ...newContact, postal_code: e.target.value })}
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                <TextField
-                  fullWidth
-                  label="Country"
-                  value={newContact.country || ''}
-                  onChange={(e) => setNewContact({ ...newContact, country: e.target.value })}
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Valid From"
-                  type="date"
-                  value={newContact.valid_from}
-                  onChange={(e) => setNewContact({ ...newContact, valid_from: e.target.value })}
-                  variant="outlined"
-                  InputLabelProps={{ shrink: true }}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Valid To (optional)"
-                  type="date"
-                  value={newContact.valid_to || ''}
-                  onChange={(e) => setNewContact({ ...newContact, valid_to: e.target.value || undefined })}
-                  variant="outlined"
-                  InputLabelProps={{ shrink: true }}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <label className="flex items-center gap-2">
-                  <input
-                    type="checkbox"
-                    checked={newContact.is_current}
-                    onChange={(e) => setNewContact({ ...newContact, is_current: e.target.checked })}
-                    className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <Controller
+                    name="contact_type"
+                    control={control}
+                    render={({ field, fieldState }) => (
+                      <FormControl fullWidth error={!!fieldState.error}>
+                        <InputLabel>Contact Type</InputLabel>
+                        <Select
+                          {...field}
+                          label="Contact Type"
+                        >
+                          <MenuItem value="primary">Primary</MenuItem>
+                          <MenuItem value="secondary">Secondary</MenuItem>
+                          <MenuItem value="emergency">Emergency</MenuItem>
+                        </Select>
+                        {fieldState.error && (
+                          <span className="text-xs text-red-500 mt-1">{fieldState.error.message}</span>
+                        )}
+                      </FormControl>
+                    )}
                   />
-                  <span className="text-sm text-gray-700">This is the current address</span>
-                </label>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Controller
+                    name="phone"
+                    control={control}
+                    render={({ field, fieldState }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="Phone"
+                        error={!!fieldState.error}
+                        helperText={fieldState.error?.message}
+                        variant="outlined"
+                      />
+                    )}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Controller
+                    name="alternate_phone"
+                    control={control}
+                    render={({ field, fieldState }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="Alternate Phone"
+                        error={!!fieldState.error}
+                        helperText={fieldState.error?.message}
+                        variant="outlined"
+                      />
+                    )}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Controller
+                    name="email"
+                    control={control}
+                    render={({ field, fieldState }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="Email"
+                        type="email"
+                        error={!!fieldState.error}
+                        helperText={fieldState.error?.message}
+                        variant="outlined"
+                      />
+                    )}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Controller
+                    name="address_line1"
+                    control={control}
+                    render={({ field, fieldState }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="Address Line 1"
+                        error={!!fieldState.error}
+                        helperText={fieldState.error?.message}
+                        variant="outlined"
+                      />
+                    )}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Controller
+                    name="address_line2"
+                    control={control}
+                    render={({ field, fieldState }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="Address Line 2"
+                        error={!!fieldState.error}
+                        helperText={fieldState.error?.message}
+                        variant="outlined"
+                      />
+                    )}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  <Controller
+                    name="city"
+                    control={control}
+                    render={({ field, fieldState }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="City"
+                        error={!!fieldState.error}
+                        helperText={fieldState.error?.message}
+                        variant="outlined"
+                      />
+                    )}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  <Controller
+                    name="postal_code"
+                    control={control}
+                    render={({ field, fieldState }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="Postal Code"
+                        error={!!fieldState.error}
+                        helperText={fieldState.error?.message}
+                        variant="outlined"
+                      />
+                    )}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  <Controller
+                    name="country"
+                    control={control}
+                    render={({ field, fieldState }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="Country"
+                        error={!!fieldState.error}
+                        helperText={fieldState.error?.message}
+                        variant="outlined"
+                      />
+                    )}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Controller
+                    name="valid_from"
+                    control={control}
+                    render={({ field, fieldState }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="Valid From"
+                        type="date"
+                        error={!!fieldState.error}
+                        helperText={fieldState.error?.message}
+                        variant="outlined"
+                        InputLabelProps={{ shrink: true }}
+                      />
+                    )}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Controller
+                    name="valid_to"
+                    control={control}
+                    render={({ field, fieldState }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="Valid To (optional)"
+                        type="date"
+                        value={field.value || ''}
+                        onChange={(e) => field.onChange(e.target.value || undefined)}
+                        error={!!fieldState.error}
+                        helperText={fieldState.error?.message}
+                        variant="outlined"
+                        InputLabelProps={{ shrink: true }}
+                      />
+                    )}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Controller
+                    name="is_current"
+                    control={control}
+                    render={({ field }) => (
+                      <label className="flex items-center gap-2">
+                        <input
+                          type="checkbox"
+                          checked={field.value || false}
+                          onChange={field.onChange}
+                          className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                        />
+                        <span className="text-sm text-gray-700">This is the current address</span>
+                      </label>
+                    )}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <div className="flex gap-2">
+                    <MuiButton
+                      type="submit"
+                      variant="contained"
+                      startIcon={<Add />}
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? 'Adding...' : 'Add Contact'}
+                    </MuiButton>
+                    <MuiButton
+                      type="button"
+                      variant="outlined"
+                      startIcon={<Save />}
+                      onClick={() => onEditModeChange(false)}
+                      disabled={isSubmitting}
+                    >
+                      Done
+                    </MuiButton>
+                    <MuiButton
+                      type="button"
+                      variant="outlined"
+                      startIcon={<Cancel />}
+                      onClick={() => {
+                        reset();
+                        onEditModeChange(false);
+                      }}
+                      disabled={isSubmitting}
+                    >
+                      Cancel
+                    </MuiButton>
+                  </div>
+                </Grid>
               </Grid>
-              <Grid item xs={12}>
-                <MuiButton
-                  variant="contained"
-                  startIcon={<Add />}
-                  onClick={handleAdd}
-                >
-                  Add Contact
-                </MuiButton>
-              </Grid>
-            </Grid>
+            </form>
           </div>
         )}
       </MuiCard>
     </div>
   );
 };
-
-

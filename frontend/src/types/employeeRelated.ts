@@ -60,6 +60,14 @@ export interface CreateEmployeeCompensationInput {
   is_current?: boolean;
 }
 
+export interface UpdateEmployeeCompensationInput {
+  basic_salary?: number;
+  ot_hourly_rate?: number;
+  effective_from?: string;
+  effective_to?: string;
+  is_current?: boolean;
+}
+
 // Employee Document Types
 export type DocumentType = 'passport' | 'certificate' | 'work_pass' | 'qualification' | 'other';
 

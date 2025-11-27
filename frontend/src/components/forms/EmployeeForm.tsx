@@ -1,8 +1,11 @@
+import { useState, useMemo } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { MuiButton, MuiInput } from '../common';
+import { MuiButton, MuiInput, FileUpload } from '../common';
 import { useEmployeeList } from '../../hooks/useEmployeeList';
+import { employeeService } from '../../services/employeeService';
+import { getImageUrl } from '../../utils/imageUtils';
 import { Select, MenuItem, FormControl, InputLabel, CircularProgress } from '@mui/material';
 import type {
   Employee,
@@ -43,6 +46,7 @@ interface EmployeeFormProps {
 }
 
 export const EmployeeForm = ({ defaultValues, onSubmit, isEdit = false }: EmployeeFormProps) => {
+  const [uploadingPhoto, setUploadingPhoto] = useState(false);
   const { employees: managerOptions, loading: managersLoading } = useEmployeeList({
     status: 'active',
     limit: 100,
@@ -53,6 +57,8 @@ export const EmployeeForm = ({ defaultValues, onSubmit, isEdit = false }: Employ
     register,
     handleSubmit,
     control,
+    watch,
+    setValue,
     formState: { errors, isSubmitting },
     reset,
   } = useForm<EmployeeFormInputs>({
@@ -74,6 +80,14 @@ export const EmployeeForm = ({ defaultValues, onSubmit, isEdit = false }: Employ
       termination_date: '',
     },
   });
+
+  const profilePhotoPath = watch('profile_photo_path');
+  
+  // Convert relative path to full URL for display
+  const profilePhotoUrl = useMemo(() => {
+    if (!profilePhotoPath) return undefined;
+    return getImageUrl(profilePhotoPath);
+  }, [profilePhotoPath]);
 
   const handleFormSubmit = async (data: EmployeeFormInputs) => {
     // Clean up empty strings to undefined
@@ -319,14 +333,35 @@ export const EmployeeForm = ({ defaultValues, onSubmit, isEdit = false }: Employ
           </div>
         )}
 
-        {/* Profile Photo Path */}
-        <MuiInput
-          {...register('profile_photo_path')}
-          type="text"
-          label="Profile Photo Path (optional)"
-          placeholder="Enter profile photo path"
-          error={errors.profile_photo_path?.message}
-        />
+        {/* Profile Photo Upload */}
+        <div className="md:col-span-2">
+          <FileUpload
+            label="Profile Photo (optional)"
+            accept="image/*"
+            maxSize={5}
+            value={profilePhotoUrl || profilePhotoPath || undefined}
+            onChange={(file, previewUrl) => {
+              if (!file) {
+                setValue('profile_photo_path', '', { shouldValidate: true });
+              }
+            }}
+            onUpload={async (file) => {
+              setUploadingPhoto(true);
+              try {
+                const filePath = await employeeService.uploadProfilePhoto(file);
+                setValue('profile_photo_path', filePath, { shouldValidate: true });
+                return filePath;
+              } catch (error) {
+                console.error('Profile photo upload failed:', error);
+                throw error;
+              } finally {
+                setUploadingPhoto(false);
+              }
+            }}
+            error={errors.profile_photo_path?.message}
+            disabled={uploadingPhoto}
+          />
+        </div>
       </div>
 
       <div className="flex gap-4 pt-4">

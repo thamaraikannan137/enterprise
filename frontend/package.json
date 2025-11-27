@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
+    "@hookform/devtools": "^4.4.0",
     "@iconify/json": "^2.2.401",
     "@iconify/tools": "^4.1.4",
     "@iconify/types": "^2.0.0",

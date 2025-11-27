@@ -51,6 +51,14 @@ class ApiClient {
             case 404:
               console.error('Resource not found');
               break;
+            case 429:
+              // Rate limit exceeded
+              const retryAfter = error.response.headers['retry-after'];
+              const message = retryAfter 
+                ? `Too many requests. Please try again after ${retryAfter} seconds.`
+                : 'Too many requests. Please try again later.';
+              error.message = message;
+              break;
             case 500:
               console.error('Internal server error');
               break;

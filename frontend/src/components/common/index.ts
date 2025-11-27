@@ -10,6 +10,7 @@ export { default as NavSearch } from './NavSearch';
 export { default as Icon } from './Icon';
 export { DataTable } from './DataTable';
 export type { Column, DataTableProps } from './DataTable';
+export { FileUpload } from './FileUpload';
 
 // Also export with simple names for convenience
 export { MuiButton as Button } from './MuiButton';

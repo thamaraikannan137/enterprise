@@ -1,12 +1,80 @@
+import React, { useState, useEffect } from 'react';
 import { useFormContext, Controller } from 'react-hook-form';
-import { MuiInput } from '../../common';
+import { MuiInput, FileUpload } from '../../common';
+import { employeeService } from '../../../services/employeeService';
 
-export const PersonalInfoTab = () => {
+interface PersonalInfoTabProps {
+  uploadPhotoRef?: React.MutableRefObject<(() => Promise<void>) | null> | null;
+}
+
+export const PersonalInfoTab = ({ uploadPhotoRef }: PersonalInfoTabProps) => {
   const {
     register,
     control,
+    setValue,
+    watch,
     formState: { errors },
   } = useFormContext();
+  
+  const profilePhotoPath = watch('profile_photo_path');
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [uploading, setUploading] = useState(false);
+
+  // Expose upload function to parent component via form context
+  // Store the selected file temporarily
+  const handleProfilePhotoChange = (file: File | null, previewUrl?: string) => {
+    if (!file) {
+      setSelectedFile(null);
+      setValue('profile_photo_path', '', { shouldValidate: true });
+    } else {
+      setSelectedFile(file);
+      // Clear existing path if new file is selected
+      if (profilePhotoPath) {
+        setValue('profile_photo_path', '', { shouldValidate: true });
+      }
+    }
+  };
+
+  // This function will be called from parent when Next is clicked
+  const uploadProfilePhoto = async (): Promise<void> => {
+    // Only upload if there's a selected file and no existing path
+    if (!selectedFile) {
+      console.log('No file selected, skipping upload');
+      return;
+    }
+
+    if (profilePhotoPath) {
+      console.log('Profile photo already uploaded, skipping');
+      return;
+    }
+
+    setUploading(true);
+    try {
+      console.log('Uploading profile photo:', {
+        name: selectedFile.name,
+        size: selectedFile.size,
+        type: selectedFile.type,
+      });
+      const filePath = await employeeService.uploadProfilePhoto(selectedFile);
+      console.log('Profile photo uploaded successfully:', filePath);
+      setValue('profile_photo_path', filePath, { shouldValidate: true });
+      setSelectedFile(null);
+    } catch (error: any) {
+      console.error('Profile photo upload failed:', error);
+      const errorMessage = error?.message || 'Failed to upload profile photo';
+      throw new Error(errorMessage);
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  // Expose upload function to parent via ref
+  useEffect(() => {
+    if (uploadPhotoRef) {
+      uploadPhotoRef.current = uploadProfilePhoto;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedFile, profilePhotoPath]);
 
   return (
     <div className="space-y-6">
@@ -141,14 +209,22 @@ export const PersonalInfoTab = () => {
           }}
         />
 
-        {/* Profile Photo Path */}
-        <MuiInput
-          {...register('profile_photo_path')}
-          type="text"
-          label="Profile Photo URL (optional)"
-          placeholder="Enter profile photo URL"
-          error={errors.profile_photo_path?.message as string}
-        />
+        {/* Profile Photo Upload */}
+        <div className="md:col-span-2">
+          <FileUpload
+            label="Profile Photo (optional)"
+            accept="image/*"
+            maxSize={5}
+            value={profilePhotoPath}
+            onChange={handleProfilePhotoChange}
+            autoUpload={false}
+            error={errors.profile_photo_path?.message as string}
+            disabled={uploading}
+          />
+          {uploading && (
+            <p className="mt-2 text-sm text-blue-600">Uploading photo...</p>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -2,6 +2,9 @@ import express from "express";
 import type { Request, Response } from "express";
 import cors from "cors";
 import helmet from "helmet";
+import path from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 import env from "./config/env.ts";
 import { connectDatabase } from "./config/database.ts";
 import logger from "./config/logger.ts";
@@ -10,13 +13,18 @@ import { apiRateLimiter } from "./middlewares/rateLimit.middleware.ts";
 import { errorHandler, notFoundHandler } from "./middlewares/error.middleware.ts";
 import routes from "./routes/index.ts";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const app = express();
 
 // Trust proxy
 app.set("trust proxy", 1);
 
 // Security middleware
-app.use(helmet());
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin" },
+}));
 app.use(
   cors({
     origin: env.CORS_ORIGIN,
@@ -42,6 +50,13 @@ app.get("/health", (_req: Request, res: Response) => {
     uptime: process.uptime(),
   });
 });
+
+// Serve static files from uploads directory (before API routes to avoid conflicts)
+app.use("/uploads", express.static(path.join(__dirname, "../uploads"), {
+  setHeaders: (res) => {
+    res.set('Cross-Origin-Resource-Policy', 'cross-origin');
+  },
+}));
 
 // API routes
 app.use("/api", routes);

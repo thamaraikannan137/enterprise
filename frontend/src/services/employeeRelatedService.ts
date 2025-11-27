@@ -5,6 +5,7 @@ import type {
   CreateEmployeeContactInput,
   EmployeeCompensation,
   CreateEmployeeCompensationInput,
+  UpdateEmployeeCompensationInput,
   EmployeeDocument,
   CreateEmployeeDocumentInput,
   EmployeeWorkPass,
@@ -55,6 +56,45 @@ export const employeeRelatedService = {
       `${API_ENDPOINTS.EMPLOYEE_COMPENSATION}/employee/${employeeId}`
     );
     return response.data;
+  },
+
+  updateCompensation: async (
+    compensationId: string,
+    compensationData: UpdateEmployeeCompensationInput
+  ): Promise<EmployeeCompensation> => {
+    if (!compensationId) {
+      throw new Error('Compensation ID is required');
+    }
+    
+    if (!compensationData) {
+      throw new Error('Compensation data is required');
+    }
+
+    try {
+      const response = await apiClient.put<ApiResponse<EmployeeCompensation>>(
+        `${API_ENDPOINTS.EMPLOYEE_COMPENSATION}/${compensationId}`,
+        compensationData
+      );
+      
+      // apiClient.put returns response.data from axios, which is the ApiResponse<T>
+      // So response is ApiResponse<EmployeeCompensation> = { success: boolean, message?: string, data: EmployeeCompensation }
+      // We need to return response.data to get the EmployeeCompensation
+      if (response && typeof response === 'object' && 'data' in response) {
+        return (response as ApiResponse<EmployeeCompensation>).data;
+      }
+      
+      // Fallback: if response structure is different (shouldn't happen with proper API)
+      return response as unknown as EmployeeCompensation;
+    } catch (error: any) {
+      console.error('updateCompensation service error:', error);
+      throw error;
+    }
+  },
+
+  deleteCompensation: async (compensationId: string): Promise<void> => {
+    await apiClient.delete<ApiResponse<void>>(
+      `${API_ENDPOINTS.EMPLOYEE_COMPENSATION}/${compensationId}`
+    );
   },
 
   // ========== DOCUMENTS ==========

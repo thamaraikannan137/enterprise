@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import {
   Box,
   Menu,
@@ -17,6 +17,7 @@ import {
   Print,
   Share,
 } from '@mui/icons-material';
+import { getImageUrl } from '../../../utils/imageUtils';
 import type { EmployeeWithDetails } from '../../../types/employee';
 
 type EmployeeWithJobInfo = EmployeeWithDetails & {
@@ -38,7 +39,16 @@ export const EmployeeProfileHeader = ({
   onNavigateToEdit,
 }: EmployeeProfileHeaderProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const fullName = `${employee.first_name} ${employee.middle_name ? employee.middle_name + ' ' : ''}${employee.last_name}`;
+  const fullName = useMemo(
+    () => `${employee.first_name} ${employee.middle_name ? employee.middle_name + ' ' : ''}${employee.last_name}`,
+    [employee.first_name, employee.middle_name, employee.last_name]
+  );
+  
+  // Memoize image URL to prevent recalculation on every render
+  const imageUrl = useMemo(
+    () => getImageUrl(employee.profile_photo_path),
+    [employee.profile_photo_path]
+  );
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -92,11 +102,17 @@ export const EmployeeProfileHeader = ({
         {/* Left: Photo and Basic Info */}
         <div className="flex flex-col sm:flex-row gap-4 flex-1">
           <Avatar
-            src={employee.profile_photo_path}
+            src={imageUrl}
             alt={fullName}
             sx={{ width: 120, height: 120 }}
             className="border-4 border-blue-100"
-          />
+            onError={(e) => {
+              console.error('Failed to load profile image:', imageUrl);
+              (e.target as HTMLImageElement).style.display = 'none';
+            }}
+          >
+            {!imageUrl && fullName.charAt(0).toUpperCase()}
+          </Avatar>
           
           <div className="flex-1">
             <div className="flex items-start justify-between mb-3">

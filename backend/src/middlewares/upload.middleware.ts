@@ -1,5 +1,6 @@
 import multer from 'multer';
 import path from 'path';
+import fs from 'fs';
 import { BadRequestError } from '../utils/errors.ts';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -32,6 +33,10 @@ const createStorage = (folderName: string) => {
   return multer.diskStorage({
     destination: (req, file, cb) => {
       const uploadPath = path.join(__dirname, '../../uploads', folderName);
+      // Ensure directory exists
+      if (!fs.existsSync(uploadPath)) {
+        fs.mkdirSync(uploadPath, { recursive: true });
+      }
       cb(null, uploadPath);
     },
     filename: (req, file, cb) => {
@@ -81,6 +86,27 @@ export const uploadDocumentFile = multer({
     fileSize: 10 * 1024 * 1024, // 10MB limit
   },
 });
+
+// Configure multer for profile photos (images only)
+const profilePhotoFileFilter = (req: any, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
+  const allowedMimes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+  if (allowedMimes.includes(file.mimetype)) {
+    cb(null, true);
+  } else {
+    cb(new BadRequestError('Invalid file type. Only JPEG, PNG, and GIF images are allowed for profile photos.'));
+  }
+};
+
+export const uploadProfilePhoto = multer({
+  storage: createStorage('profile-photos'),
+  fileFilter: profilePhotoFileFilter,
+  limits: {
+    fileSize: 5 * 1024 * 1024, // 5MB limit
+  },
+});
+
+// Middleware to handle single profile photo upload
+export const singleProfilePhotoUpload = uploadProfilePhoto.single('profile_photo');
 
 // Middleware to handle single file upload for certifications
 export const singleCertificationUpload = uploadCertificationFile.single('certificate_file');

@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useParams } from 'react-router-dom';
 import { MuiCard, MuiButton } from '../../../common';
-import { Edit, Upload, Delete, Visibility } from '@mui/icons-material';
+import { Edit, Upload, Delete, Visibility, Save, Cancel } from '@mui/icons-material';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Chip } from '@mui/material';
 import { employeeRelatedService } from '../../../../services/employeeRelatedService';
+import { useToast } from '../../../../contexts/ToastContext';
 import type { EmployeeWithDetails } from '../../../../types/employee';
 import type { EmployeeDocument, CreateEmployeeDocumentInput } from '../../../../types/employeeRelated';
 
@@ -17,49 +19,65 @@ export const DocsTab = ({
   isEditMode,
   onEditModeChange,
 }: DocsTabProps) => {
+  const { id: employeeIdFromUrl } = useParams<{ id: string }>();
+  const { showSuccess, showError, showWarning } = useToast();
+  // Memoize employeeId to prevent unnecessary re-renders
+  const employeeId = useMemo(() => employee?.id || employeeIdFromUrl, [employee?.id, employeeIdFromUrl]);
   const [documents, setDocuments] = useState<EmployeeDocument[]>([]);
   const [loading, setLoading] = useState(false);
   const [newDocument, setNewDocument] = useState<CreateEmployeeDocumentInput>({
-    employee_id: employee.id,
+    employee_id: employeeId || '',
     document_type: 'other',
     document_name: '',
     file_path: '',
     is_active: true,
   });
 
-  useEffect(() => {
-    loadDocuments();
-  }, [employee.id]);
-
-  const loadDocuments = async () => {
+  // Memoize loadDocuments to prevent recreating on every render
+  const loadDocuments = useCallback(async () => {
+    if (!employeeId) return;
     setLoading(true);
     try {
-      const data = await employeeRelatedService.getEmployeeDocuments(employee.id);
+      const data = await employeeRelatedService.getEmployeeDocuments(employeeId);
       setDocuments(data);
     } catch (error) {
       console.error('Failed to load documents:', error);
     } finally {
       setLoading(false);
     }
-  };
+  }, [employeeId]);
+
+  useEffect(() => {
+    if (employeeId) {
+      loadDocuments();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [employeeId]);
 
   const handleAdd = async () => {
+    if (!employeeId) {
+      showError('Error: Employee ID is missing. Please refresh the page and try again.');
+      return;
+    }
     if (!newDocument.document_name || !newDocument.file_path) {
-      alert('Please fill in document name and file path');
+      showWarning('Please fill in document name and file path');
       return;
     }
     try {
-      await employeeRelatedService.createDocument(newDocument);
+      await employeeRelatedService.createDocument({ ...newDocument, employee_id: employeeId });
       await loadDocuments();
+      showSuccess('Document added successfully!');
       setNewDocument({
-        employee_id: employee.id,
+        employee_id: employeeId,
         document_type: 'other',
         document_name: '',
         file_path: '',
         is_active: true,
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to create document:', error);
+      const errorMessage = error?.message || error?.response?.data?.message || 'Failed to create document. Please try again.';
+      showError(errorMessage);
     }
   };
 
@@ -253,13 +271,29 @@ export const DocsTab = ({
                 />
               </div>
               <div className="md:col-span-2">
-                <MuiButton
-                  variant="contained"
-                  startIcon={<Upload />}
-                  onClick={handleAdd}
-                >
-                  Add Document
-                </MuiButton>
+                <div className="flex gap-2">
+                  <MuiButton
+                    variant="contained"
+                    startIcon={<Upload />}
+                    onClick={handleAdd}
+                  >
+                    Add Document
+                  </MuiButton>
+                  <MuiButton
+                    variant="outlined"
+                    startIcon={<Save />}
+                    onClick={() => onEditModeChange(false)}
+                  >
+                    Done
+                  </MuiButton>
+                  <MuiButton
+                    variant="outlined"
+                    startIcon={<Cancel />}
+                    onClick={() => onEditModeChange(false)}
+                  >
+                    Cancel
+                  </MuiButton>
+                </div>
               </div>
             </div>
           </div>

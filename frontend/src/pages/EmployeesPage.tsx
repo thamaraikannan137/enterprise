@@ -2,18 +2,34 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../store';
 import { fetchEmployees } from '../store/slices/employeeSlice';
-import { EmployeeList } from '../components/features/employee';
+import { EmployeeList } from '../components/features/employee/EmployeeList';
+import { useToast } from '../contexts/ToastContext';
 import type { Employee } from '../types/employee';
 
 export const EmployeesPage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { showError } = useToast();
   const { employees, loading, error } = useAppSelector((state) => state.employee);
 
   useEffect(() => {
-    // Fetch all employees - DataTable will handle client-side pagination and filtering
-    dispatch(fetchEmployees({ page: 1, limit: 1000 }));
-  }, [dispatch]);
+    // Fetch employees with reasonable limit - DataTable will handle client-side pagination and filtering
+    // Using 100 as default limit to avoid rate limiting issues
+    const loadEmployees = async () => {
+      try {
+        await dispatch(fetchEmployees({ page: 1, limit: 100 })).unwrap();
+      } catch (err: any) {
+        // Handle rate limit errors specifically
+        if (err?.response?.status === 429 || err?.message?.includes('Too many requests')) {
+          showError('Too many requests. Please wait a moment and try again.');
+        } else {
+          const errorMessage = err?.message || 'Failed to load employees. Please try again.';
+          showError(errorMessage);
+        }
+      }
+    };
+    loadEmployees();
+  }, [dispatch, showError]);
 
   const handleEmployeeClick = (employee: Employee) => {
     navigate(`/employees/${employee.id}`);

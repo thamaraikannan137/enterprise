@@ -21,6 +21,12 @@ export const EmployeeList = ({
 }: EmployeeListProps) => {
   const [currentViewMode, setCurrentViewMode] = useState<'card' | 'table'>(viewMode);
 
+  const handleCreateClick = () => {
+    if (onCreateClick) {
+      onCreateClick();
+    }
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
@@ -38,9 +44,12 @@ export const EmployeeList = ({
           >
             Cards
           </MuiButton>
-          {onCreateClick && (
-            <MuiButton onClick={onCreateClick}>Create Employee</MuiButton>
-          )}
+          <MuiButton 
+            onClick={handleCreateClick}
+            disabled={!onCreateClick}
+          >
+            Create Employee
+          </MuiButton>
         </div>
       </div>
 

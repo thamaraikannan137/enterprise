@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { MuiCard, MuiButton } from '../../../common';
 import { Edit, Save, Cancel } from '@mui/icons-material';
 import { TextField, Grid, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import { useAppDispatch } from '../../../../store';
-import { updateEmployee } from '../../../../store/slices/employeeSlice';
+import { updateEmployee, fetchEmployeeWithDetails } from '../../../../store/slices/employeeSlice';
 import { useEmployeeList } from '../../../../hooks/useEmployeeList';
+import { useToast } from '../../../../contexts/ToastContext';
 import type { EmployeeWithDetails } from '../../../../types/employee';
 
 interface JobTabProps {
@@ -19,6 +21,9 @@ export const JobTab = ({
   onEditModeChange,
 }: JobTabProps) => {
   const dispatch = useAppDispatch();
+  const { id: employeeIdFromUrl } = useParams<{ id: string }>();
+  const { showSuccess, showError, showWarning } = useToast();
+  const [saving, setSaving] = useState(false);
   const { employees: managerOptions } = useEmployeeList({ 
     status: 'active', 
     limit: 100,
@@ -45,10 +50,29 @@ export const JobTab = ({
     });
   }, [employee]);
 
+  // Use employee.id if available, otherwise fall back to URL param
+  const employeeId = employee?.id || employeeIdFromUrl;
+
   const handleSave = async () => {
+    if (saving) return;
+    
+    // Validate employee ID
+    if (!employeeId) {
+      showError('Error: Employee ID is missing. Please refresh the page and try again.');
+      console.error('Employee ID is missing:', { employeeId, employeeIdFromUrl, employee });
+      return;
+    }
+    
+    // Basic validation
+    if (!jobData.designation || !jobData.department || !jobData.hire_date) {
+      showWarning('Please fill in all required fields (Designation, Department, Hire Date)');
+      return;
+    }
+
+    setSaving(true);
     try {
       await dispatch(updateEmployee({
-        id: employee.id,
+        id: employeeId,
         data: {
           designation: jobData.designation,
           department: jobData.department,
@@ -57,9 +81,20 @@ export const JobTab = ({
           termination_date: jobData.termination_date || undefined,
         },
       })).unwrap();
+      
+      // Refetch employee details to update the UI immediately
+      if (employeeId) {
+        await dispatch(fetchEmployeeWithDetails(employeeId)).unwrap();
+      }
+      
+      showSuccess('Job information saved successfully!');
       onEditModeChange(false);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to update employee:', error);
+      const errorMessage = error?.message || error?.response?.data?.message || 'Failed to save job information. Please try again.';
+      showError(errorMessage);
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -185,6 +220,8 @@ export const JobTab = ({
                 variant="contained"
                 startIcon={<Save />}
                 onClick={handleSave}
+                disabled={saving}
+                isLoading={saving}
               >
                 Save
               </MuiButton>
@@ -192,6 +229,7 @@ export const JobTab = ({
                 variant="outlined"
                 startIcon={<Cancel />}
                 onClick={handleCancel}
+                disabled={saving}
               >
                 Cancel
               </MuiButton>

@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useParams } from 'react-router-dom';
 import { MuiCard, MuiButton } from '../../../common';
 import { Edit, Save, Cancel, Add } from '@mui/icons-material';
 import { TextField, Grid, Select, MenuItem, FormControl, InputLabel, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Chip } from '@mui/material';
 import { employeeRelatedService } from '../../../../services/employeeRelatedService';
+import { useToast } from '../../../../contexts/ToastContext';
 import type { EmployeeWithDetails } from '../../../../types/employee';
 import type { EmployeeWorkPass, CreateEmployeeWorkPassInput } from '../../../../types/employeeRelated';
 
@@ -17,41 +19,57 @@ export const WorkPassTab = ({
   isEditMode,
   onEditModeChange,
 }: WorkPassTabProps) => {
+  const { id: employeeIdFromUrl } = useParams<{ id: string }>();
+  const { showSuccess, showError } = useToast();
+  // Memoize employeeId to prevent unnecessary re-renders
+  const employeeId = useMemo(() => employee?.id || employeeIdFromUrl, [employee?.id, employeeIdFromUrl]);
   const [workPasses, setWorkPasses] = useState<EmployeeWorkPass[]>([]);
   const [loading, setLoading] = useState(false);
   const [newWorkPass, setNewWorkPass] = useState<CreateEmployeeWorkPassInput>({
-    employee_id: employee.id,
+    employee_id: employeeId || '',
     status: 'new',
     is_current: true,
   });
 
-  useEffect(() => {
-    loadWorkPasses();
-  }, [employee.id]);
-
-  const loadWorkPasses = async () => {
+  // Memoize loadWorkPasses to prevent recreating on every render
+  const loadWorkPasses = useCallback(async () => {
+    if (!employeeId) return;
     setLoading(true);
     try {
-      const data = await employeeRelatedService.getEmployeeWorkPasses(employee.id);
+      const data = await employeeRelatedService.getEmployeeWorkPasses(employeeId);
       setWorkPasses(data);
     } catch (error) {
       console.error('Failed to load work passes:', error);
     } finally {
       setLoading(false);
     }
-  };
+  }, [employeeId]);
+
+  useEffect(() => {
+    if (employeeId) {
+      loadWorkPasses();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [employeeId]);
 
   const handleAdd = async () => {
+    if (!employeeId) {
+      showError('Error: Employee ID is missing. Please refresh the page and try again.');
+      return;
+    }
     try {
-      await employeeRelatedService.createWorkPass(newWorkPass);
+      await employeeRelatedService.createWorkPass({ ...newWorkPass, employee_id: employeeId });
       await loadWorkPasses();
+      showSuccess('Work pass added successfully!');
       setNewWorkPass({
-        employee_id: employee.id,
+        employee_id: employeeId,
         status: 'new',
         is_current: true,
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to create work pass:', error);
+      const errorMessage = error?.message || error?.response?.data?.message || 'Failed to create work pass. Please try again.';
+      showError(errorMessage);
     }
   };
 
@@ -247,13 +265,29 @@ export const WorkPassTab = ({
                 </label>
               </Grid>
               <Grid item xs={12}>
-                <MuiButton
-                  variant="contained"
-                  startIcon={<Add />}
-                  onClick={handleAdd}
-                >
-                  Add Work Pass
-                </MuiButton>
+                <div className="flex gap-2">
+                  <MuiButton
+                    variant="contained"
+                    startIcon={<Add />}
+                    onClick={handleAdd}
+                  >
+                    Add Work Pass
+                  </MuiButton>
+                  <MuiButton
+                    variant="outlined"
+                    startIcon={<Save />}
+                    onClick={() => onEditModeChange(false)}
+                  >
+                    Done
+                  </MuiButton>
+                  <MuiButton
+                    variant="outlined"
+                    startIcon={<Cancel />}
+                    onClick={() => onEditModeChange(false)}
+                  >
+                    Cancel
+                  </MuiButton>
+                </div>
               </Grid>
             </Grid>
           </div>

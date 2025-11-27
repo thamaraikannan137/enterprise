@@ -102,7 +102,7 @@ export const createEmployeeSchema = (data: any) => {
     errors.push('Department must be less than 100 characters');
   }
 
-  if (body.reporting_to !== undefined && body.reporting_to !== null) {
+  if (body.reporting_to !== undefined && body.reporting_to !== null && body.reporting_to !== '') {
     if (typeof body.reporting_to !== 'string' || !isValidMongoId(body.reporting_to)) {
       errors.push('Invalid reporting_to format. Must be a valid MongoDB ObjectId');
     }

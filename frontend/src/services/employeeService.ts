@@ -88,5 +88,41 @@ export const employeeService = {
   deleteEmployee: async (id: string): Promise<void> => {
     await apiClient.delete<ApiResponse<void>>(`${API_ENDPOINTS.EMPLOYEES}/${id}`);
   },
+
+  /**
+   * Upload profile photo
+   */
+  uploadProfilePhoto: async (file: File): Promise<string> => {
+    try {
+      const formData = new FormData();
+      formData.append('profile_photo', file);
+
+      const axiosInstance = apiClient.getAxiosInstance();
+      const response = await axiosInstance.post<ApiResponse<{ filePath: string }>>(
+        `${API_ENDPOINTS.EMPLOYEES}/upload-profile-photo`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+
+      console.log('Upload response:', response.data);
+      
+      if (response.data.success && response.data.data?.filePath) {
+        return response.data.data.filePath;
+      } else {
+        throw new Error(response.data.message || 'Upload failed - invalid response');
+      }
+    } catch (error: any) {
+      console.error('Upload error details:', error);
+      if (error.response) {
+        const errorMessage = error.response.data?.message || error.response.data?.error || 'Upload failed';
+        throw new Error(errorMessage);
+      }
+      throw error;
+    }
+  },
 };
 

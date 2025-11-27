@@ -1,11 +1,20 @@
 import type { Request, Response, NextFunction } from 'express';
 import employeeService from '../services/employeeService.ts';
 import { sendSuccess } from '../utils/response.ts';
+import { BadRequestError } from '../utils/errors.ts';
 
 class EmployeeController {
   // Create employee
   async createEmployee(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
+      // If a profile photo file was uploaded, add its path to the request body
+      if (req.file) {
+        req.body.profile_photo_path = `uploads/profile-photos/${req.file.filename}`;
+      }
+      // Normalize empty string to null for reporting_to
+      if (req.body.reporting_to === '') {
+        req.body.reporting_to = null;
+      }
       const employee = await employeeService.createEmployee(req.body);
       sendSuccess(res, 'Employee created successfully', employee, 201);
     } catch (error) {
@@ -38,6 +47,14 @@ class EmployeeController {
   async updateEmployee(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const id = req.params.id!;
+      // If a profile photo file was uploaded, add its path to the request body
+      if (req.file) {
+        req.body.profile_photo_path = `uploads/profile-photos/${req.file.filename}`;
+      }
+      // Normalize empty string to null for reporting_to
+      if (req.body.reporting_to === '') {
+        req.body.reporting_to = null;
+      }
       const employee = await employeeService.updateEmployee(id, req.body);
       sendSuccess(res, 'Employee updated successfully', employee);
     } catch (error) {
@@ -62,6 +79,22 @@ class EmployeeController {
       const id = req.params.id!;
       const employee = await employeeService.getEmployeeWithDetails(id);
       sendSuccess(res, 'Employee details retrieved successfully', employee);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  // Upload profile photo
+  async uploadProfilePhoto(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const file = req.file;
+      if (!file) {
+        return next(new BadRequestError('No file uploaded'));
+      }
+
+      // Return the file path relative to uploads directory
+      const filePath = `uploads/profile-photos/${file.filename}`;
+      sendSuccess(res, 'Profile photo uploaded successfully', { filePath });
     } catch (error) {
       next(error);
     }

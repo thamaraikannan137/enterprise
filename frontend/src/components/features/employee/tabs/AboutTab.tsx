@@ -1,9 +1,17 @@
-import { useState, useEffect } from 'react';
-import { MuiCard, MuiButton } from '../../../common';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useForm, Controller } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { DevTool } from '@hookform/devtools';
+import { z } from 'zod';
+import { MuiCard, MuiButton, FileUpload } from '../../../common';
 import { Edit, Save, Cancel } from '@mui/icons-material';
 import { TextField, Grid } from '@mui/material';
 import { useAppDispatch } from '../../../../store';
-import { updateEmployee } from '../../../../store/slices/employeeSlice';
+import { updateEmployee, fetchEmployeeWithDetails } from '../../../../store/slices/employeeSlice';
+import { employeeService } from '../../../../services/employeeService';
+import { getImageUrl } from '../../../../utils/imageUtils';
+import { useToast } from '../../../../contexts/ToastContext';
 import type { EmployeeWithDetails } from '../../../../types/employee';
 
 interface AboutTabProps {
@@ -12,77 +20,160 @@ interface AboutTabProps {
   onEditModeChange: (value: boolean) => void;
 }
 
+const personalInfoSchema = z.object({
+  first_name: z.string().min(1, 'First name is required').max(100, 'First name must be less than 100 characters'),
+  middle_name: z.string().max(100, 'Middle name must be less than 100 characters').optional().or(z.literal('')),
+  last_name: z.string().min(1, 'Last name is required').max(100, 'Last name must be less than 100 characters'),
+  date_of_birth: z.string().min(1, 'Date of birth is required'),
+  gender: z.enum(['male', 'female', 'other']),
+  nationality: z.string().min(1, 'Nationality is required').max(100, 'Nationality must be less than 100 characters'),
+  marital_status: z.enum(['single', 'married', 'divorced', 'widowed']),
+  profile_photo_path: z.string().optional().or(z.literal('')),
+});
+
+type PersonalInfoFormData = z.infer<typeof personalInfoSchema>;
+
 export const AboutTab = ({
   employee,
   isEditMode,
   onEditModeChange,
 }: AboutTabProps) => {
   const dispatch = useAppDispatch();
-  const [personalData, setPersonalData] = useState({
-    first_name: employee.first_name || '',
-    middle_name: employee.middle_name || '',
-    last_name: employee.last_name || '',
-    date_of_birth: employee.date_of_birth?.split('T')[0] || '',
-    gender: employee.gender || 'male',
-    nationality: employee.nationality || '',
-    marital_status: employee.marital_status || 'single',
-    profile_photo_path: employee.profile_photo_path || '',
-  });
+  const { id: employeeIdFromUrl } = useParams<{ id: string }>();
+  const { showSuccess, showError } = useToast();
+  const employeeId = employee?.id || employeeIdFromUrl;
 
-  useEffect(() => {
-    setPersonalData({
+  const {
+    control,
+    handleSubmit,
+    formState: { isSubmitting },
+    reset,
+    watch,
+    setValue,
+  } = useForm<PersonalInfoFormData>({
+    resolver: zodResolver(personalInfoSchema),
+    mode: 'onChange',
+    defaultValues: {
       first_name: employee.first_name || '',
       middle_name: employee.middle_name || '',
       last_name: employee.last_name || '',
       date_of_birth: employee.date_of_birth?.split('T')[0] || '',
-      gender: employee.gender || 'male',
+      gender: (employee.gender as 'male' | 'female' | 'other') || 'male',
       nationality: employee.nationality || '',
-      marital_status: employee.marital_status || 'single',
+      marital_status: (employee.marital_status as 'single' | 'married' | 'divorced' | 'widowed') || 'single',
+      profile_photo_path: employee.profile_photo_path || '',
+    },
+  });
+
+  const profilePhotoPath = watch('profile_photo_path');
+
+  useEffect(() => {
+    reset({
+      first_name: employee.first_name || '',
+      middle_name: employee.middle_name || '',
+      last_name: employee.last_name || '',
+      date_of_birth: employee.date_of_birth?.split('T')[0] || '',
+      gender: (employee.gender as 'male' | 'female' | 'other') || 'male',
+      nationality: employee.nationality || '',
+      marital_status: (employee.marital_status as 'single' | 'married' | 'divorced' | 'widowed') || 'single',
       profile_photo_path: employee.profile_photo_path || '',
     });
-  }, [employee]);
+  }, [employee, reset]);
 
-  const handleSave = async () => {
+  const onSubmit = async (data: PersonalInfoFormData) => {
+    if (!employeeId) {
+      showError('Error: Employee ID is missing. Please refresh the page and try again.');
+      return;
+    }
+
+    // Prepare the update payload - ensure proper formatting
+    const updateData: Record<string, any> = {
+      first_name: data.first_name.trim(),
+      last_name: data.last_name.trim(),
+      // Keep date in YYYY-MM-DD format (backend's isValidDate accepts this)
+      date_of_birth: data.date_of_birth || undefined,
+      gender: data.gender,
+      nationality: data.nationality.trim(),
+      marital_status: data.marital_status,
+    };
+
+    // Only include middle_name if it's not empty
+    if (data.middle_name && data.middle_name.trim()) {
+      updateData.middle_name = data.middle_name.trim();
+    }
+
+    // Only include profile_photo_path if it's not empty
+    if (data.profile_photo_path && data.profile_photo_path.trim()) {
+      updateData.profile_photo_path = data.profile_photo_path.trim();
+    }
+
     try {
       await dispatch(updateEmployee({
-        id: employee.id,
-        data: {
-          first_name: personalData.first_name,
-          last_name: personalData.last_name,
-          date_of_birth: personalData.date_of_birth,
-          gender: personalData.gender,
-          nationality: personalData.nationality,
-          marital_status: personalData.marital_status,
-          ...(personalData.middle_name && { middle_name: personalData.middle_name }),
-          ...(personalData.profile_photo_path && { profile_photo_path: personalData.profile_photo_path }),
-        },
+        id: employeeId,
+        data: updateData,
       })).unwrap();
+      
+      if (employeeId) {
+        await dispatch(fetchEmployeeWithDetails(employeeId)).unwrap();
+      }
+      
+      showSuccess('Employee information saved successfully!');
       onEditModeChange(false);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to update employee:', error);
+      console.error('Error response:', error?.response?.data);
+      console.log('Update data sent:', updateData);
+      
+      // Extract validation errors from response
+      let errorMessage = 'Failed to save employee information. Please try again.';
+      
+      if (error?.response?.data) {
+        const errorData = error.response.data;
+        
+        // The backend sends validation errors as JSON string in message
+        if (errorData.message) {
+          try {
+            // Try to parse if it's a JSON string (validation errors)
+            const parsed = JSON.parse(errorData.message);
+            if (Array.isArray(parsed)) {
+              errorMessage = `Validation errors: ${parsed.join(', ')}`;
+            } else {
+              errorMessage = errorData.message;
+            }
+          } catch {
+            // If not JSON, use the message directly
+            errorMessage = errorData.message;
+          }
+        } else if (errorData.error) {
+          errorMessage = errorData.error;
+        } else if (errorData.errors && Array.isArray(errorData.errors)) {
+          errorMessage = `Validation errors: ${errorData.errors.join(', ')}`;
+        }
+      } else if (error?.message) {
+        errorMessage = error.message;
+      }
+      
+      showError(errorMessage);
     }
   };
 
   const handleCancel = () => {
-    setPersonalData({
+    reset({
       first_name: employee.first_name || '',
       middle_name: employee.middle_name || '',
       last_name: employee.last_name || '',
       date_of_birth: employee.date_of_birth?.split('T')[0] || '',
-      gender: employee.gender || 'male',
+      gender: (employee.gender as 'male' | 'female' | 'other') || 'male',
       nationality: employee.nationality || '',
-      marital_status: employee.marital_status || 'single',
+      marital_status: (employee.marital_status as 'single' | 'married' | 'divorced' | 'widowed') || 'single',
       profile_photo_path: employee.profile_photo_path || '',
     });
     onEditModeChange(false);
   };
 
-  const handleChange = (field: string, value: string) => {
-    setPersonalData((prev) => ({ ...prev, [field]: value }));
-  };
-
   return (
     <div className="space-y-6">
+      {import.meta.env.DEV && <DevTool control={control} />}
       <MuiCard className="p-6">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold text-gray-900">Personal Information</h3>
@@ -99,117 +190,188 @@ export const AboutTab = ({
         </div>
 
         {isEditMode ? (
-          <div className="space-y-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <Grid container spacing={3}>
               <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="First Name"
-                  value={personalData.first_name}
-                  onChange={(e) => handleChange('first_name', e.target.value)}
-                  variant="outlined"
-                  required
+                <Controller
+                  name="first_name"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <TextField
+                      {...field}
+                      fullWidth
+                      label="First Name"
+                      error={!!fieldState.error}
+                      helperText={fieldState.error?.message}
+                      variant="outlined"
+                      required
+                    />
+                  )}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Middle Name"
-                  value={personalData.middle_name}
-                  onChange={(e) => handleChange('middle_name', e.target.value)}
-                  variant="outlined"
+                <Controller
+                  name="middle_name"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <TextField
+                      {...field}
+                      fullWidth
+                      label="Middle Name"
+                      error={!!fieldState.error}
+                      helperText={fieldState.error?.message}
+                      variant="outlined"
+                    />
+                  )}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Last Name"
-                  value={personalData.last_name}
-                  onChange={(e) => handleChange('last_name', e.target.value)}
-                  variant="outlined"
-                  required
+                <Controller
+                  name="last_name"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <TextField
+                      {...field}
+                      fullWidth
+                      label="Last Name"
+                      error={!!fieldState.error}
+                      helperText={fieldState.error?.message}
+                      variant="outlined"
+                      required
+                    />
+                  )}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Date of Birth"
-                  type="date"
-                  value={personalData.date_of_birth}
-                  onChange={(e) => handleChange('date_of_birth', e.target.value)}
-                  variant="outlined"
-                  InputLabelProps={{ shrink: true }}
-                  required
+                <Controller
+                  name="date_of_birth"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <TextField
+                      {...field}
+                      fullWidth
+                      label="Date of Birth"
+                      type="date"
+                      error={!!fieldState.error}
+                      helperText={fieldState.error?.message}
+                      variant="outlined"
+                      InputLabelProps={{ shrink: true }}
+                      required
+                    />
+                  )}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  select
-                  label="Gender"
-                  value={personalData.gender}
-                  onChange={(e) => handleChange('gender', e.target.value)}
-                  variant="outlined"
-                  SelectProps={{ native: true }}
-                >
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
-                </TextField>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Nationality"
-                  value={personalData.nationality}
-                  onChange={(e) => handleChange('nationality', e.target.value)}
-                  variant="outlined"
-                  required
+                <Controller
+                  name="gender"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <TextField
+                      {...field}
+                      fullWidth
+                      select
+                      label="Gender"
+                      error={!!fieldState.error}
+                      helperText={fieldState.error?.message}
+                      variant="outlined"
+                      SelectProps={{ native: true }}
+                    >
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="other">Other</option>
+                    </TextField>
+                  )}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  select
-                  label="Marital Status"
-                  value={personalData.marital_status}
-                  onChange={(e) => handleChange('marital_status', e.target.value)}
-                  variant="outlined"
-                  SelectProps={{ native: true }}
-                >
-                  <option value="single">Single</option>
-                  <option value="married">Married</option>
-                  <option value="divorced">Divorced</option>
-                  <option value="widowed">Widowed</option>
-                </TextField>
+                <Controller
+                  name="nationality"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <TextField
+                      {...field}
+                      fullWidth
+                      label="Nationality"
+                      error={!!fieldState.error}
+                      helperText={fieldState.error?.message}
+                      variant="outlined"
+                      required
+                    />
+                  )}
+                />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Profile Photo URL"
-                  value={personalData.profile_photo_path}
-                  onChange={(e) => handleChange('profile_photo_path', e.target.value)}
-                  variant="outlined"
+                <Controller
+                  name="marital_status"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <TextField
+                      {...field}
+                      fullWidth
+                      select
+                      label="Marital Status"
+                      error={!!fieldState.error}
+                      helperText={fieldState.error?.message}
+                      variant="outlined"
+                      SelectProps={{ native: true }}
+                    >
+                      <option value="single">Single</option>
+                      <option value="married">Married</option>
+                      <option value="divorced">Divorced</option>
+                      <option value="widowed">Widowed</option>
+                    </TextField>
+                  )}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <FileUpload
+                  label="Profile Photo (optional)"
+                  accept="image/*"
+                  maxSize={5}
+                  value={profilePhotoPath ? getImageUrl(profilePhotoPath) : undefined}
+                  onChange={(file) => {
+                    if (!file) {
+                      setValue('profile_photo_path', '');
+                    }
+                  }}
+                  onUpload={async (file) => {
+                    try {
+                      const filePath = await employeeService.uploadProfilePhoto(file);
+                      setValue('profile_photo_path', filePath);
+                      showSuccess('Profile photo uploaded successfully!');
+                      return filePath;
+                    } catch (error: any) {
+                      console.error('Profile photo upload failed:', error);
+                      const errorMessage = error?.message || error?.response?.data?.message || 'Failed to upload profile photo. Please try again.';
+                      showError(errorMessage);
+                      throw error;
+                    }
+                  }}
+                  disabled={isSubmitting}
                 />
               </Grid>
             </Grid>
             <div className="flex gap-2">
               <MuiButton
+                type="submit"
                 variant="contained"
                 startIcon={<Save />}
-                onClick={handleSave}
+                disabled={isSubmitting}
+                isLoading={isSubmitting}
               >
                 Save
               </MuiButton>
               <MuiButton
+                type="button"
                 variant="outlined"
                 startIcon={<Cancel />}
                 onClick={handleCancel}
+                disabled={isSubmitting}
               >
                 Cancel
               </MuiButton>
             </div>
-          </div>
+          </form>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
@@ -250,4 +412,3 @@ export const AboutTab = ({
     </div>
   );
 };
-

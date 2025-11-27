@@ -13,14 +13,10 @@ import { MuiButton } from '../components/common';
 import { AboutTab } from '../components/features/employee/tabs/AboutTab';
 import { JobTab } from '../components/features/employee/tabs/JobTab';
 import { ContactTab } from '../components/features/employee/tabs/ContactTab';
-import { TimeTab } from '../components/features/employee/tabs/TimeTab';
 import { FinancesTab } from '../components/features/employee/tabs/FinancesTab';
 import { DocsTab } from '../components/features/employee/tabs/DocsTab';
 import { WorkPassTab } from '../components/features/employee/tabs/WorkPassTab';
 import { QualificationsTab } from '../components/features/employee/tabs/QualificationsTab';
-import { GoalsTab } from '../components/features/employee/tabs/GoalsTab';
-import { ReviewsTab } from '../components/features/employee/tabs/ReviewsTab';
-import { OnboardingTab } from '../components/features/employee/tabs/OnboardingTab';
 import type { EmployeeWithDetails } from '../types/employee';
 
 export const EmployeeProfilePage = () => {
@@ -158,14 +154,6 @@ const EmployeeProfileTabsContent = ({
       return <WorkPassTab {...commonProps} />;
     case 'qualifications':
       return <QualificationsTab {...commonProps} />;
-    case 'time':
-      return <TimeTab {...commonProps} />;
-    case 'goals':
-      return <GoalsTab {...commonProps} />;
-    case 'reviews':
-      return <ReviewsTab {...commonProps} />;
-    case 'onboarding':
-      return <OnboardingTab {...commonProps} />;
     default:
       return <AboutTab {...commonProps} />;
   }
