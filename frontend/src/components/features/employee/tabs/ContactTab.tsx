@@ -104,7 +104,7 @@ const ContactItem = ({
         <h4 className="font-medium text-gray-900 mb-4">Edit Contact</h4>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm:3 }}>
               <Controller
                 name="contact_type"
                 control={control}
@@ -126,7 +126,7 @@ const ContactItem = ({
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm:3 }}>
               <Controller
                 name="phone"
                 control={control}
@@ -142,7 +142,7 @@ const ContactItem = ({
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm:3 }}>
               <Controller
                 name="alternate_phone"
                 control={control}
@@ -158,7 +158,7 @@ const ContactItem = ({
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm:3 }}>
               <Controller
                 name="email"
                 control={control}
@@ -175,7 +175,7 @@ const ContactItem = ({
                 )}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid size={4}>
               <Controller
                 name="address_line1"
                 control={control}
@@ -191,7 +191,7 @@ const ContactItem = ({
                 )}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid size={4}>
               <Controller
                 name="address_line2"
                 control={control}
@@ -207,7 +207,7 @@ const ContactItem = ({
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={4}>
+            <Grid size={{ xs: 12, sm: 2 }}>
               <Controller
                 name="city"
                 control={control}
@@ -223,7 +223,7 @@ const ContactItem = ({
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={4}>
+            <Grid size={{ xs: 12, sm: 2 }}>
               <Controller
                 name="postal_code"
                 control={control}
@@ -239,7 +239,7 @@ const ContactItem = ({
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={4}>
+            <Grid size={{ xs: 12, sm: 2 }}>
               <Controller
                 name="country"
                 control={control}
@@ -255,7 +255,7 @@ const ContactItem = ({
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 2 }}>
               <Controller
                 name="valid_from"
                 control={control}
@@ -273,7 +273,7 @@ const ContactItem = ({
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 2 }}>
               <Controller
                 name="valid_to"
                 control={control}
@@ -293,7 +293,7 @@ const ContactItem = ({
                 )}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid size={12}>
               <Controller
                 name="is_current"
                 control={control}
@@ -310,7 +310,7 @@ const ContactItem = ({
                 )}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid size={12}>
               <div className="flex gap-2">
                 <MuiButton
                   type="submit"
@@ -644,7 +644,7 @@ export const ContactTab = ({
             <h4 className="font-medium text-gray-900 mb-4">Add New Contact</h4>
             <form onSubmit={handleSubmit(onSubmit)}>
               <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
+                <Grid size={{ xs: 12, sm: 6 }}>
                   <Controller
                     name="contact_type"
                     control={control}
@@ -666,7 +666,7 @@ export const ContactTab = ({
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid size={{ xs: 12, sm: 6 }}>
                   <Controller
                     name="phone"
                     control={control}
@@ -682,7 +682,7 @@ export const ContactTab = ({
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid size={{ xs: 12, sm: 6 }}>
                   <Controller
                     name="alternate_phone"
                     control={control}
@@ -698,7 +698,7 @@ export const ContactTab = ({
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid size={{ xs: 12, sm: 6 }}>
                   <Controller
                     name="email"
                     control={control}
@@ -715,7 +715,7 @@ export const ContactTab = ({
                     )}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid size={12}>
                   <Controller
                     name="address_line1"
                     control={control}
@@ -731,7 +731,7 @@ export const ContactTab = ({
                     )}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid size={12}>
                   <Controller
                     name="address_line2"
                     control={control}
@@ -747,7 +747,7 @@ export const ContactTab = ({
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={4}>
+                <Grid size={{ xs: 12, sm:3 }}>
                   <Controller
                     name="city"
                     control={control}
@@ -763,7 +763,7 @@ export const ContactTab = ({
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={4}>
+                <Grid size={{ xs: 12, sm:3 }}>
                   <Controller
                     name="postal_code"
                     control={control}
@@ -779,7 +779,7 @@ export const ContactTab = ({
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={4}>
+                <Grid size={{ xs: 12, sm:3 }}>
                   <Controller
                     name="country"
                     control={control}
@@ -795,7 +795,7 @@ export const ContactTab = ({
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid size={{ xs: 12, sm: 6 }}>
                   <Controller
                     name="valid_from"
                     control={control}
@@ -813,7 +813,7 @@ export const ContactTab = ({
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid size={{ xs: 12, sm: 6 }}>
                   <Controller
                     name="valid_to"
                     control={control}
@@ -833,7 +833,7 @@ export const ContactTab = ({
                     )}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid size={12}>
                   <Controller
                     name="is_current"
                     control={control}
@@ -850,7 +850,7 @@ export const ContactTab = ({
                     )}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid size={12}>
                   <div className="flex gap-2">
                     <MuiButton
                       type="submit"

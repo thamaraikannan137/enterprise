@@ -192,7 +192,7 @@ export const AboutTab = ({
         {isEditMode ? (
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <Grid container spacing={3}>
-              <Grid item xs={12} sm={6}>
+              <Grid size={4}>
                 <Controller
                   name="first_name"
                   control={control}
@@ -209,7 +209,7 @@ export const AboutTab = ({
                   )}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={4}>
                 <Controller
                   name="middle_name"
                   control={control}
@@ -225,7 +225,7 @@ export const AboutTab = ({
                   )}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={4}>
                 <Controller
                   name="last_name"
                   control={control}
@@ -242,7 +242,7 @@ export const AboutTab = ({
                   )}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={4}>
                 <Controller
                   name="date_of_birth"
                   control={control}
@@ -261,7 +261,7 @@ export const AboutTab = ({
                   )}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={2}>
                 <Controller
                   name="gender"
                   control={control}
@@ -283,7 +283,7 @@ export const AboutTab = ({
                   )}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={2}>
                 <Controller
                   name="nationality"
                   control={control}
@@ -300,7 +300,7 @@ export const AboutTab = ({
                   )}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={4}>
                 <Controller
                   name="marital_status"
                   control={control}
@@ -323,7 +323,7 @@ export const AboutTab = ({
                   )}
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid size={4}>
                 <FileUpload
                   label="Profile Photo (optional)"
                   accept="image/*"

@@ -179,7 +179,7 @@ export const JobTab = ({
         {isEditMode ? (
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <Grid container spacing={3}>
-              <Grid item xs={12} sm={6}>
+              <Grid size={4}>
                 <Controller
                   name="designation"
                   control={control}
@@ -196,7 +196,7 @@ export const JobTab = ({
                   )}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={4}>
                 <Controller
                   name="department"
                   control={control}
@@ -213,7 +213,7 @@ export const JobTab = ({
                   )}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={4}>
                 <Controller
                   name="reporting_to"
                   control={control}
@@ -248,7 +248,7 @@ export const JobTab = ({
                   )}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={4}>
                 <Controller
                   name="employee_code"
                   control={control}
@@ -264,7 +264,7 @@ export const JobTab = ({
                   )}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={4}>
                 <Controller
                   name="hire_date"
                   control={control}
@@ -283,7 +283,7 @@ export const JobTab = ({
                   )}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={4}>
                 <Controller
                   name="termination_date"
                   control={control}
