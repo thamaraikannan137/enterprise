@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { workPassController } from '../../controllers/workPass.controller.ts';
 import { authenticate } from '../../middlewares/auth.middleware.ts';
+import { singleWorkPassUpload, handleUploadError } from '../../middlewares/upload.middleware.ts';
 
 const router = Router();
 
@@ -15,7 +16,12 @@ router.put('/:id', workPassController.updateWorkPass);
 router.delete('/:id', workPassController.deleteWorkPass);
 
 // Work Pass Document routes
-router.post('/documents', workPassController.addWorkPassDocument);
+router.post(
+  '/documents',
+  singleWorkPassUpload,
+  handleUploadError,
+  workPassController.addWorkPassDocument
+);
 router.get('/documents/:workPassId', workPassController.getWorkPassDocuments);
 router.delete('/documents/:id', workPassController.deleteWorkPassDocument);
 

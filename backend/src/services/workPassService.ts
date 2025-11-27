@@ -1,5 +1,6 @@
 import EmployeeWorkPass from '../models/EmployeeWorkPass.ts';
 import WorkPassDocument from '../models/WorkPassDocument.ts';
+import EmployeeDocument from '../models/EmployeeDocument.ts';
 import Employee from '../models/Employee.ts';
 import { NotFoundError } from '../utils/errors.ts';
 
@@ -96,8 +97,28 @@ export const workPassService = {
       throw new NotFoundError('Work pass not found');
     }
 
+    // Get all associated documents and their file paths
+    const wpDocuments = await WorkPassDocument.find({ work_pass_id: id });
+    const filePaths: string[] = [];
+
+    for (const wpDoc of wpDocuments) {
+      if (wpDoc.document_id) {
+        const document = await EmployeeDocument.findById(wpDoc.document_id);
+        if (document && document.file_path) {
+          filePaths.push(document.file_path);
+          await document.deleteOne();
+        }
+        await wpDoc.deleteOne();
+      }
+    }
+
+    // Delete work pass
     await workPass.deleteOne();
-    return { message: 'Work pass deleted successfully' };
+
+    return { 
+      message: 'Work pass deleted successfully',
+      filePaths: filePaths // Return file paths so controller can delete physical files
+    };
   },
 
   // Get expiring work passes
@@ -119,13 +140,34 @@ export const workPassService = {
   },
 
   // Work Pass Document Management
-  async addWorkPassDocument(data: any) {
+  async addWorkPassDocument(data: any, filePath?: string, fileName?: string) {
     const workPass = await EmployeeWorkPass.findById(data.work_pass_id);
     if (!workPass) {
       throw new NotFoundError('Work pass not found');
     }
 
-    return await WorkPassDocument.create(data);
+    // If file is uploaded, create EmployeeDocument first
+    let documentId = data.document_id;
+    if (filePath && fileName) {
+      const document = await EmployeeDocument.create({
+        employee_id: workPass.employee_id,
+        document_type: 'work_pass',
+        document_name: fileName || data.document_category || 'Work Pass Document',
+        file_path: filePath,
+        issue_date: workPass.issuance_date,
+        expiry_date: workPass.expiry_date,
+        is_active: true,
+      });
+      documentId = document._id;
+    }
+
+    if (!documentId) {
+      throw new NotFoundError('Document ID is required or file must be uploaded');
+    }
+
+    // Create WorkPassDocument with document_id
+    const wpDocumentData = { ...data, document_id: documentId };
+    return await WorkPassDocument.create(wpDocumentData);
   },
 
   async getWorkPassDocuments(workPassId: string) {
@@ -140,7 +182,23 @@ export const workPassService = {
       throw new NotFoundError('Work pass document not found');
     }
 
+    // Get file path before deleting
+    let filePath: string | null = null;
+    if (wpDocument.document_id) {
+      const document = await EmployeeDocument.findById(wpDocument.document_id);
+      if (document) {
+        filePath = document.file_path;
+        // Delete the document record
+        await document.deleteOne();
+      }
+    }
+
+    // Delete WorkPassDocument
     await wpDocument.deleteOne();
-    return { message: 'Work pass document deleted successfully' };
+
+    return { 
+      message: 'Work pass document deleted successfully',
+      filePath: filePath // Return file path so controller can delete the physical file
+    };
   },
 };

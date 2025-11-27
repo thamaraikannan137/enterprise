@@ -1,6 +1,19 @@
 import type { Request, Response, NextFunction } from 'express';
 import { workPassService } from '../services/workPassService.ts';
 import { sendSuccess } from '../utils/response.ts';
+import EmployeeDocument from '../models/EmployeeDocument.ts';
+import fs from 'fs/promises';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Extend Request type to include file
+interface MulterRequest extends Request {
+  file?: Express.Multer.File;
+}
 
 export const workPassController = {
   // Create work pass
@@ -47,7 +60,20 @@ export const workPassController = {
   async deleteWorkPass(req: Request, res: Response, next: NextFunction) {
     try {
       const result = await workPassService.deleteWorkPass(req.params.id!);
-      sendSuccess(res, 'Work pass deleted successfully', result);
+      
+      // Delete physical files if they exist
+      if (result.filePaths && result.filePaths.length > 0) {
+        for (const filePath of result.filePaths) {
+          try {
+            const fullFilePath = path.join(__dirname, '../../', filePath);
+            await fs.unlink(fullFilePath);
+          } catch (unlinkError) {
+            console.error('Failed to delete physical file:', unlinkError);
+          }
+        }
+      }
+
+      sendSuccess(res, 'Work pass deleted successfully', { message: result.message });
     } catch (error) {
       next(error);
     }
@@ -65,11 +91,34 @@ export const workPassController = {
   },
 
   // Work Pass Document endpoints
-  async addWorkPassDocument(req: Request, res: Response, next: NextFunction) {
+  async addWorkPassDocument(req: MulterRequest, res: Response, next: NextFunction) {
     try {
-      const document = await workPassService.addWorkPassDocument(req.body);
+      let filePath: string | undefined;
+      let fileName: string | undefined;
+
+      // Check if file was uploaded
+      if (req.file) {
+        // File path relative to uploads folder
+        filePath = `uploads/workpasses/${req.file.filename}`;
+        fileName = req.file.originalname;
+      }
+
+      const document = await workPassService.addWorkPassDocument(
+        req.body,
+        filePath,
+        fileName
+      );
       sendSuccess(res, 'Work pass document added successfully', document, 201);
     } catch (error) {
+      // If error occurs and file was uploaded, delete the file
+      if (req.file) {
+        try {
+          const filePath = path.join(__dirname, '../../uploads/workpasses', req.file.filename);
+          await fs.unlink(filePath);
+        } catch (unlinkError) {
+          console.error('Failed to delete uploaded file:', unlinkError);
+        }
+      }
       next(error);
     }
   },
@@ -86,7 +135,18 @@ export const workPassController = {
   async deleteWorkPassDocument(req: Request, res: Response, next: NextFunction) {
     try {
       const result = await workPassService.deleteWorkPassDocument(req.params.id!);
-      sendSuccess(res, 'Work pass document deleted successfully', result);
+      
+      // Delete physical file if it exists
+      if (result.filePath) {
+        try {
+          const fullFilePath = path.join(__dirname, '../../', result.filePath);
+          await fs.unlink(fullFilePath);
+        } catch (unlinkError) {
+          console.error('Failed to delete physical file:', unlinkError);
+        }
+      }
+
+      sendSuccess(res, 'Work pass document deleted successfully', { message: result.message });
     } catch (error) {
       next(error);
     }

@@ -4,14 +4,23 @@ import { NotFoundError } from '../utils/errors.ts';
 
 export const employeeDocumentService = {
   // Create document
-  async createDocument(data: any) {
+  async createDocument(data: any, filePath?: string, fileName?: string) {
     // Verify employee exists
     const employee = await Employee.findById(data.employee_id);
     if (!employee) {
       throw new NotFoundError('Employee not found');
     }
 
-    return await EmployeeDocument.create(data);
+    // If file path is provided, use it; otherwise use the one from data
+    const documentData = { ...data };
+    if (filePath) {
+      documentData.file_path = filePath;
+      if (fileName && !documentData.document_name) {
+        documentData.document_name = fileName;
+      }
+    }
+
+    return await EmployeeDocument.create(documentData);
   },
 
   // Get all documents for an employee
@@ -45,15 +54,30 @@ export const employeeDocumentService = {
   },
 
   // Update document
-  async updateDocument(id: string, data: any) {
+  async updateDocument(id: string, data: any, filePath?: string, fileName?: string) {
     const document = await EmployeeDocument.findById(id);
     if (!document) {
       throw new NotFoundError('Document not found');
     }
 
+    // Store old file path for deletion
+    const oldFilePath = document.file_path;
+
+    // If new file is uploaded, update file path
+    if (filePath) {
+      data.file_path = filePath;
+      if (fileName && !data.document_name) {
+        data.document_name = fileName;
+      }
+    }
+
     Object.assign(document, data);
     await document.save();
-    return document;
+
+    return {
+      document,
+      oldFilePath: filePath ? oldFilePath : null, // Only return if file was replaced
+    };
   },
 
   // Delete document
@@ -63,8 +87,14 @@ export const employeeDocumentService = {
       throw new NotFoundError('Document not found');
     }
 
+    // Get file path before deleting
+    const filePath = document.file_path;
+
     await document.deleteOne();
-    return { message: 'Document deleted successfully' };
+    return { 
+      message: 'Document deleted successfully',
+      filePath: filePath // Return file path so controller can delete the physical file
+    };
   },
 
   // Get expiring documents
