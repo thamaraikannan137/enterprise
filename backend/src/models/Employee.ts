@@ -12,6 +12,9 @@ export interface IEmployee extends Document {
   marital_status: 'single' | 'married' | 'divorced' | 'widowed';
   profile_photo_path?: string;
   status: 'active' | 'inactive' | 'terminated';
+  designation: string;
+  department: string;
+  reporting_to?: mongoose.Types.ObjectId;
   hire_date: Date;
   termination_date?: Date;
   created_by?: mongoose.Types.ObjectId;
@@ -76,6 +79,32 @@ const employeeSchema = new Schema<IEmployee>(
       default: 'active',
       required: true,
     },
+    designation: {
+      type: String,
+      required: [true, 'Designation is required'],
+      trim: true,
+      maxlength: [100, 'Designation must be less than 100 characters'],
+    },
+    department: {
+      type: String,
+      required: [true, 'Department is required'],
+      trim: true,
+      maxlength: [100, 'Department must be less than 100 characters'],
+    },
+    reporting_to: {
+      type: Schema.Types.ObjectId,
+      ref: 'Employee',
+      default: null,
+      validate: {
+        validator: function(this: IEmployee, value: mongoose.Types.ObjectId | null) {
+          // Allow null (optional field)
+          if (!value) return true;
+          // Prevent self-reference
+          return !this._id || !value.equals(this._id);
+        },
+        message: 'Employee cannot report to themselves',
+      },
+    },
     hire_date: {
       type: Date,
       required: [true, 'Hire date is required'],
@@ -105,6 +134,9 @@ const employeeSchema = new Schema<IEmployee>(
 employeeSchema.index({ employee_code: 1 }, { unique: true });
 employeeSchema.index({ status: 1 });
 employeeSchema.index({ first_name: 1, last_name: 1 });
+employeeSchema.index({ designation: 1 });
+employeeSchema.index({ department: 1 });
+employeeSchema.index({ reporting_to: 1 });
 
 const Employee = mongoose.model<IEmployee>('Employee', employeeSchema);
 

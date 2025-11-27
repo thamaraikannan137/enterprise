@@ -90,6 +90,24 @@ export const createEmployeeSchema = (data: any) => {
     errors.push('Status must be one of: active, inactive, terminated');
   }
 
+  if (!body.designation || typeof body.designation !== 'string' || body.designation.trim().length === 0) {
+    errors.push('Designation is required');
+  } else if (body.designation.length > 100) {
+    errors.push('Designation must be less than 100 characters');
+  }
+
+  if (!body.department || typeof body.department !== 'string' || body.department.trim().length === 0) {
+    errors.push('Department is required');
+  } else if (body.department.length > 100) {
+    errors.push('Department must be less than 100 characters');
+  }
+
+  if (body.reporting_to !== undefined && body.reporting_to !== null) {
+    if (typeof body.reporting_to !== 'string' || !isValidMongoId(body.reporting_to)) {
+      errors.push('Invalid reporting_to format. Must be a valid MongoDB ObjectId');
+    }
+  }
+
   if (!body.hire_date || typeof body.hire_date !== 'string') {
     errors.push('Hire date is required');
   } else if (!isValidDate(body.hire_date)) {
@@ -169,6 +187,28 @@ export const updateEmployeeSchema = (data: any) => {
 
     if (body.status !== undefined && (typeof body.status !== 'string' || !isValidStatus(body.status))) {
       errors.push('Status must be one of: active, inactive, terminated');
+    }
+
+    if (body.designation !== undefined) {
+      if (typeof body.designation !== 'string' || body.designation.trim().length === 0) {
+        errors.push('Designation must be a non-empty string');
+      } else if (body.designation.length > 100) {
+        errors.push('Designation must be less than 100 characters');
+      }
+    }
+
+    if (body.department !== undefined) {
+      if (typeof body.department !== 'string' || body.department.trim().length === 0) {
+        errors.push('Department must be a non-empty string');
+      } else if (body.department.length > 100) {
+        errors.push('Department must be less than 100 characters');
+      }
+    }
+
+    if (body.reporting_to !== undefined && body.reporting_to !== null) {
+      if (typeof body.reporting_to !== 'string' || !isValidMongoId(body.reporting_to)) {
+        errors.push('Invalid reporting_to format. Must be a valid MongoDB ObjectId');
+      }
     }
 
     if (body.hire_date !== undefined && (typeof body.hire_date !== 'string' || !isValidDate(body.hire_date))) {
