@@ -48,6 +48,51 @@ export const JobInfoTab = () => {
           required
         />
 
+        {/* Joining Date */}
+        <MuiInput
+          {...register('joining_date')}
+          type="date"
+          label="Joining Date"
+          error={errors.joining_date?.message as string}
+          required
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+
+        {/* Time Type */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Time Type <span className="text-red-500">*</span>
+          </label>
+          <Controller
+            name="time_type"
+            control={control}
+            render={({ field }) => (
+              <select
+                {...field}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="full_time">Full Time</option>
+                <option value="contract">Contract</option>
+              </select>
+            )}
+          />
+          {errors.time_type && (
+            <p className="mt-1 text-sm text-red-600">{errors.time_type.message as string}</p>
+          )}
+        </div>
+
+        {/* Location */}
+        <MuiInput
+          {...register('location')}
+          type="text"
+          label="Location"
+          placeholder="e.g., Singapore, Remote, New York"
+          error={errors.location?.message as string}
+          required
+        />
+
         {/* Reporting To */}
         <div className="md:col-span-2">
           <FormControl fullWidth error={!!errors.reporting_to}>

@@ -64,22 +64,27 @@ export const createEmployeeSchema = (data: any) => {
     errors.push('Invalid date of birth format');
   }
 
-  if (!body.gender || typeof body.gender !== 'string') {
-    errors.push('Gender is required');
-  } else if (!isValidGender(body.gender)) {
-    errors.push('Gender must be one of: male, female, other');
+  // Gender is now optional
+  if (body.gender !== undefined && body.gender !== null && body.gender !== '') {
+    if (typeof body.gender !== 'string' || !isValidGender(body.gender)) {
+      errors.push('Gender must be one of: male, female, other');
+    }
   }
 
-  if (!body.nationality || typeof body.nationality !== 'string' || body.nationality.trim().length === 0) {
-    errors.push('Nationality is required');
-  } else if (body.nationality.length > 100) {
-    errors.push('Nationality must be less than 100 characters');
+  // Nationality is now optional
+  if (body.nationality !== undefined && body.nationality !== null && body.nationality !== '') {
+    if (typeof body.nationality !== 'string' || body.nationality.trim().length === 0) {
+      errors.push('Nationality must be a non-empty string');
+    } else if (body.nationality.length > 100) {
+      errors.push('Nationality must be less than 100 characters');
+    }
   }
 
-  if (!body.marital_status || typeof body.marital_status !== 'string') {
-    errors.push('Marital status is required');
-  } else if (!isValidMaritalStatus(body.marital_status)) {
-    errors.push('Marital status must be one of: single, married, divorced, widowed');
+  // Marital status is now optional
+  if (body.marital_status !== undefined && body.marital_status !== null && body.marital_status !== '') {
+    if (typeof body.marital_status !== 'string' || !isValidMaritalStatus(body.marital_status)) {
+      errors.push('Marital status must be one of: single, married, divorced, widowed');
+    }
   }
 
   if (body.profile_photo_path !== undefined && (typeof body.profile_photo_path !== 'string' || body.profile_photo_path.length > 500)) {
@@ -108,10 +113,32 @@ export const createEmployeeSchema = (data: any) => {
     }
   }
 
-  if (!body.hire_date || typeof body.hire_date !== 'string') {
-    errors.push('Hire date is required');
-  } else if (!isValidDate(body.hire_date)) {
-    errors.push('Invalid hire date format');
+  // Hire date is now optional
+  if (body.hire_date !== undefined && body.hire_date !== null && body.hire_date !== '') {
+    if (typeof body.hire_date !== 'string' || !isValidDate(body.hire_date)) {
+      errors.push('Invalid hire date format');
+    }
+  }
+
+  // Joining date is required
+  if (!body.joining_date || typeof body.joining_date !== 'string') {
+    errors.push('Joining date is required');
+  } else if (!isValidDate(body.joining_date)) {
+    errors.push('Invalid joining date format');
+  }
+
+  // Time type is required
+  if (!body.time_type || typeof body.time_type !== 'string') {
+    errors.push('Time type is required');
+  } else if (!['full_time', 'contract'].includes(body.time_type)) {
+    errors.push('Time type must be one of: full_time, contract');
+  }
+
+  // Location is required
+  if (!body.location || typeof body.location !== 'string' || body.location.trim().length === 0) {
+    errors.push('Location is required');
+  } else if (body.location.length > 200) {
+    errors.push('Location must be less than 200 characters');
   }
 
   if (body.termination_date !== undefined && body.termination_date !== null) {

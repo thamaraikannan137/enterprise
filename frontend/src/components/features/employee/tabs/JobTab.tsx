@@ -24,7 +24,10 @@ const jobInfoSchema = z.object({
   department: z.string().min(1, 'Department is required').max(100, 'Department must be less than 100 characters'),
   reporting_to: z.string().optional().or(z.literal('')),
   employee_code: z.string().optional().or(z.literal('')),
-  hire_date: z.string().min(1, 'Hire date is required'),
+  hire_date: z.string().optional().or(z.literal('')),
+  joining_date: z.string().optional().or(z.literal('')),
+  time_type: z.enum(['full_time', 'contract']).optional(),
+  location: z.string().optional().or(z.literal('')),
   termination_date: z.string().optional().or(z.literal('')),
 });
 
@@ -60,8 +63,11 @@ export const JobTab = ({
       department: employee.department || '',
       reporting_to: employee.reporting_to || '',
       employee_code: employee.employee_code || '',
-      hire_date: employee.hire_date.split('T')[0],
-      termination_date: employee.termination_date?.split('T')[0] || '',
+      hire_date: employee.hire_date ? (typeof employee.hire_date === 'string' ? employee.hire_date.split('T')[0] : new Date(employee.hire_date).toISOString().split('T')[0]) : '',
+      joining_date: (employee as any).joining_date ? (typeof (employee as any).joining_date === 'string' ? (employee as any).joining_date.split('T')[0] : new Date((employee as any).joining_date).toISOString().split('T')[0]) : '',
+      time_type: (employee as any).time_type || 'full_time',
+      location: (employee as any).location || '',
+      termination_date: employee.termination_date ? (typeof employee.termination_date === 'string' ? employee.termination_date.split('T')[0] : new Date(employee.termination_date).toISOString().split('T')[0]) : '',
     },
   });
 
@@ -71,8 +77,11 @@ export const JobTab = ({
       department: employee.department || '',
       reporting_to: employee.reporting_to || '',
       employee_code: employee.employee_code || '',
-      hire_date: employee.hire_date.split('T')[0],
-      termination_date: employee.termination_date?.split('T')[0] || '',
+      hire_date: employee.hire_date ? (typeof employee.hire_date === 'string' ? employee.hire_date.split('T')[0] : new Date(employee.hire_date).toISOString().split('T')[0]) : '',
+      joining_date: (employee as any).joining_date ? (typeof (employee as any).joining_date === 'string' ? (employee as any).joining_date.split('T')[0] : new Date((employee as any).joining_date).toISOString().split('T')[0]) : '',
+      time_type: (employee as any).time_type || 'full_time',
+      location: (employee as any).location || '',
+      termination_date: employee.termination_date ? (typeof employee.termination_date === 'string' ? employee.termination_date.split('T')[0] : new Date(employee.termination_date).toISOString().split('T')[0]) : '',
     });
   }, [employee, reset]);
 
@@ -91,7 +100,10 @@ export const JobTab = ({
           designation: data.designation,
           department: data.department,
           reporting_to: data.reporting_to && data.reporting_to.trim() !== '' ? data.reporting_to : (null as any),
-          hire_date: data.hire_date,
+          hire_date: data.hire_date && data.hire_date.trim() !== '' ? data.hire_date : (null as any),
+          joining_date: data.joining_date && data.joining_date.trim() !== '' ? data.joining_date : (null as any),
+          time_type: data.time_type || (null as any),
+          location: data.location && data.location.trim() !== '' ? data.location : (null as any),
           termination_date: data.termination_date && data.termination_date.trim() !== '' ? data.termination_date : (null as any),
         },
       })).unwrap();
@@ -116,8 +128,11 @@ export const JobTab = ({
       department: employee.department || '',
       reporting_to: employee.reporting_to || '',
       employee_code: employee.employee_code || '',
-      hire_date: employee.hire_date.split('T')[0],
-      termination_date: employee.termination_date?.split('T')[0] || '',
+      hire_date: employee.hire_date ? (typeof employee.hire_date === 'string' ? employee.hire_date.split('T')[0] : new Date(employee.hire_date).toISOString().split('T')[0]) : '',
+      joining_date: (employee as any).joining_date ? (typeof (employee as any).joining_date === 'string' ? (employee as any).joining_date.split('T')[0] : new Date((employee as any).joining_date).toISOString().split('T')[0]) : '',
+      time_type: (employee as any).time_type || 'full_time',
+      location: (employee as any).location || '',
+      termination_date: employee.termination_date ? (typeof employee.termination_date === 'string' ? employee.termination_date.split('T')[0] : new Date(employee.termination_date).toISOString().split('T')[0]) : '',
     });
     onEditModeChange(false);
   };
@@ -278,7 +293,64 @@ export const JobTab = ({
                       helperText={fieldState.error?.message}
                       variant="outlined"
                       InputLabelProps={{ shrink: true }}
-                      required
+                    />
+                  )}
+                />
+              </Grid>
+              <Grid size={4}>
+                <Controller
+                  name="joining_date"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <TextField
+                      {...field}
+                      fullWidth
+                      label="Joining Date"
+                      type="date"
+                      error={!!fieldState.error}
+                      helperText={fieldState.error?.message}
+                      variant="outlined"
+                      InputLabelProps={{ shrink: true }}
+                    />
+                  )}
+                />
+              </Grid>
+              <Grid size={4}>
+                <Controller
+                  name="time_type"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <FormControl fullWidth error={!!fieldState.error}>
+                      <InputLabel>Time Type</InputLabel>
+                      <Select
+                        value={field.value || 'full_time'}
+                        onChange={(e) => field.onChange(e.target.value)}
+                        label="Time Type"
+                      >
+                        <MenuItem value="full_time">Full Time</MenuItem>
+                        <MenuItem value="contract">Contract</MenuItem>
+                      </Select>
+                      {fieldState.error && (
+                        <div className="text-xs text-red-500 mt-1 ml-3">
+                          {fieldState.error.message}
+                        </div>
+                      )}
+                    </FormControl>
+                  )}
+                />
+              </Grid>
+              <Grid size={4}>
+                <Controller
+                  name="location"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <TextField
+                      {...field}
+                      fullWidth
+                      label="Location"
+                      error={!!fieldState.error}
+                      helperText={fieldState.error?.message}
+                      variant="outlined"
                     />
                   )}
                 />
@@ -349,14 +421,46 @@ export const JobTab = ({
               </div>
               <div className="text-base text-gray-900">{employee.employee_code}</div>
             </div>
-            <div>
-              <div className="text-sm font-medium text-gray-500 mb-1">
-                Hire Date
+            {employee.hire_date && (
+              <div>
+                <div className="text-sm font-medium text-gray-500 mb-1">
+                  Hire Date
+                </div>
+                <div className="text-base text-gray-900">
+                  {new Date(employee.hire_date).toLocaleDateString()}
+                </div>
               </div>
-              <div className="text-base text-gray-900">
-                {new Date(employee.hire_date).toLocaleDateString()}
+            )}
+            {(employee as any).joining_date && (
+              <div>
+                <div className="text-sm font-medium text-gray-500 mb-1">
+                  Joining Date
+                </div>
+                <div className="text-base text-gray-900">
+                  {new Date((employee as any).joining_date).toLocaleDateString()}
+                </div>
               </div>
-            </div>
+            )}
+            {(employee as any).time_type && (
+              <div>
+                <div className="text-sm font-medium text-gray-500 mb-1">
+                  Time Type
+                </div>
+                <div className="text-base text-gray-900">
+                  {(employee as any).time_type === 'full_time' ? 'Full Time' : 'Contract'}
+                </div>
+              </div>
+            )}
+            {(employee as any).location && (
+              <div>
+                <div className="text-sm font-medium text-gray-500 mb-1">
+                  Location
+                </div>
+                <div className="text-base text-gray-900">
+                  {(employee as any).location}
+                </div>
+              </div>
+            )}
             {employee.termination_date && (
               <div>
                 <div className="text-sm font-medium text-gray-500 mb-1">

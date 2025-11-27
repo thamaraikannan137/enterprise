@@ -204,16 +204,16 @@ export interface CreateEmployeeWithDetailsInput {
     middle_name?: string;
     last_name: string;
     date_of_birth: string;
-    gender: 'male' | 'female' | 'other';
-    nationality: string;
-    marital_status: 'single' | 'married' | 'divorced' | 'widowed';
     profile_photo_path?: string;
     status?: 'active' | 'inactive' | 'terminated';
     designation: string;
     department: string;
     reporting_to?: string;
-    hire_date: string;
-    termination_date?: string;
+    joining_date?: string;
+    time_type?: 'full_time' | 'contract';
+    location?: string;
+    email?: string;
+    mobile_number?: string;
   };
   // Related data (optional)
   contacts?: CreateEmployeeContactInput[];

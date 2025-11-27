@@ -59,15 +59,18 @@ export interface CreateEmployeeInput {
   middle_name?: string;
   last_name: string;
   date_of_birth: string;
-  gender: EmployeeGender;
-  nationality: string;
-  marital_status: EmployeeMaritalStatus;
+  gender?: EmployeeGender;
+  nationality?: string;
+  marital_status?: EmployeeMaritalStatus;
   profile_photo_path?: string;
   status?: EmployeeStatus;
   designation: string;
   department: string;
   reporting_to?: string; // Employee ID
-  hire_date: string;
+  hire_date?: string;
+  joining_date?: string;
+  time_type?: 'full_time' | 'contract';
+  location?: string;
   termination_date?: string;
 }
 

@@ -127,86 +127,24 @@ export const PersonalInfoTab = ({ uploadPhotoRef }: PersonalInfoTabProps) => {
           }}
         />
 
-        {/* Gender */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Gender <span className="text-red-500">*</span>
-          </label>
-          <Controller
-            name="gender"
-            control={control}
-            render={({ field }) => (
-              <select
-                {...field}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-              </select>
-            )}
-          />
-          {errors.gender && (
-            <p className="mt-1 text-sm text-red-600">{errors.gender.message as string}</p>
-          )}
-        </div>
-
-        {/* Nationality */}
+        {/* Email */}
         <MuiInput
-          {...register('nationality')}
-          type="text"
-          label="Nationality"
-          placeholder="Enter nationality"
-          error={errors.nationality?.message as string}
+          {...register('email')}
+          type="email"
+          label="Email"
+          placeholder="Enter email address"
+          error={errors.email?.message as string}
           required
         />
 
-        {/* Marital Status */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Marital Status <span className="text-red-500">*</span>
-          </label>
-          <Controller
-            name="marital_status"
-            control={control}
-            render={({ field }) => (
-              <select
-                {...field}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="single">Single</option>
-                <option value="married">Married</option>
-                <option value="divorced">Divorced</option>
-                <option value="widowed">Widowed</option>
-              </select>
-            )}
-          />
-          {errors.marital_status && (
-            <p className="mt-1 text-sm text-red-600">{errors.marital_status.message as string}</p>
-          )}
-        </div>
-
-        {/* Hire Date */}
+        {/* Mobile Number */}
         <MuiInput
-          {...register('hire_date')}
-          type="date"
-          label="Hire Date"
-          error={errors.hire_date?.message as string}
+          {...register('mobile_number')}
+          type="tel"
+          label="Mobile Number"
+          placeholder="Enter mobile number"
+          error={errors.mobile_number?.message as string}
           required
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-
-        {/* Termination Date */}
-        <MuiInput
-          {...register('termination_date')}
-          type="date"
-          label="Termination Date (optional)"
-          error={errors.termination_date?.message as string}
-          InputLabelProps={{
-            shrink: true,
-          }}
         />
 
         {/* Profile Photo Upload */}

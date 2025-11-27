@@ -7,15 +7,18 @@ export interface IEmployee extends Document {
   middle_name?: string;
   last_name: string;
   date_of_birth: Date;
-  gender: 'male' | 'female' | 'other';
-  nationality: string;
-  marital_status: 'single' | 'married' | 'divorced' | 'widowed';
+  gender?: 'male' | 'female' | 'other';
+  nationality?: string;
+  marital_status?: 'single' | 'married' | 'divorced' | 'widowed';
   profile_photo_path?: string;
   status: 'active' | 'inactive' | 'terminated';
   designation: string;
   department: string;
   reporting_to?: mongoose.Types.ObjectId;
-  hire_date: Date;
+  hire_date?: Date;
+  joining_date?: Date;
+  time_type?: 'full_time' | 'contract';
+  location?: string;
   termination_date?: Date;
   created_by?: mongoose.Types.ObjectId;
   createdAt: Date;
@@ -55,18 +58,15 @@ const employeeSchema = new Schema<IEmployee>(
     gender: {
       type: String,
       enum: ['male', 'female', 'other'],
-      required: [true, 'Gender is required'],
     },
     nationality: {
       type: String,
-      required: [true, 'Nationality is required'],
       trim: true,
       maxlength: [100, 'Nationality must be less than 100 characters'],
     },
     marital_status: {
       type: String,
       enum: ['single', 'married', 'divorced', 'widowed'],
-      required: [true, 'Marital status is required'],
     },
     profile_photo_path: {
       type: String,
@@ -107,7 +107,18 @@ const employeeSchema = new Schema<IEmployee>(
     },
     hire_date: {
       type: Date,
-      required: [true, 'Hire date is required'],
+    },
+    joining_date: {
+      type: Date,
+    },
+    time_type: {
+      type: String,
+      enum: ['full_time', 'contract'],
+    },
+    location: {
+      type: String,
+      trim: true,
+      maxlength: [200, 'Location must be less than 200 characters'],
     },
     termination_date: {
       type: Date,

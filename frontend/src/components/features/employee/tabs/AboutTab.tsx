@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -42,6 +42,9 @@ export const AboutTab = ({
   const { id: employeeIdFromUrl } = useParams<{ id: string }>();
   const { showSuccess, showError } = useToast();
   const employeeId = employee?.id || employeeIdFromUrl;
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [uploading, setUploading] = useState(false);
 
   const {
     control,
@@ -86,6 +89,25 @@ export const AboutTab = ({
       return;
     }
 
+    // Upload profile photo if a new file was selected
+    let profilePhotoPath = data.profile_photo_path;
+    if (selectedFile) {
+      setUploading(true);
+      try {
+        profilePhotoPath = await employeeService.uploadProfilePhoto(selectedFile);
+        setValue('profile_photo_path', profilePhotoPath);
+        setSelectedFile(null);
+      } catch (error: any) {
+        console.error('Profile photo upload failed:', error);
+        const errorMessage = error?.message || error?.response?.data?.message || 'Failed to upload profile photo. Please try again.';
+        showError(errorMessage);
+        setUploading(false);
+        return; // Don't proceed with saving if photo upload fails
+      } finally {
+        setUploading(false);
+      }
+    }
+
     // Prepare the update payload - ensure proper formatting
     const updateData: Record<string, any> = {
       first_name: data.first_name.trim(),
@@ -103,8 +125,8 @@ export const AboutTab = ({
     }
 
     // Only include profile_photo_path if it's not empty
-    if (data.profile_photo_path && data.profile_photo_path.trim()) {
-      updateData.profile_photo_path = data.profile_photo_path.trim();
+    if (profilePhotoPath && profilePhotoPath.trim()) {
+      updateData.profile_photo_path = profilePhotoPath.trim();
     }
 
     try {
@@ -116,6 +138,10 @@ export const AboutTab = ({
       if (employeeId) {
         await dispatch(fetchEmployeeWithDetails(employeeId)).unwrap();
       }
+      
+      // Clear preview and selected file after successful save
+      setSelectedFile(null);
+      setPreviewUrl(null);
       
       showSuccess('Employee information saved successfully!');
       onEditModeChange(false);
@@ -168,6 +194,8 @@ export const AboutTab = ({
       marital_status: (employee.marital_status as 'single' | 'married' | 'divorced' | 'widowed') || 'single',
       profile_photo_path: employee.profile_photo_path || '',
     });
+    setSelectedFile(null);
+    setPreviewUrl(null);
     onEditModeChange(false);
   };
 
@@ -328,27 +356,33 @@ export const AboutTab = ({
                   label="Profile Photo (optional)"
                   accept="image/*"
                   maxSize={5}
-                  value={profilePhotoPath ? getImageUrl(profilePhotoPath) : undefined}
-                  onChange={(file) => {
+                  value={previewUrl || (profilePhotoPath ? getImageUrl(profilePhotoPath) : undefined)}
+                  onChange={(file, previewUrlFromComponent) => {
                     if (!file) {
+                      setSelectedFile(null);
+                      setPreviewUrl(null);
                       setValue('profile_photo_path', '');
+                    } else {
+                      setSelectedFile(file);
+                      // Use the preview URL from the FileUpload component
+                      if (previewUrlFromComponent) {
+                        setPreviewUrl(previewUrlFromComponent);
+                      }
+                      // Clear existing path when new file is selected
+                      if (profilePhotoPath) {
+                        setValue('profile_photo_path', '');
+                      }
                     }
                   }}
-                  onUpload={async (file) => {
-                    try {
-                      const filePath = await employeeService.uploadProfilePhoto(file);
-                      setValue('profile_photo_path', filePath);
-                      showSuccess('Profile photo uploaded successfully!');
-                      return filePath;
-                    } catch (error: any) {
-                      console.error('Profile photo upload failed:', error);
-                      const errorMessage = error?.message || error?.response?.data?.message || 'Failed to upload profile photo. Please try again.';
-                      showError(errorMessage);
-                      throw error;
-                    }
-                  }}
-                  disabled={isSubmitting}
+                  autoUpload={false}
+                  disabled={isSubmitting || uploading}
                 />
+                {uploading && (
+                  <p className="mt-2 text-sm text-blue-600">Uploading photo...</p>
+                )}
+                {selectedFile && !uploading && (
+                  <p className="mt-2 text-sm text-gray-600">Photo will be saved when you click Save</p>
+                )}
               </Grid>
             </Grid>
             <div className="flex gap-2">

@@ -19,14 +19,29 @@ export const EmployeeCreatePage = () => {
     setIsSubmitting(true);
     
     try {
-      // Step 1: Create employee
-      const employee = await dispatch(createEmployee(data.employee)).unwrap();
+      // Step 1: Create employee (without email/mobile as they're not in Employee model)
+      const { email, mobile_number, ...employeeData } = data.employee;
+      const employee = await dispatch(createEmployee(employeeData)).unwrap();
       const employeeId = employee.id;
 
       // Step 2: Create related data in parallel (where possible)
       const promises: Promise<any>[] = [];
 
-      // Create contacts
+      // Create primary contact with email and mobile_number if provided
+      if (email || mobile_number) {
+        promises.push(
+          employeeRelatedService.createContact({
+            employee_id: employeeId,
+            contact_type: 'primary',
+            email: email || undefined,
+            phone: mobile_number || undefined,
+            is_current: true,
+            valid_from: new Date().toISOString(),
+          })
+        );
+      }
+
+      // Create additional contacts
       if (data.contacts && data.contacts.length > 0) {
         data.contacts.forEach((contact) => {
           promises.push(
