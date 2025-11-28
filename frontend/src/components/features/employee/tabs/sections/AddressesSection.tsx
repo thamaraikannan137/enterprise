@@ -159,7 +159,7 @@ export const AddressesSection = ({ employee, employeeId }: AddressesSectionProps
             <div>
               <h4 className="text-md font-semibold text-gray-700 mb-3">Current Address</h4>
               <Grid container spacing={3}>
-                <Grid item xs={12} sm={6} md={12}>
+                <Grid size={{ xs: 12, sm: 6, md: 12 }}>
                   <Controller
                     name="current_address_line1"
                     control={control}
@@ -168,7 +168,7 @@ export const AddressesSection = ({ employee, employeeId }: AddressesSectionProps
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6} md={12}>
+                <Grid size={{ xs: 12, sm: 6, md: 12 }}>
                   <Controller
                     name="current_address_line2"
                     control={control}
@@ -177,7 +177,7 @@ export const AddressesSection = ({ employee, employeeId }: AddressesSectionProps
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                   <Controller
                     name="current_city"
                     control={control}
@@ -186,7 +186,7 @@ export const AddressesSection = ({ employee, employeeId }: AddressesSectionProps
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                   <Controller
                     name="current_state"
                     control={control}
@@ -195,7 +195,7 @@ export const AddressesSection = ({ employee, employeeId }: AddressesSectionProps
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6} md={2}>
+                <Grid size={{ xs: 12, sm: 6, md: 2 }}>
                   <Controller
                     name="current_postal_code"
                     control={control}
@@ -204,7 +204,7 @@ export const AddressesSection = ({ employee, employeeId }: AddressesSectionProps
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6} md={2}>
+                <Grid size={{ xs: 12, sm: 6, md: 2 }}>
                   <Controller
                     name="current_country"
                     control={control}
@@ -218,7 +218,7 @@ export const AddressesSection = ({ employee, employeeId }: AddressesSectionProps
             <div>
               <h4 className="text-md font-semibold text-gray-700 mb-3">Permanent Address</h4>
               <Grid container spacing={3}>
-                <Grid item xs={12} sm={6} md={12}>
+                <Grid size={{ xs: 12, sm: 6, md: 12 }}>
                   <Controller
                     name="permanent_address_line1"
                     control={control}
@@ -227,7 +227,7 @@ export const AddressesSection = ({ employee, employeeId }: AddressesSectionProps
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6} md={12}>
+                <Grid size={{ xs: 12, sm: 6, md: 12 }}>
                   <Controller
                     name="permanent_address_line2"
                     control={control}
@@ -236,7 +236,7 @@ export const AddressesSection = ({ employee, employeeId }: AddressesSectionProps
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                   <Controller
                     name="permanent_city"
                     control={control}
@@ -245,7 +245,7 @@ export const AddressesSection = ({ employee, employeeId }: AddressesSectionProps
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                   <Controller
                     name="permanent_state"
                     control={control}
@@ -254,7 +254,7 @@ export const AddressesSection = ({ employee, employeeId }: AddressesSectionProps
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6} md={2}>
+                <Grid size={{ xs: 12, sm: 6, md: 2 }}>
                   <Controller
                     name="permanent_postal_code"
                     control={control}
@@ -263,7 +263,7 @@ export const AddressesSection = ({ employee, employeeId }: AddressesSectionProps
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6} md={2}>
+                <Grid size={{ xs: 12, sm: 6, md: 2 }}>
                   <Controller
                     name="permanent_country"
                     control={control}

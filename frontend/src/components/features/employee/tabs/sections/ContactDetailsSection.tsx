@@ -127,7 +127,7 @@ export const ContactDetailsSection = ({ employee, employeeId }: ContactDetailsSe
       editContent={
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={3}>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="work_email"
                 control={control}
@@ -136,7 +136,7 @@ export const ContactDetailsSection = ({ employee, employeeId }: ContactDetailsSe
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="personal_email"
                 control={control}
@@ -145,7 +145,7 @@ export const ContactDetailsSection = ({ employee, employeeId }: ContactDetailsSe
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="mobile_number"
                 control={control}
@@ -154,7 +154,7 @@ export const ContactDetailsSection = ({ employee, employeeId }: ContactDetailsSe
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="work_number"
                 control={control}
@@ -163,7 +163,7 @@ export const ContactDetailsSection = ({ employee, employeeId }: ContactDetailsSe
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="residence_number"
                 control={control}
@@ -172,7 +172,7 @@ export const ContactDetailsSection = ({ employee, employeeId }: ContactDetailsSe
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="emergency_contact_number"
                 control={control}
@@ -181,7 +181,7 @@ export const ContactDetailsSection = ({ employee, employeeId }: ContactDetailsSe
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="emergency_contact_name"
                 control={control}
@@ -190,7 +190,7 @@ export const ContactDetailsSection = ({ employee, employeeId }: ContactDetailsSe
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="linkedin_id"
                 control={control}

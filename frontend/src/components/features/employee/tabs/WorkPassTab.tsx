@@ -194,7 +194,7 @@ export const WorkPassTab = ({
           <div className="mt-6 p-4 border border-gray-200 rounded-lg">
             <h4 className="font-medium text-gray-900 mb-4">Add New Work Pass</h4>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <FormControl fullWidth>
                   <InputLabel>Status</InputLabel>
                   <Select
@@ -211,7 +211,7 @@ export const WorkPassTab = ({
                   </Select>
                 </FormControl>
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField
                   fullWidth
                   label="Work Permit Number"
@@ -220,7 +220,7 @@ export const WorkPassTab = ({
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField
                   fullWidth
                   label="FIN Number"
@@ -229,7 +229,7 @@ export const WorkPassTab = ({
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField
                   fullWidth
                   label="Application Date"
@@ -240,7 +240,7 @@ export const WorkPassTab = ({
                   InputLabelProps={{ shrink: true }}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField
                   fullWidth
                   label="Issuance Date"
@@ -251,7 +251,7 @@ export const WorkPassTab = ({
                   InputLabelProps={{ shrink: true }}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField
                   fullWidth
                   label="Expiry Date"
@@ -262,7 +262,7 @@ export const WorkPassTab = ({
                   InputLabelProps={{ shrink: true }}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField
                   fullWidth
                   label="Medical Date"
@@ -273,7 +273,7 @@ export const WorkPassTab = ({
                   InputLabelProps={{ shrink: true }}
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid size={{ xs: 12 }}>
                 <label className="flex items-center gap-2">
                   <input
                     type="checkbox"
@@ -284,7 +284,7 @@ export const WorkPassTab = ({
                   <span className="text-sm text-gray-700">This is the current work pass</span>
                 </label>
               </Grid>
-              <Grid item xs={12}>
+              <Grid size={{ xs: 12 }}>
                 <div className="flex gap-2">
                   <MuiButton
                     variant="contained"

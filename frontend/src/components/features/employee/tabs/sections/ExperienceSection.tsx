@@ -120,7 +120,7 @@ export const ExperienceSection = ({ employee, employeeId }: ExperienceSectionPro
       editContent={
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={3}>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="total_experience"
                 control={control}
@@ -129,7 +129,7 @@ export const ExperienceSection = ({ employee, employeeId }: ExperienceSectionPro
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="relevant_experience"
                 control={control}
@@ -138,10 +138,10 @@ export const ExperienceSection = ({ employee, employeeId }: ExperienceSectionPro
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={12}>
+            <Grid size={{ xs: 12, sm: 6, md: 12 }}>
               <h4 className="text-md font-semibold text-gray-700 mb-3">Most Recent Organization</h4>
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="organization1_name"
                 control={control}
@@ -150,7 +150,7 @@ export const ExperienceSection = ({ employee, employeeId }: ExperienceSectionPro
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="organization1_start_date"
                 control={control}
@@ -159,7 +159,7 @@ export const ExperienceSection = ({ employee, employeeId }: ExperienceSectionPro
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="organization1_end_date"
                 control={control}
@@ -168,7 +168,7 @@ export const ExperienceSection = ({ employee, employeeId }: ExperienceSectionPro
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={6}>
+            <Grid size={{ xs: 12, sm: 6, md: 6 }}>
               <Controller
                 name="organization1_designation"
                 control={control}
@@ -177,7 +177,7 @@ export const ExperienceSection = ({ employee, employeeId }: ExperienceSectionPro
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={6}>
+            <Grid size={{ xs: 12, sm: 6, md: 6 }}>
               <Controller
                 name="organization1_reason_for_leaving"
                 control={control}
@@ -186,10 +186,10 @@ export const ExperienceSection = ({ employee, employeeId }: ExperienceSectionPro
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={12}>
+            <Grid size={{ xs: 12, sm: 6, md: 12 }}>
               <h4 className="text-md font-semibold text-gray-700 mb-3">2nd Most Recent Organization</h4>
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="organization2_name"
                 control={control}
@@ -198,7 +198,7 @@ export const ExperienceSection = ({ employee, employeeId }: ExperienceSectionPro
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="organization2_start_date"
                 control={control}
@@ -207,7 +207,7 @@ export const ExperienceSection = ({ employee, employeeId }: ExperienceSectionPro
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="organization2_end_date"
                 control={control}
@@ -216,7 +216,7 @@ export const ExperienceSection = ({ employee, employeeId }: ExperienceSectionPro
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={6}>
+            <Grid size={{ xs: 12, sm: 6, md: 6 }}>
               <Controller
                 name="organization2_designation"
                 control={control}
@@ -225,7 +225,7 @@ export const ExperienceSection = ({ employee, employeeId }: ExperienceSectionPro
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={6}>
+            <Grid size={{ xs: 12, sm: 6, md: 6 }}>
               <Controller
                 name="organization2_reason_for_leaving"
                 control={control}

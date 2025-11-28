@@ -161,7 +161,7 @@ export const SkillsSection = ({ employee, employeeId }: SkillsSectionProps) => {
       editContent={
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={3}>
-            <Grid item xs={12} sm={6} md={12}>
+            <Grid size={{ xs: 12, sm: 6, md: 12 }}>
               <Controller
                 name="professional_summary"
                 control={control}
@@ -170,7 +170,7 @@ export const SkillsSection = ({ employee, employeeId }: SkillsSectionProps) => {
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={12}>
+            <Grid size={{ xs: 12, sm: 6, md: 12 }}>
               <div className="mb-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">Languages you can READ</label>
                 <div className="flex gap-2 mb-2">
@@ -201,7 +201,7 @@ export const SkillsSection = ({ employee, employeeId }: SkillsSectionProps) => {
                 </Box>
               </div>
             </Grid>
-            <Grid item xs={12} sm={6} md={12}>
+            <Grid size={{ xs: 12, sm: 6, md: 12 }}>
               <div className="mb-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">Languages you can WRITE</label>
                 <div className="flex gap-2 mb-2">
@@ -232,7 +232,7 @@ export const SkillsSection = ({ employee, employeeId }: SkillsSectionProps) => {
                 </Box>
               </div>
             </Grid>
-            <Grid item xs={12} sm={6} md={12}>
+            <Grid size={{ xs: 12, sm: 6, md: 12 }}>
               <div className="mb-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">Languages you can SPEAK</label>
                 <div className="flex gap-2 mb-2">
@@ -263,7 +263,7 @@ export const SkillsSection = ({ employee, employeeId }: SkillsSectionProps) => {
                 </Box>
               </div>
             </Grid>
-            <Grid item xs={12} sm={6} md={12}>
+            <Grid size={{ xs: 12, sm: 6, md: 12 }}>
               <Controller
                 name="special_academic_achievements"
                 control={control}
@@ -272,7 +272,7 @@ export const SkillsSection = ({ employee, employeeId }: SkillsSectionProps) => {
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={12}>
+            <Grid size={{ xs: 12, sm: 6, md: 12 }}>
               <Controller
                 name="certifications_details"
                 control={control}
@@ -281,7 +281,7 @@ export const SkillsSection = ({ employee, employeeId }: SkillsSectionProps) => {
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={6}>
+            <Grid size={{ xs: 12, sm: 6, md: 6 }}>
               <Controller
                 name="hobbies"
                 control={control}
@@ -290,7 +290,7 @@ export const SkillsSection = ({ employee, employeeId }: SkillsSectionProps) => {
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={6}>
+            <Grid size={{ xs: 12, sm: 6, md: 6 }}>
               <Controller
                 name="interests"
                 control={control}
@@ -299,7 +299,7 @@ export const SkillsSection = ({ employee, employeeId }: SkillsSectionProps) => {
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={6}>
+            <Grid size={{ xs: 12, sm: 6, md: 6 }}>
               <Controller
                 name="professional_institution_member"
                 control={control}
@@ -319,7 +319,7 @@ export const SkillsSection = ({ employee, employeeId }: SkillsSectionProps) => {
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={6}>
+            <Grid size={{ xs: 12, sm: 6, md: 6 }}>
               <Controller
                 name="professional_institution_details"
                 control={control}
@@ -328,7 +328,7 @@ export const SkillsSection = ({ employee, employeeId }: SkillsSectionProps) => {
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={6}>
+            <Grid size={{ xs: 12, sm: 6, md: 6 }}>
               <Controller
                 name="social_organization_member"
                 control={control}
@@ -348,7 +348,7 @@ export const SkillsSection = ({ employee, employeeId }: SkillsSectionProps) => {
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={6}>
+            <Grid size={{ xs: 12, sm: 6, md: 6 }}>
               <Controller
                 name="social_organization_details"
                 control={control}
@@ -357,7 +357,7 @@ export const SkillsSection = ({ employee, employeeId }: SkillsSectionProps) => {
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="insigma_hire_date"
                 control={control}

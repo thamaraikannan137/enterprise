@@ -111,7 +111,7 @@ export const FamilyDetailsSection = ({ employee, employeeId }: FamilyDetailsSect
       editContent={
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={3}>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="father_dob"
                 control={control}
@@ -120,7 +120,7 @@ export const FamilyDetailsSection = ({ employee, employeeId }: FamilyDetailsSect
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="mother_dob"
                 control={control}
@@ -129,7 +129,7 @@ export const FamilyDetailsSection = ({ employee, employeeId }: FamilyDetailsSect
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="spouse_gender"
                 control={control}
@@ -143,7 +143,7 @@ export const FamilyDetailsSection = ({ employee, employeeId }: FamilyDetailsSect
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="spouse_dob"
                 control={control}
@@ -152,7 +152,7 @@ export const FamilyDetailsSection = ({ employee, employeeId }: FamilyDetailsSect
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="kid1_name"
                 control={control}
@@ -161,7 +161,7 @@ export const FamilyDetailsSection = ({ employee, employeeId }: FamilyDetailsSect
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="kid1_gender"
                 control={control}
@@ -175,7 +175,7 @@ export const FamilyDetailsSection = ({ employee, employeeId }: FamilyDetailsSect
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="kid1_dob"
                 control={control}
@@ -184,7 +184,7 @@ export const FamilyDetailsSection = ({ employee, employeeId }: FamilyDetailsSect
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="kid2_name"
                 control={control}
@@ -193,7 +193,7 @@ export const FamilyDetailsSection = ({ employee, employeeId }: FamilyDetailsSect
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="kid2_gender"
                 control={control}
@@ -207,7 +207,7 @@ export const FamilyDetailsSection = ({ employee, employeeId }: FamilyDetailsSect
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="kid2_dob"
                 control={control}

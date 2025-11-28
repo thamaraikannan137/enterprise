@@ -210,7 +210,7 @@ export const QualificationsTab = ({
           <div className="mt-6 p-4 border border-gray-200 rounded-lg">
             <h4 className="font-medium text-gray-900 mb-4">Add New Qualification</h4>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField
                   fullWidth
                   label="Degree"
@@ -220,7 +220,7 @@ export const QualificationsTab = ({
                   required
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField
                   fullWidth
                   label="Major (optional)"
@@ -229,7 +229,7 @@ export const QualificationsTab = ({
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField
                   fullWidth
                   label="Institution"
@@ -239,7 +239,7 @@ export const QualificationsTab = ({
                   required
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField
                   fullWidth
                   label="Completion Year"
@@ -254,7 +254,7 @@ export const QualificationsTab = ({
                   required
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid size={{ xs: 12 }}>
                 <MuiButton
                   variant="contained"
                   startIcon={<Add />}
@@ -348,7 +348,7 @@ export const QualificationsTab = ({
           <div className="mt-6 p-4 border border-gray-200 rounded-lg">
             <h4 className="font-medium text-gray-900 mb-4">Add New Certification</h4>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField
                   fullWidth
                   label="Certification Name"
@@ -358,7 +358,7 @@ export const QualificationsTab = ({
                   required
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <FormControl fullWidth>
                   <InputLabel>Certification Type</InputLabel>
                   <Select
@@ -374,7 +374,7 @@ export const QualificationsTab = ({
                   </Select>
                 </FormControl>
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField
                   fullWidth
                   label="Issue Date"
@@ -386,7 +386,7 @@ export const QualificationsTab = ({
                   required
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField
                   fullWidth
                   label="Expiry Date (optional)"
@@ -400,7 +400,7 @@ export const QualificationsTab = ({
                   InputLabelProps={{ shrink: true }}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <FormControl fullWidth>
                   <InputLabel>Ownership</InputLabel>
                   <Select
@@ -416,7 +416,7 @@ export const QualificationsTab = ({
                   </Select>
                 </FormControl>
               </Grid>
-              <Grid item xs={12}>
+              <Grid size={{ xs: 12 }}>
                 <div className="flex gap-2">
                   <MuiButton
                     variant="contained"

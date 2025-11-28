@@ -103,7 +103,7 @@ export const IdentitySection = ({ employee, employeeId }: IdentitySectionProps) 
       editContent={
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={3}>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="aadhar_number"
                 control={control}
@@ -112,7 +112,7 @@ export const IdentitySection = ({ employee, employeeId }: IdentitySectionProps) 
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="pan_number"
                 control={control}
@@ -121,7 +121,7 @@ export const IdentitySection = ({ employee, employeeId }: IdentitySectionProps) 
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="uan_number"
                 control={control}
@@ -130,7 +130,7 @@ export const IdentitySection = ({ employee, employeeId }: IdentitySectionProps) 
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="driving_license_number"
                 control={control}
@@ -139,7 +139,7 @@ export const IdentitySection = ({ employee, employeeId }: IdentitySectionProps) 
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="passport_name"
                 control={control}
@@ -148,7 +148,7 @@ export const IdentitySection = ({ employee, employeeId }: IdentitySectionProps) 
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="passport_number"
                 control={control}
@@ -157,7 +157,7 @@ export const IdentitySection = ({ employee, employeeId }: IdentitySectionProps) 
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="passport_valid_upto"
                 control={control}
@@ -166,7 +166,7 @@ export const IdentitySection = ({ employee, employeeId }: IdentitySectionProps) 
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Controller
                 name="visa_type"
                 control={control}

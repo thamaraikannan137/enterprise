@@ -130,7 +130,7 @@ export const PrimaryDetailsSection = ({ employee, employeeId }: PrimaryDetailsSe
       editContent={
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={3}>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid size={{ xs: 12, sm: 6, md: 3 }}>
               <Controller
                 name="first_name"
                 control={control}
@@ -139,7 +139,7 @@ export const PrimaryDetailsSection = ({ employee, employeeId }: PrimaryDetailsSe
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid size={{ xs: 12, sm: 6, md: 3 }}>
               <Controller
                 name="middle_name"
                 control={control}
@@ -148,7 +148,7 @@ export const PrimaryDetailsSection = ({ employee, employeeId }: PrimaryDetailsSe
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid size={{ xs: 12, sm: 6, md: 3 }}>
               <Controller
                 name="last_name"
                 control={control}
@@ -157,7 +157,7 @@ export const PrimaryDetailsSection = ({ employee, employeeId }: PrimaryDetailsSe
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid size={{ xs: 12, sm: 6, md: 3 }}>
               <Controller
                 name="display_name"
                 control={control}
@@ -166,7 +166,7 @@ export const PrimaryDetailsSection = ({ employee, employeeId }: PrimaryDetailsSe
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid size={{ xs: 12, sm: 6, md: 3 }}>
               <Controller
                 name="gender"
                 control={control}
@@ -179,7 +179,7 @@ export const PrimaryDetailsSection = ({ employee, employeeId }: PrimaryDetailsSe
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid size={{ xs: 12, sm: 6, md: 3 }}>
               <Controller
                 name="date_of_birth"
                 control={control}
@@ -188,7 +188,7 @@ export const PrimaryDetailsSection = ({ employee, employeeId }: PrimaryDetailsSe
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid size={{ xs: 12, sm: 6, md: 3 }}>
               <Controller
                 name="marital_status"
                 control={control}
@@ -202,7 +202,7 @@ export const PrimaryDetailsSection = ({ employee, employeeId }: PrimaryDetailsSe
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid size={{ xs: 12, sm: 6, md: 3 }}>
               <Controller
                 name="blood_group"
                 control={control}
@@ -211,7 +211,7 @@ export const PrimaryDetailsSection = ({ employee, employeeId }: PrimaryDetailsSe
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid size={{ xs: 12, sm: 6, md: 3 }}>
               <Controller
                 name="marriage_date"
                 control={control}
@@ -220,7 +220,7 @@ export const PrimaryDetailsSection = ({ employee, employeeId }: PrimaryDetailsSe
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid size={{ xs: 12, sm: 6, md: 3 }}>
               <Controller
                 name="physically_handicapped"
                 control={control}
@@ -240,7 +240,7 @@ export const PrimaryDetailsSection = ({ employee, employeeId }: PrimaryDetailsSe
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid size={{ xs: 12, sm: 6, md: 3 }}>
               <Controller
                 name="actual_dob"
                 control={control}
@@ -249,7 +249,7 @@ export const PrimaryDetailsSection = ({ employee, employeeId }: PrimaryDetailsSe
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid size={{ xs: 12, sm: 6, md: 3 }}>
               <Controller
                 name="birth_place"
                 control={control}
@@ -258,7 +258,7 @@ export const PrimaryDetailsSection = ({ employee, employeeId }: PrimaryDetailsSe
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid size={{ xs: 12, sm: 6, md: 3 }}>
               <Controller
                 name="nationality"
                 control={control}
@@ -267,7 +267,7 @@ export const PrimaryDetailsSection = ({ employee, employeeId }: PrimaryDetailsSe
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid size={{ xs: 12, sm: 6, md: 3 }}>
               <Controller
                 name="current_city"
                 control={control}
@@ -276,7 +276,7 @@ export const PrimaryDetailsSection = ({ employee, employeeId }: PrimaryDetailsSe
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid size={{ xs: 12, sm: 6, md: 3 }}>
               <Controller
                 name="current_state"
                 control={control}

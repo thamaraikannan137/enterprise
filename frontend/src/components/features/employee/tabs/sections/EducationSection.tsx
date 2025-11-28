@@ -127,7 +127,7 @@ export const EducationSection = ({ employee, employeeId }: EducationSectionProps
             <div>
               <h4 className="text-md font-semibold text-gray-700 mb-3">PG (Pursuing or Passed)</h4>
               <Grid container spacing={3}>
-                <Grid item xs={12} sm={6} md={4}>
+                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                   <Controller
                     name="pg_degree"
                     control={control}
@@ -136,7 +136,7 @@ export const EducationSection = ({ employee, employeeId }: EducationSectionProps
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                   <Controller
                     name="pg_specialization"
                     control={control}
@@ -145,7 +145,7 @@ export const EducationSection = ({ employee, employeeId }: EducationSectionProps
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                   <Controller
                     name="pg_grade"
                     control={control}
@@ -154,7 +154,7 @@ export const EducationSection = ({ employee, employeeId }: EducationSectionProps
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6} md={6}>
+                <Grid size={{ xs: 12, sm: 6, md: 6 }}>
                   <Controller
                     name="pg_university"
                     control={control}
@@ -163,7 +163,7 @@ export const EducationSection = ({ employee, employeeId }: EducationSectionProps
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6} md={6}>
+                <Grid size={{ xs: 12, sm: 6, md: 6 }}>
                   <Controller
                     name="pg_completion_year"
                     control={control}
@@ -177,7 +177,7 @@ export const EducationSection = ({ employee, employeeId }: EducationSectionProps
             <div>
               <h4 className="text-md font-semibold text-gray-700 mb-3">Graduation</h4>
               <Grid container spacing={3}>
-                <Grid item xs={12} sm={6} md={4}>
+                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                   <Controller
                     name="graduation_degree"
                     control={control}
@@ -186,7 +186,7 @@ export const EducationSection = ({ employee, employeeId }: EducationSectionProps
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                   <Controller
                     name="graduation_specialization"
                     control={control}
@@ -195,7 +195,7 @@ export const EducationSection = ({ employee, employeeId }: EducationSectionProps
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                   <Controller
                     name="graduation_grade"
                     control={control}
@@ -204,7 +204,7 @@ export const EducationSection = ({ employee, employeeId }: EducationSectionProps
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6} md={6}>
+                <Grid size={{ xs: 12, sm: 6, md: 6 }}>
                   <Controller
                     name="graduation_college"
                     control={control}
@@ -213,7 +213,7 @@ export const EducationSection = ({ employee, employeeId }: EducationSectionProps
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6} md={6}>
+                <Grid size={{ xs: 12, sm: 6, md: 6 }}>
                   <Controller
                     name="graduation_completion_year"
                     control={control}
@@ -227,7 +227,7 @@ export const EducationSection = ({ employee, employeeId }: EducationSectionProps
             <div>
               <h4 className="text-md font-semibold text-gray-700 mb-3">Inter/12th</h4>
               <Grid container spacing={3}>
-                <Grid item xs={12} sm={6} md={4}>
+                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                   <Controller
                     name="inter_grade"
                     control={control}
@@ -236,7 +236,7 @@ export const EducationSection = ({ employee, employeeId }: EducationSectionProps
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                   <Controller
                     name="inter_school"
                     control={control}
@@ -245,7 +245,7 @@ export const EducationSection = ({ employee, employeeId }: EducationSectionProps
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                   <Controller
                     name="inter_completion_year"
                     control={control}
