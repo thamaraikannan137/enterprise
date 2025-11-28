@@ -28,6 +28,10 @@ const jobInfoSchema = z.object({
   joining_date: z.string().optional().or(z.literal('')),
   time_type: z.enum(['full_time', 'contract']).optional(),
   location: z.string().optional().or(z.literal('')),
+  business_unit: z.string().optional().or(z.literal('')),
+  legal_entity: z.string().optional().or(z.literal('')),
+  work_location: z.string().optional().or(z.literal('')),
+  employment_type: z.string().optional().or(z.literal('')),
   termination_date: z.string().optional().or(z.literal('')),
 });
 
@@ -67,6 +71,10 @@ export const JobTab = ({
       joining_date: (employee as any).joining_date ? (typeof (employee as any).joining_date === 'string' ? (employee as any).joining_date.split('T')[0] : new Date((employee as any).joining_date).toISOString().split('T')[0]) : '',
       time_type: (employee as any).time_type || 'full_time',
       location: (employee as any).location || '',
+      business_unit: (employee as any).business_unit || '',
+      legal_entity: (employee as any).legal_entity || '',
+      work_location: (employee as any).work_location || '',
+      employment_type: (employee as any).employment_type || '',
       termination_date: employee.termination_date ? (typeof employee.termination_date === 'string' ? employee.termination_date.split('T')[0] : new Date(employee.termination_date).toISOString().split('T')[0]) : '',
     },
   });
@@ -81,6 +89,10 @@ export const JobTab = ({
       joining_date: (employee as any).joining_date ? (typeof (employee as any).joining_date === 'string' ? (employee as any).joining_date.split('T')[0] : new Date((employee as any).joining_date).toISOString().split('T')[0]) : '',
       time_type: (employee as any).time_type || 'full_time',
       location: (employee as any).location || '',
+      business_unit: (employee as any).business_unit || '',
+      legal_entity: (employee as any).legal_entity || '',
+      work_location: (employee as any).work_location || '',
+      employment_type: (employee as any).employment_type || '',
       termination_date: employee.termination_date ? (typeof employee.termination_date === 'string' ? employee.termination_date.split('T')[0] : new Date(employee.termination_date).toISOString().split('T')[0]) : '',
     });
   }, [employee, reset]);
@@ -105,7 +117,12 @@ export const JobTab = ({
           time_type: data.time_type || (null as any),
           location: data.location && data.location.trim() !== '' ? data.location : (null as any),
           termination_date: data.termination_date && data.termination_date.trim() !== '' ? data.termination_date : (null as any),
-        },
+          // Additional fields - using type assertion as they may not be in the type definition yet
+          business_unit: data.business_unit && data.business_unit.trim() !== '' ? data.business_unit : (null as any),
+          legal_entity: data.legal_entity && data.legal_entity.trim() !== '' ? data.legal_entity : (null as any),
+          work_location: data.work_location && data.work_location.trim() !== '' ? data.work_location : (null as any),
+          employment_type: data.employment_type && data.employment_type.trim() !== '' ? data.employment_type : (null as any),
+        } as any,
       })).unwrap();
       
       // Refetch employee details to update the UI immediately
@@ -132,6 +149,10 @@ export const JobTab = ({
       joining_date: (employee as any).joining_date ? (typeof (employee as any).joining_date === 'string' ? (employee as any).joining_date.split('T')[0] : new Date((employee as any).joining_date).toISOString().split('T')[0]) : '',
       time_type: (employee as any).time_type || 'full_time',
       location: (employee as any).location || '',
+      business_unit: (employee as any).business_unit || '',
+      legal_entity: (employee as any).legal_entity || '',
+      work_location: (employee as any).work_location || '',
+      employment_type: (employee as any).employment_type || '',
       termination_date: employee.termination_date ? (typeof employee.termination_date === 'string' ? employee.termination_date.split('T')[0] : new Date(employee.termination_date).toISOString().split('T')[0]) : '',
     });
     onEditModeChange(false);
@@ -357,22 +378,100 @@ export const JobTab = ({
               </Grid>
               <Grid size={4}>
                 <Controller
-                  name="termination_date"
+                  name="business_unit"
                   control={control}
                   render={({ field, fieldState }) => (
                     <TextField
                       {...field}
                       fullWidth
-                      label="Termination Date"
-                      type="date"
+                      label="Business Unit"
                       error={!!fieldState.error}
                       helperText={fieldState.error?.message}
                       variant="outlined"
-                      InputLabelProps={{ shrink: true }}
                     />
                   )}
                 />
               </Grid>
+              <Grid size={4}>
+                <Controller
+                  name="legal_entity"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <TextField
+                      {...field}
+                      fullWidth
+                      label="Legal Entity"
+                      error={!!fieldState.error}
+                      helperText={fieldState.error?.message}
+                      variant="outlined"
+                    />
+                  )}
+                />
+              </Grid>
+              <Grid size={4}>
+                <Controller
+                  name="work_location"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <TextField
+                      {...field}
+                      fullWidth
+                      label="Work Location"
+                      error={!!fieldState.error}
+                      helperText={fieldState.error?.message}
+                      variant="outlined"
+                    />
+                  )}
+                />
+              </Grid>
+              <Grid size={4}>
+                <Controller
+                  name="employment_type"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <FormControl fullWidth error={!!fieldState.error}>
+                      <InputLabel>Employment Type</InputLabel>
+                      <Select
+                        value={field.value || ''}
+                        onChange={(e) => field.onChange(e.target.value)}
+                        label="Employment Type"
+                      >
+                        <MenuItem value="">Select Type</MenuItem>
+                        <MenuItem value="permanent">Permanent</MenuItem>
+                        <MenuItem value="contract">Contract</MenuItem>
+                        <MenuItem value="intern">Intern</MenuItem>
+                        <MenuItem value="consultant">Consultant</MenuItem>
+                      </Select>
+                      {fieldState.error && (
+                        <div className="text-xs text-red-500 mt-1 ml-3">
+                          {fieldState.error.message}
+                        </div>
+                      )}
+                    </FormControl>
+                  )}
+                />
+              </Grid>
+              {/* Termination Date - Only show in edit mode for existing employees */}
+              {employee.id && (
+                <Grid size={4}>
+                  <Controller
+                    name="termination_date"
+                    control={control}
+                    render={({ field, fieldState }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="Termination Date"
+                        type="date"
+                        error={!!fieldState.error}
+                        helperText={fieldState.error?.message}
+                        variant="outlined"
+                        InputLabelProps={{ shrink: true }}
+                      />
+                    )}
+                  />
+                </Grid>
+              )}
             </Grid>
             <div className="flex gap-2">
               <MuiButton
@@ -458,6 +557,46 @@ export const JobTab = ({
                 </div>
                 <div className="text-base text-gray-900">
                   {(employee as any).location}
+                </div>
+              </div>
+            )}
+            {(employee as any).business_unit && (
+              <div>
+                <div className="text-sm font-medium text-gray-500 mb-1">
+                  Business Unit
+                </div>
+                <div className="text-base text-gray-900">
+                  {(employee as any).business_unit}
+                </div>
+              </div>
+            )}
+            {(employee as any).legal_entity && (
+              <div>
+                <div className="text-sm font-medium text-gray-500 mb-1">
+                  Legal Entity
+                </div>
+                <div className="text-base text-gray-900">
+                  {(employee as any).legal_entity}
+                </div>
+              </div>
+            )}
+            {(employee as any).work_location && (
+              <div>
+                <div className="text-sm font-medium text-gray-500 mb-1">
+                  Work Location
+                </div>
+                <div className="text-base text-gray-900">
+                  {(employee as any).work_location}
+                </div>
+              </div>
+            )}
+            {(employee as any).employment_type && (
+              <div>
+                <div className="text-sm font-medium text-gray-500 mb-1">
+                  Employment Type
+                </div>
+                <div className="text-base text-gray-900">
+                  {(employee as any).employment_type}
                 </div>
               </div>
             )}

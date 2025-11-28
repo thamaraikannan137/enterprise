@@ -32,6 +32,8 @@ const iconMap: { [key: string]: React.ReactNode } = {
   Login: <i className="ri-login-box-line" />,
   PersonAdd: <i className="ri-user-add-line" />,
   Settings: <i className="ri-settings-3-line" />,
+  People: <i className="ri-team-line" />,
+  Organization: <i className="ri-building-line" />,
 };
 
 const StyledDrawer = styled(Drawer)(({ theme }) => ({

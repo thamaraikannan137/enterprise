@@ -19,6 +19,11 @@ export const navigationItems: NavItemType[] = [
     icon: 'People',
   },
   {
+    title: 'Organization Structure',
+    path: '/organization-structure',
+    icon: 'Organization',
+  },
+  {
     title: 'About',
     path: '/about',
     icon: 'Info',
