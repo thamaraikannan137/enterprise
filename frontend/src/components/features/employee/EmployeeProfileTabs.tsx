@@ -11,7 +11,6 @@ const tabs = [
   { value: 'finances', label: 'Finances' },
   { value: 'docs', label: 'Docs' },
   { value: 'workpass', label: 'Work Pass' },
-  { value: 'qualifications', label: 'Qualifications' },
 ];
 
 export const EmployeeProfileTabs = ({

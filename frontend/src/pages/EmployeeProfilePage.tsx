@@ -15,7 +15,6 @@ import { JobTab } from '../components/features/employee/tabs/JobTab';
 import { FinancesTab } from '../components/features/employee/tabs/FinancesTab';
 import { DocsTab } from '../components/features/employee/tabs/DocsTab';
 import { WorkPassTab } from '../components/features/employee/tabs/WorkPassTab';
-import { QualificationsTab } from '../components/features/employee/tabs/QualificationsTab';
 import type { EmployeeWithDetails } from '../types/employee';
 
 export const EmployeeProfilePage = () => {
@@ -149,8 +148,6 @@ const EmployeeProfileTabsContent = ({
       return <DocsTab {...commonProps} />;
     case 'workpass':
       return <WorkPassTab {...commonProps} />;
-    case 'qualifications':
-      return <QualificationsTab {...commonProps} />;
     default:
       return <AboutTab employee={employee} />;
   }
