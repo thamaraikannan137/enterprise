@@ -10,6 +10,14 @@ export interface IEmployee extends Document {
   gender?: 'male' | 'female' | 'other';
   nationality?: string;
   marital_status?: 'single' | 'married' | 'divorced' | 'widowed';
+  display_name?: string;
+  blood_group?: string;
+  marriage_date?: Date;
+  physically_handicapped?: boolean;
+  actual_dob?: Date;
+  birth_place?: string;
+  current_city?: string;
+  current_state?: string;
   profile_photo_path?: string;
   status: 'active' | 'inactive' | 'terminated';
   designation: string;
@@ -67,6 +75,41 @@ const employeeSchema = new Schema<IEmployee>(
     marital_status: {
       type: String,
       enum: ['single', 'married', 'divorced', 'widowed'],
+    },
+    display_name: {
+      type: String,
+      trim: true,
+      maxlength: [100, 'Display name must be less than 100 characters'],
+    },
+    blood_group: {
+      type: String,
+      trim: true,
+      maxlength: [10, 'Blood group must be less than 10 characters'],
+    },
+    marriage_date: {
+      type: Date,
+    },
+    physically_handicapped: {
+      type: Boolean,
+      default: false,
+    },
+    actual_dob: {
+      type: Date,
+    },
+    birth_place: {
+      type: String,
+      trim: true,
+      maxlength: [200, 'Birth place must be less than 200 characters'],
+    },
+    current_city: {
+      type: String,
+      trim: true,
+      maxlength: [100, 'Current city must be less than 100 characters'],
+    },
+    current_state: {
+      type: String,
+      trim: true,
+      maxlength: [100, 'Current state must be less than 100 characters'],
     },
     profile_photo_path: {
       type: String,

@@ -155,10 +155,10 @@ export const DocsTab = ({
                       />
                     </TableCell>
                     <TableCell>
-                      {doc.issue_date ? new Date(doc.issue_date).toLocaleDateString() : 'N/A'}
+                      {doc.issue_date ? new Date(doc.issue_date).toLocaleDateString() : '-'}
                     </TableCell>
                     <TableCell>
-                      {doc.expiry_date ? new Date(doc.expiry_date).toLocaleDateString() : 'N/A'}
+                      {doc.expiry_date ? new Date(doc.expiry_date).toLocaleDateString() : '-'}
                     </TableCell>
                     <TableCell>
                       <span className={`px-2 py-1 rounded text-xs ${

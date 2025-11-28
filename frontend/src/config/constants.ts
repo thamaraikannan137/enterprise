@@ -26,6 +26,12 @@ export const API_ENDPOINTS = {
   WORK_PASSES: '/v1/work-passes',
   CERTIFICATIONS: '/v1/certifications',
   QUALIFICATIONS: '/v1/qualifications',
+  EMPLOYEE_FAMILY: '/v1/employee-family',
+  EMPLOYEE_EXPERIENCE: '/v1/employee-experience',
+  EMPLOYEE_EDUCATION_DETAIL: '/v1/employee-education-detail',
+  EMPLOYEE_IDENTITY: '/v1/employee-identity',
+  EMPLOYEE_SKILLS: '/v1/employee-skills',
+  EMPLOYEE_ADDRESS: '/v1/employee-address',
   AUTH: {
     LOGIN: '/v1/auth/login',
     LOGOUT: '/v1/auth/logout',

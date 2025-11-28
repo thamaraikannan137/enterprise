@@ -12,7 +12,6 @@ import { EmployeeProfileSidebar } from '../components/features/employee/Employee
 import { MuiButton } from '../components/common';
 import { AboutTab } from '../components/features/employee/tabs/AboutTab';
 import { JobTab } from '../components/features/employee/tabs/JobTab';
-import { ContactTab } from '../components/features/employee/tabs/ContactTab';
 import { FinancesTab } from '../components/features/employee/tabs/FinancesTab';
 import { DocsTab } from '../components/features/employee/tabs/DocsTab';
 import { WorkPassTab } from '../components/features/employee/tabs/WorkPassTab';
@@ -98,7 +97,7 @@ export const EmployeeProfilePage = () => {
 
         {/* Main Content */}
         <div className="bg-white mt-4">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 p-6">
+          <div className="grid grid-cols-1  gap-6 p-6">
             {/* Left Column - Main Content */}
             <div className="lg:col-span-2">
               <EmployeeProfileTabsContent
@@ -110,9 +109,9 @@ export const EmployeeProfilePage = () => {
             </div>
 
             {/* Right Column - Sidebar */}
-            <div className="lg:col-span-1">
+            {/* <div className="lg:col-span-1">
               <EmployeeProfileSidebar employee={currentEmployee} />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -141,11 +140,9 @@ const EmployeeProfileTabsContent = ({
 
   switch (activeTab) {
     case 'about':
-      return <AboutTab {...commonProps} />;
+      return <AboutTab employee={employee} />;
     case 'job':
       return <JobTab {...commonProps} />;
-    case 'contact':
-      return <ContactTab {...commonProps} />;
     case 'finances':
       return <FinancesTab {...commonProps} />;
     case 'docs':
@@ -155,7 +152,7 @@ const EmployeeProfileTabsContent = ({
     case 'qualifications':
       return <QualificationsTab {...commonProps} />;
     default:
-      return <AboutTab {...commonProps} />;
+      return <AboutTab employee={employee} />;
   }
 };
 

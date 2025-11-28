@@ -151,7 +151,7 @@ export const JobInfoTab = () => {
               {(() => {
                 const selectedEmployee = employees.find(emp => emp.id === reportingToValue);
                 if (selectedEmployee) {
-                  const designation = (selectedEmployee as any).designation || 'N/A';
+                  const designation = (selectedEmployee as any).designation || '-';
                   return `${selectedEmployee.first_name} ${selectedEmployee.last_name} (${designation}) - ${selectedEmployee.employee_code}`;
                 }
                 return 'Loading...';

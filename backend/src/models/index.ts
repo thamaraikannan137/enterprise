@@ -17,6 +17,12 @@ export {
   EmployeeWorkPass,
   WorkPassDocument,
   AuditLog,
+  EmployeeFamily,
+  EmployeeExperience,
+  EmployeeEducationDetail,
+  EmployeeIdentity,
+  EmployeeSkills,
+  EmployeeAddress,
 } from './HRModels.index.ts';
 
 export { User };

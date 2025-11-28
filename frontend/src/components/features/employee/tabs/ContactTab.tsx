@@ -375,46 +375,46 @@ const ContactItem = ({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
         <div>
           <span className="text-gray-500">Phone: </span>
-          <span className="text-gray-900">{contact.phone || 'N/A'}</span>
+          <span className="text-gray-900">{contact.phone || '-'}</span>
         </div>
         <div>
           <span className="text-gray-500">Alternate Phone: </span>
-          <span className="text-gray-900">{contact.alternate_phone || 'N/A'}</span>
+          <span className="text-gray-900">{contact.alternate_phone || '-'}</span>
         </div>
         <div>
           <span className="text-gray-500">Email: </span>
-          <span className="text-gray-900">{contact.email || 'N/A'}</span>
+          <span className="text-gray-900">{contact.email || '-'}</span>
         </div>
         <div className="md:col-span-2">
           <span className="text-gray-500">Address Line 1: </span>
-          <span className="text-gray-900">{contact.address_line1 || 'N/A'}</span>
+          <span className="text-gray-900">{contact.address_line1 || '-'}</span>
         </div>
         <div className="md:col-span-2">
           <span className="text-gray-500">Address Line 2: </span>
-          <span className="text-gray-900">{contact.address_line2 || 'N/A'}</span>
+          <span className="text-gray-900">{contact.address_line2 || '-'}</span>
         </div>
         <div>
           <span className="text-gray-500">City: </span>
-          <span className="text-gray-900">{contact.city || 'N/A'}</span>
+          <span className="text-gray-900">{contact.city || '-'}</span>
         </div>
         <div>
           <span className="text-gray-500">Postal Code: </span>
-          <span className="text-gray-900">{contact.postal_code || 'N/A'}</span>
+          <span className="text-gray-900">{contact.postal_code || '-'}</span>
         </div>
         <div>
           <span className="text-gray-500">Country: </span>
-          <span className="text-gray-900">{contact.country || 'N/A'}</span>
+          <span className="text-gray-900">{contact.country || '-'}</span>
         </div>
         <div>
           <span className="text-gray-500">Valid From: </span>
           <span className="text-gray-900">
-            {contact?.valid_from ? new Date(contact.valid_from).toLocaleDateString() : 'N/A'}
+            {contact?.valid_from ? new Date(contact.valid_from).toLocaleDateString() : '-'}
           </span>
         </div>
         <div>
           <span className="text-gray-500">Valid To: </span>
           <span className="text-gray-900">
-            {contact?.valid_to ? new Date(contact.valid_to).toLocaleDateString() : 'N/A'}
+            {contact?.valid_to ? new Date(contact.valid_to).toLocaleDateString() : '-'}
           </span>
         </div>
       </div>

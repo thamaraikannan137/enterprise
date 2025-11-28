@@ -224,4 +224,202 @@ export interface CreateEmployeeWithDetailsInput {
   qualifications?: CreateEmployeeQualificationInput[];
 }
 
+// Employee Family Types
+export interface EmployeeFamily {
+  id: string;
+  employee_id: string;
+  father_dob?: string;
+  mother_dob?: string;
+  spouse_gender?: 'male' | 'female' | 'other';
+  spouse_dob?: string;
+  kid1_name?: string;
+  kid1_gender?: 'male' | 'female' | 'other';
+  kid1_dob?: string;
+  kid2_name?: string;
+  kid2_gender?: 'male' | 'female' | 'other';
+  kid2_dob?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateEmployeeFamilyInput {
+  employee_id: string;
+  father_dob?: string;
+  mother_dob?: string;
+  spouse_gender?: 'male' | 'female' | 'other';
+  spouse_dob?: string;
+  kid1_name?: string;
+  kid1_gender?: 'male' | 'female' | 'other';
+  kid1_dob?: string;
+  kid2_name?: string;
+  kid2_gender?: 'male' | 'female' | 'other';
+  kid2_dob?: string;
+}
+
+// Employee Experience Types
+export interface EmployeeExperience {
+  id: string;
+  employee_id: string;
+  total_experience?: number;
+  relevant_experience?: number;
+  organization1_name?: string;
+  organization1_start_date?: string;
+  organization1_end_date?: string;
+  organization1_designation?: string;
+  organization1_reason_for_leaving?: string;
+  organization2_name?: string;
+  organization2_start_date?: string;
+  organization2_end_date?: string;
+  organization2_designation?: string;
+  organization2_reason_for_leaving?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateEmployeeExperienceInput {
+  employee_id: string;
+  total_experience?: number;
+  relevant_experience?: number;
+  organization1_name?: string;
+  organization1_start_date?: string;
+  organization1_end_date?: string;
+  organization1_designation?: string;
+  organization1_reason_for_leaving?: string;
+  organization2_name?: string;
+  organization2_start_date?: string;
+  organization2_end_date?: string;
+  organization2_designation?: string;
+  organization2_reason_for_leaving?: string;
+}
+
+// Employee Education Detail Types
+export interface EmployeeEducationDetail {
+  id: string;
+  employee_id: string;
+  pg_degree?: string;
+  pg_specialization?: string;
+  pg_grade?: string;
+  pg_university?: string;
+  pg_completion_year?: number;
+  graduation_degree?: string;
+  graduation_specialization?: string;
+  graduation_grade?: string;
+  graduation_college?: string;
+  graduation_completion_year?: number;
+  inter_grade?: string;
+  inter_school?: string;
+  inter_completion_year?: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateEmployeeEducationDetailInput {
+  employee_id: string;
+  pg_degree?: string;
+  pg_specialization?: string;
+  pg_grade?: string;
+  pg_university?: string;
+  pg_completion_year?: number;
+  graduation_degree?: string;
+  graduation_specialization?: string;
+  graduation_grade?: string;
+  graduation_college?: string;
+  graduation_completion_year?: number;
+  inter_grade?: string;
+  inter_school?: string;
+  inter_completion_year?: number;
+}
+
+// Employee Identity Types
+export interface EmployeeIdentity {
+  id: string;
+  employee_id: string;
+  aadhar_number?: string;
+  pan_number?: string;
+  uan_number?: string;
+  driving_license_number?: string;
+  passport_name?: string;
+  passport_number?: string;
+  passport_valid_upto?: string;
+  visa_type?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateEmployeeIdentityInput {
+  employee_id: string;
+  aadhar_number?: string;
+  pan_number?: string;
+  uan_number?: string;
+  driving_license_number?: string;
+  passport_name?: string;
+  passport_number?: string;
+  passport_valid_upto?: string;
+  visa_type?: string;
+}
+
+// Employee Skills Types
+export interface EmployeeSkills {
+  id: string;
+  employee_id: string;
+  professional_summary?: string;
+  languages_read?: string[];
+  languages_write?: string[];
+  languages_speak?: string[];
+  special_academic_achievements?: string;
+  certifications_details?: string;
+  hobbies?: string;
+  interests?: string;
+  professional_institution_member?: boolean;
+  professional_institution_details?: string;
+  social_organization_member?: boolean;
+  social_organization_details?: string;
+  insigma_hire_date?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateEmployeeSkillsInput {
+  employee_id: string;
+  professional_summary?: string;
+  languages_read?: string[];
+  languages_write?: string[];
+  languages_speak?: string[];
+  special_academic_achievements?: string;
+  certifications_details?: string;
+  hobbies?: string;
+  interests?: string;
+  professional_institution_member?: boolean;
+  professional_institution_details?: string;
+  social_organization_member?: boolean;
+  social_organization_details?: string;
+  insigma_hire_date?: string;
+}
+
+// Employee Address Types
+export interface EmployeeAddress {
+  id: string;
+  employee_id: string;
+  home_town?: string;
+  current_city?: string;
+  current_state?: string;
+  current_pincode?: string;
+  permanent_city?: string;
+  permanent_state?: string;
+  permanent_pincode?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateEmployeeAddressInput {
+  employee_id: string;
+  home_town?: string;
+  current_city?: string;
+  current_state?: string;
+  current_pincode?: string;
+  permanent_city?: string;
+  permanent_state?: string;
+  permanent_pincode?: string;
+}
+
 

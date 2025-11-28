@@ -8,7 +8,6 @@ interface EmployeeProfileTabsProps {
 const tabs = [
   { value: 'about', label: 'About' },
   { value: 'job', label: 'Job' },
-  { value: 'contact', label: 'Contact' },
   { value: 'finances', label: 'Finances' },
   { value: 'docs', label: 'Docs' },
   { value: 'workpass', label: 'Work Pass' },

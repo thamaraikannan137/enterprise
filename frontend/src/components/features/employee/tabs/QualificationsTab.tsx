@@ -177,7 +177,7 @@ export const QualificationsTab = ({
                 {qualifications.map((qual) => (
                   <TableRow key={qual.id}>
                     <TableCell>{qual.degree}</TableCell>
-                    <TableCell>{qual.major || 'N/A'}</TableCell>
+                    <TableCell>{qual.major || '-'}</TableCell>
                     <TableCell>{qual.institution}</TableCell>
                     <TableCell>{qual.completion_year}</TableCell>
                     <TableCell>
@@ -315,7 +315,7 @@ export const QualificationsTab = ({
                       {new Date(cert.issue_date).toLocaleDateString()}
                     </TableCell>
                     <TableCell>
-                      {cert.expiry_date ? new Date(cert.expiry_date).toLocaleDateString() : 'N/A'}
+                      {cert.expiry_date ? new Date(cert.expiry_date).toLocaleDateString() : '-'}
                     </TableCell>
                     <TableCell className="capitalize">{cert.ownership}</TableCell>
                     <TableCell>

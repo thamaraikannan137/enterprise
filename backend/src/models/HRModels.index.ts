@@ -14,6 +14,12 @@ import EmployeeQualification from './EmployeeQualification.ts';
 import EmployeeWorkPass from './EmployeeWorkPass.ts';
 import WorkPassDocument from './WorkPassDocument.ts';
 import AuditLog from './AuditLog.ts';
+import EmployeeFamily from './EmployeeFamily.ts';
+import EmployeeExperience from './EmployeeExperience.ts';
+import EmployeeEducationDetail from './EmployeeEducationDetail.ts';
+import EmployeeIdentity from './EmployeeIdentity.ts';
+import EmployeeSkills from './EmployeeSkills.ts';
+import EmployeeAddress from './EmployeeAddress.ts';
 
 // Export all models
 export {
@@ -32,4 +38,10 @@ export {
   EmployeeWorkPass,
   WorkPassDocument,
   AuditLog,
+  EmployeeFamily,
+  EmployeeExperience,
+  EmployeeEducationDetail,
+  EmployeeIdentity,
+  EmployeeSkills,
+  EmployeeAddress,
 };

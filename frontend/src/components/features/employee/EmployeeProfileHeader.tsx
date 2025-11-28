@@ -84,17 +84,64 @@ export const EmployeeProfileHeader = ({
   // Get contact info from employee data or use defaults
   const employeeWithJob = employee as EmployeeWithJobInfo;
   
-  const contactInfo = {
-    location: 'Technovert | Hyderabad, India', // TODO: Get from contacts
-    email: 'samanthad@technovert.com', // TODO: Get from contacts
-    phone: '+91 9234125678', // TODO: Get from contacts
-    designation: employeeWithJob.designation || 'N/A',
-    department: employeeWithJob.department || 'N/A',
+  // Get primary contact info from contacts array
+  const primaryContact = useMemo(() => {
+    if (!employee.contacts || employee.contacts.length === 0) {
+      return null;
+    }
+    // Find primary contact, or use the first contact if no primary found
+    return employee.contacts.find(contact => contact.contact_type === 'primary') || employee.contacts[0];
+  }, [employee.contacts]);
+
+  // Get location from employee.location or from primary contact
+  const getLocation = (): string => {
+    // First try employee.location (if available)
+    if ((employee as any).location) {
+      return (employee as any).location;
+    }
+    // Then try to construct from primary contact address
+    if (primaryContact) {
+      const addressParts = [
+        primaryContact.city,
+        primaryContact.country
+      ].filter(Boolean);
+      if (addressParts.length > 0) {
+        return addressParts.join(', ');
+      }
+    }
+    return '-';
+  };
+
+  // Get email from primary contact
+  const getEmail = (): string => {
+    if (primaryContact?.email) {
+      return primaryContact.email;
+    }
+    return '-';
+  };
+
+  // Get phone from primary contact
+  const getPhone = (): string => {
+    if (primaryContact?.phone) {
+      return primaryContact.phone;
+    }
+    if (primaryContact?.alternate_phone) {
+      return primaryContact.alternate_phone;
+    }
+    return '-';
+  };
+  
+  const contactInfo = useMemo(() => ({
+    location: getLocation(),
+    email: getEmail(),
+    phone: getPhone(),
+    designation: employeeWithJob.designation || '-',
+    department: employeeWithJob.department || '-',
     reportingTo: employee.reportingToEmployee
       ? `${employee.reportingToEmployee.first_name} ${employee.reportingToEmployee.last_name}`
       : 'No Manager',
-    employeeNo: employee.employee_code || 'N/A',
-  };
+    employeeNo: employee.employee_code || '-',
+  }), [employee, employeeWithJob, primaryContact]);
 
   return (
     <div className="bg-white rounded-lg shadow-sm p-6 mb-4">

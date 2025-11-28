@@ -11,6 +11,7 @@ export { default as Icon } from './Icon';
 export { DataTable } from './DataTable';
 export type { Column, DataTableProps } from './DataTable';
 export { FileUpload } from './FileUpload';
+export { MuiModal } from './MuiModal';
 
 // Also export with simple names for convenience
 export { MuiButton as Button } from './MuiButton';

@@ -401,13 +401,13 @@ export const JobTab = ({
               <div className="text-sm font-medium text-gray-500 mb-1">
                 Designation
               </div>
-              <div className="text-base text-gray-900">{employee.designation || 'N/A'}</div>
+              <div className="text-base text-gray-900">{employee.designation || '-'}</div>
             </div>
             <div>
               <div className="text-sm font-medium text-gray-500 mb-1">
                 Department
               </div>
-              <div className="text-base text-gray-900">{employee.department || 'N/A'}</div>
+              <div className="text-base text-gray-900">{employee.department || '-'}</div>
             </div>
             <div>
               <div className="text-sm font-medium text-gray-500 mb-1">

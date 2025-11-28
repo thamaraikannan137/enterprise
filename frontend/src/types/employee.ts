@@ -11,9 +11,17 @@ export interface Employee {
   middle_name?: string;
   last_name: string;
   date_of_birth: string; // ISO date string
-  gender: EmployeeGender;
-  nationality: string;
-  marital_status: EmployeeMaritalStatus;
+  gender?: EmployeeGender;
+  nationality?: string;
+  marital_status?: EmployeeMaritalStatus;
+  display_name?: string;
+  blood_group?: string;
+  marriage_date?: string;
+  physically_handicapped?: boolean;
+  actual_dob?: string;
+  birth_place?: string;
+  current_city?: string;
+  current_state?: string;
   profile_photo_path?: string;
   status: EmployeeStatus;
   designation: string;
@@ -40,6 +48,21 @@ import type {
   EmployeeWorkPass,
   EmployeeCertification,
   EmployeeQualification,
+  EmployeeFamily,
+  EmployeeExperience,
+  EmployeeEducationDetail,
+  EmployeeIdentity,
+  EmployeeSkills,
+  EmployeeAddress,
+} from './employeeRelated';
+
+import type {
+  EmployeeFamily,
+  EmployeeExperience,
+  EmployeeEducationDetail,
+  EmployeeIdentity,
+  EmployeeSkills,
+  EmployeeAddress,
 } from './employeeRelated';
 
 export interface EmployeeWithDetails extends Employee {
@@ -52,6 +75,12 @@ export interface EmployeeWithDetails extends Employee {
   certifications?: EmployeeCertification[];
   qualifications?: EmployeeQualification[];
   workPasses?: EmployeeWorkPass[];
+  family?: EmployeeFamily;
+  experience?: EmployeeExperience;
+  educationDetail?: EmployeeEducationDetail;
+  identity?: EmployeeIdentity;
+  skills?: EmployeeSkills;
+  address?: EmployeeAddress;
 }
 
 export interface CreateEmployeeInput {

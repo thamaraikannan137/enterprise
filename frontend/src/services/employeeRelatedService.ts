@@ -15,6 +15,18 @@ import type {
   CreateEmployeeCertificationInput,
   EmployeeQualification,
   CreateEmployeeQualificationInput,
+  EmployeeFamily,
+  CreateEmployeeFamilyInput,
+  EmployeeExperience,
+  CreateEmployeeExperienceInput,
+  EmployeeEducationDetail,
+  CreateEmployeeEducationDetailInput,
+  EmployeeIdentity,
+  CreateEmployeeIdentityInput,
+  EmployeeSkills,
+  CreateEmployeeSkillsInput,
+  EmployeeAddress,
+  CreateEmployeeAddressInput,
 } from '../types/employeeRelated';
 
 // Backend API response wrapper
@@ -231,6 +243,217 @@ export const employeeRelatedService = {
       `${API_ENDPOINTS.QUALIFICATIONS}/employee/${employeeId}`
     );
     return response.data;
+  },
+
+  // ========== FAMILY ==========
+  getEmployeeFamily: async (employeeId: string): Promise<EmployeeFamily | null> => {
+    try {
+      const response = await apiClient.get<ApiResponse<EmployeeFamily>>(
+        `${API_ENDPOINTS.EMPLOYEE_FAMILY}/employee/${employeeId}`
+      );
+      return response.data;
+    } catch (error: any) {
+      if (error?.response?.status === 404) return null;
+      throw error;
+    }
+  },
+
+  createOrUpdateFamily: async (employeeId: string, familyData: CreateEmployeeFamilyInput): Promise<EmployeeFamily> => {
+    try {
+      // Try to get existing family
+      const existing = await employeeRelatedService.getEmployeeFamily(employeeId);
+      if (existing) {
+        const response = await apiClient.put<ApiResponse<EmployeeFamily>>(
+          `${API_ENDPOINTS.EMPLOYEE_FAMILY}/${existing.id}`,
+          familyData
+        );
+        return response.data;
+      } else {
+        const response = await apiClient.post<ApiResponse<EmployeeFamily>>(
+          API_ENDPOINTS.EMPLOYEE_FAMILY,
+          { ...familyData, employee_id: employeeId }
+        );
+        return response.data;
+      }
+    } catch (error: any) {
+      console.error('createOrUpdateFamily error:', error);
+      throw error;
+    }
+  },
+
+  // ========== EXPERIENCE ==========
+  getEmployeeExperience: async (employeeId: string): Promise<EmployeeExperience | null> => {
+    try {
+      const response = await apiClient.get<ApiResponse<EmployeeExperience>>(
+        `${API_ENDPOINTS.EMPLOYEE_EXPERIENCE}/employee/${employeeId}`
+      );
+      return response.data;
+    } catch (error: any) {
+      if (error?.response?.status === 404) return null;
+      throw error;
+    }
+  },
+
+  createOrUpdateExperience: async (employeeId: string, experienceData: CreateEmployeeExperienceInput): Promise<EmployeeExperience> => {
+    try {
+      const existing = await employeeRelatedService.getEmployeeExperience(employeeId);
+      if (existing) {
+        const response = await apiClient.put<ApiResponse<EmployeeExperience>>(
+          `${API_ENDPOINTS.EMPLOYEE_EXPERIENCE}/${existing.id}`,
+          experienceData
+        );
+        return response.data;
+      } else {
+        const response = await apiClient.post<ApiResponse<EmployeeExperience>>(
+          API_ENDPOINTS.EMPLOYEE_EXPERIENCE,
+          { ...experienceData, employee_id: employeeId }
+        );
+        return response.data;
+      }
+    } catch (error: any) {
+      console.error('createOrUpdateExperience error:', error);
+      throw error;
+    }
+  },
+
+  // ========== EDUCATION DETAIL ==========
+  getEmployeeEducationDetail: async (employeeId: string): Promise<EmployeeEducationDetail | null> => {
+    try {
+      const response = await apiClient.get<ApiResponse<EmployeeEducationDetail>>(
+        `${API_ENDPOINTS.EMPLOYEE_EDUCATION_DETAIL}/employee/${employeeId}`
+      );
+      return response.data;
+    } catch (error: any) {
+      if (error?.response?.status === 404) return null;
+      throw error;
+    }
+  },
+
+  createOrUpdateEducationDetail: async (employeeId: string, educationData: CreateEmployeeEducationDetailInput): Promise<EmployeeEducationDetail> => {
+    try {
+      const existing = await employeeRelatedService.getEmployeeEducationDetail(employeeId);
+      if (existing) {
+        const response = await apiClient.put<ApiResponse<EmployeeEducationDetail>>(
+          `${API_ENDPOINTS.EMPLOYEE_EDUCATION_DETAIL}/${existing.id}`,
+          educationData
+        );
+        return response.data;
+      } else {
+        const response = await apiClient.post<ApiResponse<EmployeeEducationDetail>>(
+          API_ENDPOINTS.EMPLOYEE_EDUCATION_DETAIL,
+          { ...educationData, employee_id: employeeId }
+        );
+        return response.data;
+      }
+    } catch (error: any) {
+      console.error('createOrUpdateEducationDetail error:', error);
+      throw error;
+    }
+  },
+
+  // ========== IDENTITY ==========
+  getEmployeeIdentity: async (employeeId: string): Promise<EmployeeIdentity | null> => {
+    try {
+      const response = await apiClient.get<ApiResponse<EmployeeIdentity>>(
+        `${API_ENDPOINTS.EMPLOYEE_IDENTITY}/employee/${employeeId}`
+      );
+      return response.data;
+    } catch (error: any) {
+      if (error?.response?.status === 404) return null;
+      throw error;
+    }
+  },
+
+  createOrUpdateIdentity: async (employeeId: string, identityData: CreateEmployeeIdentityInput): Promise<EmployeeIdentity> => {
+    try {
+      const existing = await employeeRelatedService.getEmployeeIdentity(employeeId);
+      if (existing) {
+        const response = await apiClient.put<ApiResponse<EmployeeIdentity>>(
+          `${API_ENDPOINTS.EMPLOYEE_IDENTITY}/${existing.id}`,
+          identityData
+        );
+        return response.data;
+      } else {
+        const response = await apiClient.post<ApiResponse<EmployeeIdentity>>(
+          API_ENDPOINTS.EMPLOYEE_IDENTITY,
+          { ...identityData, employee_id: employeeId }
+        );
+        return response.data;
+      }
+    } catch (error: any) {
+      console.error('createOrUpdateIdentity error:', error);
+      throw error;
+    }
+  },
+
+  // ========== SKILLS ==========
+  getEmployeeSkills: async (employeeId: string): Promise<EmployeeSkills | null> => {
+    try {
+      const response = await apiClient.get<ApiResponse<EmployeeSkills>>(
+        `${API_ENDPOINTS.EMPLOYEE_SKILLS}/employee/${employeeId}`
+      );
+      return response.data;
+    } catch (error: any) {
+      if (error?.response?.status === 404) return null;
+      throw error;
+    }
+  },
+
+  createOrUpdateSkills: async (employeeId: string, skillsData: CreateEmployeeSkillsInput): Promise<EmployeeSkills> => {
+    try {
+      const existing = await employeeRelatedService.getEmployeeSkills(employeeId);
+      if (existing) {
+        const response = await apiClient.put<ApiResponse<EmployeeSkills>>(
+          `${API_ENDPOINTS.EMPLOYEE_SKILLS}/${existing.id}`,
+          skillsData
+        );
+        return response.data;
+      } else {
+        const response = await apiClient.post<ApiResponse<EmployeeSkills>>(
+          API_ENDPOINTS.EMPLOYEE_SKILLS,
+          { ...skillsData, employee_id: employeeId }
+        );
+        return response.data;
+      }
+    } catch (error: any) {
+      console.error('createOrUpdateSkills error:', error);
+      throw error;
+    }
+  },
+
+  // ========== ADDRESS ==========
+  getEmployeeAddress: async (employeeId: string): Promise<EmployeeAddress | null> => {
+    try {
+      const response = await apiClient.get<ApiResponse<EmployeeAddress>>(
+        `${API_ENDPOINTS.EMPLOYEE_ADDRESS}/employee/${employeeId}`
+      );
+      return response.data;
+    } catch (error: any) {
+      if (error?.response?.status === 404) return null;
+      throw error;
+    }
+  },
+
+  createOrUpdateAddress: async (employeeId: string, addressData: CreateEmployeeAddressInput): Promise<EmployeeAddress> => {
+    try {
+      const existing = await employeeRelatedService.getEmployeeAddress(employeeId);
+      if (existing) {
+        const response = await apiClient.put<ApiResponse<EmployeeAddress>>(
+          `${API_ENDPOINTS.EMPLOYEE_ADDRESS}/${existing.id}`,
+          addressData
+        );
+        return response.data;
+      } else {
+        const response = await apiClient.post<ApiResponse<EmployeeAddress>>(
+          API_ENDPOINTS.EMPLOYEE_ADDRESS,
+          { ...addressData, employee_id: employeeId }
+        );
+        return response.data;
+      }
+    } catch (error: any) {
+      console.error('createOrUpdateAddress error:', error);
+      throw error;
+    }
   },
 };
 
