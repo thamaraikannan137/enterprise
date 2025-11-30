@@ -7,7 +7,6 @@ import { RegisterPage } from "../pages/RegisterPage";
 import { EmployeesPage } from "../pages/EmployeesPage";
 import { EmployeeCreatePage } from "../pages/EmployeeCreatePage";
 import { EmployeeEditPage } from "../pages/EmployeeEditPage";
-import { EmployeeDetailPage } from "../pages/EmployeeDetailPage";
 import { EmployeeProfilePage } from "../pages/EmployeeProfilePage";
 import { OrganizationStructurePage } from "../pages/OrganizationStructurePage";
 
@@ -37,10 +36,6 @@ const router = createBrowserRouter([
       {
         path: "employees/:id",
         element: <EmployeeProfilePage />,
-      },
-      {
-        path: "employees/:id/detail",
-        element: <EmployeeDetailPage />,
       },
       {
         path: "employees/:id/edit",

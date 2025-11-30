@@ -204,22 +204,25 @@ export interface CreateEmployeeWithDetailsInput {
     middle_name?: string;
     last_name: string;
     date_of_birth: string;
-    profile_photo_path?: string;
-    status?: 'active' | 'inactive' | 'terminated';
-    designation: string;
-    department: string;
-    reporting_to?: string;
-    joining_date?: string;
-    time_type?: 'full_time' | 'contract';
-    location?: string;
     email?: string;
     mobile_number?: string;
+    profile_photo_path?: string;
+    status?: 'active' | 'inactive' | 'terminated';
+    
+    joining_date?: string;
+    secondary_job_titles?: string[];
+    designation: string;
+    time_type?: 'full_time' | 'contract';
+    
     legal_entity?: string;
     business_unit?: string;
+    department: string;
+    location?: string;
     worker_type?: string;
+    reporting_to?: string;
+
     probation_policy?: string;
     notice_period?: string;
-    secondary_job_titles?: string[];
   };
   // Related data (optional)
   contacts?: CreateEmployeeContactInput[];
