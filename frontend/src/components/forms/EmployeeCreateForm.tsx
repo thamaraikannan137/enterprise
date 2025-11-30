@@ -26,6 +26,12 @@ const employeeCreateSchema = z.object({
   joining_date: z.string().min(1, 'Joining date is required'),
   time_type: z.enum(['full_time', 'contract']),
   location: z.string().min(1, 'Location is required').max(200, 'Location must be less than 200 characters'),
+  legal_entity: z.string().min(1, 'Legal Entity is required'),
+  business_unit: z.string().min(1, 'Business Unit is required'),
+  worker_type: z.string().min(1, 'Worker Type is required'),
+  probation_policy: z.string().min(1, 'Probation Policy is required'),
+  notice_period: z.string().min(1, 'Notice Period is required'),
+  secondary_job_titles: z.array(z.string()).optional(),
 });
 type EmployeeCreateFormInputs = z.infer<typeof employeeCreateSchema>;
 
@@ -61,6 +67,12 @@ export const EmployeeCreateForm = ({ onSubmit, isLoading = false }: EmployeeCrea
       joining_date: '',
       time_type: 'full_time',
       location: '',
+      legal_entity: '',
+      business_unit: '',
+      worker_type: '',
+      probation_policy: '',
+      notice_period: '',
+      secondary_job_titles: [],
     },
   });
 
@@ -71,7 +83,7 @@ export const EmployeeCreateForm = ({ onSubmit, isLoading = false }: EmployeeCrea
       case 0: // Personal Info
         return ['first_name', 'last_name', 'date_of_birth', 'email', 'mobile_number'];
       case 1: // Job Info
-        return ['designation', 'department', 'joining_date', 'time_type', 'location'];
+        return ['designation', 'department', 'joining_date', 'time_type', 'location', 'legal_entity', 'business_unit', 'worker_type', 'probation_policy', 'notice_period'];
       default:
         return [];
     }
@@ -86,7 +98,8 @@ export const EmployeeCreateForm = ({ onSubmit, isLoading = false }: EmployeeCrea
       // Validate all required fields before proceeding
       const requiredFields = [
         'first_name', 'last_name', 'date_of_birth', 'email', 
-        'mobile_number', 'designation', 'department', 'joining_date', 'time_type', 'location'
+        'mobile_number', 'designation', 'department', 'joining_date', 'time_type', 'location',
+        'legal_entity', 'business_unit', 'worker_type', 'probation_policy', 'notice_period'
       ];
       
       const validationResult = await trigger(requiredFields as any);
@@ -100,7 +113,7 @@ export const EmployeeCreateForm = ({ onSubmit, isLoading = false }: EmployeeCrea
           const firstErrorField = errorFields[0];
           if (['first_name', 'last_name', 'date_of_birth', 'email', 'mobile_number'].includes(firstErrorField)) {
             setActiveTab(0);
-          } else if (['designation', 'department', 'joining_date', 'time_type', 'location'].includes(firstErrorField)) {
+          } else if (['designation', 'department', 'joining_date', 'time_type', 'location', 'legal_entity', 'business_unit', 'worker_type', 'probation_policy', 'notice_period'].includes(firstErrorField)) {
             setActiveTab(1);
           }
         }
@@ -119,10 +132,16 @@ export const EmployeeCreateForm = ({ onSubmit, isLoading = false }: EmployeeCrea
         joining_date: data.joining_date,
         time_type: data.time_type,
         location: data.location,
+        legal_entity: data.legal_entity,
+        business_unit: data.business_unit,
+        worker_type: data.worker_type,
+        probation_policy: data.probation_policy,
+        notice_period: data.notice_period,
         ...(data.middle_name && { middle_name: data.middle_name }),
         ...(data.profile_photo_path && { profile_photo_path: data.profile_photo_path }),
         ...(data.status && { status: data.status }),
         ...(data.reporting_to && { reporting_to: data.reporting_to }),
+        ...(data.secondary_job_titles && data.secondary_job_titles.length > 0 && { secondary_job_titles: data.secondary_job_titles }),
       };
 
       // Prepare related data (contacts are created from email/mobile_number in EmployeeCreatePage)
@@ -184,7 +203,7 @@ export const EmployeeCreateForm = ({ onSubmit, isLoading = false }: EmployeeCrea
             const firstErrorField = errorFields[0];
             if (['first_name', 'last_name', 'date_of_birth', 'email', 'mobile_number'].includes(firstErrorField)) {
               setActiveTab(0);
-            } else if (['designation', 'department', 'joining_date', 'time_type', 'location'].includes(firstErrorField)) {
+            } else if (['designation', 'department', 'joining_date', 'time_type', 'location', 'legal_entity', 'business_unit', 'worker_type', 'probation_policy', 'notice_period'].includes(firstErrorField)) {
               setActiveTab(1);
             }
           }

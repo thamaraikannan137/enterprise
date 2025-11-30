@@ -214,6 +214,12 @@ export interface CreateEmployeeWithDetailsInput {
     location?: string;
     email?: string;
     mobile_number?: string;
+    legal_entity?: string;
+    business_unit?: string;
+    worker_type?: string;
+    probation_policy?: string;
+    notice_period?: string;
+    secondary_job_titles?: string[];
   };
   // Related data (optional)
   contacts?: CreateEmployeeContactInput[];

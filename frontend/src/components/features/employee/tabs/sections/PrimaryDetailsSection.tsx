@@ -184,7 +184,35 @@ export const PrimaryDetailsSection = ({ employee, employeeId }: PrimaryDetailsSe
                 name="date_of_birth"
                 control={control}
                 render={({ field, fieldState }) => (
-                  <TextField {...field} fullWidth type="date" label="Date of Birth" InputLabelProps={{ shrink: true }} error={!!fieldState.error} helperText={fieldState.error?.message} required />
+                  <TextField
+                    {...field}
+                    fullWidth
+                    type="date"
+                    label="Date of Birth"
+                    InputLabelProps={{ shrink: true }}
+                    error={!!fieldState.error}
+                    helperText={fieldState.error?.message}
+                    required
+                    onClick={(e) => {
+                      const input = e.currentTarget.querySelector('input') as HTMLInputElement;
+                      if (input) {
+                        if (input.showPicker) {
+                          input.showPicker();
+                        } else {
+                          input.focus();
+                          input.click();
+                        }
+                      }
+                    }}
+                    sx={{
+                      '& .MuiOutlinedInput-root': {
+                        cursor: 'pointer',
+                      },
+                      '& input': {
+                        cursor: 'pointer',
+                      },
+                    }}
+                  />
                 )}
               />
             </Grid>
@@ -216,7 +244,34 @@ export const PrimaryDetailsSection = ({ employee, employeeId }: PrimaryDetailsSe
                 name="marriage_date"
                 control={control}
                 render={({ field, fieldState }) => (
-                  <TextField {...field} fullWidth type="date" label="Marriage Date" InputLabelProps={{ shrink: true }} error={!!fieldState.error} helperText={fieldState.error?.message} />
+                  <TextField
+                    {...field}
+                    fullWidth
+                    type="date"
+                    label="Marriage Date"
+                    InputLabelProps={{ shrink: true }}
+                    error={!!fieldState.error}
+                    helperText={fieldState.error?.message}
+                    onClick={(e) => {
+                      const input = e.currentTarget.querySelector('input') as HTMLInputElement;
+                      if (input) {
+                        if (input.showPicker) {
+                          input.showPicker();
+                        } else {
+                          input.focus();
+                          input.click();
+                        }
+                      }
+                    }}
+                    sx={{
+                      '& .MuiOutlinedInput-root': {
+                        cursor: 'pointer',
+                      },
+                      '& input': {
+                        cursor: 'pointer',
+                      },
+                    }}
+                  />
                 )}
               />
             </Grid>
@@ -245,7 +300,34 @@ export const PrimaryDetailsSection = ({ employee, employeeId }: PrimaryDetailsSe
                 name="actual_dob"
                 control={control}
                 render={({ field, fieldState }) => (
-                  <TextField {...field} fullWidth type="date" label="Actual DOB" InputLabelProps={{ shrink: true }} error={!!fieldState.error} helperText={fieldState.error?.message} />
+                  <TextField
+                    {...field}
+                    fullWidth
+                    type="date"
+                    label="Actual DOB"
+                    InputLabelProps={{ shrink: true }}
+                    error={!!fieldState.error}
+                    helperText={fieldState.error?.message}
+                    onClick={(e) => {
+                      const input = e.currentTarget.querySelector('input') as HTMLInputElement;
+                      if (input) {
+                        if (input.showPicker) {
+                          input.showPicker();
+                        } else {
+                          input.focus();
+                          input.click();
+                        }
+                      }
+                    }}
+                    sx={{
+                      '& .MuiOutlinedInput-root': {
+                        cursor: 'pointer',
+                      },
+                      '& input': {
+                        cursor: 'pointer',
+                      },
+                    }}
+                  />
                 )}
               />
             </Grid>
