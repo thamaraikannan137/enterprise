@@ -5,7 +5,7 @@ import { z } from 'zod';
 import { TextField, Grid } from '@mui/material';
 import { useAppDispatch } from '../../../../../store';
 import { fetchEmployeeWithDetails } from '../../../../../store/slices/employeeSlice';
-import { employeeRelatedService } from '../../../../../services/employeeRelatedService';
+import { employeeService } from '../../../../../services/employeeService';
 import { useToast } from '../../../../../contexts/ToastContext';
 import { EditableCard } from './EditableCard';
 import type { EmployeeWithDetails } from '../../../../../types/employee';
@@ -35,8 +35,7 @@ export const FamilyDetailsSection = ({ employee, employeeId }: FamilyDetailsSect
   const { showSuccess, showError } = useToast();
   const [isEditMode, setIsEditMode] = useState(false);
 
-  const family = employee.family;
-
+  // Family fields are now directly on the Employee model
   const {
     control,
     handleSubmit,
@@ -45,37 +44,39 @@ export const FamilyDetailsSection = ({ employee, employeeId }: FamilyDetailsSect
   } = useForm<FamilyDetailsFormData>({
     resolver: zodResolver(familyDetailsSchema),
     defaultValues: {
-      father_dob: family?.father_dob?.split('T')[0] || '',
-      mother_dob: family?.mother_dob?.split('T')[0] || '',
-      spouse_gender: family?.spouse_gender,
-      spouse_dob: family?.spouse_dob?.split('T')[0] || '',
-      kid1_name: family?.kid1_name || '',
-      kid1_gender: family?.kid1_gender,
-      kid1_dob: family?.kid1_dob?.split('T')[0] || '',
-      kid2_name: family?.kid2_name || '',
-      kid2_gender: family?.kid2_gender,
-      kid2_dob: family?.kid2_dob?.split('T')[0] || '',
+      father_dob: employee.father_dob ? new Date(employee.father_dob).toISOString().split('T')[0] : '',
+      mother_dob: employee.mother_dob ? new Date(employee.mother_dob).toISOString().split('T')[0] : '',
+      spouse_gender: employee.spouse_gender,
+      spouse_dob: employee.spouse_dob ? new Date(employee.spouse_dob).toISOString().split('T')[0] : '',
+      kid1_name: employee.kid1_name || '',
+      kid1_gender: employee.kid1_gender,
+      kid1_dob: employee.kid1_dob ? new Date(employee.kid1_dob).toISOString().split('T')[0] : '',
+      kid2_name: employee.kid2_name || '',
+      kid2_gender: employee.kid2_gender,
+      kid2_dob: employee.kid2_dob ? new Date(employee.kid2_dob).toISOString().split('T')[0] : '',
     },
   });
 
   useEffect(() => {
     reset({
-      father_dob: family?.father_dob?.split('T')[0] || '',
-      mother_dob: family?.mother_dob?.split('T')[0] || '',
-      spouse_gender: family?.spouse_gender,
-      spouse_dob: family?.spouse_dob?.split('T')[0] || '',
-      kid1_name: family?.kid1_name || '',
-      kid1_gender: family?.kid1_gender,
-      kid1_dob: family?.kid1_dob?.split('T')[0] || '',
-      kid2_name: family?.kid2_name || '',
-      kid2_gender: family?.kid2_gender,
-      kid2_dob: family?.kid2_dob?.split('T')[0] || '',
+      father_dob: employee.father_dob ? new Date(employee.father_dob).toISOString().split('T')[0] : '',
+      mother_dob: employee.mother_dob ? new Date(employee.mother_dob).toISOString().split('T')[0] : '',
+      spouse_gender: employee.spouse_gender,
+      spouse_dob: employee.spouse_dob ? new Date(employee.spouse_dob).toISOString().split('T')[0] : '',
+      kid1_name: employee.kid1_name || '',
+      kid1_gender: employee.kid1_gender,
+      kid1_dob: employee.kid1_dob ? new Date(employee.kid1_dob).toISOString().split('T')[0] : '',
+      kid2_name: employee.kid2_name || '',
+      kid2_gender: employee.kid2_gender,
+      kid2_dob: employee.kid2_dob ? new Date(employee.kid2_dob).toISOString().split('T')[0] : '',
     });
-  }, [family, reset]);
+  }, [employee, reset]);
 
   const onSubmit = async (data: FamilyDetailsFormData) => {
     try {
-      await employeeRelatedService.createOrUpdateFamily(employeeId, {
+      // Update employee with family information
+      // Family fields are now directly on the Employee model
+      const updateData: any = {
         ...(data.father_dob && { father_dob: data.father_dob }),
         ...(data.mother_dob && { mother_dob: data.mother_dob }),
         ...(data.spouse_gender && { spouse_gender: data.spouse_gender }),
@@ -86,7 +87,16 @@ export const FamilyDetailsSection = ({ employee, employeeId }: FamilyDetailsSect
         ...(data.kid2_name && { kid2_name: data.kid2_name.trim() }),
         ...(data.kid2_gender && { kid2_gender: data.kid2_gender }),
         ...(data.kid2_dob && { kid2_dob: data.kid2_dob }),
+      };
+
+      // Remove undefined and empty string values
+      Object.keys(updateData).forEach(key => {
+        if (updateData[key] === undefined || updateData[key] === '') {
+          delete updateData[key];
+        }
       });
+
+      await employeeService.updateEmployee(employeeId, updateData);
       await dispatch(fetchEmployeeWithDetails(employeeId)).unwrap();
       showSuccess('Family details saved successfully!');
       setIsEditMode(false);
@@ -221,16 +231,16 @@ export const FamilyDetailsSection = ({ employee, employeeId }: FamilyDetailsSect
       }
     >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div><div className="text-sm font-medium text-gray-500 mb-1">Father's DOB</div><div className="text-base text-gray-900">{family?.father_dob ? new Date(family.father_dob).toLocaleDateString() : '-'}</div></div>
-        <div><div className="text-sm font-medium text-gray-500 mb-1">Mother's DOB</div><div className="text-base text-gray-900">{family?.mother_dob ? new Date(family.mother_dob).toLocaleDateString() : '-'}</div></div>
-        <div><div className="text-sm font-medium text-gray-500 mb-1">Spouse Gender</div><div className="text-base text-gray-900">{family?.spouse_gender ? family.spouse_gender.charAt(0).toUpperCase() + family.spouse_gender.slice(1) : '-'}</div></div>
-        <div><div className="text-sm font-medium text-gray-500 mb-1">Spouse DOB</div><div className="text-base text-gray-900">{family?.spouse_dob ? new Date(family.spouse_dob).toLocaleDateString() : '-'}</div></div>
-        <div><div className="text-sm font-medium text-gray-500 mb-1">Kid 1 Name</div><div className="text-base text-gray-900">{family?.kid1_name || '-'}</div></div>
-        <div><div className="text-sm font-medium text-gray-500 mb-1">Kid 1 Gender</div><div className="text-base text-gray-900">{family?.kid1_gender ? family.kid1_gender.charAt(0).toUpperCase() + family.kid1_gender.slice(1) : '-'}</div></div>
-        <div><div className="text-sm font-medium text-gray-500 mb-1">Kid 1 DOB</div><div className="text-base text-gray-900">{family?.kid1_dob ? new Date(family.kid1_dob).toLocaleDateString() : '-'}</div></div>
-        <div><div className="text-sm font-medium text-gray-500 mb-1">Kid 2 Name</div><div className="text-base text-gray-900">{family?.kid2_name || '-'}</div></div>
-        <div><div className="text-sm font-medium text-gray-500 mb-1">Kid 2 Gender</div><div className="text-base text-gray-900">{family?.kid2_gender ? family.kid2_gender.charAt(0).toUpperCase() + family.kid2_gender.slice(1) : '-'}</div></div>
-        <div><div className="text-sm font-medium text-gray-500 mb-1">Kid 2 DOB</div><div className="text-base text-gray-900">{family?.kid2_dob ? new Date(family.kid2_dob).toLocaleDateString() : '-'}</div></div>
+        <div><div className="text-sm font-medium text-gray-500 mb-1">Father's DOB</div><div className="text-base text-gray-900">{employee.father_dob ? new Date(employee.father_dob).toLocaleDateString() : '-'}</div></div>
+        <div><div className="text-sm font-medium text-gray-500 mb-1">Mother's DOB</div><div className="text-base text-gray-900">{employee.mother_dob ? new Date(employee.mother_dob).toLocaleDateString() : '-'}</div></div>
+        <div><div className="text-sm font-medium text-gray-500 mb-1">Spouse Gender</div><div className="text-base text-gray-900">{employee.spouse_gender ? employee.spouse_gender.charAt(0).toUpperCase() + employee.spouse_gender.slice(1) : '-'}</div></div>
+        <div><div className="text-sm font-medium text-gray-500 mb-1">Spouse DOB</div><div className="text-base text-gray-900">{employee.spouse_dob ? new Date(employee.spouse_dob).toLocaleDateString() : '-'}</div></div>
+        <div><div className="text-sm font-medium text-gray-500 mb-1">Kid 1 Name</div><div className="text-base text-gray-900">{employee.kid1_name || '-'}</div></div>
+        <div><div className="text-sm font-medium text-gray-500 mb-1">Kid 1 Gender</div><div className="text-base text-gray-900">{employee.kid1_gender ? employee.kid1_gender.charAt(0).toUpperCase() + employee.kid1_gender.slice(1) : '-'}</div></div>
+        <div><div className="text-sm font-medium text-gray-500 mb-1">Kid 1 DOB</div><div className="text-base text-gray-900">{employee.kid1_dob ? new Date(employee.kid1_dob).toLocaleDateString() : '-'}</div></div>
+        <div><div className="text-sm font-medium text-gray-500 mb-1">Kid 2 Name</div><div className="text-base text-gray-900">{employee.kid2_name || '-'}</div></div>
+        <div><div className="text-sm font-medium text-gray-500 mb-1">Kid 2 Gender</div><div className="text-base text-gray-900">{employee.kid2_gender ? employee.kid2_gender.charAt(0).toUpperCase() + employee.kid2_gender.slice(1) : '-'}</div></div>
+        <div><div className="text-sm font-medium text-gray-500 mb-1">Kid 2 DOB</div><div className="text-base text-gray-900">{employee.kid2_dob ? new Date(employee.kid2_dob).toLocaleDateString() : '-'}</div></div>
       </div>
     </EditableCard>
   );

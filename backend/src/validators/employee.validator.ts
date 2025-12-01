@@ -35,6 +35,8 @@ const isValidDocumentType = (type: string): boolean => {
 
 // Create employee validation
 export const createEmployeeSchema = (data: any) => {
+  console.log('=== EMPLOYEE VALIDATOR CALLED ===');
+  console.log('This is createEmployeeSchema from employee.validator.ts');
   const errors: string[] = [];
   const { body } = data;
 
@@ -95,57 +97,8 @@ export const createEmployeeSchema = (data: any) => {
     errors.push('Status must be one of: active, inactive, terminated');
   }
 
-  if (!body.designation || typeof body.designation !== 'string' || body.designation.trim().length === 0) {
-    errors.push('Designation is required');
-  } else if (body.designation.length > 100) {
-    errors.push('Designation must be less than 100 characters');
-  }
-
-  if (!body.department || typeof body.department !== 'string' || body.department.trim().length === 0) {
-    errors.push('Department is required');
-  } else if (body.department.length > 100) {
-    errors.push('Department must be less than 100 characters');
-  }
-
-  if (body.reporting_to !== undefined && body.reporting_to !== null && body.reporting_to !== '') {
-    if (typeof body.reporting_to !== 'string' || !isValidMongoId(body.reporting_to)) {
-      errors.push('Invalid reporting_to format. Must be a valid MongoDB ObjectId');
-    }
-  }
-
-  // Hire date is now optional
-  if (body.hire_date !== undefined && body.hire_date !== null && body.hire_date !== '') {
-    if (typeof body.hire_date !== 'string' || !isValidDate(body.hire_date)) {
-      errors.push('Invalid hire date format');
-    }
-  }
-
-  // Joining date is required
-  if (!body.joining_date || typeof body.joining_date !== 'string') {
-    errors.push('Joining date is required');
-  } else if (!isValidDate(body.joining_date)) {
-    errors.push('Invalid joining date format');
-  }
-
-  // Time type is required
-  if (!body.time_type || typeof body.time_type !== 'string') {
-    errors.push('Time type is required');
-  } else if (!['full_time', 'contract'].includes(body.time_type)) {
-    errors.push('Time type must be one of: full_time, contract');
-  }
-
-  // Location is required
-  if (!body.location || typeof body.location !== 'string' || body.location.trim().length === 0) {
-    errors.push('Location is required');
-  } else if (body.location.length > 200) {
-    errors.push('Location must be less than 200 characters');
-  }
-
-  if (body.termination_date !== undefined && body.termination_date !== null) {
-    if (typeof body.termination_date !== 'string' || !isValidDate(body.termination_date)) {
-      errors.push('Invalid termination date format');
-    }
-  }
+  // Note: Job-related fields (designation, department, joining_date, time_type, location, etc.)
+  // are now in EmployeeJobInfo model and should not be validated here
 
   return errors.length > 0 ? { success: false, errors } : { success: true };
 };
@@ -218,37 +171,8 @@ export const updateEmployeeSchema = (data: any) => {
       errors.push('Status must be one of: active, inactive, terminated');
     }
 
-    if (body.designation !== undefined) {
-      if (typeof body.designation !== 'string' || body.designation.trim().length === 0) {
-        errors.push('Designation must be a non-empty string');
-      } else if (body.designation.length > 100) {
-        errors.push('Designation must be less than 100 characters');
-      }
-    }
-
-    if (body.department !== undefined) {
-      if (typeof body.department !== 'string' || body.department.trim().length === 0) {
-        errors.push('Department must be a non-empty string');
-      } else if (body.department.length > 100) {
-        errors.push('Department must be less than 100 characters');
-      }
-    }
-
-    if (body.reporting_to !== undefined && body.reporting_to !== null) {
-      if (typeof body.reporting_to !== 'string' || !isValidMongoId(body.reporting_to)) {
-        errors.push('Invalid reporting_to format. Must be a valid MongoDB ObjectId');
-      }
-    }
-
-    if (body.hire_date !== undefined && (typeof body.hire_date !== 'string' || !isValidDate(body.hire_date))) {
-      errors.push('Invalid hire date format');
-    }
-
-    if (body.termination_date !== undefined && body.termination_date !== null) {
-      if (typeof body.termination_date !== 'string' || !isValidDate(body.termination_date)) {
-        errors.push('Invalid termination date format');
-      }
-    }
+    // Note: Job-related fields (designation, department, joining_date, time_type, location, etc.)
+    // are now in EmployeeJobInfo model and should not be validated here
   }
 
   return errors.length > 0 ? { success: false, errors } : { success: true };

@@ -36,3 +36,4 @@ export const DetailSection = ({ label, value }: DetailSectionProps) => {
   );
 };
 
+

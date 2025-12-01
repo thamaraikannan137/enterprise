@@ -5,7 +5,7 @@ import { z } from 'zod';
 import { TextField, Grid } from '@mui/material';
 import { useAppDispatch } from '../../../../../store';
 import { fetchEmployeeWithDetails } from '../../../../../store/slices/employeeSlice';
-import { employeeRelatedService } from '../../../../../services/employeeRelatedService';
+import { employeeService } from '../../../../../services/employeeService';
 import { useToast } from '../../../../../contexts/ToastContext';
 import { EditableCard } from './EditableCard';
 import type { EmployeeWithDetails } from '../../../../../types/employee';
@@ -38,8 +38,7 @@ export const EducationSection = ({ employee, employeeId }: EducationSectionProps
   const { showSuccess, showError } = useToast();
   const [isEditMode, setIsEditMode] = useState(false);
 
-  const education = employee.educationDetail;
-
+  // Education fields are now directly on the Employee model
   const {
     control,
     handleSubmit,
@@ -48,57 +47,68 @@ export const EducationSection = ({ employee, employeeId }: EducationSectionProps
   } = useForm<EducationFormData>({
     resolver: zodResolver(educationSchema),
     defaultValues: {
-      pg_degree: education?.pg_degree || '',
-      pg_specialization: education?.pg_specialization || '',
-      pg_grade: education?.pg_grade || '',
-      pg_university: education?.pg_university || '',
-      pg_completion_year: education?.pg_completion_year || undefined,
-      graduation_degree: education?.graduation_degree || '',
-      graduation_specialization: education?.graduation_specialization || '',
-      graduation_grade: education?.graduation_grade || '',
-      graduation_college: education?.graduation_college || '',
-      graduation_completion_year: education?.graduation_completion_year || undefined,
-      inter_grade: education?.inter_grade || '',
-      inter_school: education?.inter_school || '',
-      inter_completion_year: education?.inter_completion_year || undefined,
+      pg_degree: employee.pg_degree || '',
+      pg_specialization: employee.pg_specialization || '',
+      pg_grade: employee.pg_grade || '',
+      pg_university: employee.pg_university || '',
+      pg_completion_year: employee.pg_completion_year || undefined,
+      graduation_degree: employee.graduation_degree || '',
+      graduation_specialization: employee.graduation_specialization || '',
+      graduation_grade: employee.graduation_grade || '',
+      graduation_college: employee.graduation_college || '',
+      graduation_completion_year: employee.graduation_completion_year || undefined,
+      inter_grade: employee.inter_grade || '',
+      inter_school: employee.inter_school || '',
+      inter_completion_year: employee.inter_completion_year || undefined,
     },
   });
 
   useEffect(() => {
     reset({
-      pg_degree: education?.pg_degree || '',
-      pg_specialization: education?.pg_specialization || '',
-      pg_grade: education?.pg_grade || '',
-      pg_university: education?.pg_university || '',
-      pg_completion_year: education?.pg_completion_year || undefined,
-      graduation_degree: education?.graduation_degree || '',
-      graduation_specialization: education?.graduation_specialization || '',
-      graduation_grade: education?.graduation_grade || '',
-      graduation_college: education?.graduation_college || '',
-      graduation_completion_year: education?.graduation_completion_year || undefined,
-      inter_grade: education?.inter_grade || '',
-      inter_school: education?.inter_school || '',
-      inter_completion_year: education?.inter_completion_year || undefined,
+      pg_degree: employee.pg_degree || '',
+      pg_specialization: employee.pg_specialization || '',
+      pg_grade: employee.pg_grade || '',
+      pg_university: employee.pg_university || '',
+      pg_completion_year: employee.pg_completion_year || undefined,
+      graduation_degree: employee.graduation_degree || '',
+      graduation_specialization: employee.graduation_specialization || '',
+      graduation_grade: employee.graduation_grade || '',
+      graduation_college: employee.graduation_college || '',
+      graduation_completion_year: employee.graduation_completion_year || undefined,
+      inter_grade: employee.inter_grade || '',
+      inter_school: employee.inter_school || '',
+      inter_completion_year: employee.inter_completion_year || undefined,
     });
-  }, [education, reset]);
+  }, [employee, reset]);
 
   const onSubmit = async (data: EducationFormData) => {
     try {
-      await employeeRelatedService.createOrUpdateEducationDetail(employeeId, {
+      // Update employee with education information
+      // Education fields are now directly on the Employee model
+      const updateData: any = {
         ...(data.pg_degree && { pg_degree: data.pg_degree.trim() }),
         ...(data.pg_specialization && { pg_specialization: data.pg_specialization.trim() }),
         ...(data.pg_grade && { pg_grade: data.pg_grade.trim() }),
         ...(data.pg_university && { pg_university: data.pg_university.trim() }),
-        ...(data.pg_completion_year && { pg_completion_year: data.pg_completion_year }),
+        ...(data.pg_completion_year !== undefined && { pg_completion_year: data.pg_completion_year }),
         ...(data.graduation_degree && { graduation_degree: data.graduation_degree.trim() }),
         ...(data.graduation_specialization && { graduation_specialization: data.graduation_specialization.trim() }),
         ...(data.graduation_grade && { graduation_grade: data.graduation_grade.trim() }),
         ...(data.graduation_college && { graduation_college: data.graduation_college.trim() }),
-        ...(data.graduation_completion_year && { graduation_completion_year: data.graduation_completion_year }),
+        ...(data.graduation_completion_year !== undefined && { graduation_completion_year: data.graduation_completion_year }),
         ...(data.inter_grade && { inter_grade: data.inter_grade.trim() }),
         ...(data.inter_school && { inter_school: data.inter_school.trim() }),
-        ...(data.inter_completion_year && { inter_completion_year: data.inter_completion_year }),
+        ...(data.inter_completion_year !== undefined && { inter_completion_year: data.inter_completion_year }),
+      };
+
+      // Remove undefined and empty string values
+      Object.keys(updateData).forEach(key => {
+        if (updateData[key] === undefined || updateData[key] === '') {
+          delete updateData[key];
+        }
       });
+
+      await employeeService.updateEmployee(employeeId, updateData);
       await dispatch(fetchEmployeeWithDetails(employeeId)).unwrap();
       showSuccess('Education details saved successfully!');
       setIsEditMode(false);
@@ -264,29 +274,29 @@ export const EducationSection = ({ employee, employeeId }: EducationSectionProps
         <div>
           <h4 className="text-md font-semibold text-gray-700 mb-3">PG (Pursuing or Passed)</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div><div className="text-sm font-medium text-gray-500 mb-1">Degree</div><div className="text-base text-gray-900">{education?.pg_degree || '-'}</div></div>
-            <div><div className="text-sm font-medium text-gray-500 mb-1">Specialization</div><div className="text-base text-gray-900">{education?.pg_specialization || '-'}</div></div>
-            <div><div className="text-sm font-medium text-gray-500 mb-1">Grade / Percentage</div><div className="text-base text-gray-900">{education?.pg_grade || '-'}</div></div>
-            <div><div className="text-sm font-medium text-gray-500 mb-1">University & City</div><div className="text-base text-gray-900">{education?.pg_university || '-'}</div></div>
-            <div><div className="text-sm font-medium text-gray-500 mb-1">Year of Completion</div><div className="text-base text-gray-900">{education?.pg_completion_year || '-'}</div></div>
+            <div><div className="text-sm font-medium text-gray-500 mb-1">Degree</div><div className="text-base text-gray-900">{employee.pg_degree || '-'}</div></div>
+            <div><div className="text-sm font-medium text-gray-500 mb-1">Specialization</div><div className="text-base text-gray-900">{employee.pg_specialization || '-'}</div></div>
+            <div><div className="text-sm font-medium text-gray-500 mb-1">Grade / Percentage</div><div className="text-base text-gray-900">{employee.pg_grade || '-'}</div></div>
+            <div><div className="text-sm font-medium text-gray-500 mb-1">University & City</div><div className="text-base text-gray-900">{employee.pg_university || '-'}</div></div>
+            <div><div className="text-sm font-medium text-gray-500 mb-1">Year of Completion</div><div className="text-base text-gray-900">{employee.pg_completion_year || '-'}</div></div>
           </div>
         </div>
         <div>
           <h4 className="text-md font-semibold text-gray-700 mb-3">Graduation</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div><div className="text-sm font-medium text-gray-500 mb-1">Degree</div><div className="text-base text-gray-900">{education?.graduation_degree || '-'}</div></div>
-            <div><div className="text-sm font-medium text-gray-500 mb-1">Specialization</div><div className="text-base text-gray-900">{education?.graduation_specialization || '-'}</div></div>
-            <div><div className="text-sm font-medium text-gray-500 mb-1">Grade / Percentage</div><div className="text-base text-gray-900">{education?.graduation_grade || '-'}</div></div>
-            <div><div className="text-sm font-medium text-gray-500 mb-1">College & City</div><div className="text-base text-gray-900">{education?.graduation_college || '-'}</div></div>
-            <div><div className="text-sm font-medium text-gray-500 mb-1">Year of Completion</div><div className="text-base text-gray-900">{education?.graduation_completion_year || '-'}</div></div>
+            <div><div className="text-sm font-medium text-gray-500 mb-1">Degree</div><div className="text-base text-gray-900">{employee.graduation_degree || '-'}</div></div>
+            <div><div className="text-sm font-medium text-gray-500 mb-1">Specialization</div><div className="text-base text-gray-900">{employee.graduation_specialization || '-'}</div></div>
+            <div><div className="text-sm font-medium text-gray-500 mb-1">Grade / Percentage</div><div className="text-base text-gray-900">{employee.graduation_grade || '-'}</div></div>
+            <div><div className="text-sm font-medium text-gray-500 mb-1">College & City</div><div className="text-base text-gray-900">{employee.graduation_college || '-'}</div></div>
+            <div><div className="text-sm font-medium text-gray-500 mb-1">Year of Completion</div><div className="text-base text-gray-900">{employee.graduation_completion_year || '-'}</div></div>
           </div>
         </div>
         <div>
           <h4 className="text-md font-semibold text-gray-700 mb-3">Inter/12th</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div><div className="text-sm font-medium text-gray-500 mb-1">Grade / Percentage</div><div className="text-base text-gray-900">{education?.inter_grade || '-'}</div></div>
-            <div><div className="text-sm font-medium text-gray-500 mb-1">College / School & City</div><div className="text-base text-gray-900">{education?.inter_school || '-'}</div></div>
-            <div><div className="text-sm font-medium text-gray-500 mb-1">Year of Completion</div><div className="text-base text-gray-900">{education?.inter_completion_year || '-'}</div></div>
+            <div><div className="text-sm font-medium text-gray-500 mb-1">Grade / Percentage</div><div className="text-base text-gray-900">{employee.inter_grade || '-'}</div></div>
+            <div><div className="text-sm font-medium text-gray-500 mb-1">College / School & City</div><div className="text-base text-gray-900">{employee.inter_school || '-'}</div></div>
+            <div><div className="text-sm font-medium text-gray-500 mb-1">Year of Completion</div><div className="text-base text-gray-900">{employee.inter_completion_year || '-'}</div></div>
           </div>
         </div>
       </div>

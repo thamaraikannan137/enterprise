@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../store';
 import { createEmployee } from '../store/slices/employeeSlice';
 import { EmployeeCreateForm } from '../components/forms/EmployeeCreateForm';
 import { MuiButton } from '../components/common';
-import { employeeRelatedService } from '../services/employeeRelatedService';
+import { employeeJobInfoService } from '../services/employeeJobInfoService';
 import type { CreateEmployeeWithDetailsInput } from '../types/employeeRelated';
 
 export const EmployeeCreatePage = () => {
@@ -19,101 +19,120 @@ export const EmployeeCreatePage = () => {
     setIsSubmitting(true);
     
     try {
-      // Step 1: Create employee (without email/mobile as they're not in Employee model)
-      const { email, mobile_number, ...employeeData } = data.employee;
+      console.log('Full data received from form:', JSON.stringify(data, null, 2));
+      console.log('Employee data:', JSON.stringify(data.employee, null, 2));
+      
+      // Step 1: Create employee with all personal information
+      // Map email to work_email (the form uses 'email' but backend expects 'work_email')
+      // Remove job-related fields as they will go to EmployeeJobInfo
+      const { 
+        email, 
+        designation,
+        department,
+        joining_date,
+        time_type,
+        location,
+        legal_entity,
+        business_unit,
+        worker_type,
+        probation_policy,
+        notice_period,
+        reporting_to,
+        secondary_job_titles,
+        status,
+        ...restEmployeeData 
+      } = data.employee;
+      
+      console.log('Extracted job fields:', {
+        designation,
+        department,
+        joining_date,
+        time_type,
+        location,
+      });
+      
+      const employeeData: any = {
+        ...restEmployeeData,
+        // Map email to work_email if email is provided
+        work_email: email,
+        // mobile_number is already in the correct field name
+        mobile_number: data.employee.mobile_number,
+      };
+      
       const employee = await dispatch(createEmployee(employeeData)).unwrap();
       const employeeId = employee.id;
 
-      // Step 2: Create related data in parallel (where possible)
+      // Step 2: Create EmployeeJobInfo with job-related fields
       const promises: Promise<any>[] = [];
 
-      // Create primary contact with email and mobile_number if provided
-      if (email || mobile_number) {
-        promises.push(
-          employeeRelatedService.createContact({
-            employee_id: employeeId,
-            contact_type: 'primary',
-            email: email || undefined,
-            phone: mobile_number || undefined,
-            is_current: true,
-            valid_from: new Date().toISOString(),
-          })
-        );
+      // Extract job-related fields and create EmployeeJobInfo
+      // Use the extracted variables from the destructuring above
+      // Ensure required fields are present and not empty strings
+      if (!designation || designation.trim() === '') {
+        throw new Error('Designation is required');
+      }
+      if (!department || department.trim() === '') {
+        throw new Error('Department is required');
+      }
+      if (!joining_date || joining_date.trim() === '') {
+        throw new Error('Joining date is required');
+      }
+      if (!time_type) {
+        throw new Error('Time type is required');
+      }
+      if (!location || location.trim() === '') {
+        throw new Error('Location is required');
       }
 
-      // Create additional contacts
-      if (data.contacts && data.contacts.length > 0) {
-        data.contacts.forEach((contact) => {
-          promises.push(
-            employeeRelatedService.createContact({
-              ...contact,
-              employee_id: employeeId,
-            })
-          );
-        });
+      const jobInfoData: any = {
+        employee_id: employeeId,
+        designation: designation.trim(),
+        department: department.trim(),
+        joining_date: joining_date.trim(),
+        time_type: time_type,
+        location: location.trim(),
+        status: status || 'active',
+        is_current: true,
+        effective_from: new Date().toISOString(),
+      };
+
+      // Add optional fields if they exist
+      if (legal_entity) {
+        jobInfoData.legal_entity = legal_entity;
+      }
+      if (business_unit) {
+        jobInfoData.business_unit = business_unit;
+      }
+      if (worker_type) {
+        jobInfoData.worker_type = worker_type;
+      }
+      if (probation_policy) {
+        jobInfoData.probation_policy = probation_policy;
+      }
+      if (notice_period) {
+        jobInfoData.notice_period = notice_period;
+      }
+      if (reporting_to) {
+        jobInfoData.reporting_to = reporting_to;
+      }
+      if (secondary_job_titles && secondary_job_titles.length > 0) {
+        jobInfoData.secondary_job_titles = secondary_job_titles;
       }
 
-      // Create compensation
-      if (data.compensation) {
-        promises.push(
-          employeeRelatedService.createCompensation({
-            ...data.compensation,
-            employee_id: employeeId,
-          })
-        );
-      }
+      console.log('Creating EmployeeJobInfo with data:', JSON.stringify(jobInfoData, null, 2));
+      console.log('Field values:', {
+        designation: designation,
+        department: department,
+        joining_date: joining_date,
+        time_type: time_type,
+        location: location,
+      });
+      
+      promises.push(employeeJobInfoService.createJobInfo(jobInfoData));
 
-      // Create documents
-      if (data.documents && data.documents.length > 0) {
-        data.documents.forEach((doc) => {
-          if (doc.document_name && doc.file_path) {
-            promises.push(
-              employeeRelatedService.createDocument({
-                ...doc,
-                employee_id: employeeId,
-              })
-            );
-          }
-        });
-      }
-
-      // Create work pass
-      if (data.workPass) {
-        promises.push(
-          employeeRelatedService.createWorkPass({
-            ...data.workPass,
-            employee_id: employeeId,
-          })
-        );
-      }
-
-      // Create qualifications
-      if (data.qualifications && data.qualifications.length > 0) {
-        data.qualifications.forEach((qual) => {
-          if (qual.degree && qual.institution && qual.completion_year) {
-            promises.push(
-              employeeRelatedService.createQualification({
-                ...qual,
-                employee_id: employeeId,
-              })
-            );
-          }
-        });
-      }
-
-      // Create certifications
-      if (data.certifications && data.certifications.length > 0) {
-        data.certifications.forEach((cert) => {
-          if (cert.certification_name && cert.issue_date) {
-            promises.push(
-              employeeRelatedService.createCertification({
-                ...cert,
-                employee_id: employeeId,
-              })
-            );
-          }
-        });
-      }
+      // Note: Contact information is now part of Employee model, so no separate contact creation needed
+      // Note: Compensation, documents, work pass, qualifications, and certifications are not collected
+      // in the create form and should be added later from the employee profile page if needed
 
       // Wait for all related data to be created
       await Promise.allSettled(promises);

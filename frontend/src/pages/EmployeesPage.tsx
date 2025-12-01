@@ -32,7 +32,13 @@ export const EmployeesPage = () => {
   }, [dispatch, showError]);
 
   const handleEmployeeClick = (employee: Employee) => {
-    navigate(`/employees/${employee.id}`);
+    // Handle both id and _id for compatibility
+    const employeeId = employee.id || (employee as any)._id;
+    if (employeeId) {
+      navigate(`/employees/${employeeId}`);
+    } else {
+      console.error('Employee ID is missing:', employee);
+    }
   };
 
   const handleCreateClick = () => {

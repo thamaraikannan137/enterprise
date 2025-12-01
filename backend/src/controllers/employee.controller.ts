@@ -11,10 +11,6 @@ class EmployeeController {
       if (req.file) {
         req.body.profile_photo_path = `uploads/profile-photos/${req.file.filename}`;
       }
-      // Normalize empty string to null for reporting_to
-      if (req.body.reporting_to === '') {
-        req.body.reporting_to = null;
-      }
       const employee = await employeeService.createEmployee(req.body);
       sendSuccess(res, 'Employee created successfully', employee, 201);
     } catch (error) {
@@ -50,10 +46,6 @@ class EmployeeController {
       // If a profile photo file was uploaded, add its path to the request body
       if (req.file) {
         req.body.profile_photo_path = `uploads/profile-photos/${req.file.filename}`;
-      }
-      // Normalize empty string to null for reporting_to
-      if (req.body.reporting_to === '') {
-        req.body.reporting_to = null;
       }
       const employee = await employeeService.updateEmployee(id, req.body);
       sendSuccess(res, 'Employee updated successfully', employee);

@@ -1,4 +1,5 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import {
   Box,
   Menu,
@@ -18,12 +19,9 @@ import {
   Share,
 } from '@mui/icons-material';
 import { getImageUrl } from '../../../utils/imageUtils';
+import { employeeJobInfoService } from '../../../services/employeeJobInfoService';
 import type { EmployeeWithDetails } from '../../../types/employee';
-
-type EmployeeWithJobInfo = EmployeeWithDetails & {
-  designation?: string;
-  department?: string;
-};
+import type { EmployeeJobInfo } from '../../../types/employeeJobInfo';
 
 interface EmployeeProfileHeaderProps {
   employee: EmployeeWithDetails;
@@ -39,6 +37,9 @@ export const EmployeeProfileHeader = ({
   onNavigateToEdit,
 }: EmployeeProfileHeaderProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [currentJobInfo, setCurrentJobInfo] = useState<EmployeeJobInfo | null>(null);
+  const { id: employeeIdFromUrl } = useParams<{ id: string }>();
+  
   const fullName = useMemo(
     () => `${employee.first_name} ${employee.middle_name ? employee.middle_name + ' ' : ''}${employee.last_name}`,
     [employee.first_name, employee.middle_name, employee.last_name]
@@ -49,6 +50,32 @@ export const EmployeeProfileHeader = ({
     () => getImageUrl(employee.profile_photo_path),
     [employee.profile_photo_path]
   );
+
+  // Fetch current job info
+  useEffect(() => {
+    const fetchJobInfo = async () => {
+      // Try to get employee ID from employee object or URL params
+      const employeeId = employee.id || (employee as any)._id || employeeIdFromUrl;
+      
+      if (!employeeId) {
+        return;
+      }
+
+      try {
+        const jobInfo = await employeeJobInfoService.getCurrentJobInfo(employeeId);
+        if (jobInfo) {
+          setCurrentJobInfo(jobInfo);
+        }
+      } catch (error: any) {
+        // If 404, that's okay - no job info exists yet
+        if (error?.response?.status !== 404) {
+          console.error('EmployeeProfileHeader: Failed to fetch job info:', error);
+        }
+      }
+    };
+    
+    fetchJobInfo();
+  }, [employee.id, (employee as any)._id, employeeIdFromUrl]);
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -81,67 +108,71 @@ export const EmployeeProfileHeader = ({
     }
   };
 
-  // Get contact info from employee data or use defaults
-  const employeeWithJob = employee as EmployeeWithJobInfo;
-  
-  // Get primary contact info from contacts array
-  const primaryContact = useMemo(() => {
-    if (!employee.contacts || employee.contacts.length === 0) {
-      return null;
-    }
-    // Find primary contact, or use the first contact if no primary found
-    return employee.contacts.find(contact => contact.contact_type === 'primary') || employee.contacts[0];
-  }, [employee.contacts]);
-
-  // Get location from employee.location or from primary contact
+  // Get location from job info or employee address
   const getLocation = (): string => {
-    // First try employee.location (if available)
-    if ((employee as any).location) {
-      return (employee as any).location;
+    // First try job info location
+    if (currentJobInfo?.location) {
+      return currentJobInfo.location;
     }
-    // Then try to construct from primary contact address
-    if (primaryContact) {
-      const addressParts = [
-        primaryContact.city,
-        primaryContact.country
-      ].filter(Boolean);
-      if (addressParts.length > 0) {
-        return addressParts.join(', ');
+    // Then try to construct from employee address
+    const addressParts = [
+      employee.current_city_address || employee.current_city,
+      employee.current_country
+    ].filter(Boolean);
+    if (addressParts.length > 0) {
+      return addressParts.join(', ');
+    }
+    return '-';
+  };
+
+  // Get email from employee (contact info is now directly on employee)
+  const getEmail = (): string => {
+    if (employee.work_email) {
+      return employee.work_email;
+    }
+    if (employee.personal_email) {
+      return employee.personal_email;
+    }
+    return '-';
+  };
+
+  // Get phone from employee (contact info is now directly on employee)
+  const getPhone = (): string => {
+    if (employee.mobile_number) {
+      return employee.mobile_number;
+    }
+    if (employee.work_number) {
+      return employee.work_number;
+    }
+    return '-';
+  };
+
+  // Get reporting manager name
+  const getReportingTo = (): string => {
+    if (currentJobInfo?.reportingToEmployee) {
+      const reportingTo = currentJobInfo.reportingToEmployee;
+      return `${reportingTo.first_name} ${reportingTo.last_name}`;
+    }
+    // If reporting_to is an object, extract name
+    if (currentJobInfo?.reporting_to && typeof currentJobInfo.reporting_to === 'object') {
+      const reportingTo = currentJobInfo.reporting_to as any;
+      if (reportingTo.first_name && reportingTo.last_name) {
+        return `${reportingTo.first_name} ${reportingTo.last_name}`;
       }
     }
-    return '-';
-  };
-
-  // Get email from primary contact
-  const getEmail = (): string => {
-    if (primaryContact?.email) {
-      return primaryContact.email;
-    }
-    return '-';
-  };
-
-  // Get phone from primary contact
-  const getPhone = (): string => {
-    if (primaryContact?.phone) {
-      return primaryContact.phone;
-    }
-    if (primaryContact?.alternate_phone) {
-      return primaryContact.alternate_phone;
-    }
-    return '-';
+    return 'No Manager';
   };
   
   const contactInfo = useMemo(() => ({
     location: getLocation(),
     email: getEmail(),
     phone: getPhone(),
-    designation: employeeWithJob.designation || '-',
-    department: employeeWithJob.department || '-',
-    reportingTo: employee.reportingToEmployee
-      ? `${employee.reportingToEmployee.first_name} ${employee.reportingToEmployee.last_name}`
-      : 'No Manager',
+    designation: currentJobInfo?.designation || '-',
+    department: currentJobInfo?.department || '-',
+    reportingTo: getReportingTo(),
     employeeNo: employee.employee_code || '-',
-  }), [employee, employeeWithJob, primaryContact]);
+    status: currentJobInfo?.status || 'active',
+  }), [employee, currentJobInfo]);
 
   return (
     <div className="bg-white rounded-lg shadow-sm p-6 mb-4">
@@ -260,8 +291,8 @@ export const EmployeeProfileHeader = ({
             {/* Status Badge */}
             <div className="mt-3">
               <Chip
-                label={employee.status}
-                color={getStatusColor(employee.status)}
+                label={contactInfo.status}
+                color={getStatusColor(contactInfo.status)}
                 size="small"
               />
             </div>

@@ -25,7 +25,6 @@ export const employeeService = {
     
     if (filters?.page) params.append('page', filters.page.toString());
     if (filters?.limit) params.append('limit', filters.limit.toString());
-    if (filters?.status) params.append('status', filters.status);
     if (filters?.search) params.append('search', filters.search);
 
     const queryString = params.toString();
@@ -83,7 +82,7 @@ export const employeeService = {
   },
 
   /**
-   * Delete employee (soft delete - sets status to terminated)
+   * Delete employee
    */
   deleteEmployee: async (id: string): Promise<void> => {
     await apiClient.delete<ApiResponse<void>>(`${API_ENDPOINTS.EMPLOYEES}/${id}`);

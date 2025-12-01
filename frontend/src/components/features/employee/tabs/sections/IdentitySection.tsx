@@ -5,7 +5,7 @@ import { z } from 'zod';
 import { TextField, Grid } from '@mui/material';
 import { useAppDispatch } from '../../../../../store';
 import { fetchEmployeeWithDetails } from '../../../../../store/slices/employeeSlice';
-import { employeeRelatedService } from '../../../../../services/employeeRelatedService';
+import { employeeService } from '../../../../../services/employeeService';
 import { useToast } from '../../../../../contexts/ToastContext';
 import { EditableCard } from './EditableCard';
 import type { EmployeeWithDetails } from '../../../../../types/employee';
@@ -33,8 +33,7 @@ export const IdentitySection = ({ employee, employeeId }: IdentitySectionProps) 
   const { showSuccess, showError } = useToast();
   const [isEditMode, setIsEditMode] = useState(false);
 
-  const identity = employee.identity;
-
+  // Identity fields are now directly on the Employee model
   const {
     control,
     handleSubmit,
@@ -43,33 +42,35 @@ export const IdentitySection = ({ employee, employeeId }: IdentitySectionProps) 
   } = useForm<IdentityFormData>({
     resolver: zodResolver(identitySchema),
     defaultValues: {
-      aadhar_number: identity?.aadhar_number || '',
-      pan_number: identity?.pan_number || '',
-      uan_number: identity?.uan_number || '',
-      driving_license_number: identity?.driving_license_number || '',
-      passport_name: identity?.passport_name || '',
-      passport_number: identity?.passport_number || '',
-      passport_valid_upto: identity?.passport_valid_upto?.split('T')[0] || '',
-      visa_type: identity?.visa_type || '',
+      aadhar_number: employee.aadhar_number || '',
+      pan_number: employee.pan_number || '',
+      uan_number: employee.uan_number || '',
+      driving_license_number: employee.driving_license_number || '',
+      passport_name: employee.passport_name || '',
+      passport_number: employee.passport_number || '',
+      passport_valid_upto: employee.passport_valid_upto ? new Date(employee.passport_valid_upto).toISOString().split('T')[0] : '',
+      visa_type: employee.visa_type || '',
     },
   });
 
   useEffect(() => {
     reset({
-      aadhar_number: identity?.aadhar_number || '',
-      pan_number: identity?.pan_number || '',
-      uan_number: identity?.uan_number || '',
-      driving_license_number: identity?.driving_license_number || '',
-      passport_name: identity?.passport_name || '',
-      passport_number: identity?.passport_number || '',
-      passport_valid_upto: identity?.passport_valid_upto?.split('T')[0] || '',
-      visa_type: identity?.visa_type || '',
+      aadhar_number: employee.aadhar_number || '',
+      pan_number: employee.pan_number || '',
+      uan_number: employee.uan_number || '',
+      driving_license_number: employee.driving_license_number || '',
+      passport_name: employee.passport_name || '',
+      passport_number: employee.passport_number || '',
+      passport_valid_upto: employee.passport_valid_upto ? new Date(employee.passport_valid_upto).toISOString().split('T')[0] : '',
+      visa_type: employee.visa_type || '',
     });
-  }, [identity, reset]);
+  }, [employee, reset]);
 
   const onSubmit = async (data: IdentityFormData) => {
     try {
-      await employeeRelatedService.createOrUpdateIdentity(employeeId, {
+      // Update employee with identity information
+      // Identity fields are now directly on the Employee model
+      const updateData: any = {
         ...(data.aadhar_number && { aadhar_number: data.aadhar_number.trim() }),
         ...(data.pan_number && { pan_number: data.pan_number.trim() }),
         ...(data.uan_number && { uan_number: data.uan_number.trim() }),
@@ -78,7 +79,16 @@ export const IdentitySection = ({ employee, employeeId }: IdentitySectionProps) 
         ...(data.passport_number && { passport_number: data.passport_number.trim() }),
         ...(data.passport_valid_upto && { passport_valid_upto: data.passport_valid_upto }),
         ...(data.visa_type && { visa_type: data.visa_type.trim() }),
+      };
+
+      // Remove undefined and empty string values
+      Object.keys(updateData).forEach(key => {
+        if (updateData[key] === undefined || updateData[key] === '') {
+          delete updateData[key];
+        }
       });
+
+      await employeeService.updateEmployee(employeeId, updateData);
       await dispatch(fetchEmployeeWithDetails(employeeId)).unwrap();
       showSuccess('Identity details saved successfully!');
       setIsEditMode(false);
@@ -180,14 +190,14 @@ export const IdentitySection = ({ employee, employeeId }: IdentitySectionProps) 
       }
     >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div><div className="text-sm font-medium text-gray-500 mb-1">Aadhar Number</div><div className="text-base text-gray-900">{identity?.aadhar_number || '-'}</div></div>
-        <div><div className="text-sm font-medium text-gray-500 mb-1">PAN No.</div><div className="text-base text-gray-900">{identity?.pan_number || '-'}</div></div>
-        <div><div className="text-sm font-medium text-gray-500 mb-1">UAN Number</div><div className="text-base text-gray-900">{identity?.uan_number || '-'}</div></div>
-        <div><div className="text-sm font-medium text-gray-500 mb-1">Driving License No.</div><div className="text-base text-gray-900">{identity?.driving_license_number || '-'}</div></div>
-        <div><div className="text-sm font-medium text-gray-500 mb-1">Name as on Passport</div><div className="text-base text-gray-900">{identity?.passport_name || '-'}</div></div>
-        <div><div className="text-sm font-medium text-gray-500 mb-1">Passport No.</div><div className="text-base text-gray-900">{identity?.passport_number || '-'}</div></div>
-        <div><div className="text-sm font-medium text-gray-500 mb-1">Passport Valid Upto</div><div className="text-base text-gray-900">{identity?.passport_valid_upto ? new Date(identity.passport_valid_upto).toLocaleDateString() : '-'}</div></div>
-        <div><div className="text-sm font-medium text-gray-500 mb-1">Visa Type</div><div className="text-base text-gray-900">{identity?.visa_type || '-'}</div></div>
+        <div><div className="text-sm font-medium text-gray-500 mb-1">Aadhar Number</div><div className="text-base text-gray-900">{employee.aadhar_number || '-'}</div></div>
+        <div><div className="text-sm font-medium text-gray-500 mb-1">PAN No.</div><div className="text-base text-gray-900">{employee.pan_number || '-'}</div></div>
+        <div><div className="text-sm font-medium text-gray-500 mb-1">UAN Number</div><div className="text-base text-gray-900">{employee.uan_number || '-'}</div></div>
+        <div><div className="text-sm font-medium text-gray-500 mb-1">Driving License No.</div><div className="text-base text-gray-900">{employee.driving_license_number || '-'}</div></div>
+        <div><div className="text-sm font-medium text-gray-500 mb-1">Name as on Passport</div><div className="text-base text-gray-900">{employee.passport_name || '-'}</div></div>
+        <div><div className="text-sm font-medium text-gray-500 mb-1">Passport No.</div><div className="text-base text-gray-900">{employee.passport_number || '-'}</div></div>
+        <div><div className="text-sm font-medium text-gray-500 mb-1">Passport Valid Upto</div><div className="text-base text-gray-900">{employee.passport_valid_upto ? new Date(employee.passport_valid_upto).toLocaleDateString() : '-'}</div></div>
+        <div><div className="text-sm font-medium text-gray-500 mb-1">Visa Type</div><div className="text-base text-gray-900">{employee.visa_type || '-'}</div></div>
       </div>
     </EditableCard>
   );

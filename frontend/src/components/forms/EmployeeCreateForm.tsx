@@ -120,13 +120,15 @@ export const EmployeeCreateForm = ({ onSubmit, isLoading = false }: EmployeeCrea
         return; // Don't proceed if validation fails
       }
 
-      // Prepare employee data (email and mobile_number will be used to create contact)
+      // Prepare employee data with all personal information
+      // Note: email maps to work_email, job fields will be sent separately to create EmployeeJobInfo
       const employeeData = {
         first_name: data.first_name,
         last_name: data.last_name,
         date_of_birth: data.date_of_birth,
-        email: data.email,
+        email: data.email, // Will be mapped to work_email in EmployeeCreatePage
         mobile_number: data.mobile_number,
+        // Job fields - these will be used to create EmployeeJobInfo
         designation: data.designation,
         department: data.department,
         joining_date: data.joining_date,

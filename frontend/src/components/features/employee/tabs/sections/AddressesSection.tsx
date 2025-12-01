@@ -5,11 +5,10 @@ import { z } from 'zod';
 import { TextField, Grid } from '@mui/material';
 import { useAppDispatch } from '../../../../../store';
 import { fetchEmployeeWithDetails } from '../../../../../store/slices/employeeSlice';
-import { employeeRelatedService } from '../../../../../services/employeeRelatedService';
+import { employeeService } from '../../../../../services/employeeService';
 import { useToast } from '../../../../../contexts/ToastContext';
 import { EditableCard } from './EditableCard';
 import type { EmployeeWithDetails } from '../../../../../types/employee';
-import type { CreateEmployeeContactInput } from '../../../../../types/employeeRelated';
 
 interface AddressesSectionProps {
   employee: EmployeeWithDetails;
@@ -38,9 +37,7 @@ export const AddressesSection = ({ employee, employeeId }: AddressesSectionProps
   const { showSuccess, showError } = useToast();
   const [isEditMode, setIsEditMode] = useState(false);
 
-  const currentAddress = employee.contacts?.find(c => c.is_current && c.contact_type === 'primary');
-  const permanentAddress = employee.contacts?.find(c => !c.is_current && c.contact_type === 'primary');
-
+  // Address fields are now directly on the Employee model
   const {
     control,
     handleSubmit,
@@ -49,88 +46,65 @@ export const AddressesSection = ({ employee, employeeId }: AddressesSectionProps
   } = useForm<AddressesFormData>({
     resolver: zodResolver(addressesSchema),
     defaultValues: {
-      current_address_line1: currentAddress?.address_line1 || '',
-      current_address_line2: currentAddress?.address_line2 || '',
-      current_city: currentAddress?.city || '',
-      current_state: currentAddress?.country || '',
-      current_postal_code: currentAddress?.postal_code || '',
-      current_country: currentAddress?.country || '',
-      permanent_address_line1: permanentAddress?.address_line1 || '',
-      permanent_address_line2: permanentAddress?.address_line2 || '',
-      permanent_city: permanentAddress?.city || '',
-      permanent_state: permanentAddress?.country || '',
-      permanent_postal_code: permanentAddress?.postal_code || '',
-      permanent_country: permanentAddress?.country || '',
+      current_address_line1: employee.current_address_line1 || '',
+      current_address_line2: employee.current_address_line2 || '',
+      current_city: employee.current_city_address || employee.current_city || '',
+      current_state: employee.current_state || '',
+      current_postal_code: employee.current_postal_code || '',
+      current_country: employee.current_country || '',
+      permanent_address_line1: employee.permanent_address_line1 || '',
+      permanent_address_line2: employee.permanent_address_line2 || '',
+      permanent_city: employee.permanent_city || '',
+      permanent_state: employee.permanent_state || '',
+      permanent_postal_code: employee.permanent_postal_code || '',
+      permanent_country: employee.permanent_country || '',
     },
   });
 
   useEffect(() => {
-    const current = employee.contacts?.find(c => c.is_current && c.contact_type === 'primary');
-    const permanent = employee.contacts?.find(c => !c.is_current && c.contact_type === 'primary');
     reset({
-      current_address_line1: current?.address_line1 || '',
-      current_address_line2: current?.address_line2 || '',
-      current_city: current?.city || '',
-      current_state: current?.country || '',
-      current_postal_code: current?.postal_code || '',
-      current_country: current?.country || '',
-      permanent_address_line1: permanent?.address_line1 || '',
-      permanent_address_line2: permanent?.address_line2 || '',
-      permanent_city: permanent?.city || '',
-      permanent_state: permanent?.country || '',
-      permanent_postal_code: permanent?.postal_code || '',
-      permanent_country: permanent?.country || '',
+      current_address_line1: employee.current_address_line1 || '',
+      current_address_line2: employee.current_address_line2 || '',
+      current_city: employee.current_city_address || employee.current_city || '',
+      current_state: employee.current_state || '',
+      current_postal_code: employee.current_postal_code || '',
+      current_country: employee.current_country || '',
+      permanent_address_line1: employee.permanent_address_line1 || '',
+      permanent_address_line2: employee.permanent_address_line2 || '',
+      permanent_city: employee.permanent_city || '',
+      permanent_state: employee.permanent_state || '',
+      permanent_postal_code: employee.permanent_postal_code || '',
+      permanent_country: employee.permanent_country || '',
     });
   }, [employee, reset]);
 
   const onSubmit = async (data: AddressesFormData) => {
     try {
-      // Update or create current address
-      if (currentAddress) {
-        await employeeRelatedService.updateContact(currentAddress.id, {
-          address_line1: data.current_address_line1,
-          address_line2: data.current_address_line2,
-          city: data.current_city,
-          postal_code: data.current_postal_code,
-          country: data.current_country,
-        });
-      } else if (data.current_address_line1 || data.current_city) {
-        await employeeRelatedService.createContact({
-          employee_id: employeeId,
-          contact_type: 'primary',
-          address_line1: data.current_address_line1,
-          address_line2: data.current_address_line2,
-          city: data.current_city,
-          postal_code: data.current_postal_code,
-          country: data.current_country,
-          is_current: true,
-          valid_from: new Date().toISOString(),
-        });
-      }
+      // Update employee with address information
+      // Address fields are now directly on the Employee model
+      const updateData: any = {
+        current_address_line1: data.current_address_line1 || undefined,
+        current_address_line2: data.current_address_line2 || undefined,
+        current_city_address: data.current_city || undefined,
+        current_state: data.current_state || undefined,
+        current_postal_code: data.current_postal_code || undefined,
+        current_country: data.current_country || undefined,
+        permanent_address_line1: data.permanent_address_line1 || undefined,
+        permanent_address_line2: data.permanent_address_line2 || undefined,
+        permanent_city: data.permanent_city || undefined,
+        permanent_state: data.permanent_state || undefined,
+        permanent_postal_code: data.permanent_postal_code || undefined,
+        permanent_country: data.permanent_country || undefined,
+      };
 
-      // Update or create permanent address
-      if (permanentAddress) {
-        await employeeRelatedService.updateContact(permanentAddress.id, {
-          address_line1: data.permanent_address_line1,
-          address_line2: data.permanent_address_line2,
-          city: data.permanent_city,
-          postal_code: data.permanent_postal_code,
-          country: data.permanent_country,
-        });
-      } else if (data.permanent_address_line1 || data.permanent_city) {
-        await employeeRelatedService.createContact({
-          employee_id: employeeId,
-          contact_type: 'primary',
-          address_line1: data.permanent_address_line1,
-          address_line2: data.permanent_address_line2,
-          city: data.permanent_city,
-          postal_code: data.permanent_postal_code,
-          country: data.permanent_country,
-          is_current: false,
-          valid_from: new Date().toISOString(),
-        });
-      }
+      // Remove undefined values
+      Object.keys(updateData).forEach(key => {
+        if (updateData[key] === undefined || updateData[key] === '') {
+          delete updateData[key];
+        }
+      });
 
+      await employeeService.updateEmployee(employeeId, updateData);
       await dispatch(fetchEmployeeWithDetails(employeeId)).unwrap();
       showSuccess('Addresses saved successfully!');
       setIsEditMode(false);
@@ -282,21 +256,23 @@ export const AddressesSection = ({ employee, employeeId }: AddressesSectionProps
         <div>
           <h4 className="text-md font-semibold text-gray-700 mb-3">Current Address</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div><div className="text-sm font-medium text-gray-500 mb-1">Address Line 1</div><div className="text-base text-gray-900">{currentAddress?.address_line1 || '-'}</div></div>
-            <div><div className="text-sm font-medium text-gray-500 mb-1">Address Line 2</div><div className="text-base text-gray-900">{currentAddress?.address_line2 || '-'}</div></div>
-            <div><div className="text-sm font-medium text-gray-500 mb-1">City</div><div className="text-base text-gray-900">{currentAddress?.city || '-'}</div></div>
-            <div><div className="text-sm font-medium text-gray-500 mb-1">Postal Code</div><div className="text-base text-gray-900">{currentAddress?.postal_code || '-'}</div></div>
-            <div><div className="text-sm font-medium text-gray-500 mb-1">Country</div><div className="text-base text-gray-900">{currentAddress?.country || '-'}</div></div>
+            <div><div className="text-sm font-medium text-gray-500 mb-1">Address Line 1</div><div className="text-base text-gray-900">{employee.current_address_line1 || '-'}</div></div>
+            <div><div className="text-sm font-medium text-gray-500 mb-1">Address Line 2</div><div className="text-base text-gray-900">{employee.current_address_line2 || '-'}</div></div>
+            <div><div className="text-sm font-medium text-gray-500 mb-1">City</div><div className="text-base text-gray-900">{employee.current_city_address || employee.current_city || '-'}</div></div>
+            <div><div className="text-sm font-medium text-gray-500 mb-1">State</div><div className="text-base text-gray-900">{employee.current_state || '-'}</div></div>
+            <div><div className="text-sm font-medium text-gray-500 mb-1">Postal Code</div><div className="text-base text-gray-900">{employee.current_postal_code || '-'}</div></div>
+            <div><div className="text-sm font-medium text-gray-500 mb-1">Country</div><div className="text-base text-gray-900">{employee.current_country || '-'}</div></div>
           </div>
         </div>
         <div>
           <h4 className="text-md font-semibold text-gray-700 mb-3">Permanent Address</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div><div className="text-sm font-medium text-gray-500 mb-1">Address Line 1</div><div className="text-base text-gray-900">{permanentAddress?.address_line1 || '-'}</div></div>
-            <div><div className="text-sm font-medium text-gray-500 mb-1">Address Line 2</div><div className="text-base text-gray-900">{permanentAddress?.address_line2 || '-'}</div></div>
-            <div><div className="text-sm font-medium text-gray-500 mb-1">City</div><div className="text-base text-gray-900">{permanentAddress?.city || '-'}</div></div>
-            <div><div className="text-sm font-medium text-gray-500 mb-1">Postal Code</div><div className="text-base text-gray-900">{permanentAddress?.postal_code || '-'}</div></div>
-            <div><div className="text-sm font-medium text-gray-500 mb-1">Country</div><div className="text-base text-gray-900">{permanentAddress?.country || '-'}</div></div>
+            <div><div className="text-sm font-medium text-gray-500 mb-1">Address Line 1</div><div className="text-base text-gray-900">{employee.permanent_address_line1 || '-'}</div></div>
+            <div><div className="text-sm font-medium text-gray-500 mb-1">Address Line 2</div><div className="text-base text-gray-900">{employee.permanent_address_line2 || '-'}</div></div>
+            <div><div className="text-sm font-medium text-gray-500 mb-1">City</div><div className="text-base text-gray-900">{employee.permanent_city || '-'}</div></div>
+            <div><div className="text-sm font-medium text-gray-500 mb-1">State</div><div className="text-base text-gray-900">{employee.permanent_state || '-'}</div></div>
+            <div><div className="text-sm font-medium text-gray-500 mb-1">Postal Code</div><div className="text-base text-gray-900">{employee.permanent_postal_code || '-'}</div></div>
+            <div><div className="text-sm font-medium text-gray-500 mb-1">Country</div><div className="text-base text-gray-900">{employee.permanent_country || '-'}</div></div>
           </div>
         </div>
       </div>

@@ -61,3 +61,4 @@ export const DepartmentDetailView = ({ department }: { department: Department | 
   );
 };
 
+

@@ -27,7 +27,19 @@ export const EditableCard = ({
   modalMaxWidth = 'md',
 }: EditableCardProps) => {
   const handleSave = () => {
-    onSave();
+    // Find the form inside the modal and submit it
+    // This triggers the form's onSubmit handler which will call handleSubmit(onSubmit)
+    const modal = document.querySelector('[role="dialog"]');
+    const form = modal?.querySelector('form');
+    if (form) {
+      form.requestSubmit();
+    } else {
+      // Fallback: call onSave directly if no form is found
+      // This handles cases where onSave is a direct function call
+      if (typeof onSave === 'function') {
+        onSave();
+      }
+    }
   };
 
   const handleCancel = () => {

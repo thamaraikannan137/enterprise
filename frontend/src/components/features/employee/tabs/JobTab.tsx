@@ -7,12 +7,14 @@ import { z } from 'zod';
 import { Add, Close } from '@mui/icons-material';
 import { TextField, Select, MenuItem, FormControl, InputLabel, IconButton, FormHelperText } from '@mui/material';
 import { useAppDispatch } from '../../../../store';
-import { updateEmployee, fetchEmployeeWithDetails } from '../../../../store/slices/employeeSlice';
+import { fetchEmployeeWithDetails } from '../../../../store/slices/employeeSlice';
+import { employeeJobInfoService } from '../../../../services/employeeJobInfoService';
 import { useEmployeeList } from '../../../../hooks/useEmployeeList';
 import { useToast } from '../../../../contexts/ToastContext';
 import { EditableCard } from './sections/EditableCard';
 import type { EmployeeWithDetails } from '../../../../types/employee';
 import type { LegalEntity, BusinessUnit } from '../../../../types/organization';
+import type { EmployeeJobInfo } from '../../../../types/employeeJobInfo';
 
 // Mock data - TODO: Replace with actual API calls
 const PROBATION_POLICIES = [
@@ -98,6 +100,8 @@ export const JobTab = ({
   const { id: employeeIdFromUrl } = useParams<{ id: string }>();
   const { showSuccess, showError } = useToast();
   const [isEditMode, setIsEditMode] = useState(false);
+  const [currentJobInfo, setCurrentJobInfo] = useState<EmployeeJobInfo | null>(null);
+  const [loadingJobInfo, setLoadingJobInfo] = useState(true);
   const { employees: managerOptions, loading: managerOptionsLoading } = useEmployeeList({ 
     status: 'active', 
     limit: 100,
@@ -106,6 +110,29 @@ export const JobTab = ({
 
   // Use employee.id if available, otherwise fall back to URL param
   const employeeId = employee?.id || employeeIdFromUrl;
+
+  // Fetch current job info
+  useEffect(() => {
+    const fetchCurrentJobInfo = async () => {
+      if (!employeeId) return;
+      
+      try {
+        setLoadingJobInfo(true);
+        const jobInfo = await employeeJobInfoService.getCurrentJobInfo(employeeId);
+        setCurrentJobInfo(jobInfo);
+      } catch (error: any) {
+        console.error('Failed to fetch current job info:', error);
+        // If 404, that's okay - no job info exists yet
+        if (error?.response?.status !== 404) {
+          showError('Failed to load job information');
+        }
+      } finally {
+        setLoadingJobInfo(false);
+      }
+    };
+
+    fetchCurrentJobInfo();
+  }, [employeeId, showError]);
 
   const {
     control,
@@ -116,23 +143,32 @@ export const JobTab = ({
     resolver: zodResolver(jobInfoSchema),
     mode: 'onChange',
     defaultValues: {
-      designation: employee.designation || '',
-      department: employee.department || '',
-      reporting_to: employee.reporting_to || '',
+      designation: currentJobInfo?.designation || '',
+      department: currentJobInfo?.department || '',
+      reporting_to: (() => {
+        const reportingTo = currentJobInfo?.reporting_to;
+        if (!reportingTo) return '';
+        // If it's an object, extract the ID
+        if (typeof reportingTo === 'object' && reportingTo !== null) {
+          return (reportingTo as any).id || (reportingTo as any)._id || '';
+        }
+        // If it's already a string, return it
+        return typeof reportingTo === 'string' ? reportingTo : String(reportingTo);
+      })(),
       employee_code: employee.employee_code || '',
-      hire_date: employee.hire_date ? (typeof employee.hire_date === 'string' ? employee.hire_date.split('T')[0] : new Date(employee.hire_date).toISOString().split('T')[0]) : '',
-      joining_date: (employee as any).joining_date ? (typeof (employee as any).joining_date === 'string' ? (employee as any).joining_date.split('T')[0] : new Date((employee as any).joining_date).toISOString().split('T')[0]) : '',
-      time_type: (employee as any).time_type || 'full_time',
-      location: (employee as any).location || '',
-      business_unit: (employee as any).business_unit || '',
-      legal_entity: (employee as any).legal_entity || '',
-      work_location: (employee as any).work_location || '',
-      employment_type: (employee as any).employment_type || '',
-      worker_type: (employee as any).worker_type || '',
-      probation_policy: (employee as any).probation_policy || '',
-      notice_period: (employee as any).notice_period || '',
-      secondary_job_titles: (employee as any).secondary_job_titles || [],
-      termination_date: employee.termination_date ? (typeof employee.termination_date === 'string' ? employee.termination_date.split('T')[0] : new Date(employee.termination_date).toISOString().split('T')[0]) : '',
+      hire_date: currentJobInfo?.hire_date ? (typeof currentJobInfo.hire_date === 'string' ? currentJobInfo.hire_date.split('T')[0] : new Date(currentJobInfo.hire_date).toISOString().split('T')[0]) : '',
+      joining_date: currentJobInfo?.joining_date ? (typeof currentJobInfo.joining_date === 'string' ? currentJobInfo.joining_date.split('T')[0] : new Date(currentJobInfo.joining_date).toISOString().split('T')[0]) : '',
+      time_type: currentJobInfo?.time_type || 'full_time',
+      location: currentJobInfo?.location || '',
+      business_unit: currentJobInfo?.business_unit || '',
+      legal_entity: currentJobInfo?.legal_entity || '',
+      work_location: '',
+      employment_type: '',
+      worker_type: currentJobInfo?.worker_type || '',
+      probation_policy: currentJobInfo?.probation_policy || '',
+      notice_period: currentJobInfo?.notice_period || '',
+      secondary_job_titles: currentJobInfo?.secondary_job_titles || [],
+      termination_date: currentJobInfo?.termination_date ? (typeof currentJobInfo.termination_date === 'string' ? currentJobInfo.termination_date.split('T')[0] : new Date(currentJobInfo.termination_date).toISOString().split('T')[0]) : '',
     },
   });
 
@@ -142,26 +178,38 @@ export const JobTab = ({
   });
 
   useEffect(() => {
-    reset({
-      designation: employee.designation || '',
-      department: employee.department || '',
-      reporting_to: employee.reporting_to || '',
-      employee_code: employee.employee_code || '',
-      hire_date: employee.hire_date ? (typeof employee.hire_date === 'string' ? employee.hire_date.split('T')[0] : new Date(employee.hire_date).toISOString().split('T')[0]) : '',
-      joining_date: (employee as any).joining_date ? (typeof (employee as any).joining_date === 'string' ? (employee as any).joining_date.split('T')[0] : new Date((employee as any).joining_date).toISOString().split('T')[0]) : '',
-      time_type: (employee as any).time_type || 'full_time',
-      location: (employee as any).location || '',
-      business_unit: (employee as any).business_unit || '',
-      legal_entity: (employee as any).legal_entity || '',
-      work_location: (employee as any).work_location || '',
-      employment_type: (employee as any).employment_type || '',
-      worker_type: (employee as any).worker_type || '',
-      probation_policy: (employee as any).probation_policy || '',
-      notice_period: (employee as any).notice_period || '',
-      secondary_job_titles: (employee as any).secondary_job_titles || [],
-      termination_date: employee.termination_date ? (typeof employee.termination_date === 'string' ? employee.termination_date.split('T')[0] : new Date(employee.termination_date).toISOString().split('T')[0]) : '',
-    });
-  }, [employee, reset]);
+    if (currentJobInfo) {
+      // Extract reporting_to ID if it's an object
+      const getReportingToId = () => {
+        const reportingTo = currentJobInfo.reporting_to;
+        if (!reportingTo) return '';
+        if (typeof reportingTo === 'object' && reportingTo !== null) {
+          return (reportingTo as any).id || (reportingTo as any)._id || '';
+        }
+        return typeof reportingTo === 'string' ? reportingTo : String(reportingTo);
+      };
+
+      reset({
+        designation: currentJobInfo.designation || '',
+        department: currentJobInfo.department || '',
+        reporting_to: getReportingToId(),
+        employee_code: employee.employee_code || '',
+        hire_date: currentJobInfo.hire_date ? (typeof currentJobInfo.hire_date === 'string' ? currentJobInfo.hire_date.split('T')[0] : new Date(currentJobInfo.hire_date).toISOString().split('T')[0]) : '',
+        joining_date: currentJobInfo.joining_date ? (typeof currentJobInfo.joining_date === 'string' ? currentJobInfo.joining_date.split('T')[0] : new Date(currentJobInfo.joining_date).toISOString().split('T')[0]) : '',
+        time_type: currentJobInfo.time_type || 'full_time',
+        location: currentJobInfo.location || '',
+        business_unit: currentJobInfo.business_unit || '',
+        legal_entity: currentJobInfo.legal_entity || '',
+        work_location: '',
+        employment_type: '',
+        worker_type: currentJobInfo.worker_type || '',
+        probation_policy: currentJobInfo.probation_policy || '',
+        notice_period: currentJobInfo.notice_period || '',
+        secondary_job_titles: currentJobInfo.secondary_job_titles || [],
+        termination_date: currentJobInfo.termination_date ? (typeof currentJobInfo.termination_date === 'string' ? currentJobInfo.termination_date.split('T')[0] : new Date(currentJobInfo.termination_date).toISOString().split('T')[0]) : '',
+      });
+    }
+  }, [currentJobInfo, employee.employee_code, reset]);
 
   const onSubmit = async (data: JobInfoFormData) => {
     // Validate employee ID
@@ -172,30 +220,40 @@ export const JobTab = ({
     }
 
     try {
-      await dispatch(updateEmployee({
-        id: employeeId,
-        data: {
-          designation: data.designation,
-          department: data.department,
-          reporting_to: data.reporting_to && data.reporting_to.trim() !== '' ? data.reporting_to : (null as any),
-          hire_date: data.hire_date && data.hire_date.trim() !== '' ? data.hire_date : (null as any),
-          joining_date: data.joining_date && data.joining_date.trim() !== '' ? data.joining_date : (null as any),
-          time_type: data.time_type || (null as any),
-          location: data.location && data.location.trim() !== '' ? data.location : (null as any),
-          termination_date: data.termination_date && data.termination_date.trim() !== '' ? data.termination_date : (null as any),
-          // Additional fields - using type assertion as they may not be in the type definition yet
-          business_unit: data.business_unit && data.business_unit.trim() !== '' ? data.business_unit : (null as any),
-          legal_entity: data.legal_entity && data.legal_entity.trim() !== '' ? data.legal_entity : (null as any),
-          work_location: data.work_location && data.work_location.trim() !== '' ? data.work_location : (null as any),
-          employment_type: data.employment_type && data.employment_type.trim() !== '' ? data.employment_type : (null as any),
-          worker_type: data.worker_type && data.worker_type.trim() !== '' ? data.worker_type : (null as any),
-          probation_policy: data.probation_policy && data.probation_policy.trim() !== '' ? data.probation_policy : (null as any),
-          notice_period: data.notice_period && data.notice_period.trim() !== '' ? data.notice_period : (null as any),
-          secondary_job_titles: data.secondary_job_titles && data.secondary_job_titles.length > 0 ? data.secondary_job_titles : (null as any),
-        } as any,
-      })).unwrap();
+      const jobInfoData: any = {
+        designation: data.designation.trim(),
+        department: data.department.trim(),
+        ...(data.reporting_to && data.reporting_to.trim() !== '' && { reporting_to: data.reporting_to.trim() }),
+        ...(data.hire_date && data.hire_date.trim() !== '' && { hire_date: data.hire_date }),
+        ...(data.joining_date && data.joining_date.trim() !== '' && { joining_date: data.joining_date }),
+        ...(data.time_type && { time_type: data.time_type }),
+        ...(data.location && data.location.trim() !== '' && { location: data.location.trim() }),
+        ...(data.business_unit && data.business_unit.trim() !== '' && { business_unit: data.business_unit.trim() }),
+        ...(data.legal_entity && data.legal_entity.trim() !== '' && { legal_entity: data.legal_entity.trim() }),
+        ...(data.worker_type && data.worker_type.trim() !== '' && { worker_type: data.worker_type.trim() }),
+        ...(data.probation_policy && data.probation_policy.trim() !== '' && { probation_policy: data.probation_policy.trim() }),
+        ...(data.notice_period && data.notice_period.trim() !== '' && { notice_period: data.notice_period.trim() }),
+        ...(data.secondary_job_titles && data.secondary_job_titles.length > 0 && { secondary_job_titles: data.secondary_job_titles }),
+        ...(data.termination_date && data.termination_date.trim() !== '' && { termination_date: data.termination_date }),
+        status: currentJobInfo?.status || 'active',
+        is_current: true,
+      };
+
+      if (currentJobInfo) {
+        // Update existing job info
+        await employeeJobInfoService.updateJobInfo(currentJobInfo.id, jobInfoData);
+      } else {
+        // Create new job info
+        await employeeJobInfoService.createJobInfo({
+          employee_id: employeeId,
+          ...jobInfoData,
+        });
+      }
       
-      // Refetch employee details to update the UI immediately
+      // Refetch job info and employee details
+      const updatedJobInfo = await employeeJobInfoService.getCurrentJobInfo(employeeId);
+      setCurrentJobInfo(updatedJobInfo);
+      
       if (employeeId) {
         await dispatch(fetchEmployeeWithDetails(employeeId)).unwrap();
       }
@@ -203,48 +261,70 @@ export const JobTab = ({
       showSuccess('Job information saved successfully!');
       setIsEditMode(false);
     } catch (error: any) {
-      console.error('Failed to update employee:', error);
+      console.error('Failed to save job info:', error);
       const errorMessage = error?.message || error?.response?.data?.message || 'Failed to save job information. Please try again.';
       showError(errorMessage);
     }
   };
 
   const handleCancel = () => {
-    reset({
-      designation: employee.designation || '',
-      department: employee.department || '',
-      reporting_to: employee.reporting_to || '',
-      employee_code: employee.employee_code || '',
-      hire_date: employee.hire_date ? (typeof employee.hire_date === 'string' ? employee.hire_date.split('T')[0] : new Date(employee.hire_date).toISOString().split('T')[0]) : '',
-      joining_date: (employee as any).joining_date ? (typeof (employee as any).joining_date === 'string' ? (employee as any).joining_date.split('T')[0] : new Date((employee as any).joining_date).toISOString().split('T')[0]) : '',
-      time_type: (employee as any).time_type || 'full_time',
-      location: (employee as any).location || '',
-      business_unit: (employee as any).business_unit || '',
-      legal_entity: (employee as any).legal_entity || '',
-      work_location: (employee as any).work_location || '',
-      employment_type: (employee as any).employment_type || '',
-      worker_type: (employee as any).worker_type || '',
-      probation_policy: (employee as any).probation_policy || '',
-      notice_period: (employee as any).notice_period || '',
-      secondary_job_titles: (employee as any).secondary_job_titles || [],
-      termination_date: employee.termination_date ? (typeof employee.termination_date === 'string' ? employee.termination_date.split('T')[0] : new Date(employee.termination_date).toISOString().split('T')[0]) : '',
-    });
+    if (currentJobInfo) {
+      // Extract reporting_to ID if it's an object
+      const getReportingToId = () => {
+        const reportingTo = currentJobInfo.reporting_to;
+        if (!reportingTo) return '';
+        if (typeof reportingTo === 'object' && reportingTo !== null) {
+          return (reportingTo as any).id || (reportingTo as any)._id || '';
+        }
+        return typeof reportingTo === 'string' ? reportingTo : String(reportingTo);
+      };
+
+      reset({
+        designation: currentJobInfo.designation || '',
+        department: currentJobInfo.department || '',
+        reporting_to: getReportingToId(),
+        employee_code: employee.employee_code || '',
+        hire_date: currentJobInfo.hire_date ? (typeof currentJobInfo.hire_date === 'string' ? currentJobInfo.hire_date.split('T')[0] : new Date(currentJobInfo.hire_date).toISOString().split('T')[0]) : '',
+        joining_date: currentJobInfo.joining_date ? (typeof currentJobInfo.joining_date === 'string' ? currentJobInfo.joining_date.split('T')[0] : new Date(currentJobInfo.joining_date).toISOString().split('T')[0]) : '',
+        time_type: currentJobInfo.time_type || 'full_time',
+        location: currentJobInfo.location || '',
+        business_unit: currentJobInfo.business_unit || '',
+        legal_entity: currentJobInfo.legal_entity || '',
+        work_location: '',
+        employment_type: '',
+        worker_type: currentJobInfo.worker_type || '',
+        probation_policy: currentJobInfo.probation_policy || '',
+        notice_period: currentJobInfo.notice_period || '',
+        secondary_job_titles: currentJobInfo.secondary_job_titles || [],
+        termination_date: currentJobInfo.termination_date ? (typeof currentJobInfo.termination_date === 'string' ? currentJobInfo.termination_date.split('T')[0] : new Date(currentJobInfo.termination_date).toISOString().split('T')[0]) : '',
+      });
+    }
     setIsEditMode(false);
   };
 
   const getReportingManagerName = () => {
-    if (!employee.reporting_to) return '-';
-    
     // Check if reporting_to is a populated object (from backend)
-    if (typeof employee.reporting_to === 'object' && employee.reporting_to !== null) {
-      const reportingTo = employee.reporting_to as any;
+    if (currentJobInfo?.reportingToEmployee) {
+      const reportingTo = currentJobInfo.reportingToEmployee;
+      const name = `${reportingTo.first_name || ''} ${reportingTo.last_name || ''}`.trim();
+      const designation = reportingTo.designation ? ` (${reportingTo.designation})` : '';
+      return name ? `${name}${designation}` : '-';
+    }
+    
+    // Check if reporting_to is an object (not just an ID string)
+    const reportingToValue = currentJobInfo?.reporting_to;
+    if (!reportingToValue) return '-';
+    
+    if (typeof reportingToValue === 'object' && reportingToValue !== null) {
+      // It's a populated object
+      const reportingTo = reportingToValue as any;
       const name = `${reportingTo.first_name || ''} ${reportingTo.last_name || ''}`.trim();
       const designation = reportingTo.designation ? ` (${reportingTo.designation})` : '';
       return name ? `${name}${designation}` : '-';
     }
     
     // If reporting_to is a string ID, try to find it in managerOptions
-    const reportingToId = typeof employee.reporting_to === 'string' ? employee.reporting_to : String(employee.reporting_to);
+    const reportingToId = typeof reportingToValue === 'string' ? reportingToValue : String(reportingToValue);
     
     // If managerOptions is still loading, show loading state
     if (managerOptionsLoading) {
@@ -254,14 +334,6 @@ export const JobTab = ({
     const manager = managerOptions.find(m => m.id === reportingToId);
     if (manager) {
       return `${manager.first_name} ${manager.last_name}${manager.designation ? ` (${manager.designation})` : ''}`;
-    }
-    
-    // If not found in managerOptions, check if there's a reportingToEmployee property
-    if ((employee as any).reportingToEmployee) {
-      const reportingTo = (employee as any).reportingToEmployee;
-      const name = `${reportingTo.first_name || ''} ${reportingTo.last_name || ''}`.trim();
-      const designation = reportingTo.designation ? ` (${reportingTo.designation})` : '';
-      return name ? `${name}${designation}` : '-';
     }
     
     // If still not found, return the ID or a fallback
@@ -314,6 +386,14 @@ export const JobTab = ({
     const period = NOTICE_PERIODS.find(p => p.id === id);
     return period ? period.duration : '-';
   };
+
+  if (loadingJobInfo) {
+    return (
+      <div className="flex items-center justify-center py-12">
+        <div className="text-gray-500">Loading job information...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -700,13 +780,13 @@ export const JobTab = ({
             <div className="bg-gray-50 rounded-lg border border-gray-200 p-4">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Employment Details</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
+                <div>
                 <div className="text-sm font-medium text-gray-500 mb-1">
                   Joining Date
                 </div>
                 <div className="text-base text-gray-900">
-                    {(employee as any).joining_date 
-                      ? new Date((employee as any).joining_date).toLocaleDateString() 
+                    {currentJobInfo?.joining_date 
+                      ? new Date(currentJobInfo.joining_date).toLocaleDateString() 
                       : '-'}
                   </div>
                 </div>
@@ -715,8 +795,8 @@ export const JobTab = ({
                     Secondary Job Titles
                   </div>
                   <div className="text-base text-gray-900">
-                    {(employee as any).secondary_job_titles && (employee as any).secondary_job_titles.length > 0
-                      ? (employee as any).secondary_job_titles.join(', ')
+                    {currentJobInfo?.secondary_job_titles && currentJobInfo.secondary_job_titles.length > 0
+                      ? currentJobInfo.secondary_job_titles.join(', ')
                       : '-'}
                   </div>
                 </div>
@@ -724,14 +804,14 @@ export const JobTab = ({
                   <div className="text-sm font-medium text-gray-500 mb-1">
                     Job Title
                   </div>
-                  <div className="text-base text-gray-900">{getDisplayValue(employee.designation)}</div>
+                  <div className="text-base text-gray-900">{getDisplayValue(currentJobInfo?.designation)}</div>
               </div>
               <div>
                 <div className="text-sm font-medium text-gray-500 mb-1">
                   Time Type
                 </div>
                 <div className="text-base text-gray-900">
-                    {(employee as any).time_type === 'full_time' ? 'Full Time' : (employee as any).time_type === 'contract' ? 'Contract' : '-'}
+                    {currentJobInfo?.time_type === 'full_time' ? 'Full Time' : currentJobInfo?.time_type === 'contract' ? 'Contract' : '-'}
                   </div>
                 </div>
               </div>
@@ -746,7 +826,7 @@ export const JobTab = ({
                     Legal Entity
                 </div>
                 <div className="text-base text-gray-900">
-                    {getLegalEntityName((employee as any).legal_entity)}
+                    {getLegalEntityName(currentJobInfo?.legal_entity)}
                   </div>
                 </div>
               <div>
@@ -754,27 +834,27 @@ export const JobTab = ({
                   Business Unit
                 </div>
                 <div className="text-base text-gray-900">
-                    {getBusinessUnitName((employee as any).business_unit)}
+                    {getBusinessUnitName(currentJobInfo?.business_unit)}
                   </div>
                 </div>
               <div>
                 <div className="text-sm font-medium text-gray-500 mb-1">
                     Department
                   </div>
-                  <div className="text-base text-gray-900">{getDisplayValue(employee.department)}</div>
+                  <div className="text-base text-gray-900">{getDisplayValue(currentJobInfo?.department)}</div>
                 </div>
                 <div>
                   <div className="text-sm font-medium text-gray-500 mb-1">
                     Location
                   </div>
-                  <div className="text-base text-gray-900">{getDisplayValue((employee as any).location)}</div>
+                  <div className="text-base text-gray-900">{getDisplayValue(currentJobInfo?.location)}</div>
                 </div>
               <div>
                 <div className="text-sm font-medium text-gray-500 mb-1">
                     Worker Type
                   </div>
                   <div className="text-base text-gray-900">
-                    {getWorkerTypeLabel((employee as any).worker_type)}
+                    {getWorkerTypeLabel(currentJobInfo?.worker_type)}
                   </div>
                 </div>
                 <div>
@@ -795,10 +875,10 @@ export const JobTab = ({
                     Probation Policy
                 </div>
                 <div className="text-base text-gray-900">
-                    {getProbationPolicyName((employee as any).probation_policy)}
+                    {getProbationPolicyName(currentJobInfo?.probation_policy)}
                   </div>
                   <div className="text-sm text-gray-500 mt-1">
-                    Duration: {getProbationPolicyDuration((employee as any).probation_policy)}
+                    Duration: {getProbationPolicyDuration(currentJobInfo?.probation_policy)}
                   </div>
                 </div>
               <div>
@@ -806,10 +886,10 @@ export const JobTab = ({
                     Notice Period
                 </div>
                 <div className="text-base text-gray-900">
-                    {getNoticePeriodName((employee as any).notice_period)}
+                    {getNoticePeriodName(currentJobInfo?.notice_period)}
                   </div>
                   <div className="text-sm text-gray-500 mt-1">
-                    Duration: {getNoticePeriodDuration((employee as any).notice_period)}
+                    Duration: {getNoticePeriodDuration(currentJobInfo?.notice_period)}
                   </div>
                 </div>
               </div>

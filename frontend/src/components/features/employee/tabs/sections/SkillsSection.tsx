@@ -5,7 +5,7 @@ import { z } from 'zod';
 import { TextField, Grid, Chip, Box } from '@mui/material';
 import { useAppDispatch } from '../../../../../store';
 import { fetchEmployeeWithDetails } from '../../../../../store/slices/employeeSlice';
-import { employeeRelatedService } from '../../../../../services/employeeRelatedService';
+import { employeeService } from '../../../../../services/employeeService';
 import { useToast } from '../../../../../contexts/ToastContext';
 import { EditableCard } from './EditableCard';
 import type { EmployeeWithDetails } from '../../../../../types/employee';
@@ -44,53 +44,51 @@ export const SkillsSection = ({ employee, employeeId }: SkillsSectionProps) => {
   const [newLanguageWrite, setNewLanguageWrite] = useState('');
   const [newLanguageSpeak, setNewLanguageSpeak] = useState('');
 
-  const skills = employee.skills;
-
+  // Skills fields are now directly on the Employee model
   const {
     control,
     handleSubmit,
     formState: { isSubmitting },
     reset,
-    setValue,
   } = useForm<SkillsFormData>({
     resolver: zodResolver(skillsSchema),
     defaultValues: {
-      professional_summary: skills?.professional_summary || '',
+      professional_summary: employee.professional_summary || '',
       languages_read: '',
       languages_write: '',
       languages_speak: '',
-      special_academic_achievements: skills?.special_academic_achievements || '',
-      certifications_details: skills?.certifications_details || '',
-      hobbies: skills?.hobbies || '',
-      interests: skills?.interests || '',
-      professional_institution_member: skills?.professional_institution_member || false,
-      professional_institution_details: skills?.professional_institution_details || '',
-      social_organization_member: skills?.social_organization_member || false,
-      social_organization_details: skills?.social_organization_details || '',
-      insigma_hire_date: skills?.insigma_hire_date?.split('T')[0] || '',
+      special_academic_achievements: employee.special_academic_achievements || '',
+      certifications_details: employee.certifications_details || '',
+      hobbies: employee.hobbies || '',
+      interests: employee.interests || '',
+      professional_institution_member: employee.professional_institution_member || false,
+      professional_institution_details: employee.professional_institution_details || '',
+      social_organization_member: employee.social_organization_member || false,
+      social_organization_details: employee.social_organization_details || '',
+      insigma_hire_date: employee.insigma_hire_date ? new Date(employee.insigma_hire_date).toISOString().split('T')[0] : '',
     },
   });
 
   useEffect(() => {
-    setLanguagesRead(skills?.languages_read || []);
-    setLanguagesWrite(skills?.languages_write || []);
-    setLanguagesSpeak(skills?.languages_speak || []);
+    setLanguagesRead(employee.languages_read || []);
+    setLanguagesWrite(employee.languages_write || []);
+    setLanguagesSpeak(employee.languages_speak || []);
     reset({
-      professional_summary: skills?.professional_summary || '',
+      professional_summary: employee.professional_summary || '',
       languages_read: '',
       languages_write: '',
       languages_speak: '',
-      special_academic_achievements: skills?.special_academic_achievements || '',
-      certifications_details: skills?.certifications_details || '',
-      hobbies: skills?.hobbies || '',
-      interests: skills?.interests || '',
-      professional_institution_member: skills?.professional_institution_member || false,
-      professional_institution_details: skills?.professional_institution_details || '',
-      social_organization_member: skills?.social_organization_member || false,
-      social_organization_details: skills?.social_organization_details || '',
-      insigma_hire_date: skills?.insigma_hire_date?.split('T')[0] || '',
+      special_academic_achievements: employee.special_academic_achievements || '',
+      certifications_details: employee.certifications_details || '',
+      hobbies: employee.hobbies || '',
+      interests: employee.interests || '',
+      professional_institution_member: employee.professional_institution_member || false,
+      professional_institution_details: employee.professional_institution_details || '',
+      social_organization_member: employee.social_organization_member || false,
+      social_organization_details: employee.social_organization_details || '',
+      insigma_hire_date: employee.insigma_hire_date ? new Date(employee.insigma_hire_date).toISOString().split('T')[0] : '',
     });
-  }, [skills, reset]);
+  }, [employee, reset]);
 
   const addLanguage = (type: 'read' | 'write' | 'speak', value: string) => {
     if (!value.trim()) return;
@@ -118,7 +116,9 @@ export const SkillsSection = ({ employee, employeeId }: SkillsSectionProps) => {
 
   const onSubmit = async (data: SkillsFormData) => {
     try {
-      await employeeRelatedService.createOrUpdateSkills(employeeId, {
+      // Update employee with skills information
+      // Skills fields are now directly on the Employee model
+      const updateData: any = {
         ...(data.professional_summary && { professional_summary: data.professional_summary.trim() }),
         languages_read: languagesRead.length > 0 ? languagesRead : undefined,
         languages_write: languagesWrite.length > 0 ? languagesWrite : undefined,
@@ -132,7 +132,16 @@ export const SkillsSection = ({ employee, employeeId }: SkillsSectionProps) => {
         ...(data.social_organization_member !== undefined && { social_organization_member: data.social_organization_member }),
         ...(data.social_organization_details && { social_organization_details: data.social_organization_details.trim() }),
         ...(data.insigma_hire_date && { insigma_hire_date: data.insigma_hire_date }),
+      };
+
+      // Remove undefined and empty string values
+      Object.keys(updateData).forEach(key => {
+        if (updateData[key] === undefined || updateData[key] === '') {
+          delete updateData[key];
+        }
       });
+
+      await employeeService.updateEmployee(employeeId, updateData);
       await dispatch(fetchEmployeeWithDetails(employeeId)).unwrap();
       showSuccess('Skills & Interests saved successfully!');
       setIsEditMode(false);
@@ -143,9 +152,9 @@ export const SkillsSection = ({ employee, employeeId }: SkillsSectionProps) => {
 
   const handleCancel = () => {
     reset();
-    setLanguagesRead(skills?.languages_read || []);
-    setLanguagesWrite(skills?.languages_write || []);
-    setLanguagesSpeak(skills?.languages_speak || []);
+    setLanguagesRead(employee.languages_read || []);
+    setLanguagesWrite(employee.languages_write || []);
+    setLanguagesSpeak(employee.languages_speak || []);
     setIsEditMode(false);
   };
 
@@ -373,13 +382,13 @@ export const SkillsSection = ({ employee, employeeId }: SkillsSectionProps) => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div>
           <div className="text-sm font-medium text-gray-500 mb-1">Professional Summary</div>
-          <div className="text-base text-gray-900 whitespace-pre-wrap">{skills?.professional_summary || '-'}</div>
+          <div className="text-base text-gray-900 whitespace-pre-wrap">{employee.professional_summary || '-'}</div>
         </div>
         <div>
           <div className="text-sm font-medium text-gray-500 mb-2">Languages you can READ</div>
           <div className="flex flex-wrap gap-2">
-            {skills?.languages_read && skills.languages_read.length > 0 ? (
-              skills.languages_read.map((lang, idx) => (
+            {employee.languages_read && employee.languages_read.length > 0 ? (
+              employee.languages_read.map((lang, idx) => (
                 <Chip key={idx} label={lang} size="small" />
               ))
             ) : (
@@ -390,8 +399,8 @@ export const SkillsSection = ({ employee, employeeId }: SkillsSectionProps) => {
         <div>
           <div className="text-sm font-medium text-gray-500 mb-2">Languages you can WRITE</div>
           <div className="flex flex-wrap gap-2">
-            {skills?.languages_write && skills.languages_write.length > 0 ? (
-              skills.languages_write.map((lang, idx) => (
+            {employee.languages_write && employee.languages_write.length > 0 ? (
+              employee.languages_write.map((lang, idx) => (
                 <Chip key={idx} label={lang} size="small" />
               ))
             ) : (
@@ -402,8 +411,8 @@ export const SkillsSection = ({ employee, employeeId }: SkillsSectionProps) => {
         <div>
           <div className="text-sm font-medium text-gray-500 mb-2">Languages you can SPEAK</div>
           <div className="flex flex-wrap gap-2">
-            {skills?.languages_speak && skills.languages_speak.length > 0 ? (
-              skills.languages_speak.map((lang, idx) => (
+            {employee.languages_speak && employee.languages_speak.length > 0 ? (
+              employee.languages_speak.map((lang, idx) => (
                 <Chip key={idx} label={lang} size="small" />
               ))
             ) : (
@@ -413,37 +422,37 @@ export const SkillsSection = ({ employee, employeeId }: SkillsSectionProps) => {
         </div>
         <div>
           <div className="text-sm font-medium text-gray-500 mb-1">Special Academic Achievements</div>
-          <div className="text-base text-gray-900 whitespace-pre-wrap">{skills?.special_academic_achievements || '-'}</div>
+          <div className="text-base text-gray-900 whitespace-pre-wrap">{employee.special_academic_achievements || '-'}</div>
         </div>
         <div>
           <div className="text-sm font-medium text-gray-500 mb-1">Certifications Details</div>
-          <div className="text-base text-gray-900 whitespace-pre-wrap">{skills?.certifications_details || '-'}</div>
+          <div className="text-base text-gray-900 whitespace-pre-wrap">{employee.certifications_details || '-'}</div>
         </div>
         <div>
           <div className="text-sm font-medium text-gray-500 mb-1">Hobbies</div>
-          <div className="text-base text-gray-900">{skills?.hobbies || '-'}</div>
+          <div className="text-base text-gray-900">{employee.hobbies || '-'}</div>
         </div>
         <div>
           <div className="text-sm font-medium text-gray-500 mb-1">Interests</div>
-          <div className="text-base text-gray-900">{skills?.interests || '-'}</div>
+          <div className="text-base text-gray-900">{employee.interests || '-'}</div>
         </div>
         <div>
           <div className="text-sm font-medium text-gray-500 mb-1">Professional Institution Member</div>
-          <div className="text-base text-gray-900">{skills?.professional_institution_member !== undefined ? (skills.professional_institution_member ? 'Yes' : 'No') : '-'}</div>
-          {skills?.professional_institution_member && skills.professional_institution_details && (
-            <div className="mt-2 text-sm text-gray-700">{skills.professional_institution_details}</div>
+          <div className="text-base text-gray-900">{employee.professional_institution_member !== undefined ? (employee.professional_institution_member ? 'Yes' : 'No') : '-'}</div>
+          {employee.professional_institution_member && employee.professional_institution_details && (
+            <div className="mt-2 text-sm text-gray-700">{employee.professional_institution_details}</div>
           )}
         </div>
         <div>
           <div className="text-sm font-medium text-gray-500 mb-1">Social Organization Member</div>
-          <div className="text-base text-gray-900">{skills?.social_organization_member !== undefined ? (skills.social_organization_member ? 'Yes' : 'No') : '-'}</div>
-          {skills?.social_organization_member && skills.social_organization_details && (
-            <div className="mt-2 text-sm text-gray-700">{skills.social_organization_details}</div>
+          <div className="text-base text-gray-900">{employee.social_organization_member !== undefined ? (employee.social_organization_member ? 'Yes' : 'No') : '-'}</div>
+          {employee.social_organization_member && employee.social_organization_details && (
+            <div className="mt-2 text-sm text-gray-700">{employee.social_organization_details}</div>
           )}
         </div>
         <div>
           <div className="text-sm font-medium text-gray-500 mb-1">Insigma Hire Date</div>
-          <div className="text-base text-gray-900">{skills?.insigma_hire_date ? new Date(skills.insigma_hire_date).toLocaleDateString() : '-'}</div>
+          <div className="text-base text-gray-900">{employee.insigma_hire_date ? new Date(employee.insigma_hire_date).toLocaleDateString() : '-'}</div>
         </div>
       </div>
     </EditableCard>

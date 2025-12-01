@@ -142,7 +142,7 @@ export const EmployeeTable = ({ employees, onRowClick, loading = false }: Employ
       pagination={true}
       rowsPerPageOptions={[10, 25, 50, 100]}
       defaultRowsPerPage={10}
-      getRowId={(row) => row.id}
+      getRowId={(row) => row.id || (row as any)._id || String(row)}
     />
   );
 };

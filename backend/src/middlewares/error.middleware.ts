@@ -1,8 +1,9 @@
 import type { Request, Response, NextFunction } from "express";
-import { AppError } from "../utils/errors.ts";
+import { AppError, ValidationError } from "../utils/errors.ts";
 import { sendError } from "../utils/response.ts";
 import logger from "../config/logger.ts";
 import { HTTP_STATUS } from "../config/constants.ts";
+import mongoose from "mongoose";
 
 export const errorHandler = (
   err: Error | AppError,
@@ -10,6 +11,17 @@ export const errorHandler = (
   res: Response,
   next: NextFunction
 ): Response => {
+  // Handle Mongoose validation errors
+  if (err instanceof mongoose.Error.ValidationError) {
+    const errors = Object.values(err.errors).map((e: any) => e.message);
+    logger.error(`Mongoose ValidationError: ${errors.join(', ')}`, {
+      path: req.path,
+      method: req.method,
+      errors,
+    });
+    return sendError(res, JSON.stringify(errors), HTTP_STATUS.VALIDATION_ERROR);
+  }
+
   // Check if it's an operational error (expected application error)
   if (err instanceof AppError && err.isOperational) {
     logger.error(`AppError: ${err.message}`, {

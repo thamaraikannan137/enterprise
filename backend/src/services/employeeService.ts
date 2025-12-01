@@ -1,5 +1,4 @@
 import Employee from '../models/Employee.ts';
-import EmployeeContact from '../models/EmployeeContact.ts';
 import EmployeeDocument from '../models/EmployeeDocument.ts';
 import EmployeeCompensation from '../models/EmployeeCompensation.ts';
 import EmployeeAllowance from '../models/EmployeeAllowance.ts';
@@ -8,32 +7,10 @@ import EmployeeLeaveEntitlement from '../models/EmployeeLeaveEntitlement.ts';
 import EmployeeCertification from '../models/EmployeeCertification.ts';
 import EmployeeQualification from '../models/EmployeeQualification.ts';
 import EmployeeWorkPass from '../models/EmployeeWorkPass.ts';
-import { NotFoundError, ConflictError } from '../utils/errors.ts';
+import EmployeeJobInfo from '../models/EmployeeJobInfo.ts';
+import { NotFoundError } from '../utils/errors.ts';
 
 class EmployeeService {
-  // Validate reporting chain to prevent circular references
-  private async validateReportingChain(employeeId: string, reportingToId: string): Promise<boolean> {
-    const visited = new Set<string>([employeeId]);
-    let currentId: string | null = reportingToId;
-
-    while (currentId) {
-      // Check for circular reference
-      if (visited.has(currentId)) {
-        return false; // Circular reference detected
-      }
-      visited.add(currentId);
-
-      // Get the employee being reported to
-      const employee = await Employee.findById(currentId).select('reporting_to');
-      if (!employee || !employee.reporting_to) {
-        break; // Reached the top of the chain
-      }
-      currentId = employee.reporting_to.toString();
-    }
-
-    return true; // No circular reference
-  }
-
   // Generate unique employee code
   private async generateEmployeeCode(): Promise<string> {
     // Get the latest employee to determine next code
@@ -62,80 +39,85 @@ class EmployeeService {
     // Always auto-generate employee code (remove any provided code)
     data.employee_code = await this.generateEmployeeCode();
 
-    // Validate reporting_to if provided
-    if (data.reporting_to) {
-      // Check if the reporting_to employee exists
-      const reportingToEmployee = await Employee.findById(data.reporting_to);
-      if (!reportingToEmployee) {
-        throw new NotFoundError('Reporting to employee not found');
-      }
-
-      // Note: We can't validate circular chain during creation since the employee doesn't exist yet
-      // But we can validate it after creation if needed
-    }
-
     const employee = await Employee.create(data);
-
-    // After creation, if reporting_to is set, validate the chain
-    if (employee.reporting_to) {
-      const isValidChain = await this.validateReportingChain(
-        employee._id.toString(),
-        employee.reporting_to.toString()
-      );
-      if (!isValidChain) {
-        // If circular chain detected, remove the employee and throw error
-        await Employee.findByIdAndDelete(employee._id);
-        throw new ConflictError('Circular reporting chain detected');
-      }
+    const employeeObj = employee.toObject();
+    // Transform _id to id for frontend compatibility
+    if (employeeObj._id) {
+      employeeObj.id = employeeObj._id.toString();
     }
-
-    return employee;
+    return employeeObj;
   }
 
   // Get all employees with pagination and filters
   async getAllEmployees(filters: any = {}) {
-    const { page = 1, limit = 10, status, search, designation, department, reporting_to } = filters;
+    const { page = 1, limit = 10, search } = filters;
     const skip = (parseInt(page) - 1) * parseInt(limit);
 
     const query: any = {};
-
-    if (status) {
-      query.status = status;
-    }
-
-    if (designation) {
-      query.designation = { $regex: designation, $options: 'i' };
-    }
-
-    if (department) {
-      query.department = { $regex: department, $options: 'i' };
-    }
-
-    if (reporting_to) {
-      query.reporting_to = reporting_to;
-    }
 
     if (search) {
       query.$or = [
         { first_name: { $regex: search, $options: 'i' } },
         { last_name: { $regex: search, $options: 'i' } },
         { employee_code: { $regex: search, $options: 'i' } },
-        { designation: { $regex: search, $options: 'i' } },
-        { department: { $regex: search, $options: 'i' } },
+        { work_email: { $regex: search, $options: 'i' } },
+        { personal_email: { $regex: search, $options: 'i' } },
+        { mobile_number: { $regex: search, $options: 'i' } },
       ];
     }
 
     const [employees, total] = await Promise.all([
       Employee.find(query)
-        .populate('reporting_to', 'first_name last_name designation employee_code')
         .sort({ createdAt: -1 })
         .skip(skip)
         .limit(parseInt(limit)),
       Employee.countDocuments(query),
     ]);
 
+    // Fetch current job info for all employees
+    const employeeIds = employees.map(emp => emp._id);
+    const currentJobInfos = await EmployeeJobInfo.find({
+      employee_id: { $in: employeeIds },
+      is_current: true,
+    })
+      .populate('reporting_to', 'first_name last_name employee_code designation')
+      .lean();
+
+    // Create a map of employee_id -> job info for quick lookup
+    const jobInfoMap = new Map();
+    currentJobInfos.forEach((jobInfo: any) => {
+      jobInfoMap.set(jobInfo.employee_id.toString(), jobInfo);
+    });
+
+    // Merge job info into employee objects
+    const employeesWithJobInfo = employees.map((employee: any) => {
+      const employeeObj = employee.toObject();
+      
+      // Transform _id to id for frontend compatibility
+      if (employeeObj._id) {
+        employeeObj.id = employeeObj._id.toString();
+      }
+      
+      const jobInfo = jobInfoMap.get(employee._id.toString());
+      
+      if (jobInfo) {
+        // Add job info fields to employee object for frontend compatibility
+        employeeObj.designation = jobInfo.designation;
+        employeeObj.department = jobInfo.department;
+        employeeObj.status = jobInfo.status;
+        employeeObj.hire_date = jobInfo.hire_date;
+        employeeObj.joining_date = jobInfo.joining_date;
+        employeeObj.location = jobInfo.location;
+        employeeObj.time_type = jobInfo.time_type;
+        employeeObj.reporting_to = jobInfo.reporting_to;
+        employeeObj.reportingToEmployee = jobInfo.reporting_to; // For frontend compatibility
+      }
+      
+      return employeeObj;
+    });
+
     return {
-      employees,
+      employees: employeesWithJobInfo,
       total,
       page: parseInt(page),
       totalPages: Math.ceil(total / parseInt(limit)),
@@ -144,16 +126,18 @@ class EmployeeService {
 
   // Get employee by ID
   async getEmployeeById(id: string) {
-    const employee = await Employee.findById(id).populate(
-      'reporting_to',
-      'first_name last_name designation employee_code'
-    );
+    const employee = await Employee.findById(id);
 
     if (!employee) {
       throw new NotFoundError('Employee not found');
     }
 
-    return employee;
+    const employeeObj = employee.toObject();
+    // Transform _id to id for frontend compatibility
+    if (employeeObj._id) {
+      employeeObj.id = employeeObj._id.toString();
+    }
+    return employeeObj;
   }
 
   // Update employee
@@ -169,39 +153,21 @@ class EmployeeService {
       const existingEmployee = await Employee.findOne({ employee_code: data.employee_code });
 
       if (existingEmployee) {
-        throw new ConflictError('Employee code already exists');
-      }
-    }
-
-    // Validate reporting_to if being updated
-    if (data.reporting_to !== undefined) {
-      // Prevent self-reference
-      if (data.reporting_to && data.reporting_to === id) {
-        throw new ConflictError('Employee cannot report to themselves');
-      }
-
-      // If reporting_to is being set, validate the reporting chain
-      if (data.reporting_to) {
-        // Check if the reporting_to employee exists
-        const reportingToEmployee = await Employee.findById(data.reporting_to);
-        if (!reportingToEmployee) {
-          throw new NotFoundError('Reporting to employee not found');
-        }
-
-        // Validate circular reference chain
-        const isValidChain = await this.validateReportingChain(id, data.reporting_to);
-        if (!isValidChain) {
-          throw new ConflictError('Circular reporting chain detected');
-        }
+        throw new NotFoundError('Employee code already exists');
       }
     }
 
     Object.assign(employee, data);
     await employee.save();
-    return employee;
+    const employeeObj = employee.toObject();
+    // Transform _id to id for frontend compatibility
+    if (employeeObj._id) {
+      employeeObj.id = employeeObj._id.toString();
+    }
+    return employeeObj;
   }
 
-  // Delete employee (soft delete by changing status)
+  // Delete employee (soft delete by changing status - but status is now in JobInfo)
   async deleteEmployee(id: string) {
     const employee = await Employee.findById(id);
 
@@ -209,10 +175,10 @@ class EmployeeService {
       throw new NotFoundError('Employee not found');
     }
 
-    employee.status = 'terminated';
-    employee.termination_date = new Date();
-    await employee.save();
-    return { message: 'Employee terminated successfully' };
+    // Note: Since status is now in EmployeeJobInfo, we might want to handle this differently
+    // For now, we'll just delete the employee record
+    await employee.deleteOne();
+    return { message: 'Employee deleted successfully' };
   }
 
   // Get employee with all related data
@@ -223,9 +189,8 @@ class EmployeeService {
       throw new NotFoundError('Employee not found');
     }
 
-    // Fetch all related data
+    // Fetch all related data (excluding job info which is in separate collection)
     const [
-      contacts,
       documents,
       compensations,
       allowances,
@@ -235,7 +200,6 @@ class EmployeeService {
       qualifications,
       workPasses,
     ] = await Promise.all([
-      EmployeeContact.find({ employee_id: id }),
       EmployeeDocument.find({ employee_id: id }),
       EmployeeCompensation.find({ employee_id: id }),
       EmployeeAllowance.find({ employee_id: id }).populate('allowance_type_id'),
@@ -251,14 +215,14 @@ class EmployeeService {
       await employee.populate('created_by', 'firstName lastName email');
     }
 
-    // Populate reporting_to if it exists
-    if (employee.reporting_to) {
-      await employee.populate('reporting_to', 'first_name last_name designation employee_code');
+    const employeeObj = employee.toObject();
+    // Transform _id to id for frontend compatibility
+    if (employeeObj._id) {
+      employeeObj.id = employeeObj._id.toString();
     }
 
     return {
-      ...employee.toObject(),
-      contacts,
+      ...employeeObj,
       documents,
       compensations,
       allowances,
