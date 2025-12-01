@@ -12,6 +12,10 @@ import certificationRoutes from './certification.routes.ts';
 import qualificationRoutes from './qualification.routes.ts';
 import workPassRoutes from './workPass.routes.ts';
 import auditRoutes from './audit.routes.ts';
+import businessUnitRoutes from './businessUnit.routes.ts';
+import departmentRoutes from './department.routes.ts';
+import locationRoutes from './location.routes.ts';
+import legalEntityRoutes from './legalEntity.routes.ts';
 
 const router = Router();
 
@@ -28,5 +32,9 @@ router.use('/certifications', certificationRoutes);
 router.use('/qualifications', qualificationRoutes);
 router.use('/work-passes', workPassRoutes);
 router.use('/audit', auditRoutes);
+router.use('/business-units', businessUnitRoutes);
+router.use('/departments', departmentRoutes);
+router.use('/locations', locationRoutes);
+router.use('/legal-entities', legalEntityRoutes);
 
 export default router;

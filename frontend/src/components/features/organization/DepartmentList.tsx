@@ -8,6 +8,7 @@ interface DepartmentListProps {
   selectedDepartmentId?: string;
   onDepartmentSelect: (department: Department) => void;
   onEdit?: (department: Department) => void;
+  onDelete?: (department: Department) => void;
 }
 
 export const DepartmentList = ({
@@ -15,6 +16,7 @@ export const DepartmentList = ({
   selectedDepartmentId,
   onDepartmentSelect,
   onEdit,
+  onDelete,
 }: DepartmentListProps) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
@@ -46,6 +48,13 @@ export const DepartmentList = ({
   const handleEditClick = () => {
     if (selectedDepartmentForMenu && onEdit) {
       onEdit(selectedDepartmentForMenu);
+    }
+    handleMenuClose();
+  };
+
+  const handleDeleteClick = () => {
+    if (selectedDepartmentForMenu && onDelete) {
+      onDelete(selectedDepartmentForMenu);
     }
     handleMenuClose();
   };
@@ -185,6 +194,11 @@ export const DepartmentList = ({
         onClose={handleMenuClose}
       >
         <MenuItem onClick={handleEditClick}>Edit</MenuItem>
+        {onDelete && (
+          <MenuItem onClick={handleDeleteClick} sx={{ color: 'error.main' }}>
+            Delete
+          </MenuItem>
+        )}
       </Menu>
     </Box>
   );

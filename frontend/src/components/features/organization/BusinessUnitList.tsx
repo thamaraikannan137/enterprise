@@ -8,6 +8,7 @@ interface BusinessUnitListProps {
   selectedUnitId?: string;
   onUnitSelect: (unit: BusinessUnit) => void;
   onEdit?: (unit: BusinessUnit) => void;
+  onDelete?: (unit: BusinessUnit) => void;
 }
 
 export const BusinessUnitList = ({
@@ -15,6 +16,7 @@ export const BusinessUnitList = ({
   selectedUnitId,
   onUnitSelect,
   onEdit,
+  onDelete,
 }: BusinessUnitListProps) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
@@ -46,6 +48,13 @@ export const BusinessUnitList = ({
   const handleEditClick = () => {
     if (selectedUnitForMenu && onEdit) {
       onEdit(selectedUnitForMenu);
+    }
+    handleMenuClose();
+  };
+
+  const handleDeleteClick = () => {
+    if (selectedUnitForMenu && onDelete) {
+      onDelete(selectedUnitForMenu);
     }
     handleMenuClose();
   };
@@ -185,6 +194,11 @@ export const BusinessUnitList = ({
         onClose={handleMenuClose}
       >
         <MenuItem onClick={handleEditClick}>Edit</MenuItem>
+        {onDelete && (
+          <MenuItem onClick={handleDeleteClick} sx={{ color: 'error.main' }}>
+            Delete
+          </MenuItem>
+        )}
       </Menu>
     </Box>
   );

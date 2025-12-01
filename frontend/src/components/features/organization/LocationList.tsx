@@ -8,6 +8,7 @@ interface LocationListProps {
   selectedLocationId?: string;
   onLocationSelect: (location: Location) => void;
   onEdit?: (location: Location) => void;
+  onDelete?: (location: Location) => void;
 }
 
 export const LocationList = ({
@@ -15,6 +16,7 @@ export const LocationList = ({
   selectedLocationId,
   onLocationSelect,
   onEdit,
+  onDelete,
 }: LocationListProps) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
@@ -48,6 +50,13 @@ export const LocationList = ({
   const handleEditClick = () => {
     if (selectedLocationForMenu && onEdit) {
       onEdit(selectedLocationForMenu);
+    }
+    handleMenuClose();
+  };
+
+  const handleDeleteClick = () => {
+    if (selectedLocationForMenu && onDelete) {
+      onDelete(selectedLocationForMenu);
     }
     handleMenuClose();
   };
@@ -185,6 +194,11 @@ export const LocationList = ({
         onClose={handleMenuClose}
       >
         <MenuItem onClick={handleEditClick}>Edit</MenuItem>
+        {onDelete && (
+          <MenuItem onClick={handleDeleteClick} sx={{ color: 'error.main' }}>
+            Delete
+          </MenuItem>
+        )}
       </Menu>
     </Box>
   );

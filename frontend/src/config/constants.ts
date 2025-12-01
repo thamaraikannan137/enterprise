@@ -26,6 +26,10 @@ export const API_ENDPOINTS = {
   WORK_PASSES: '/v1/work-passes',
   CERTIFICATIONS: '/v1/certifications',
   QUALIFICATIONS: '/v1/qualifications',
+  BUSINESS_UNITS: '/v1/business-units',
+  DEPARTMENTS: '/v1/departments',
+  LOCATIONS: '/v1/locations',
+  LEGAL_ENTITIES: '/v1/legal-entities',
   AUTH: {
     LOGIN: '/v1/auth/login',
     LOGOUT: '/v1/auth/logout',

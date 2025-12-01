@@ -14,6 +14,10 @@ import EmployeeQualification from './EmployeeQualification.ts';
 import EmployeeWorkPass from './EmployeeWorkPass.ts';
 import WorkPassDocument from './WorkPassDocument.ts';
 import AuditLog from './AuditLog.ts';
+import BusinessUnit from './BusinessUnit.ts';
+import Department from './Department.ts';
+import Location from './Location.ts';
+import LegalEntity from './LegalEntity.ts';
 
 // Export all models
 export {
@@ -32,4 +36,8 @@ export {
   EmployeeWorkPass,
   WorkPassDocument,
   AuditLog,
+  BusinessUnit,
+  Department,
+  Location,
+  LegalEntity,
 };

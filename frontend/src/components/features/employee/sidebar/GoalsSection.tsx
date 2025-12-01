@@ -104,3 +104,6 @@ export const GoalsSection = ({ employee }: GoalsSectionProps) => {
 
 
 
+
+
+

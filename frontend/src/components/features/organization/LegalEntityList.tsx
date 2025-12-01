@@ -1,20 +1,26 @@
 import { useState, useMemo } from 'react';
-import { TextField, InputAdornment, Box, List, ListItem, ListItemButton, Typography } from '@mui/material';
-import { Search } from '@mui/icons-material';
+import { TextField, InputAdornment, Box, List, ListItem, ListItemButton, Typography, IconButton, Menu, MenuItem } from '@mui/material';
+import { Search, MoreVert } from '@mui/icons-material';
 import type { LegalEntity } from '../../../types/organization';
 
 interface LegalEntityListProps {
   legalEntities: LegalEntity[];
   selectedEntityId?: string;
   onEntitySelect: (entity: LegalEntity) => void;
+  onEdit?: (entity: LegalEntity) => void;
+  onDelete?: (entity: LegalEntity) => void;
 }
 
 export const LegalEntityList = ({
   legalEntities,
   selectedEntityId,
   onEntitySelect,
+  onEdit,
+  onDelete,
 }: LegalEntityListProps) => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
+  const [selectedEntityForMenu, setSelectedEntityForMenu] = useState<LegalEntity | null>(null);
 
   const filteredEntities = useMemo(() => {
     if (!searchQuery.trim()) {
@@ -27,6 +33,31 @@ export const LegalEntityList = ({
         entity.legal_name.toLowerCase().includes(query)
     );
   }, [legalEntities, searchQuery]);
+
+  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>, entity: LegalEntity) => {
+    event.stopPropagation();
+    setMenuAnchor(event.currentTarget);
+    setSelectedEntityForMenu(entity);
+  };
+
+  const handleMenuClose = () => {
+    setMenuAnchor(null);
+    setSelectedEntityForMenu(null);
+  };
+
+  const handleEditClick = () => {
+    if (selectedEntityForMenu && onEdit) {
+      onEdit(selectedEntityForMenu);
+    }
+    handleMenuClose();
+  };
+
+  const handleDeleteClick = () => {
+    if (selectedEntityForMenu && onDelete) {
+      onDelete(selectedEntityForMenu);
+    }
+    handleMenuClose();
+  };
 
   return (
     <Box
@@ -90,7 +121,20 @@ export const LegalEntityList = ({
         ) : (
           <List sx={{ p: 0 }}>
             {filteredEntities.map((entity) => (
-              <ListItem key={entity.id} disablePadding>
+              <ListItem 
+                key={entity.id} 
+                disablePadding
+                secondaryAction={
+                  <IconButton
+                    edge="end"
+                    size="small"
+                    onClick={(e) => handleMenuOpen(e, entity)}
+                    sx={{ mr: 1 }}
+                  >
+                    <MoreVert fontSize="small" />
+                  </IconButton>
+                }
+              >
                 <ListItemButton
                   selected={entity.id === selectedEntityId}
                   onClick={() => onEntitySelect(entity)}
@@ -111,7 +155,7 @@ export const LegalEntityList = ({
                     },
                   }}
                 >
-                  <Box sx={{ width: '100%' }}>
+                  <Box sx={{ width: '100%', pr: 4 }}>
                     <Typography
                       variant="body1"
                       sx={{
@@ -141,6 +185,20 @@ export const LegalEntityList = ({
           </List>
         )}
       </Box>
+
+      {/* Actions Menu */}
+      <Menu
+        anchorEl={menuAnchor}
+        open={Boolean(menuAnchor)}
+        onClose={handleMenuClose}
+      >
+        <MenuItem onClick={handleEditClick}>Edit</MenuItem>
+        {onDelete && (
+          <MenuItem onClick={handleDeleteClick} sx={{ color: 'error.main' }}>
+            Delete
+          </MenuItem>
+        )}
+      </Menu>
     </Box>
   );
 };

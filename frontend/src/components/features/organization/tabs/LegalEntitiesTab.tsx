@@ -1,17 +1,43 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Box } from '@mui/material';
 import { MuiButton, MuiModal } from '../../../common';
 import { LegalEntityList } from '../LegalEntityList';
 import { LegalEntityDetailView } from '../LegalEntityDetailView';
 import { LegalEntityForm } from '../LegalEntityForm';
+import { legalEntityService } from '../../../../services/legalEntityService';
+import { useToast } from '../../../../contexts/ToastContext';
 import type { LegalEntity, CreateLegalEntityInput } from '../../../../types/organization';
 
 export const LegalEntitiesTab = () => {
+  const { showSuccess, showError } = useToast();
   const [legalEntities, setLegalEntities] = useState<LegalEntity[]>([]);
   const [selectedEntity, setSelectedEntity] = useState<LegalEntity | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [editingEntity, setEditingEntity] = useState<LegalEntity | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Fetch legal entities on component mount
+  useEffect(() => {
+    const fetchLegalEntities = async () => {
+      setIsLoading(true);
+      try {
+        const entities = await legalEntityService.getLegalEntities();
+        setLegalEntities(entities);
+        // Select first entity if available
+        if (entities.length > 0 && !selectedEntity) {
+          setSelectedEntity(entities[0]);
+        }
+      } catch (err: any) {
+        console.error('Failed to fetch legal entities:', err);
+        showError(err.message || 'Failed to load legal entities');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchLegalEntities();
+  }, [showError]);
 
   const handleAddClick = () => {
     setEditingEntity(null);
@@ -22,9 +48,10 @@ export const LegalEntitiesTab = () => {
     setSelectedEntity(entity);
   };
 
-  const handleEditClick = () => {
-    if (selectedEntity) {
-      setEditingEntity(selectedEntity);
+  const handleEditClick = (entity?: LegalEntity) => {
+    const entityToEdit = entity || selectedEntity;
+    if (entityToEdit) {
+      setEditingEntity(entityToEdit);
       setIsModalOpen(true);
     }
   };
@@ -39,40 +66,60 @@ export const LegalEntitiesTab = () => {
   const handleSave = async (data: CreateLegalEntityInput) => {
     setIsSubmitting(true);
     try {
-      // TODO: Replace with actual API call
-      // For now, we'll just add to local state
-      if (editingEntity) {
+      if (editingEntity && editingEntity.id) {
         // Update existing entity
-        const updatedEntity: LegalEntity = {
-          ...editingEntity,
-          ...data,
-          updated_at: new Date().toISOString(),
-        };
+        const updatedEntity = await legalEntityService.updateLegalEntity(
+          editingEntity.id,
+          data
+        );
         setLegalEntities(prev =>
           prev.map(entity =>
             entity.id === editingEntity.id ? updatedEntity : entity
           )
         );
         setSelectedEntity(updatedEntity);
+        showSuccess('Legal entity updated successfully');
       } else {
         // Create new entity
-        const newEntity: LegalEntity = {
-          ...data,
-          id: `entity-${Date.now()}`,
-          employee_count: 0,
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString(),
-        };
+        const newEntity = await legalEntityService.createLegalEntity(data);
         setLegalEntities(prev => [...prev, newEntity]);
         setSelectedEntity(newEntity);
+        showSuccess('Legal entity created successfully');
       }
       setIsModalOpen(false);
       setEditingEntity(null);
-    } catch (error) {
-      console.error('Failed to save legal entity:', error);
-      alert('Failed to save legal entity. Please try again.');
+    } catch (err: any) {
+      console.error('Failed to save legal entity:', err);
+      const errorMessage = err.message || 'Failed to save legal entity. Please try again.';
+      showError(errorMessage);
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleDelete = async (entity: LegalEntity) => {
+    if (!entity.id) {
+      return;
+    }
+
+    if (!window.confirm(`Are you sure you want to delete "${entity.entity_name}"? This action cannot be undone.`)) {
+      return;
+    }
+
+    try {
+      await legalEntityService.deleteLegalEntity(entity.id);
+      setLegalEntities(prev => prev.filter(e => e.id !== entity.id));
+      
+      // If the deleted entity was selected, clear selection or select another
+      if (selectedEntity?.id === entity.id) {
+        const remainingEntities = legalEntities.filter(e => e.id !== entity.id);
+        setSelectedEntity(remainingEntities.length > 0 ? remainingEntities[0] : null);
+      }
+      showSuccess('Legal entity deleted successfully');
+    } catch (err: any) {
+      console.error('Failed to delete legal entity:', err);
+      const errorMessage = err.message || 'Failed to delete legal entity. Please try again.';
+      showError(errorMessage);
     }
   };
 
@@ -110,11 +157,17 @@ export const LegalEntitiesTab = () => {
       {/* Split Panel Layout */}
       <Box sx={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
         {/* Left Sidebar - Entity List */}
-        <LegalEntityList
-          legalEntities={legalEntities}
-          selectedEntityId={selectedEntity?.id}
-          onEntitySelect={handleEntitySelect}
-        />
+        {isLoading ? (
+          <Box sx={{ p: 3, width: '300px' }}>Loading legal entities...</Box>
+        ) : (
+          <LegalEntityList
+            legalEntities={legalEntities}
+            selectedEntityId={selectedEntity?.id}
+            onEntitySelect={handleEntitySelect}
+            onEdit={handleEditClick}
+            onDelete={handleDelete}
+          />
+        )}
 
         {/* Right Panel - Detail View */}
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
