@@ -14,12 +14,14 @@ export interface AttendanceLog {
     longitude: number;
   };
   locationAddress?: {
+    longitude: number;
+    latitude: number;
+    zip?: string;
+    countryCode?: string;
+    state?: string;
+    city?: string;
     addressLine1?: string;
     addressLine2?: string;
-    city?: string;
-    state?: string;
-    countryCode?: string;
-    zip?: string;
     freeFormAddress?: string;
   };
   hasAddress: boolean;
@@ -43,16 +45,17 @@ export interface AttendanceLog {
 
 export interface ClockInOutRequest {
   employeeId: string;
+  timestamp?: string; // ISO 8601 timestamp from frontend
   note?: string;
   locationAddress?: {
-    latitude: number;
     longitude: number;
+    latitude: number;
+    zip?: string;
+    countryCode?: string;
+    state?: string;
+    city?: string;
     addressLine1?: string;
     addressLine2?: string;
-    city?: string;
-    state?: string;
-    countryCode?: string;
-    zip?: string;
     freeFormAddress?: string;
   };
   ipAddress?: string;

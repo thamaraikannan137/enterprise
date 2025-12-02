@@ -29,6 +29,7 @@ import { employeeService } from '../services/employeeService';
 import { shiftService } from '../services/shiftService';
 import { useAppSelector } from '../store';
 import { useToast } from '../contexts/ToastContext';
+import { getCurrentLocationWithAddress } from '../utils/locationUtils';
 import type { AttendanceLog } from '../types/attendance';
 import type { Shift } from '../types/shift';
 import PersonIcon from '@mui/icons-material/Person';
@@ -497,31 +498,18 @@ export const MyAttendancePage = ({ employeeId }: AttendanceDashboardPageProps) =
       setActionLoading(true);
       setError(null);
 
-      // Get user's current location
-      let locationAddress;
-      try {
-        const position = await new Promise<GeolocationPosition>((resolve, reject) => {
-          navigator.geolocation.getCurrentPosition(resolve, reject, {
-            enableHighAccuracy: true,
-            timeout: 10000,
-            maximumAge: 0,
-          });
-        });
+      // Capture timestamp from frontend
+      const timestamp = new Date().toISOString();
 
-        locationAddress = {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-          addressLine1: 'Location captured',
-        };
-      } catch (geoError) {
-        console.warn('Location access denied or unavailable:', geoError);
-      }
+      // Get user's current location with full address details
+      const locationAddress = await getCurrentLocationWithAddress();
 
       if (attendanceStatus === 'IN') {
         // Clock out
         await attendanceService.clockOut({
           employeeId: currentEmployeeId,
-          locationAddress,
+          timestamp,
+          locationAddress: locationAddress || undefined,
         });
         setAttendanceStatus('OUT');
         showSuccess('Clocked out successfully!');
@@ -529,7 +517,8 @@ export const MyAttendancePage = ({ employeeId }: AttendanceDashboardPageProps) =
         // Clock in
         await attendanceService.clockIn({
           employeeId: currentEmployeeId,
-          locationAddress,
+          timestamp,
+          locationAddress: locationAddress || undefined,
         });
         setAttendanceStatus('IN');
         showSuccess('Clocked in successfully!');

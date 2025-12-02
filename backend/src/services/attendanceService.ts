@@ -5,16 +5,17 @@ import type { IAttendanceLog } from '../models/AttendanceLog.ts';
 
 interface ClockInOutData {
   employeeId: string;
+  timestamp?: string; // ISO 8601 timestamp from frontend
   note?: string;
   locationAddress?: {
-    latitude: number;
     longitude: number;
+    latitude: number;
+    zip?: string;
+    countryCode?: string;
+    state?: string;
+    city?: string;
     addressLine1?: string;
     addressLine2?: string;
-    city?: string;
-    state?: string;
-    countryCode?: string;
-    zip?: string;
     freeFormAddress?: string;
   };
   ipAddress?: string;
@@ -40,7 +41,7 @@ class AttendanceService {
 
   // Clock In
   async clockIn(data: ClockInOutData, userId?: string) {
-    const { employeeId, note, locationAddress, ipAddress } = data;
+    const { employeeId, timestamp, note, locationAddress, ipAddress } = data;
 
     // Verify employee exists
     const employee = await Employee.findById(employeeId);
@@ -54,15 +55,16 @@ class AttendanceService {
       throw new BadRequestError('You are already clocked in. Please clock out first.');
     }
 
-    const now = new Date();
+    // Use timestamp from frontend if provided, otherwise use server time
+    const punchTimestamp = timestamp ? new Date(timestamp) : new Date();
     const hasAddress = !!(locationAddress?.latitude && locationAddress?.longitude);
 
     const attendanceLog = await AttendanceLog.create({
       employeeId,
       punchType: 'web',
       event: 'IN',
-      timestamp: now,
-      actualTimestamp: now,
+      timestamp: punchTimestamp,
+      actualTimestamp: punchTimestamp,
       originalPunchStatus: 0, // IN
       punchStatus: 0, // IN
       attendanceLogSource: 1, // Web
@@ -90,7 +92,7 @@ class AttendanceService {
 
   // Clock Out
   async clockOut(data: ClockInOutData, userId?: string) {
-    const { employeeId, note, locationAddress, ipAddress } = data;
+    const { employeeId, timestamp, note, locationAddress, ipAddress } = data;
 
     // Verify employee exists
     const employee = await Employee.findById(employeeId);
@@ -104,15 +106,16 @@ class AttendanceService {
       throw new BadRequestError('You are not clocked in. Please clock in first.');
     }
 
-    const now = new Date();
+    // Use timestamp from frontend if provided, otherwise use server time
+    const punchTimestamp = timestamp ? new Date(timestamp) : new Date();
     const hasAddress = !!(locationAddress?.latitude && locationAddress?.longitude);
 
     const attendanceLog = await AttendanceLog.create({
       employeeId,
       punchType: 'web',
       event: 'OUT',
-      timestamp: now,
-      actualTimestamp: now,
+      timestamp: punchTimestamp,
+      actualTimestamp: punchTimestamp,
       originalPunchStatus: 1, // OUT
       punchStatus: 1, // OUT
       attendanceLogSource: 1, // Web

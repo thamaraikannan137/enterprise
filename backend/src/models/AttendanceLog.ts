@@ -22,12 +22,14 @@ export interface IAttendanceLog extends Document {
     longitude: number;
   };
   locationAddress?: {
-    addressLine1: string;
+    longitude: number;
+    latitude: number;
+    zip?: string;
+    countryCode?: string;
+    state?: string;
+    city?: string;
+    addressLine1?: string;
     addressLine2?: string;
-    city: string;
-    state: string;
-    countryCode: string;
-    zip: string;
     freeFormAddress?: string;
   };
   hasAddress: boolean;
@@ -108,19 +110,13 @@ const attendanceLogSchema = new Schema<IAttendanceLog>(
       },
     },
     locationAddress: {
-      addressLine1: {
-        type: String,
-        trim: true,
+      longitude: {
+        type: Number,
       },
-      addressLine2: {
-        type: String,
-        trim: true,
+      latitude: {
+        type: Number,
       },
-      city: {
-        type: String,
-        trim: true,
-      },
-      state: {
+      zip: {
         type: String,
         trim: true,
       },
@@ -128,7 +124,19 @@ const attendanceLogSchema = new Schema<IAttendanceLog>(
         type: String,
         trim: true,
       },
-      zip: {
+      state: {
+        type: String,
+        trim: true,
+      },
+      city: {
+        type: String,
+        trim: true,
+      },
+      addressLine1: {
+        type: String,
+        trim: true,
+      },
+      addressLine2: {
         type: String,
         trim: true,
       },

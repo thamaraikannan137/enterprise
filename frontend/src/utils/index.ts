@@ -2,4 +2,5 @@
 export * from './formatters';
 export * from './validators';
 export * from './imageUtils';
+export * from './locationUtils';
 
