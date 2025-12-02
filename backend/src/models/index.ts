@@ -24,3 +24,8 @@ export {
 } from './HRModels.index.ts';
 
 export { User };
+export { default as AttendanceLog } from './AttendanceLog.ts';
+export { default as AttendanceSummary } from './AttendanceSummary.ts';
+export { default as RegularizationRequest } from './RegularizationRequest.ts';
+export { default as Shift } from './Shift.ts';
+export { default as HolidayCalendar } from './HolidayCalendar.ts';

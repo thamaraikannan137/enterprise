@@ -1,5 +1,5 @@
 // React Imports
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 // MUI Imports
@@ -13,6 +13,9 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
+import Collapse from '@mui/material/Collapse';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
 
 // Hook Imports
 import { useNavigation } from '../../hooks/useNavigation';
@@ -34,6 +37,7 @@ const iconMap: { [key: string]: React.ReactNode } = {
   Settings: <i className="ri-settings-3-line" />,
   People: <i className="ri-team-line" />,
   Organization: <i className="ri-building-line" />,
+  Calendar: <i className="ri-calendar-line" />,
 };
 
 const StyledDrawer = styled(Drawer)(({ theme }) => ({
@@ -76,12 +80,67 @@ export const Navigation: React.FC<NavigationProps> = ({ open = false, onClose })
     handleMouseLeave
   } = useNavigation();
 
+  // Track which menu items are expanded
+  // Auto-expand items if current path matches any child
+  const getInitialExpandedState = () => {
+    const state: { [key: string]: boolean } = {};
+    menuItems.forEach((item) => {
+      if (item.children) {
+        const hasActiveChild = item.children.some(
+          (child) => child.path && location.pathname === child.path
+        );
+        if (hasActiveChild) {
+          state[item.title] = true;
+        }
+      }
+    });
+    return state;
+  };
+
+  const [expandedItems, setExpandedItems] = useState<{ [key: string]: boolean }>(getInitialExpandedState());
+
   const handleNavigation = (path: string) => {
-    navigate(path);
-    // Close mobile drawer on navigation
-    if (isBreakpointReached && onClose) {
-      onClose();
+    if (path) {
+      navigate(path);
+      // Close mobile drawer on navigation
+      if (isBreakpointReached && onClose) {
+        onClose();
+      }
     }
+  };
+
+  const handleMenuClick = (item: any) => {
+    if (item.children && item.children.length > 0) {
+      // Toggle expansion for items with children
+      setExpandedItems(prev => ({
+        ...prev,
+        [item.title]: !prev[item.title]
+      }));
+      
+      // If not expanded and has a path, navigate to first child or parent path
+      if (!expandedItems[item.title]) {
+        if (item.path) {
+          handleNavigation(item.path);
+        } else if (item.children[0]?.path) {
+          handleNavigation(item.children[0].path);
+        }
+      }
+    } else if (item.path) {
+      // Navigate directly if no children
+      handleNavigation(item.path);
+    }
+  };
+
+  const isItemActive = (item: any): boolean => {
+    if (item.path && location.pathname === item.path) {
+      return true;
+    }
+    if (item.children) {
+      return item.children.some((child: any) => 
+        child.path && location.pathname === child.path
+      );
+    }
+    return false;
   };
 
   const effectiveWidth = isCollapsed && !isHovered ? collapsedWidth : drawerWidth;
@@ -134,67 +193,122 @@ export const Navigation: React.FC<NavigationProps> = ({ open = false, onClose })
       </Box>
       <Box sx={{ flexGrow: 1, overflow: 'auto' }}>
         <List component="nav" sx={{ px: 2 }}>
-          {menuItems.map((item) => (
-            <ListItem key={item.title} disablePadding sx={{ mb: 1 }}>
-              <ListItemButton
-                sx={{
-                  py: 1.5,
-                  px: 2,
-                  borderRadius: 1,
-                  minHeight: 48,
-                  justifyContent: isCollapsed && !isHovered ? 'center' : 'flex-start',
-                  transition: theme.transitions.create(['background-color', 'color', 'transform'], {
-                    duration: theme.transitions.duration.standard,
-                    easing: theme.transitions.easing.easeInOut
-                  }),
-                  '&.active': {
-                    backgroundColor: theme.palette.primary.main + '14',
-                    '& .MuiListItemIcon-root, & .MuiTypography-root': {
-                      color: 'primary.main'
-                    }
-                  },
-                  '&:hover': {
-                    backgroundColor: theme.palette.action.hover,
-                    borderRadius: 1
-                  }
-                }}
-                className={location.pathname === item.path ? 'active' : ''}
-                onClick={() => handleNavigation(item.path || '')}
-              >
-                <ListItemIcon 
-                  sx={{ 
-                    minWidth: isCollapsed && !isHovered ? 0 : 40,
-                    mr: isCollapsed && !isHovered ? 0 : 2,
-                    justifyContent: 'center',
-                    color: location.pathname === item.path ? 'primary.main' : 'text.secondary',
-                    fontSize: '22px',
-                    transition: theme => theme.transitions.create('color', {
-                      duration: theme.transitions.duration.standard,
-                      easing: theme.transitions.easing.easeInOut
-                    })
-                  }}
-                >
-                  {item.icon && iconMap[item.icon]}
-                </ListItemIcon>
-                <ListItemText
-                  primary={item.title}
-                  sx={{
-                    opacity: isCollapsed && !isHovered ? 0 : 1,
-                    transition: theme => theme.transitions.create('opacity', {
-                      duration: theme.transitions.duration.standard,
-                      easing: theme.transitions.easing.easeInOut
-                    })
-                  }}
-                  primaryTypographyProps={{
-                    noWrap: true,
-                    fontSize: '0.875rem',
-                    fontWeight: location.pathname === item.path ? 600 : 400,
-                    color: location.pathname === item.path ? 'primary.main' : 'text.secondary'
-                  }}
-                />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          {menuItems.map((item) => {
+            const hasChildren = item.children && item.children.length > 0;
+            const isExpanded = expandedItems[item.title] || false;
+            const isActive = isItemActive(item);
+
+            return (
+              <React.Fragment key={item.title}>
+                <ListItem disablePadding sx={{ mb: hasChildren ? 0 : 1 }}>
+                  <ListItemButton
+                    sx={{
+                      py: 1.5,
+                      px: 2,
+                      borderRadius: 1,
+                      minHeight: 48,
+                      justifyContent: isCollapsed && !isHovered ? 'center' : 'flex-start',
+                      transition: theme.transitions.create(['background-color', 'color', 'transform'], {
+                        duration: theme.transitions.duration.standard,
+                        easing: theme.transitions.easing.easeInOut
+                      }),
+                      '&.active': {
+                        backgroundColor: theme.palette.primary.main + '14',
+                        '& .MuiListItemIcon-root, & .MuiTypography-root': {
+                          color: 'primary.main'
+                        }
+                      },
+                      '&:hover': {
+                        backgroundColor: theme.palette.action.hover,
+                        borderRadius: 1
+                      }
+                    }}
+                    className={isActive ? 'active' : ''}
+                    onClick={() => handleMenuClick(item)}
+                  >
+                    <ListItemIcon 
+                      sx={{ 
+                        minWidth: isCollapsed && !isHovered ? 0 : 40,
+                        mr: isCollapsed && !isHovered ? 0 : 2,
+                        justifyContent: 'center',
+                        color: isActive ? 'primary.main' : 'text.secondary',
+                        fontSize: '22px',
+                        transition: theme => theme.transitions.create('color', {
+                          duration: theme.transitions.duration.standard,
+                          easing: theme.transitions.easing.easeInOut
+                        })
+                      }}
+                    >
+                      {item.icon && iconMap[item.icon]}
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={item.title}
+                      sx={{
+                        opacity: isCollapsed && !isHovered ? 0 : 1,
+                        transition: theme => theme.transitions.create('opacity', {
+                          duration: theme.transitions.duration.standard,
+                          easing: theme.transitions.easing.easeInOut
+                        })
+                      }}
+                      primaryTypographyProps={{
+                        noWrap: true,
+                        fontSize: '0.875rem',
+                        fontWeight: isActive ? 600 : 400,
+                        color: isActive ? 'primary.main' : 'text.secondary'
+                      }}
+                    />
+                    {hasChildren && !isCollapsed && !isHovered && (
+                      isExpanded ? <ExpandLess /> : <ExpandMore />
+                    )}
+                  </ListItemButton>
+                </ListItem>
+                {hasChildren && (
+                  <Collapse in={isExpanded || isCollapsed || isHovered} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+                      {item.children?.map((child) => {
+                        const isChildActive = child.path && location.pathname === child.path;
+                        return (
+                          <ListItem key={child.title} disablePadding sx={{ mb: 0.5 }}>
+                            <ListItemButton
+                              sx={{
+                                py: 1,
+                                px: 2,
+                                pl: 4,
+                                borderRadius: 1,
+                                minHeight: 40,
+                                '&.active': {
+                                  backgroundColor: theme.palette.primary.main + '14',
+                                  '& .MuiTypography-root': {
+                                    color: 'primary.main',
+                                    fontWeight: 600
+                                  }
+                                },
+                                '&:hover': {
+                                  backgroundColor: theme.palette.action.hover,
+                                }
+                              }}
+                              className={isChildActive ? 'active' : ''}
+                              onClick={() => handleNavigation(child.path || '')}
+                            >
+                              <ListItemText
+                                primary={child.title}
+                                primaryTypographyProps={{
+                                  noWrap: true,
+                                  fontSize: '0.8rem',
+                                  fontWeight: isChildActive ? 600 : 400,
+                                  color: isChildActive ? 'primary.main' : 'text.secondary'
+                                }}
+                              />
+                            </ListItemButton>
+                          </ListItem>
+                        );
+                      })}
+                    </List>
+                  </Collapse>
+                )}
+              </React.Fragment>
+            );
+          })}
         </List>
       </Box>
     </Box>

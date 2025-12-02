@@ -16,6 +16,10 @@ import businessUnitRoutes from './businessUnit.routes.ts';
 import departmentRoutes from './department.routes.ts';
 import locationRoutes from './location.routes.ts';
 import legalEntityRoutes from './legalEntity.routes.ts';
+import attendanceRoutes from './attendance.routes.ts';
+import regularizationRoutes from './regularization.routes.ts';
+import shiftRoutes from './shift.routes.ts';
+import holidayRoutes from './holiday.routes.ts';
 
 const router = Router();
 
@@ -36,5 +40,9 @@ router.use('/business-units', businessUnitRoutes);
 router.use('/departments', departmentRoutes);
 router.use('/locations', locationRoutes);
 router.use('/legal-entities', legalEntityRoutes);
+router.use('/attendance', attendanceRoutes);
+router.use('/regularization', regularizationRoutes);
+router.use('/shifts', shiftRoutes);
+router.use('/holidays', holidayRoutes);
 
 export default router;

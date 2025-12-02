@@ -24,6 +24,41 @@ export const navigationItems: NavItemType[] = [
     icon: 'Organization',
   },
   {
+    title: 'Attendance',
+    path: '/attendance', // Default path when clicking parent
+    icon: 'Calendar',
+    children: [
+      {
+        title: 'Dashboard',
+        path: '/attendance',
+      },
+      {
+        title: 'My Attendance',
+        path: '/attendance/my-attendance',
+      },
+      {
+        title: 'Regularization',
+        path: '/attendance/regularization',
+      },
+      {
+        title: 'Reports',
+        path: '/attendance/reports',
+      },
+      {
+        title: 'Admin',
+        path: '/attendance/admin',
+      },
+      {
+        title: 'Shifts',
+        path: '/attendance/shifts',
+      },
+      {
+        title: 'Holidays',
+        path: '/attendance/holidays',
+      },
+    ],
+  },
+  {
     title: 'About',
     path: '/about',
     icon: 'Info',

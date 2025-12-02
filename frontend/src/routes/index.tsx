@@ -9,6 +9,14 @@ import { EmployeeCreatePage } from "../pages/EmployeeCreatePage";
 import { EmployeeEditPage } from "../pages/EmployeeEditPage";
 import { EmployeeProfilePage } from "../pages/EmployeeProfilePage";
 import { OrganizationStructurePage } from "../pages/OrganizationStructurePage";
+import { AttendanceDashboardPage } from "../pages/AttendanceDashboardPage";
+import { MyAttendancePage } from "../pages/MyAttendancePage";
+import { RegularizationPage } from "../pages/RegularizationPage";
+import { AttendanceReportsPage } from "../pages/AttendanceReportsPage";
+import { AttendanceAdminPage } from "../pages/AttendanceAdminPage";
+import { ShiftsManagementPage } from "../pages/ShiftsManagementPage";
+import { HolidayCalendarPage } from "../pages/HolidayCalendarPage";
+import { RegularizationDetailPage } from "../pages/RegularizationDetailPage";
 
 
 const router = createBrowserRouter([
@@ -44,6 +52,38 @@ const router = createBrowserRouter([
       {
         path: "organization-structure",
         element: <OrganizationStructurePage />,
+      },
+      {
+        path: "attendance",
+        element: <AttendanceDashboardPage />,
+      },
+      {
+        path: "attendance/my-attendance",
+        element: <MyAttendancePage />,
+      },
+      {
+        path: "attendance/regularization",
+        element: <RegularizationPage />,
+      },
+      {
+        path: "attendance/regularization/:id",
+        element: <RegularizationDetailPage />,
+      },
+      {
+        path: "attendance/reports",
+        element: <AttendanceReportsPage />,
+      },
+      {
+        path: "attendance/admin",
+        element: <AttendanceAdminPage />,
+      },
+      {
+        path: "attendance/shifts",
+        element: <ShiftsManagementPage />,
+      },
+      {
+        path: "attendance/holidays",
+        element: <HolidayCalendarPage />,
       },
     ],
   },

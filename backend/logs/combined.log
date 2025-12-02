@@ -4194,3 +4194,1062 @@
 {"level":"info","message":"GET /api/v1/employees/692caa7ac611985b5b97414b/details 200 2.954 ms - 827","service":"api-service","timestamp":"2025-12-01 18:41:11"}
 {"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 5.604 ms - 671","service":"api-service","timestamp":"2025-12-01 18:41:11"}
 {"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 3.569 ms - 671","service":"api-service","timestamp":"2025-12-01 18:41:11"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-01 23:26:53"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-01 23:26:53"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-01 23:26:53"}
+{"level":"info","message":"GET /api/v1/legal-entities 200 12.092 ms - 707","service":"api-service","timestamp":"2025-12-01 23:27:04"}
+{"level":"info","message":"GET /api/v1/legal-entities 200 2.032 ms - 707","service":"api-service","timestamp":"2025-12-01 23:27:04"}
+{"level":"info","message":"GET /api/v1/legal-entities 200 3.205 ms - 707","service":"api-service","timestamp":"2025-12-01 23:47:42"}
+{"level":"info","message":"GET /api/v1/legal-entities 200 1.880 ms - 707","service":"api-service","timestamp":"2025-12-01 23:47:42"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 10:11:24"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 10:11:24"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 10:11:24"}
+{"level":"info","message":"GET /api/v1/employees?page=1&limit=10 200 20.867 ms - 927","service":"api-service","timestamp":"2025-12-02 10:11:28"}
+{"level":"info","message":"GET /api/v1/employees?page=1&limit=10 200 3.119 ms - 927","service":"api-service","timestamp":"2025-12-02 10:11:28"}
+{"level":"info","message":"GET /api/v1/employees/692caa7ac611985b5b97414b/details 200 22.155 ms - 827","service":"api-service","timestamp":"2025-12-02 10:11:30"}
+{"level":"info","message":"GET /api/v1/employees/692caa7ac611985b5b97414b/details 200 6.013 ms - 827","service":"api-service","timestamp":"2025-12-02 10:11:30"}
+{"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 4.538 ms - 671","service":"api-service","timestamp":"2025-12-02 10:11:30"}
+{"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 2.817 ms - 671","service":"api-service","timestamp":"2025-12-02 10:11:30"}
+{"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 6.558 ms - 671","service":"api-service","timestamp":"2025-12-02 10:12:11"}
+{"level":"info","message":"GET /api/v1/employees?limit=100 200 6.529 ms - 927","service":"api-service","timestamp":"2025-12-02 10:12:11"}
+{"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 2.601 ms - 671","service":"api-service","timestamp":"2025-12-02 10:12:11"}
+{"level":"info","message":"GET /api/v1/employees?limit=100 200 2.513 ms - 927","service":"api-service","timestamp":"2025-12-02 10:12:11"}
+{"level":"info","message":"GET /api/v1/employee-compensation/employee/692caa7ac611985b5b97414b 200 4.326 ms - 114","service":"api-service","timestamp":"2025-12-02 10:12:12"}
+{"level":"info","message":"GET /api/v1/employee-compensation/employee/692caa7ac611985b5b97414b 200 3.251 ms - 114","service":"api-service","timestamp":"2025-12-02 10:12:12"}
+{"level":"info","message":"GET /api/v1/employee-documents/employee/692caa7ac611985b5b97414b 200 4.545 ms - 110","service":"api-service","timestamp":"2025-12-02 10:12:14"}
+{"level":"info","message":"GET /api/v1/employee-documents/employee/692caa7ac611985b5b97414b 200 2.960 ms - 110","service":"api-service","timestamp":"2025-12-02 10:12:14"}
+{"level":"info","message":"GET /api/v1/work-passes/employee/692caa7ac611985b5b97414b 200 5.770 ms - 112","service":"api-service","timestamp":"2025-12-02 10:12:16"}
+{"level":"info","message":"GET /api/v1/work-passes/employee/692caa7ac611985b5b97414b 200 3.270 ms - 112","service":"api-service","timestamp":"2025-12-02 10:12:16"}
+{"level":"info","message":"GET /api/v1/employee-documents/employee/692caa7ac611985b5b97414b 200 4.084 ms - 110","service":"api-service","timestamp":"2025-12-02 10:12:17"}
+{"level":"info","message":"GET /api/v1/employee-documents/employee/692caa7ac611985b5b97414b 200 2.866 ms - 110","service":"api-service","timestamp":"2025-12-02 10:12:17"}
+{"level":"info","message":"GET /api/v1/employee-compensation/employee/692caa7ac611985b5b97414b 200 4.431 ms - 114","service":"api-service","timestamp":"2025-12-02 10:12:17"}
+{"level":"info","message":"GET /api/v1/employee-compensation/employee/692caa7ac611985b5b97414b 200 2.593 ms - 114","service":"api-service","timestamp":"2025-12-02 10:12:17"}
+{"level":"info","message":"GET /api/v1/employees?limit=100 200 6.176 ms - 927","service":"api-service","timestamp":"2025-12-02 10:12:18"}
+{"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 5.614 ms - 671","service":"api-service","timestamp":"2025-12-02 10:12:18"}
+{"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 3.214 ms - 671","service":"api-service","timestamp":"2025-12-02 10:12:18"}
+{"level":"info","message":"GET /api/v1/employees?limit=100 200 5.143 ms - 927","service":"api-service","timestamp":"2025-12-02 10:12:18"}
+{"level":"info","message":"GET /api/v1/employees/692caa7ac611985b5b97414b/details 200 5.159 ms - 827","service":"api-service","timestamp":"2025-12-02 11:15:01"}
+{"level":"info","message":"GET /api/v1/employees/692caa7ac611985b5b97414b/details 200 2.539 ms - 827","service":"api-service","timestamp":"2025-12-02 11:15:01"}
+{"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 5.375 ms - 671","service":"api-service","timestamp":"2025-12-02 11:15:01"}
+{"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 1.662 ms - 671","service":"api-service","timestamp":"2025-12-02 11:15:01"}
+{"level":"info","message":"GET /api/v1/employees/692caa7ac611985b5b97414b/details 200 10.172 ms - 827","service":"api-service","timestamp":"2025-12-02 11:21:29"}
+{"level":"info","message":"GET /api/v1/employees/692caa7ac611985b5b97414b/details 200 3.330 ms - 827","service":"api-service","timestamp":"2025-12-02 11:21:29"}
+{"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 5.155 ms - 671","service":"api-service","timestamp":"2025-12-02 11:21:29"}
+{"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 2.364 ms - 671","service":"api-service","timestamp":"2025-12-02 11:21:29"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:26:19"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:26:19"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:26:19"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:26:51"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:26:51"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:26:51"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:27:06"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:27:06"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:27:06"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:27:10"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:27:10"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:27:10"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:27:19"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:27:19"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:27:19"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:27:20"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:27:20"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:27:20"}
+{"level":"info","message":"GET /api/v1/employees/692caa7ac611985b5b97414b/details 200 10.297 ms - 827","service":"api-service","timestamp":"2025-12-02 11:27:36"}
+{"level":"info","message":"GET /api/v1/employees/692caa7ac611985b5b97414b/details 200 3.743 ms - 827","service":"api-service","timestamp":"2025-12-02 11:27:36"}
+{"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 3.958 ms - 671","service":"api-service","timestamp":"2025-12-02 11:27:36"}
+{"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 2.203 ms - 671","service":"api-service","timestamp":"2025-12-02 11:27:36"}
+{"level":"info","message":"GET /api/v1/employees/692caa7ac611985b5b97414b/details 200 3.400 ms - 827","service":"api-service","timestamp":"2025-12-02 11:28:52"}
+{"level":"info","message":"GET /api/v1/employees/692caa7ac611985b5b97414b/details 200 2.696 ms - 827","service":"api-service","timestamp":"2025-12-02 11:28:52"}
+{"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 2.474 ms - 671","service":"api-service","timestamp":"2025-12-02 11:28:52"}
+{"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 1.892 ms - 671","service":"api-service","timestamp":"2025-12-02 11:28:52"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:29:59"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:29:59"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:29:59"}
+{"level":"info","message":"GET /api/v1/employees/692caa7ac611985b5b97414b/details 200 13.988 ms - 827","service":"api-service","timestamp":"2025-12-02 11:30:00"}
+{"level":"info","message":"GET /api/v1/employees/692caa7ac611985b5b97414b/details 200 4.759 ms - 827","service":"api-service","timestamp":"2025-12-02 11:30:00"}
+{"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 4.582 ms - 671","service":"api-service","timestamp":"2025-12-02 11:30:00"}
+{"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 1.333 ms - 671","service":"api-service","timestamp":"2025-12-02 11:30:00"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 6.063 ms - 927","service":"api-service","timestamp":"2025-12-02 11:32:44"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.839 ms - 180","service":"api-service","timestamp":"2025-12-02 11:32:44"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.848 ms - 119","service":"api-service","timestamp":"2025-12-02 11:32:44"}
+{"level":"info","message":"POST /api/v1/attendance/clock-in 201 11.383 ms - 779","service":"api-service","timestamp":"2025-12-02 11:33:24"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.448 ms - 196","service":"api-service","timestamp":"2025-12-02 11:33:24"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.753 ms - 799","service":"api-service","timestamp":"2025-12-02 11:33:24"}
+{"level":"info","message":"POST /api/v1/attendance/clock-out 201 10.626 ms - 781","service":"api-service","timestamp":"2025-12-02 11:33:27"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 3.753 ms - 198","service":"api-service","timestamp":"2025-12-02 11:33:27"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 2.784 ms - 1481","service":"api-service","timestamp":"2025-12-02 11:33:27"}
+{"level":"info","message":"POST /api/v1/attendance/clock-in 201 7.273 ms - 778","service":"api-service","timestamp":"2025-12-02 11:33:28"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 5.031 ms - 196","service":"api-service","timestamp":"2025-12-02 11:33:28"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 2.772 ms - 2161","service":"api-service","timestamp":"2025-12-02 11:33:28"}
+{"level":"info","message":"POST /api/v1/attendance/clock-out 201 7.826 ms - 780","service":"api-service","timestamp":"2025-12-02 11:33:29"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 3.941 ms - 198","service":"api-service","timestamp":"2025-12-02 11:33:29"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 2.972 ms - 2842","service":"api-service","timestamp":"2025-12-02 11:33:29"}
+{"level":"info","message":"POST /api/v1/attendance/clock-in 201 10.365 ms - 778","service":"api-service","timestamp":"2025-12-02 11:33:36"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.031 ms - 196","service":"api-service","timestamp":"2025-12-02 11:33:36"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 2.050 ms - 3522","service":"api-service","timestamp":"2025-12-02 11:33:36"}
+{"level":"info","message":"POST /api/v1/attendance/clock-out 201 9.430 ms - 781","service":"api-service","timestamp":"2025-12-02 11:33:36"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 3.352 ms - 198","service":"api-service","timestamp":"2025-12-02 11:33:37"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 3.196 ms - 4204","service":"api-service","timestamp":"2025-12-02 11:33:37"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 6.460 ms - 927","service":"api-service","timestamp":"2025-12-02 11:35:12"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.486 ms - 927","service":"api-service","timestamp":"2025-12-02 11:35:12"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.063 ms - 198","service":"api-service","timestamp":"2025-12-02 11:35:12"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.435 ms - 4204","service":"api-service","timestamp":"2025-12-02 11:35:12"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.240 ms - 927","service":"api-service","timestamp":"2025-12-02 11:35:54"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.575 ms - 927","service":"api-service","timestamp":"2025-12-02 11:35:54"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.820 ms - 198","service":"api-service","timestamp":"2025-12-02 11:35:54"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 2.122 ms - 4204","service":"api-service","timestamp":"2025-12-02 11:35:54"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.483 ms - 927","service":"api-service","timestamp":"2025-12-02 11:36:33"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 6.238 ms - 927","service":"api-service","timestamp":"2025-12-02 11:36:33"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 3.664 ms - 198","service":"api-service","timestamp":"2025-12-02 11:36:33"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.538 ms - 4204","service":"api-service","timestamp":"2025-12-02 11:36:33"}
+{"level":"info","message":"GET /api/v1/legal-entities 200 5.454 ms - 707","service":"api-service","timestamp":"2025-12-02 11:36:34"}
+{"level":"info","message":"GET /api/v1/legal-entities 200 1.841 ms - 707","service":"api-service","timestamp":"2025-12-02 11:36:34"}
+{"level":"info","message":"GET /api/v1/business-units 200 4.370 ms - 309","service":"api-service","timestamp":"2025-12-02 11:36:39"}
+{"level":"info","message":"GET /api/v1/business-units 200 1.815 ms - 309","service":"api-service","timestamp":"2025-12-02 11:36:39"}
+{"level":"info","message":"GET /api/v1/departments 200 5.546 ms - 679","service":"api-service","timestamp":"2025-12-02 11:36:40"}
+{"level":"info","message":"GET /api/v1/departments 200 1.847 ms - 679","service":"api-service","timestamp":"2025-12-02 11:36:40"}
+{"level":"info","message":"GET /api/v1/locations 200 5.042 ms - 672","service":"api-service","timestamp":"2025-12-02 11:36:41"}
+{"level":"info","message":"GET /api/v1/locations 200 1.541 ms - 672","service":"api-service","timestamp":"2025-12-02 11:36:41"}
+{"level":"info","message":"GET /api/v1/legal-entities 200 1.730 ms - 707","service":"api-service","timestamp":"2025-12-02 11:36:42"}
+{"level":"info","message":"GET /api/v1/legal-entities 200 1.124 ms - 707","service":"api-service","timestamp":"2025-12-02 11:36:42"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.848 ms - 927","service":"api-service","timestamp":"2025-12-02 11:36:44"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.542 ms - 927","service":"api-service","timestamp":"2025-12-02 11:36:44"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.232 ms - 198","service":"api-service","timestamp":"2025-12-02 11:36:44"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.361 ms - 4204","service":"api-service","timestamp":"2025-12-02 11:36:44"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:37:29"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:37:29"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:37:29"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:37:39"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:37:39"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:37:39"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:37:44"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:37:44"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:37:44"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 10.952 ms - 927","service":"api-service","timestamp":"2025-12-02 11:39:58"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.516 ms - 927","service":"api-service","timestamp":"2025-12-02 11:39:58"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.117 ms - 198","service":"api-service","timestamp":"2025-12-02 11:39:58"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.539 ms - 4204","service":"api-service","timestamp":"2025-12-02 11:39:58"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:40:19"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:40:19"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:40:19"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:40:31"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:40:31"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:40:31"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:40:42"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:40:42"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:40:42"}
+{"level":"info","message":"GET /api/v1/legal-entities 200 10.997 ms - 707","service":"api-service","timestamp":"2025-12-02 11:41:18"}
+{"level":"info","message":"GET /api/v1/legal-entities 200 1.742 ms - 707","service":"api-service","timestamp":"2025-12-02 11:41:18"}
+{"level":"info","message":"GET /api/v1/employees?page=1&limit=10 200 13.428 ms - 927","service":"api-service","timestamp":"2025-12-02 11:41:20"}
+{"level":"info","message":"GET /api/v1/employees?page=1&limit=10 200 2.416 ms - 927","service":"api-service","timestamp":"2025-12-02 11:41:20"}
+{"level":"info","message":"GET /api/v1/legal-entities 200 3.603 ms - 707","service":"api-service","timestamp":"2025-12-02 11:41:21"}
+{"level":"info","message":"GET /api/v1/legal-entities 200 1.969 ms - 707","service":"api-service","timestamp":"2025-12-02 11:41:21"}
+{"level":"info","message":"GET /api/v1/employees?page=1&limit=10 200 8.266 ms - 927","service":"api-service","timestamp":"2025-12-02 11:41:29"}
+{"level":"info","message":"GET /api/v1/employees?page=1&limit=10 200 3.975 ms - 927","service":"api-service","timestamp":"2025-12-02 11:41:29"}
+{"level":"info","message":"GET /api/v1/legal-entities 200 2.756 ms - 707","service":"api-service","timestamp":"2025-12-02 11:41:30"}
+{"level":"info","message":"GET /api/v1/legal-entities 200 3.008 ms - 707","service":"api-service","timestamp":"2025-12-02 11:41:30"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.381 ms - 927","service":"api-service","timestamp":"2025-12-02 11:41:54"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.276 ms - 927","service":"api-service","timestamp":"2025-12-02 11:41:54"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 3.771 ms - 198","service":"api-service","timestamp":"2025-12-02 11:41:54"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 2.187 ms - 4204","service":"api-service","timestamp":"2025-12-02 11:41:54"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 8.206 ms - 927","service":"api-service","timestamp":"2025-12-02 11:45:05"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.210 ms - 927","service":"api-service","timestamp":"2025-12-02 11:45:05"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.375 ms - 198","service":"api-service","timestamp":"2025-12-02 11:45:05"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.276 ms - 4204","service":"api-service","timestamp":"2025-12-02 11:45:05"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 6.069 ms - 927","service":"api-service","timestamp":"2025-12-02 11:45:07"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.668 ms - 927","service":"api-service","timestamp":"2025-12-02 11:45:07"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2025&month=12 200 2.701 ms - 314","service":"api-service","timestamp":"2025-12-02 11:45:07"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-12-01T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 6.094 ms - 4240","service":"api-service","timestamp":"2025-12-02 11:45:15"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 6.908 ms - 927","service":"api-service","timestamp":"2025-12-02 11:45:25"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.757 ms - 927","service":"api-service","timestamp":"2025-12-02 11:45:25"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.769 ms - 198","service":"api-service","timestamp":"2025-12-02 11:45:25"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 2.051 ms - 4204","service":"api-service","timestamp":"2025-12-02 11:45:25"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 6.281 ms - 927","service":"api-service","timestamp":"2025-12-02 11:45:34"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.786 ms - 927","service":"api-service","timestamp":"2025-12-02 11:45:34"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2025&month=12 200 2.225 ms - 314","service":"api-service","timestamp":"2025-12-02 11:45:34"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-12-01T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 5.237 ms - 4240","service":"api-service","timestamp":"2025-12-02 11:45:40"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2026&month=1 200 2.120 ms - 171","service":"api-service","timestamp":"2025-12-02 11:45:48"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2026&month=2 200 1.498 ms - 171","service":"api-service","timestamp":"2025-12-02 11:45:49"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2026&month=3 200 2.212 ms - 171","service":"api-service","timestamp":"2025-12-02 11:45:50"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2026&month=2 200 2.524 ms - 171","service":"api-service","timestamp":"2025-12-02 11:45:52"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2026&month=1 200 2.257 ms - 171","service":"api-service","timestamp":"2025-12-02 11:45:53"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2025&month=12 200 2.253 ms - 314","service":"api-service","timestamp":"2025-12-02 11:45:53"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-30T18%3A30%3A00.000Z&endDate=2025-12-01T18%3A29%3A59.999Z 200 4.401 ms - 155","service":"api-service","timestamp":"2025-12-02 11:45:55"}
+{"level":"info","message":"GET /api/v1/employees?page=1&limit=10 200 4.351 ms - 927","service":"api-service","timestamp":"2025-12-02 11:46:45"}
+{"level":"info","message":"GET /api/v1/employees?page=1&limit=10 200 3.553 ms - 927","service":"api-service","timestamp":"2025-12-02 11:46:45"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:46:46"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:46:46"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:46:46"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 17.718 ms - 927","service":"api-service","timestamp":"2025-12-02 11:46:49"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 6.036 ms - 927","service":"api-service","timestamp":"2025-12-02 11:46:49"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 4.893 ms - 198","service":"api-service","timestamp":"2025-12-02 11:46:49"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 4.415 ms - 4204","service":"api-service","timestamp":"2025-12-02 11:46:49"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 9.168 ms - 927","service":"api-service","timestamp":"2025-12-02 11:46:50"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 6.460 ms - 927","service":"api-service","timestamp":"2025-12-02 11:46:50"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2025&month=12 200 3.584 ms - 314","service":"api-service","timestamp":"2025-12-02 11:46:50"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:47:10"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:47:10"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:47:10"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:47:28"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:47:28"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:47:28"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:47:31"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:47:31"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:47:31"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:47:33"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:47:33"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:47:33"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:47:34"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:47:34"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:47:34"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 11.864 ms - 927","service":"api-service","timestamp":"2025-12-02 11:47:47"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.141 ms - 927","service":"api-service","timestamp":"2025-12-02 11:47:47"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2025&month=12 200 2.491 ms - 314","service":"api-service","timestamp":"2025-12-02 11:47:47"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.234 ms - 927","service":"api-service","timestamp":"2025-12-02 11:48:42"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.867 ms - 927","service":"api-service","timestamp":"2025-12-02 11:48:42"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2025&month=12 200 1.751 ms - 314","service":"api-service","timestamp":"2025-12-02 11:48:42"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.238 ms - 927","service":"api-service","timestamp":"2025-12-02 11:49:34"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.151 ms - 927","service":"api-service","timestamp":"2025-12-02 11:49:34"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2025&month=12 200 1.981 ms - 314","service":"api-service","timestamp":"2025-12-02 11:49:34"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:49:52"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:49:52"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:49:52"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:50:01"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:50:01"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:50:01"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:50:07"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:50:07"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:50:07"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:50:20"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:50:20"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:50:20"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:50:33"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:50:33"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:50:33"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:50:44"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:50:44"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:50:44"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:50:46"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:50:46"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:50:46"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:50:49"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:50:49"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:50:49"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:50:50"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:50:50"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:50:50"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:50:51"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:50:51"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:50:51"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:50:59"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:50:59"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:50:59"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 13.193 ms - 927","service":"api-service","timestamp":"2025-12-02 11:50:59"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.420 ms - 927","service":"api-service","timestamp":"2025-12-02 11:50:59"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2025&month=12 200 2.589 ms - 314","service":"api-service","timestamp":"2025-12-02 11:50:59"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 8.811 ms - 927","service":"api-service","timestamp":"2025-12-02 11:51:32"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 7.292 ms - 927","service":"api-service","timestamp":"2025-12-02 11:51:32"}
+{"level":"info","message":"GET /api/v1/regularization/requests?employeeId=692caa7ac611985b5b97414b 200 4.681 ms - 167","service":"api-service","timestamp":"2025-12-02 11:51:32"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 7.751 ms - 927","service":"api-service","timestamp":"2025-12-02 11:51:34"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.599 ms - 927","service":"api-service","timestamp":"2025-12-02 11:51:34"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2025&month=12 200 2.853 ms - 314","service":"api-service","timestamp":"2025-12-02 11:51:34"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 9.497 ms - 927","service":"api-service","timestamp":"2025-12-02 11:52:59"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.617 ms - 927","service":"api-service","timestamp":"2025-12-02 11:52:59"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.718 ms - 198","service":"api-service","timestamp":"2025-12-02 11:52:59"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 2.046 ms - 4204","service":"api-service","timestamp":"2025-12-02 11:52:59"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.400 ms - 927","service":"api-service","timestamp":"2025-12-02 11:53:11"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.619 ms - 927","service":"api-service","timestamp":"2025-12-02 11:53:11"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2025&month=12 200 1.869 ms - 314","service":"api-service","timestamp":"2025-12-02 11:53:11"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 6.091 ms - 927","service":"api-service","timestamp":"2025-12-02 11:53:14"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.732 ms - 927","service":"api-service","timestamp":"2025-12-02 11:53:14"}
+{"level":"info","message":"GET /api/v1/regularization/requests?employeeId=692caa7ac611985b5b97414b 200 4.388 ms - 167","service":"api-service","timestamp":"2025-12-02 11:53:14"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 6.834 ms - 927","service":"api-service","timestamp":"2025-12-02 11:53:15"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 6.605 ms - 927","service":"api-service","timestamp":"2025-12-02 11:53:15"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2025&month=12 200 6.149 ms - 314","service":"api-service","timestamp":"2025-12-02 11:53:15"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 26.256 ms - 927","service":"api-service","timestamp":"2025-12-02 11:53:16"}
+{"level":"info","message":"GET /api/v1/regularization/requests?employeeId=692caa7ac611985b5b97414b 200 24.372 ms - 167","service":"api-service","timestamp":"2025-12-02 11:53:16"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 38.512 ms - 927","service":"api-service","timestamp":"2025-12-02 11:53:16"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 6.117 ms - 927","service":"api-service","timestamp":"2025-12-02 11:53:17"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.363 ms - 927","service":"api-service","timestamp":"2025-12-02 11:53:17"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2025&month=12 200 1.722 ms - 314","service":"api-service","timestamp":"2025-12-02 11:53:17"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.284 ms - 927","service":"api-service","timestamp":"2025-12-02 11:53:34"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.167 ms - 927","service":"api-service","timestamp":"2025-12-02 11:53:34"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2025&month=12 200 1.340 ms - 314","service":"api-service","timestamp":"2025-12-02 11:53:34"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.289 ms - 927","service":"api-service","timestamp":"2025-12-02 11:53:52"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.054 ms - 927","service":"api-service","timestamp":"2025-12-02 11:53:52"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2025&month=12 200 1.546 ms - 314","service":"api-service","timestamp":"2025-12-02 11:53:52"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.363 ms - 927","service":"api-service","timestamp":"2025-12-02 11:55:44"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.184 ms - 927","service":"api-service","timestamp":"2025-12-02 11:55:44"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2025&month=12 200 1.413 ms - 314","service":"api-service","timestamp":"2025-12-02 11:55:44"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 24.904 ms - 927","service":"api-service","timestamp":"2025-12-02 11:55:59"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 40.601 ms - 927","service":"api-service","timestamp":"2025-12-02 11:55:59"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2025&month=12 200 4.517 ms - 314","service":"api-service","timestamp":"2025-12-02 11:55:59"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 6.246 ms - 927","service":"api-service","timestamp":"2025-12-02 11:56:22"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.038 ms - 927","service":"api-service","timestamp":"2025-12-02 11:56:22"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.328 ms - 198","service":"api-service","timestamp":"2025-12-02 11:56:22"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.789 ms - 4204","service":"api-service","timestamp":"2025-12-02 11:56:22"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=pending 200 5.454 ms - 167","service":"api-service","timestamp":"2025-12-02 11:56:24"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=pending 200 2.640 ms - 167","service":"api-service","timestamp":"2025-12-02 11:56:24"}
+{"level":"info","message":"GET /api/v1/shifts 200 5.180 ms - 107","service":"api-service","timestamp":"2025-12-02 11:56:27"}
+{"level":"info","message":"GET /api/v1/shifts 200 1.990 ms - 107","service":"api-service","timestamp":"2025-12-02 11:56:27"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 3.775 ms - 109","service":"api-service","timestamp":"2025-12-02 11:56:29"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 1.250 ms - 109","service":"api-service","timestamp":"2025-12-02 11:56:29"}
+{"level":"info","message":"POST /api/v1/holidays 201 9.922 ms - 348","service":"api-service","timestamp":"2025-12-02 11:56:42"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 2.295 ms - 353","service":"api-service","timestamp":"2025-12-02 11:56:42"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.117 ms - 927","service":"api-service","timestamp":"2025-12-02 11:56:48"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.475 ms - 927","service":"api-service","timestamp":"2025-12-02 11:56:48"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2025&month=12 200 2.295 ms - 314","service":"api-service","timestamp":"2025-12-02 11:56:48"}
+{"level":"info","message":"GET /api/v1/shifts 200 3.029 ms - 107","service":"api-service","timestamp":"2025-12-02 11:56:51"}
+{"level":"info","message":"GET /api/v1/shifts 200 1.207 ms - 107","service":"api-service","timestamp":"2025-12-02 11:56:51"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 1.321 ms - 353","service":"api-service","timestamp":"2025-12-02 11:56:52"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 0.728 ms - 353","service":"api-service","timestamp":"2025-12-02 11:56:52"}
+{"level":"info","message":"GET /api/v1/shifts 200 3.176 ms - 107","service":"api-service","timestamp":"2025-12-02 11:56:54"}
+{"level":"info","message":"GET /api/v1/shifts 200 1.075 ms - 107","service":"api-service","timestamp":"2025-12-02 11:56:54"}
+{"level":"info","message":"POST /api/v1/shifts 201 5.837 ms - 428","service":"api-service","timestamp":"2025-12-02 11:57:18"}
+{"level":"info","message":"GET /api/v1/shifts 200 2.687 ms - 433","service":"api-service","timestamp":"2025-12-02 11:57:18"}
+{"level":"error","message":"Unexpected Error: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"Shift\"","method":"PUT","name":"CastError","path":"/api/v1/shifts/undefined","service":"api-service","stack":"CastError: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"Shift\"\n    at SchemaObjectId.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schema/objectId.js:253:11)\n    at SchemaType.applySetters (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1288:12)\n    at SchemaType.castForQuery (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1724:17)\n    at cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/cast.js:390:32)\n    at Query.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:5060:12)\n    at Query._castConditions (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:2374:10)\n    at model.Query._findOneAndUpdate (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:3477:8)\n    at model.Query.exec (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:4627:80)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async ShiftService.updateShift (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/src/services/shiftService.ts:46:19)","timestamp":"2025-12-02 11:57:26"}
+{"level":"info","message":"PUT /api/v1/shifts/undefined 500 5.433 ms - 205","service":"api-service","timestamp":"2025-12-02 11:57:26"}
+{"level":"error","message":"Unexpected Error: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"Shift\"","method":"PUT","name":"CastError","path":"/api/v1/shifts/undefined","service":"api-service","stack":"CastError: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"Shift\"\n    at SchemaObjectId.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schema/objectId.js:253:11)\n    at SchemaType.applySetters (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1288:12)\n    at SchemaType.castForQuery (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1724:17)\n    at cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/cast.js:390:32)\n    at Query.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:5060:12)\n    at Query._castConditions (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:2374:10)\n    at model.Query._findOneAndUpdate (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:3477:8)\n    at model.Query.exec (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:4627:80)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async ShiftService.updateShift (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/src/services/shiftService.ts:46:19)","timestamp":"2025-12-02 11:57:28"}
+{"level":"info","message":"PUT /api/v1/shifts/undefined 500 2.447 ms - 205","service":"api-service","timestamp":"2025-12-02 11:57:28"}
+{"level":"info","message":"POST /api/v1/shifts 201 2.450 ms - 431","service":"api-service","timestamp":"2025-12-02 11:58:19"}
+{"level":"info","message":"GET /api/v1/shifts 200 1.621 ms - 763","service":"api-service","timestamp":"2025-12-02 11:58:19"}
+{"level":"info","message":"GET /api/v1/shifts 200 2.346 ms - 763","service":"api-service","timestamp":"2025-12-02 11:58:22"}
+{"level":"info","message":"GET /api/v1/shifts 200 1.827 ms - 763","service":"api-service","timestamp":"2025-12-02 11:58:22"}
+{"level":"info","message":"GET /api/v1/shifts 200 1.460 ms - 763","service":"api-service","timestamp":"2025-12-02 11:58:23"}
+{"level":"info","message":"GET /api/v1/shifts 200 0.966 ms - 763","service":"api-service","timestamp":"2025-12-02 11:58:23"}
+{"level":"info","message":"GET /api/v1/shifts 200 1.506 ms - 763","service":"api-service","timestamp":"2025-12-02 11:58:24"}
+{"level":"info","message":"GET /api/v1/shifts 200 0.993 ms - 763","service":"api-service","timestamp":"2025-12-02 11:58:24"}
+{"level":"info","message":"GET /api/v1/shifts 200 1.390 ms - 763","service":"api-service","timestamp":"2025-12-02 11:58:24"}
+{"level":"info","message":"GET /api/v1/shifts 200 1.224 ms - 763","service":"api-service","timestamp":"2025-12-02 11:58:24"}
+{"level":"error","message":"Unexpected Error: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"Shift\"","method":"DELETE","name":"CastError","path":"/api/v1/shifts/undefined","service":"api-service","stack":"CastError: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"Shift\"\n    at SchemaObjectId.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schema/objectId.js:253:11)\n    at SchemaType.applySetters (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1288:12)\n    at SchemaType.castForQuery (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1724:17)\n    at cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/cast.js:390:32)\n    at Query.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:5060:12)\n    at Query._castConditions (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:2374:10)\n    at model.Query._findOneAndDelete (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:3616:8)\n    at model.Query.exec (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:4627:80)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async ShiftService.deleteShift (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/src/services/shiftService.ts:54:19)","timestamp":"2025-12-02 11:58:28"}
+{"level":"info","message":"DELETE /api/v1/shifts/undefined 500 2.167 ms - 205","service":"api-service","timestamp":"2025-12-02 11:58:28"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:58:30"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:58:30"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:58:30"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 11:58:45"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 11:58:45"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 11:58:45"}
+{"level":"info","message":"GET /api/v1/shifts 200 6.830 ms - 763","service":"api-service","timestamp":"2025-12-02 12:01:00"}
+{"level":"info","message":"GET /api/v1/shifts 200 1.797 ms - 763","service":"api-service","timestamp":"2025-12-02 12:01:00"}
+{"level":"error","message":"Unexpected Error: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"Shift\"","method":"PUT","name":"CastError","path":"/api/v1/shifts/undefined","service":"api-service","stack":"CastError: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"Shift\"\n    at SchemaObjectId.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schema/objectId.js:253:11)\n    at SchemaType.applySetters (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1288:12)\n    at SchemaType.castForQuery (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1724:17)\n    at cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/cast.js:390:32)\n    at Query.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:5060:12)\n    at Query._castConditions (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:2374:10)\n    at model.Query._findOne (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:2697:8)\n    at model.Query.exec (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:4627:80)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async ShiftService.updateShift (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/src/services/shiftService.ts:46:19)","timestamp":"2025-12-02 12:01:05"}
+{"level":"info","message":"PUT /api/v1/shifts/undefined 500 3.300 ms - 205","service":"api-service","timestamp":"2025-12-02 12:01:05"}
+{"level":"info","message":"GET /api/v1/shifts 200 2.572 ms - 763","service":"api-service","timestamp":"2025-12-02 12:20:46"}
+{"level":"info","message":"GET /api/v1/shifts 200 2.236 ms - 763","service":"api-service","timestamp":"2025-12-02 12:20:46"}
+{"level":"error","message":"Unexpected Error: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"Shift\"","method":"PUT","name":"CastError","path":"/api/v1/shifts/undefined","service":"api-service","stack":"CastError: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"Shift\"\n    at SchemaObjectId.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schema/objectId.js:253:11)\n    at SchemaType.applySetters (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1288:12)\n    at SchemaType.castForQuery (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1724:17)\n    at cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/cast.js:390:32)\n    at Query.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:5060:12)\n    at Query._castConditions (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:2374:10)\n    at model.Query._findOne (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:2697:8)\n    at model.Query.exec (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:4627:80)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async ShiftService.updateShift (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/src/services/shiftService.ts:46:19)","timestamp":"2025-12-02 12:20:53"}
+{"level":"info","message":"PUT /api/v1/shifts/undefined 500 3.853 ms - 205","service":"api-service","timestamp":"2025-12-02 12:20:53"}
+{"level":"error","message":"Unexpected Error: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"Shift\"","method":"PUT","name":"CastError","path":"/api/v1/shifts/undefined","service":"api-service","stack":"CastError: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"Shift\"\n    at SchemaObjectId.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schema/objectId.js:253:11)\n    at SchemaType.applySetters (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1288:12)\n    at SchemaType.castForQuery (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1724:17)\n    at cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/cast.js:390:32)\n    at Query.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:5060:12)\n    at Query._castConditions (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:2374:10)\n    at model.Query._findOne (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:2697:8)\n    at model.Query.exec (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:4627:80)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async ShiftService.updateShift (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/src/services/shiftService.ts:46:19)","timestamp":"2025-12-02 12:20:54"}
+{"level":"info","message":"PUT /api/v1/shifts/undefined 500 1.962 ms - 205","service":"api-service","timestamp":"2025-12-02 12:20:54"}
+{"level":"error","message":"Unexpected Error: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"Shift\"","method":"PUT","name":"CastError","path":"/api/v1/shifts/undefined","service":"api-service","stack":"CastError: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"Shift\"\n    at SchemaObjectId.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schema/objectId.js:253:11)\n    at SchemaType.applySetters (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1288:12)\n    at SchemaType.castForQuery (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1724:17)\n    at cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/cast.js:390:32)\n    at Query.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:5060:12)\n    at Query._castConditions (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:2374:10)\n    at model.Query._findOne (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:2697:8)\n    at model.Query.exec (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:4627:80)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async ShiftService.updateShift (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/src/services/shiftService.ts:46:19)","timestamp":"2025-12-02 12:20:55"}
+{"level":"info","message":"PUT /api/v1/shifts/undefined 500 2.228 ms - 205","service":"api-service","timestamp":"2025-12-02 12:20:55"}
+{"level":"error","message":"Unexpected Error: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"Shift\"","method":"PUT","name":"CastError","path":"/api/v1/shifts/undefined","service":"api-service","stack":"CastError: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"Shift\"\n    at SchemaObjectId.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schema/objectId.js:253:11)\n    at SchemaType.applySetters (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1288:12)\n    at SchemaType.castForQuery (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1724:17)\n    at cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/cast.js:390:32)\n    at Query.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:5060:12)\n    at Query._castConditions (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:2374:10)\n    at model.Query._findOne (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:2697:8)\n    at model.Query.exec (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:4627:80)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async ShiftService.updateShift (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/src/services/shiftService.ts:46:19)","timestamp":"2025-12-02 12:20:55"}
+{"level":"info","message":"PUT /api/v1/shifts/undefined 500 2.031 ms - 205","service":"api-service","timestamp":"2025-12-02 12:20:55"}
+{"level":"error","message":"Unexpected Error: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"Shift\"","method":"PUT","name":"CastError","path":"/api/v1/shifts/undefined","service":"api-service","stack":"CastError: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"Shift\"\n    at SchemaObjectId.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schema/objectId.js:253:11)\n    at SchemaType.applySetters (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1288:12)\n    at SchemaType.castForQuery (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1724:17)\n    at cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/cast.js:390:32)\n    at Query.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:5060:12)\n    at Query._castConditions (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:2374:10)\n    at model.Query._findOne (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:2697:8)\n    at model.Query.exec (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:4627:80)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async ShiftService.updateShift (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/src/services/shiftService.ts:46:19)","timestamp":"2025-12-02 12:20:55"}
+{"level":"info","message":"PUT /api/v1/shifts/undefined 500 1.898 ms - 205","service":"api-service","timestamp":"2025-12-02 12:20:55"}
+{"level":"error","message":"Unexpected Error: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"Shift\"","method":"PUT","name":"CastError","path":"/api/v1/shifts/undefined","service":"api-service","stack":"CastError: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"Shift\"\n    at SchemaObjectId.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schema/objectId.js:253:11)\n    at SchemaType.applySetters (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1288:12)\n    at SchemaType.castForQuery (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1724:17)\n    at cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/cast.js:390:32)\n    at Query.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:5060:12)\n    at Query._castConditions (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:2374:10)\n    at model.Query._findOne (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:2697:8)\n    at model.Query.exec (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:4627:80)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async ShiftService.updateShift (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/src/services/shiftService.ts:46:19)","timestamp":"2025-12-02 12:20:55"}
+{"level":"info","message":"PUT /api/v1/shifts/undefined 500 1.734 ms - 205","service":"api-service","timestamp":"2025-12-02 12:20:55"}
+{"level":"error","message":"Unexpected Error: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"Shift\"","method":"PUT","name":"CastError","path":"/api/v1/shifts/undefined","service":"api-service","stack":"CastError: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"Shift\"\n    at SchemaObjectId.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schema/objectId.js:253:11)\n    at SchemaType.applySetters (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1288:12)\n    at SchemaType.castForQuery (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1724:17)\n    at cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/cast.js:390:32)\n    at Query.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:5060:12)\n    at Query._castConditions (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:2374:10)\n    at model.Query._findOne (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:2697:8)\n    at model.Query.exec (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:4627:80)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async ShiftService.updateShift (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/src/services/shiftService.ts:46:19)","timestamp":"2025-12-02 12:21:09"}
+{"level":"info","message":"PUT /api/v1/shifts/undefined 500 2.585 ms - 205","service":"api-service","timestamp":"2025-12-02 12:21:09"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 12:23:30"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 12:23:30"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 12:23:30"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 12:23:32"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 12:23:32"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 12:23:32"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 12:23:48"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 12:23:48"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 12:23:48"}
+{"level":"info","message":"PUT /api/v1/shifts/692e86c644cf068e9b9871f8 200 15.359 ms - 430","service":"api-service","timestamp":"2025-12-02 12:24:14"}
+{"level":"info","message":"GET /api/v1/shifts 200 3.231 ms - 829","service":"api-service","timestamp":"2025-12-02 12:24:14"}
+{"level":"info","message":"DELETE /api/v1/shifts/692e86c644cf068e9b9871f8 200 4.020 ms - 106","service":"api-service","timestamp":"2025-12-02 12:24:19"}
+{"level":"info","message":"GET /api/v1/shifts 200 2.344 ms - 468","service":"api-service","timestamp":"2025-12-02 12:24:19"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 4.664 ms - 353","service":"api-service","timestamp":"2025-12-02 12:24:27"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 3.073 ms - 353","service":"api-service","timestamp":"2025-12-02 12:24:27"}
+{"level":"error","message":"Unexpected Error: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"HolidayCalendar\"","method":"PUT","name":"CastError","path":"/api/v1/holidays/undefined","service":"api-service","stack":"CastError: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"HolidayCalendar\"\n    at SchemaObjectId.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schema/objectId.js:253:11)\n    at SchemaType.applySetters (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1288:12)\n    at SchemaType.castForQuery (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1724:17)\n    at cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/cast.js:390:32)\n    at Query.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:5060:12)\n    at Query._castConditions (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:2374:10)\n    at model.Query._findOneAndUpdate (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:3477:8)\n    at model.Query.exec (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:4627:80)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async HolidayService.updateHoliday (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/src/services/holidayService.ts:49:21)","timestamp":"2025-12-02 12:24:31"}
+{"level":"info","message":"PUT /api/v1/holidays/undefined 500 4.598 ms - 215","service":"api-service","timestamp":"2025-12-02 12:24:31"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 12:25:39"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 12:25:39"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 12:25:39"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 12:25:41"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 12:25:41"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 12:25:41"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 8.213 ms - 385","service":"api-service","timestamp":"2025-12-02 12:25:42"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 4.267 ms - 385","service":"api-service","timestamp":"2025-12-02 12:25:42"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 12:26:59"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 12:26:59"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 12:26:59"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 12:27:13"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 12:27:13"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 12:27:13"}
+{"level":"info","message":"PUT /api/v1/holidays/692e86a244cf068e9b9871e8 200 16.979 ms - 381","service":"api-service","timestamp":"2025-12-02 12:28:17"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 3.488 ms - 386","service":"api-service","timestamp":"2025-12-02 12:28:17"}
+{"level":"info","message":"DELETE /api/v1/holidays/692e86a244cf068e9b9871e8 200 4.011 ms - 108","service":"api-service","timestamp":"2025-12-02 12:28:20"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 2.095 ms - 109","service":"api-service","timestamp":"2025-12-02 12:28:20"}
+{"level":"info","message":"GET /api/v1/shifts 200 4.685 ms - 468","service":"api-service","timestamp":"2025-12-02 12:28:23"}
+{"level":"info","message":"GET /api/v1/shifts 200 3.460 ms - 468","service":"api-service","timestamp":"2025-12-02 12:28:23"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=pending 200 7.924 ms - 167","service":"api-service","timestamp":"2025-12-02 12:28:24"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=pending 200 4.947 ms - 167","service":"api-service","timestamp":"2025-12-02 12:28:24"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 12:30:00"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 12:30:00"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 12:30:00"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 12:31:21"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 12:31:21"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 12:31:21"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=pending 200 7.101 ms - 167","service":"api-service","timestamp":"2025-12-02 12:32:45"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=pending 200 2.947 ms - 167","service":"api-service","timestamp":"2025-12-02 12:32:45"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 12:33:15"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 12:33:15"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 12:33:15"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 12:33:25"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 12:33:25"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 12:33:25"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 12:33:29"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 12:33:29"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 12:33:29"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 12:33:31"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 12:33:31"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 12:33:31"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 12:34:14"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 12:34:14"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 12:34:14"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=pending 200 9.498 ms - 167","service":"api-service","timestamp":"2025-12-02 12:34:47"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=pending 200 2.553 ms - 167","service":"api-service","timestamp":"2025-12-02 12:34:47"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 15.221 ms - 927","service":"api-service","timestamp":"2025-12-02 12:34:48"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.351 ms - 927","service":"api-service","timestamp":"2025-12-02 12:34:48"}
+{"level":"info","message":"GET /api/v1/regularization/requests?employeeId=692caa7ac611985b5b97414b 200 3.412 ms - 167","service":"api-service","timestamp":"2025-12-02 12:34:48"}
+{"level":"info","message":"POST /api/v1/regularization/requests 201 11.877 ms - 487","service":"api-service","timestamp":"2025-12-02 12:35:00"}
+{"level":"info","message":"GET /api/v1/regularization/requests?employeeId=692caa7ac611985b5b97414b 200 7.025 ms - 684","service":"api-service","timestamp":"2025-12-02 12:35:00"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=pending 200 8.455 ms - 684","service":"api-service","timestamp":"2025-12-02 12:35:02"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=pending 200 5.391 ms - 684","service":"api-service","timestamp":"2025-12-02 12:35:02"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.960 ms - 927","service":"api-service","timestamp":"2025-12-02 12:35:08"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 7.428 ms - 927","service":"api-service","timestamp":"2025-12-02 12:35:08"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 5.586 ms - 198","service":"api-service","timestamp":"2025-12-02 12:35:08"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 2.350 ms - 4204","service":"api-service","timestamp":"2025-12-02 12:35:08"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 11.235 ms - 927","service":"api-service","timestamp":"2025-12-02 12:35:17"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.491 ms - 927","service":"api-service","timestamp":"2025-12-02 12:35:17"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2025&month=12 200 2.202 ms - 314","service":"api-service","timestamp":"2025-12-02 12:35:17"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.415 ms - 927","service":"api-service","timestamp":"2025-12-02 12:35:19"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.749 ms - 927","service":"api-service","timestamp":"2025-12-02 12:35:19"}
+{"level":"info","message":"GET /api/v1/regularization/requests?employeeId=692caa7ac611985b5b97414b 200 3.491 ms - 684","service":"api-service","timestamp":"2025-12-02 12:35:19"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 6.690 ms - 927","service":"api-service","timestamp":"2025-12-02 12:35:19"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2025&month=12 200 4.592 ms - 314","service":"api-service","timestamp":"2025-12-02 12:35:19"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 7.146 ms - 927","service":"api-service","timestamp":"2025-12-02 12:35:19"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=pending 200 8.128 ms - 684","service":"api-service","timestamp":"2025-12-02 12:35:20"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=pending 200 5.228 ms - 684","service":"api-service","timestamp":"2025-12-02 12:35:20"}
+{"level":"error","message":"Unexpected Error: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"RegularizationRequest\"","method":"GET","name":"CastError","path":"/api/v1/regularization/requests/undefined","service":"api-service","stack":"CastError: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"RegularizationRequest\"\n    at SchemaObjectId.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schema/objectId.js:253:11)\n    at SchemaType.applySetters (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1288:12)\n    at SchemaType.castForQuery (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1724:17)\n    at cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/cast.js:390:32)\n    at Query.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:5060:12)\n    at Query._castConditions (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:2374:10)\n    at model.Query._findOne (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:2697:8)\n    at model.Query.exec (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:4627:80)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async RegularizationService.getRequestById (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/src/services/regularizationService.ts:96:21)","timestamp":"2025-12-02 12:35:31"}
+{"level":"info","message":"GET /api/v1/regularization/requests/undefined 500 2.763 ms - 221","service":"api-service","timestamp":"2025-12-02 12:35:31"}
+{"level":"error","message":"Unexpected Error: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"RegularizationRequest\"","method":"GET","name":"CastError","path":"/api/v1/regularization/requests/undefined","service":"api-service","stack":"CastError: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"RegularizationRequest\"\n    at SchemaObjectId.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schema/objectId.js:253:11)\n    at SchemaType.applySetters (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1288:12)\n    at SchemaType.castForQuery (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/schemaType.js:1724:17)\n    at cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/cast.js:390:32)\n    at Query.cast (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:5060:12)\n    at Query._castConditions (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:2374:10)\n    at model.Query._findOne (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:2697:8)\n    at model.Query.exec (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/node_modules/mongoose/lib/query.js:4627:80)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async RegularizationService.getRequestById (/Users/thamaraikannan/Desktop/enterprise/enterprise/backend/src/services/regularizationService.ts:96:21)","timestamp":"2025-12-02 12:35:31"}
+{"level":"info","message":"GET /api/v1/regularization/requests/undefined 500 1.427 ms - 221","service":"api-service","timestamp":"2025-12-02 12:35:31"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.900 ms - 927","service":"api-service","timestamp":"2025-12-02 12:35:34"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.066 ms - 927","service":"api-service","timestamp":"2025-12-02 12:35:34"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.622 ms - 198","service":"api-service","timestamp":"2025-12-02 12:35:34"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.626 ms - 4204","service":"api-service","timestamp":"2025-12-02 12:35:34"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.356 ms - 927","service":"api-service","timestamp":"2025-12-02 12:35:35"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.127 ms - 927","service":"api-service","timestamp":"2025-12-02 12:35:35"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2025&month=12 200 3.258 ms - 314","service":"api-service","timestamp":"2025-12-02 12:35:35"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.784 ms - 927","service":"api-service","timestamp":"2025-12-02 12:35:37"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.799 ms - 927","service":"api-service","timestamp":"2025-12-02 12:35:37"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.856 ms - 198","service":"api-service","timestamp":"2025-12-02 12:35:37"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 2.114 ms - 4204","service":"api-service","timestamp":"2025-12-02 12:35:37"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.454 ms - 927","service":"api-service","timestamp":"2025-12-02 12:36:44"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.363 ms - 927","service":"api-service","timestamp":"2025-12-02 12:36:44"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2025&month=12 200 2.562 ms - 314","service":"api-service","timestamp":"2025-12-02 12:36:44"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-12-25T18%3A30%3A00.000Z&endDate=2025-12-26T18%3A29%3A59.999Z 200 5.250 ms - 155","service":"api-service","timestamp":"2025-12-02 12:37:01"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-12-01T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 6.021 ms - 4240","service":"api-service","timestamp":"2025-12-02 12:38:23"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.118 ms - 927","service":"api-service","timestamp":"2025-12-02 12:41:54"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.131 ms - 927","service":"api-service","timestamp":"2025-12-02 12:41:54"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2025&month=12 200 1.875 ms - 314","service":"api-service","timestamp":"2025-12-02 12:41:54"}
+{"level":"info","message":"🚀 Server is running on port 3000","service":"api-service","timestamp":"2025-12-02 12:46:23"}
+{"level":"info","message":"🌍 Environment: development","service":"api-service","timestamp":"2025-12-02 12:46:23"}
+{"level":"info","message":"📡 API available at http://localhost:3000/api","service":"api-service","timestamp":"2025-12-02 12:46:23"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 17.581 ms - 927","service":"api-service","timestamp":"2025-12-02 12:46:24"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.065 ms - 927","service":"api-service","timestamp":"2025-12-02 12:46:24"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2025&month=12 200 2.254 ms - 314","service":"api-service","timestamp":"2025-12-02 12:46:24"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 2.595 ms - 468","service":"api-service","timestamp":"2025-12-02 12:54:40"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.520 ms - 927","service":"api-service","timestamp":"2025-12-02 12:54:40"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.131 ms - 468","service":"api-service","timestamp":"2025-12-02 12:54:40"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.280 ms - 927","service":"api-service","timestamp":"2025-12-02 12:54:40"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.710 ms - 198","service":"api-service","timestamp":"2025-12-02 12:54:40"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T07%3A24%3A40.964Z&endDate=2025-12-02T07%3A24%3A40.964Z 200 3.734 ms - 4240","service":"api-service","timestamp":"2025-12-02 12:54:40"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.536 ms - 468","service":"api-service","timestamp":"2025-12-02 12:55:02"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.994 ms - 927","service":"api-service","timestamp":"2025-12-02 12:55:02"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.052 ms - 198","service":"api-service","timestamp":"2025-12-02 12:55:02"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T07%3A25%3A02.374Z&endDate=2025-12-02T07%3A25%3A02.374Z 200 2.481 ms - 4240","service":"api-service","timestamp":"2025-12-02 12:55:02"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.550 ms - 468","service":"api-service","timestamp":"2025-12-02 12:55:06"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.200 ms - 927","service":"api-service","timestamp":"2025-12-02 12:55:06"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.687 ms - 198","service":"api-service","timestamp":"2025-12-02 12:55:06"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T07%3A25%3A06.398Z&endDate=2025-12-02T07%3A25%3A06.398Z 200 3.456 ms - 4240","service":"api-service","timestamp":"2025-12-02 12:55:06"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T07%3A25%3A58.661Z&endDate=2025-12-02T07%3A25%3A58.661Z 200 3.991 ms - 4240","service":"api-service","timestamp":"2025-12-02 12:55:58"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T07%3A25%3A59.676Z&endDate=2025-12-02T07%3A25%3A59.676Z 200 3.032 ms - 4240","service":"api-service","timestamp":"2025-12-02 12:55:59"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T07%3A26%3A00.635Z&endDate=2025-12-02T07%3A26%3A00.635Z 200 2.770 ms - 4240","service":"api-service","timestamp":"2025-12-02 12:56:00"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T07%3A26%3A01.394Z&endDate=2025-12-02T07%3A26%3A01.394Z 200 5.312 ms - 4240","service":"api-service","timestamp":"2025-12-02 12:56:01"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T07%3A26%3A02.114Z&endDate=2025-12-02T07%3A26%3A02.114Z 200 4.397 ms - 4240","service":"api-service","timestamp":"2025-12-02 12:56:02"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T07%3A26%3A02.745Z&endDate=2025-12-02T07%3A26%3A02.745Z 200 4.262 ms - 4240","service":"api-service","timestamp":"2025-12-02 12:56:02"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T07%3A26%3A30.864Z&endDate=2025-12-02T07%3A26%3A30.864Z 200 5.057 ms - 4240","service":"api-service","timestamp":"2025-12-02 12:56:30"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 3.370 ms - 468","service":"api-service","timestamp":"2025-12-02 12:58:17"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 6.223 ms - 927","service":"api-service","timestamp":"2025-12-02 12:58:17"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.255 ms - 468","service":"api-service","timestamp":"2025-12-02 12:58:17"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 1.992 ms - 927","service":"api-service","timestamp":"2025-12-02 12:58:17"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.126 ms - 198","service":"api-service","timestamp":"2025-12-02 12:58:17"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T07%3A28%3A17.692Z&endDate=2025-12-02T07%3A28%3A17.692Z 200 2.318 ms - 4240","service":"api-service","timestamp":"2025-12-02 12:58:17"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T07%3A33%3A16.861Z&endDate=2025-12-02T07%3A33%3A16.861Z 200 2.538 ms - 4240","service":"api-service","timestamp":"2025-12-02 13:03:16"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T07%3A33%3A18.349Z&endDate=2025-12-02T07%3A33%3A18.349Z 200 3.775 ms - 4240","service":"api-service","timestamp":"2025-12-02 13:03:18"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T07%3A33%3A20.192Z&endDate=2025-12-02T07%3A33%3A20.192Z 200 2.667 ms - 4240","service":"api-service","timestamp":"2025-12-02 13:03:20"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T07%3A33%3A20.841Z&endDate=2025-12-02T07%3A33%3A20.841Z 200 4.062 ms - 4240","service":"api-service","timestamp":"2025-12-02 13:03:20"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T07%3A33%3A21.475Z&endDate=2025-12-02T07%3A33%3A21.475Z 200 4.933 ms - 4240","service":"api-service","timestamp":"2025-12-02 13:03:21"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T07%3A33%3A22.865Z&endDate=2025-12-02T07%3A33%3A22.865Z 200 4.090 ms - 4240","service":"api-service","timestamp":"2025-12-02 13:03:22"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T07%3A33%3A49.273Z&endDate=2025-12-02T07%3A33%3A49.273Z 200 6.889 ms - 4240","service":"api-service","timestamp":"2025-12-02 13:03:49"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.000 ms - 927","service":"api-service","timestamp":"2025-12-02 13:04:04"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.764 ms - 927","service":"api-service","timestamp":"2025-12-02 13:04:04"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 6.142 ms - 198","service":"api-service","timestamp":"2025-12-02 13:04:04"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 5.011 ms - 4204","service":"api-service","timestamp":"2025-12-02 13:04:04"}
+{"level":"info","message":"POST /api/v1/attendance/clock-in 201 11.820 ms - 779","service":"api-service","timestamp":"2025-12-02 13:04:08"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.521 ms - 196","service":"api-service","timestamp":"2025-12-02 13:04:08"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.385 ms - 4885","service":"api-service","timestamp":"2025-12-02 13:04:08"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 4.991 ms - 468","service":"api-service","timestamp":"2025-12-02 13:04:10"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.340 ms - 927","service":"api-service","timestamp":"2025-12-02 13:04:10"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.449 ms - 468","service":"api-service","timestamp":"2025-12-02 13:04:10"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.753 ms - 927","service":"api-service","timestamp":"2025-12-02 13:04:10"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.178 ms - 196","service":"api-service","timestamp":"2025-12-02 13:04:10"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T07%3A34%3A10.248Z&endDate=2025-12-02T07%3A34%3A10.248Z 200 2.784 ms - 4921","service":"api-service","timestamp":"2025-12-02 13:04:10"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T07%3A35%3A15.682Z&endDate=2025-12-02T07%3A35%3A15.682Z 200 3.511 ms - 4921","service":"api-service","timestamp":"2025-12-02 13:05:15"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-30T18%3A30%3A00.000Z&endDate=2025-12-31T18%3A29%3A59.999Z 200 2.988 ms - 4921","service":"api-service","timestamp":"2025-12-02 13:07:57"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-10-31T18%3A30%3A00.000Z&endDate=2025-11-30T18%3A29%3A59.999Z 200 3.117 ms - 155","service":"api-service","timestamp":"2025-12-02 13:07:58"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-09-30T18%3A30%3A00.000Z&endDate=2025-10-31T18%3A29%3A59.999Z 200 4.301 ms - 155","service":"api-service","timestamp":"2025-12-02 13:08:00"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-08-31T18%3A30%3A00.000Z&endDate=2025-09-30T18%3A29%3A59.999Z 200 3.318 ms - 155","service":"api-service","timestamp":"2025-12-02 13:08:01"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-07-31T18%3A30%3A00.000Z&endDate=2025-08-31T18%3A29%3A59.999Z 200 2.889 ms - 155","service":"api-service","timestamp":"2025-12-02 13:08:03"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-06-30T18%3A30%3A00.000Z&endDate=2025-07-31T18%3A29%3A59.999Z 200 3.399 ms - 155","service":"api-service","timestamp":"2025-12-02 13:08:04"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-07-31T18%3A30%3A00.000Z&endDate=2025-08-31T18%3A29%3A59.999Z 200 4.542 ms - 155","service":"api-service","timestamp":"2025-12-02 13:08:17"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-08-31T18%3A30%3A00.000Z&endDate=2025-09-30T18%3A29%3A59.999Z 200 5.129 ms - 155","service":"api-service","timestamp":"2025-12-02 13:08:18"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-09-30T18%3A30%3A00.000Z&endDate=2025-10-31T18%3A29%3A59.999Z 200 4.257 ms - 155","service":"api-service","timestamp":"2025-12-02 13:08:19"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-10-31T18%3A30%3A00.000Z&endDate=2025-11-30T18%3A29%3A59.999Z 200 4.135 ms - 155","service":"api-service","timestamp":"2025-12-02 13:08:20"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-30T18%3A30%3A00.000Z&endDate=2025-12-31T18%3A29%3A59.999Z 200 3.870 ms - 4921","service":"api-service","timestamp":"2025-12-02 13:08:20"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T07%3A38%3A21.789Z&endDate=2025-12-02T07%3A38%3A21.789Z 200 4.165 ms - 4921","service":"api-service","timestamp":"2025-12-02 13:08:21"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 2.514 ms - 468","service":"api-service","timestamp":"2025-12-02 13:11:02"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.399 ms - 927","service":"api-service","timestamp":"2025-12-02 13:11:02"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.669 ms - 468","service":"api-service","timestamp":"2025-12-02 13:11:02"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.555 ms - 927","service":"api-service","timestamp":"2025-12-02 13:11:02"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 0.995 ms - 196","service":"api-service","timestamp":"2025-12-02 13:11:02"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T07%3A41%3A02.947Z&endDate=2025-12-02T07%3A41%3A02.947Z 200 2.437 ms - 4921","service":"api-service","timestamp":"2025-12-02 13:11:02"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 2.068 ms - 468","service":"api-service","timestamp":"2025-12-02 13:12:41"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.486 ms - 927","service":"api-service","timestamp":"2025-12-02 13:12:41"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 0.762 ms - 468","service":"api-service","timestamp":"2025-12-02 13:12:41"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 1.304 ms - 927","service":"api-service","timestamp":"2025-12-02 13:12:41"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 0.860 ms - 196","service":"api-service","timestamp":"2025-12-02 13:12:41"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 2.629 ms - 4921","service":"api-service","timestamp":"2025-12-02 13:12:41"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 2.898 ms - 468","service":"api-service","timestamp":"2025-12-02 13:15:50"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.638 ms - 927","service":"api-service","timestamp":"2025-12-02 13:15:50"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.262 ms - 468","service":"api-service","timestamp":"2025-12-02 13:15:50"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 1.827 ms - 927","service":"api-service","timestamp":"2025-12-02 13:15:50"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.009 ms - 196","service":"api-service","timestamp":"2025-12-02 13:15:50"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 2.257 ms - 4921","service":"api-service","timestamp":"2025-12-02 13:15:50"}
+{"level":"info","message":"POST /api/v1/attendance/clock-out 201 9.664 ms - 650","service":"api-service","timestamp":"2025-12-02 13:16:18"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 5.842 ms - 5472","service":"api-service","timestamp":"2025-12-02 13:16:18"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.955 ms - 927","service":"api-service","timestamp":"2025-12-02 13:18:43"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.026 ms - 927","service":"api-service","timestamp":"2025-12-02 13:18:43"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.079 ms - 198","service":"api-service","timestamp":"2025-12-02 13:18:43"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.102 ms - 5436","service":"api-service","timestamp":"2025-12-02 13:18:43"}
+{"level":"info","message":"POST /api/v1/attendance/clock-in 201 8.444 ms - 779","service":"api-service","timestamp":"2025-12-02 13:18:45"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 4.972 ms - 196","service":"api-service","timestamp":"2025-12-02 13:18:45"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 4.365 ms - 6117","service":"api-service","timestamp":"2025-12-02 13:18:45"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 4.316 ms - 468","service":"api-service","timestamp":"2025-12-02 13:18:47"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 7.891 ms - 927","service":"api-service","timestamp":"2025-12-02 13:18:47"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.973 ms - 468","service":"api-service","timestamp":"2025-12-02 13:18:47"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.965 ms - 927","service":"api-service","timestamp":"2025-12-02 13:18:47"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.886 ms - 196","service":"api-service","timestamp":"2025-12-02 13:18:47"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 3.184 ms - 6153","service":"api-service","timestamp":"2025-12-02 13:18:47"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 3.004 ms - 468","service":"api-service","timestamp":"2025-12-02 13:18:51"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.786 ms - 927","service":"api-service","timestamp":"2025-12-02 13:18:51"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.950 ms - 468","service":"api-service","timestamp":"2025-12-02 13:18:51"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.565 ms - 927","service":"api-service","timestamp":"2025-12-02 13:18:51"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.371 ms - 196","service":"api-service","timestamp":"2025-12-02 13:18:51"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 4.516 ms - 6153","service":"api-service","timestamp":"2025-12-02 13:18:51"}
+{"level":"info","message":"POST /api/v1/attendance/clock-out 201 4.254 ms - 650","service":"api-service","timestamp":"2025-12-02 13:21:18"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 2.720 ms - 6705","service":"api-service","timestamp":"2025-12-02 13:21:18"}
+{"level":"info","message":"GET /api/v1/employees?page=1&limit=10 200 7.350 ms - 927","service":"api-service","timestamp":"2025-12-02 13:21:28"}
+{"level":"info","message":"GET /api/v1/employees?page=1&limit=10 200 6.629 ms - 927","service":"api-service","timestamp":"2025-12-02 13:21:28"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 8.320 ms - 927","service":"api-service","timestamp":"2025-12-02 13:21:33"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 5.426 ms - 468","service":"api-service","timestamp":"2025-12-02 13:21:33"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 3.940 ms - 468","service":"api-service","timestamp":"2025-12-02 13:21:33"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 7.300 ms - 927","service":"api-service","timestamp":"2025-12-02 13:21:33"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.581 ms - 198","service":"api-service","timestamp":"2025-12-02 13:21:33"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 3.254 ms - 6705","service":"api-service","timestamp":"2025-12-02 13:21:33"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.062 ms - 927","service":"api-service","timestamp":"2025-12-02 13:21:34"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.856 ms - 927","service":"api-service","timestamp":"2025-12-02 13:21:34"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.633 ms - 198","service":"api-service","timestamp":"2025-12-02 13:21:34"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.634 ms - 6668","service":"api-service","timestamp":"2025-12-02 13:21:34"}
+{"level":"info","message":"POST /api/v1/attendance/clock-in 201 3.312 ms - 779","service":"api-service","timestamp":"2025-12-02 13:21:38"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.530 ms - 196","service":"api-service","timestamp":"2025-12-02 13:21:38"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.645 ms - 7349","service":"api-service","timestamp":"2025-12-02 13:21:38"}
+{"level":"info","message":"POST /api/v1/attendance/clock-out 201 6.961 ms - 781","service":"api-service","timestamp":"2025-12-02 13:21:41"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 3.527 ms - 198","service":"api-service","timestamp":"2025-12-02 13:21:41"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 2.510 ms - 8031","service":"api-service","timestamp":"2025-12-02 13:21:41"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.557 ms - 927","service":"api-service","timestamp":"2025-12-02 13:28:12"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.490 ms - 927","service":"api-service","timestamp":"2025-12-02 13:28:12"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.155 ms - 198","service":"api-service","timestamp":"2025-12-02 13:28:12"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 0.883 ms - 8031","service":"api-service","timestamp":"2025-12-02 13:28:12"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 8.620 ms - 927","service":"api-service","timestamp":"2025-12-02 13:30:15"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 6.364 ms - 468","service":"api-service","timestamp":"2025-12-02 13:30:15"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.252 ms - 468","service":"api-service","timestamp":"2025-12-02 13:30:15"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.172 ms - 927","service":"api-service","timestamp":"2025-12-02 13:30:15"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.951 ms - 198","service":"api-service","timestamp":"2025-12-02 13:30:15"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 3.125 ms - 8068","service":"api-service","timestamp":"2025-12-02 13:30:15"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 0.937 ms - 468","service":"api-service","timestamp":"2025-12-02 14:17:30"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.647 ms - 927","service":"api-service","timestamp":"2025-12-02 14:17:30"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 0.904 ms - 198","service":"api-service","timestamp":"2025-12-02 14:17:30"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 2.050 ms - 8068","service":"api-service","timestamp":"2025-12-02 14:17:30"}
+{"level":"info","message":"GET /api/v1/employees?page=1&limit=10 200 4.177 ms - 927","service":"api-service","timestamp":"2025-12-02 14:24:25"}
+{"level":"info","message":"GET /api/v1/employees?page=1&limit=10 200 3.314 ms - 927","service":"api-service","timestamp":"2025-12-02 14:24:25"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.859 ms - 927","service":"api-service","timestamp":"2025-12-02 14:24:27"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.560 ms - 927","service":"api-service","timestamp":"2025-12-02 14:24:27"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 3.100 ms - 198","service":"api-service","timestamp":"2025-12-02 14:24:27"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.883 ms - 8031","service":"api-service","timestamp":"2025-12-02 14:24:27"}
+{"level":"info","message":"POST /api/v1/attendance/clock-in 201 4.726 ms - 778","service":"api-service","timestamp":"2025-12-02 14:24:34"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.505 ms - 196","service":"api-service","timestamp":"2025-12-02 14:24:34"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.206 ms - 8711","service":"api-service","timestamp":"2025-12-02 14:24:34"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.640 ms - 927","service":"api-service","timestamp":"2025-12-02 14:24:38"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 3.232 ms - 468","service":"api-service","timestamp":"2025-12-02 14:24:38"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.125 ms - 468","service":"api-service","timestamp":"2025-12-02 14:24:38"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.547 ms - 927","service":"api-service","timestamp":"2025-12-02 14:24:38"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.377 ms - 196","service":"api-service","timestamp":"2025-12-02 14:24:38"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 2.409 ms - 8748","service":"api-service","timestamp":"2025-12-02 14:24:38"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 3.631 ms - 8748","service":"api-service","timestamp":"2025-12-02 14:26:52"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 5.725 ms - 8748","service":"api-service","timestamp":"2025-12-02 14:26:54"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 6.977 ms - 8748","service":"api-service","timestamp":"2025-12-02 14:26:55"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.064 ms - 927","service":"api-service","timestamp":"2025-12-02 14:27:23"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 7.464 ms - 927","service":"api-service","timestamp":"2025-12-02 14:27:23"}
+{"level":"info","message":"GET /api/v1/regularization/requests?employeeId=692caa7ac611985b5b97414b 200 7.181 ms - 684","service":"api-service","timestamp":"2025-12-02 14:27:23"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.955 ms - 927","service":"api-service","timestamp":"2025-12-02 14:27:24"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.854 ms - 927","service":"api-service","timestamp":"2025-12-02 14:27:24"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 3.170 ms - 196","service":"api-service","timestamp":"2025-12-02 14:27:24"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.715 ms - 8711","service":"api-service","timestamp":"2025-12-02 14:27:24"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.789 ms - 927","service":"api-service","timestamp":"2025-12-02 14:31:40"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.898 ms - 927","service":"api-service","timestamp":"2025-12-02 14:31:40"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.367 ms - 196","service":"api-service","timestamp":"2025-12-02 14:31:40"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 2.253 ms - 8711","service":"api-service","timestamp":"2025-12-02 14:31:40"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.445 ms - 927","service":"api-service","timestamp":"2025-12-02 14:31:41"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.742 ms - 927","service":"api-service","timestamp":"2025-12-02 14:31:41"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.271 ms - 196","service":"api-service","timestamp":"2025-12-02 14:31:41"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 2.237 ms - 8711","service":"api-service","timestamp":"2025-12-02 14:31:41"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.332 ms - 927","service":"api-service","timestamp":"2025-12-02 14:31:41"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 1.731 ms - 927","service":"api-service","timestamp":"2025-12-02 14:31:41"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.175 ms - 196","service":"api-service","timestamp":"2025-12-02 14:31:41"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.048 ms - 8711","service":"api-service","timestamp":"2025-12-02 14:31:41"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.385 ms - 927","service":"api-service","timestamp":"2025-12-02 14:31:41"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.523 ms - 927","service":"api-service","timestamp":"2025-12-02 14:31:41"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 0.752 ms - 196","service":"api-service","timestamp":"2025-12-02 14:31:41"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 2.068 ms - 8711","service":"api-service","timestamp":"2025-12-02 14:31:41"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.135 ms - 468","service":"api-service","timestamp":"2025-12-02 14:31:43"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.532 ms - 927","service":"api-service","timestamp":"2025-12-02 14:31:43"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 0.902 ms - 468","service":"api-service","timestamp":"2025-12-02 14:31:43"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 1.587 ms - 927","service":"api-service","timestamp":"2025-12-02 14:31:43"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 0.818 ms - 196","service":"api-service","timestamp":"2025-12-02 14:31:43"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 1.547 ms - 8748","service":"api-service","timestamp":"2025-12-02 14:31:43"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.183 ms - 468","service":"api-service","timestamp":"2025-12-02 14:32:58"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.274 ms - 927","service":"api-service","timestamp":"2025-12-02 14:32:58"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 0.914 ms - 196","service":"api-service","timestamp":"2025-12-02 14:32:58"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 2.328 ms - 8748","service":"api-service","timestamp":"2025-12-02 14:32:58"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 0.995 ms - 468","service":"api-service","timestamp":"2025-12-02 14:33:00"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.803 ms - 927","service":"api-service","timestamp":"2025-12-02 14:33:00"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 0.909 ms - 196","service":"api-service","timestamp":"2025-12-02 14:33:00"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 2.394 ms - 8748","service":"api-service","timestamp":"2025-12-02 14:33:00"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.064 ms - 468","service":"api-service","timestamp":"2025-12-02 14:33:07"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.819 ms - 927","service":"api-service","timestamp":"2025-12-02 14:33:07"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 0.994 ms - 196","service":"api-service","timestamp":"2025-12-02 14:33:07"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 2.131 ms - 8748","service":"api-service","timestamp":"2025-12-02 14:33:07"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.242 ms - 468","service":"api-service","timestamp":"2025-12-02 14:33:32"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.817 ms - 927","service":"api-service","timestamp":"2025-12-02 14:33:32"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 0.695 ms - 196","service":"api-service","timestamp":"2025-12-02 14:33:32"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 2.661 ms - 8748","service":"api-service","timestamp":"2025-12-02 14:33:32"}
+{"level":"info","message":"POST /api/v1/attendance/clock-out 201 7.038 ms - 650","service":"api-service","timestamp":"2025-12-02 14:33:46"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 4.026 ms - 9299","service":"api-service","timestamp":"2025-12-02 14:33:46"}
+{"level":"info","message":"GET /api/v1/legal-entities 200 4.914 ms - 707","service":"api-service","timestamp":"2025-12-02 14:33:52"}
+{"level":"info","message":"GET /api/v1/legal-entities 200 1.738 ms - 707","service":"api-service","timestamp":"2025-12-02 14:33:52"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 1.934 ms - 927","service":"api-service","timestamp":"2025-12-02 14:33:53"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 1.398 ms - 927","service":"api-service","timestamp":"2025-12-02 14:33:53"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 0.812 ms - 198","service":"api-service","timestamp":"2025-12-02 14:33:53"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 0.824 ms - 9262","service":"api-service","timestamp":"2025-12-02 14:33:53"}
+{"level":"info","message":"POST /api/v1/attendance/clock-in 201 9.328 ms - 779","service":"api-service","timestamp":"2025-12-02 14:33:55"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 3.003 ms - 196","service":"api-service","timestamp":"2025-12-02 14:33:55"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 3.501 ms - 9943","service":"api-service","timestamp":"2025-12-02 14:33:55"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.665 ms - 468","service":"api-service","timestamp":"2025-12-02 14:33:57"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.212 ms - 927","service":"api-service","timestamp":"2025-12-02 14:33:57"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.431 ms - 468","service":"api-service","timestamp":"2025-12-02 14:33:57"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.059 ms - 927","service":"api-service","timestamp":"2025-12-02 14:33:57"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.306 ms - 196","service":"api-service","timestamp":"2025-12-02 14:33:57"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 3.951 ms - 9980","service":"api-service","timestamp":"2025-12-02 14:33:57"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.298 ms - 927","service":"api-service","timestamp":"2025-12-02 14:34:42"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 1.455 ms - 927","service":"api-service","timestamp":"2025-12-02 14:34:42"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.269 ms - 196","service":"api-service","timestamp":"2025-12-02 14:34:42"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.238 ms - 9943","service":"api-service","timestamp":"2025-12-02 14:34:42"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.809 ms - 927","service":"api-service","timestamp":"2025-12-02 14:34:43"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 0.991 ms - 196","service":"api-service","timestamp":"2025-12-02 14:34:43"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 0.964 ms - 9943","service":"api-service","timestamp":"2025-12-02 14:34:43"}
+{"level":"info","message":"POST /api/v1/attendance/clock-out 201 10.588 ms - 781","service":"api-service","timestamp":"2025-12-02 14:34:45"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.964 ms - 198","service":"api-service","timestamp":"2025-12-02 14:34:45"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 2.097 ms - 10625","service":"api-service","timestamp":"2025-12-02 14:34:45"}
+{"level":"info","message":"POST /api/v1/attendance/clock-in 201 9.281 ms - 779","service":"api-service","timestamp":"2025-12-02 14:34:47"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.766 ms - 196","service":"api-service","timestamp":"2025-12-02 14:34:47"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.570 ms - 11306","service":"api-service","timestamp":"2025-12-02 14:34:47"}
+{"level":"info","message":"POST /api/v1/attendance/clock-out 201 5.798 ms - 781","service":"api-service","timestamp":"2025-12-02 14:34:47"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.872 ms - 198","service":"api-service","timestamp":"2025-12-02 14:34:47"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 3.337 ms - 11988","service":"api-service","timestamp":"2025-12-02 14:34:47"}
+{"level":"info","message":"POST /api/v1/attendance/clock-in 201 6.919 ms - 779","service":"api-service","timestamp":"2025-12-02 14:34:48"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.788 ms - 196","service":"api-service","timestamp":"2025-12-02 14:34:48"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 3.140 ms - 12669","service":"api-service","timestamp":"2025-12-02 14:34:48"}
+{"level":"info","message":"POST /api/v1/attendance/clock-out 201 5.979 ms - 781","service":"api-service","timestamp":"2025-12-02 14:34:49"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.555 ms - 198","service":"api-service","timestamp":"2025-12-02 14:34:49"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 2.481 ms - 13351","service":"api-service","timestamp":"2025-12-02 14:34:49"}
+{"level":"info","message":"POST /api/v1/attendance/clock-in 201 5.426 ms - 779","service":"api-service","timestamp":"2025-12-02 14:34:50"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.166 ms - 196","service":"api-service","timestamp":"2025-12-02 14:34:50"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 2.102 ms - 14032","service":"api-service","timestamp":"2025-12-02 14:34:50"}
+{"level":"info","message":"POST /api/v1/attendance/clock-out 201 3.269 ms - 781","service":"api-service","timestamp":"2025-12-02 14:34:51"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.201 ms - 198","service":"api-service","timestamp":"2025-12-02 14:34:51"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.290 ms - 14714","service":"api-service","timestamp":"2025-12-02 14:34:51"}
+{"level":"info","message":"POST /api/v1/attendance/clock-in 201 2.709 ms - 779","service":"api-service","timestamp":"2025-12-02 14:34:52"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.208 ms - 196","service":"api-service","timestamp":"2025-12-02 14:34:52"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.342 ms - 15395","service":"api-service","timestamp":"2025-12-02 14:34:52"}
+{"level":"info","message":"POST /api/v1/attendance/clock-out 201 5.016 ms - 781","service":"api-service","timestamp":"2025-12-02 14:34:59"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.969 ms - 198","service":"api-service","timestamp":"2025-12-02 14:34:59"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 2.257 ms - 16077","service":"api-service","timestamp":"2025-12-02 14:34:59"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.541 ms - 927","service":"api-service","timestamp":"2025-12-02 14:36:47"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.231 ms - 198","service":"api-service","timestamp":"2025-12-02 14:36:47"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.270 ms - 16077","service":"api-service","timestamp":"2025-12-02 14:36:47"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.190 ms - 927","service":"api-service","timestamp":"2025-12-02 14:37:00"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 0.957 ms - 198","service":"api-service","timestamp":"2025-12-02 14:37:00"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.157 ms - 16077","service":"api-service","timestamp":"2025-12-02 14:37:00"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.485 ms - 927","service":"api-service","timestamp":"2025-12-02 14:37:04"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.419 ms - 198","service":"api-service","timestamp":"2025-12-02 14:37:04"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.726 ms - 16077","service":"api-service","timestamp":"2025-12-02 14:37:04"}
+{"level":"info","message":"POST /api/v1/attendance/clock-in 201 5.464 ms - 779","service":"api-service","timestamp":"2025-12-02 14:38:31"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.212 ms - 196","service":"api-service","timestamp":"2025-12-02 14:38:31"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 2.204 ms - 16758","service":"api-service","timestamp":"2025-12-02 14:38:31"}
+{"level":"info","message":"POST /api/v1/attendance/clock-out 201 7.364 ms - 780","service":"api-service","timestamp":"2025-12-02 14:38:32"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 4.388 ms - 17439","service":"api-service","timestamp":"2025-12-02 14:38:32"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 3.209 ms - 198","service":"api-service","timestamp":"2025-12-02 14:38:32"}
+{"level":"info","message":"POST /api/v1/attendance/clock-in 201 7.935 ms - 778","service":"api-service","timestamp":"2025-12-02 14:38:33"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.151 ms - 196","service":"api-service","timestamp":"2025-12-02 14:38:33"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 2.677 ms - 18119","service":"api-service","timestamp":"2025-12-02 14:38:33"}
+{"level":"info","message":"POST /api/v1/attendance/clock-out 201 9.547 ms - 781","service":"api-service","timestamp":"2025-12-02 14:38:34"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.116 ms - 198","service":"api-service","timestamp":"2025-12-02 14:38:34"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 3.419 ms - 18801","service":"api-service","timestamp":"2025-12-02 14:38:34"}
+{"level":"info","message":"POST /api/v1/attendance/clock-in 201 9.399 ms - 779","service":"api-service","timestamp":"2025-12-02 14:38:34"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.146 ms - 196","service":"api-service","timestamp":"2025-12-02 14:38:34"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.497 ms - 19482","service":"api-service","timestamp":"2025-12-02 14:38:34"}
+{"level":"info","message":"POST /api/v1/attendance/clock-out 201 8.931 ms - 781","service":"api-service","timestamp":"2025-12-02 14:38:35"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.930 ms - 198","service":"api-service","timestamp":"2025-12-02 14:38:35"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 2.071 ms - 20164","service":"api-service","timestamp":"2025-12-02 14:38:35"}
+{"level":"info","message":"POST /api/v1/attendance/clock-in 201 7.118 ms - 778","service":"api-service","timestamp":"2025-12-02 14:38:36"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.757 ms - 196","service":"api-service","timestamp":"2025-12-02 14:38:36"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 2.736 ms - 20844","service":"api-service","timestamp":"2025-12-02 14:38:36"}
+{"level":"info","message":"POST /api/v1/attendance/clock-out 201 6.496 ms - 781","service":"api-service","timestamp":"2025-12-02 14:38:37"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.204 ms - 198","service":"api-service","timestamp":"2025-12-02 14:38:37"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 2.480 ms - 21526","service":"api-service","timestamp":"2025-12-02 14:38:37"}
+{"level":"info","message":"POST /api/v1/attendance/clock-in 201 6.401 ms - 779","service":"api-service","timestamp":"2025-12-02 14:38:38"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.240 ms - 196","service":"api-service","timestamp":"2025-12-02 14:38:38"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.925 ms - 22207","service":"api-service","timestamp":"2025-12-02 14:38:38"}
+{"level":"info","message":"POST /api/v1/attendance/clock-out 201 8.538 ms - 781","service":"api-service","timestamp":"2025-12-02 14:38:40"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.972 ms - 198","service":"api-service","timestamp":"2025-12-02 14:38:40"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 3.100 ms - 22889","service":"api-service","timestamp":"2025-12-02 14:38:40"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.252 ms - 468","service":"api-service","timestamp":"2025-12-02 14:38:42"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.422 ms - 927","service":"api-service","timestamp":"2025-12-02 14:38:42"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.182 ms - 468","service":"api-service","timestamp":"2025-12-02 14:38:42"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.636 ms - 927","service":"api-service","timestamp":"2025-12-02 14:38:42"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.348 ms - 198","service":"api-service","timestamp":"2025-12-02 14:38:42"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 2.722 ms - 22926","service":"api-service","timestamp":"2025-12-02 14:38:42"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 2.472 ms - 468","service":"api-service","timestamp":"2025-12-02 14:38:46"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.286 ms - 927","service":"api-service","timestamp":"2025-12-02 14:38:46"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 3.242 ms - 468","service":"api-service","timestamp":"2025-12-02 14:38:46"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.749 ms - 927","service":"api-service","timestamp":"2025-12-02 14:38:46"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.382 ms - 198","service":"api-service","timestamp":"2025-12-02 14:38:46"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 2.826 ms - 22926","service":"api-service","timestamp":"2025-12-02 14:38:46"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.863 ms - 927","service":"api-service","timestamp":"2025-12-02 14:38:47"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.201 ms - 927","service":"api-service","timestamp":"2025-12-02 14:38:47"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 0.811 ms - 198","service":"api-service","timestamp":"2025-12-02 14:38:47"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.510 ms - 22889","service":"api-service","timestamp":"2025-12-02 14:38:47"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 3.451 ms - 468","service":"api-service","timestamp":"2025-12-02 14:39:09"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 6.208 ms - 927","service":"api-service","timestamp":"2025-12-02 14:39:09"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.870 ms - 468","service":"api-service","timestamp":"2025-12-02 14:39:09"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.648 ms - 198","service":"api-service","timestamp":"2025-12-02 14:39:09"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.889 ms - 927","service":"api-service","timestamp":"2025-12-02 14:39:09"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 4.795 ms - 22926","service":"api-service","timestamp":"2025-12-02 14:39:09"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 6.252 ms - 927","service":"api-service","timestamp":"2025-12-02 14:39:11"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.856 ms - 927","service":"api-service","timestamp":"2025-12-02 14:39:11"}
+{"level":"info","message":"GET /api/v1/regularization/requests?employeeId=692caa7ac611985b5b97414b 200 5.424 ms - 684","service":"api-service","timestamp":"2025-12-02 14:39:11"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.619 ms - 927","service":"api-service","timestamp":"2025-12-02 14:39:14"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 8.580 ms - 927","service":"api-service","timestamp":"2025-12-02 14:39:14"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2025&month=12 200 5.969 ms - 315","service":"api-service","timestamp":"2025-12-02 14:39:14"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=pending 200 7.386 ms - 684","service":"api-service","timestamp":"2025-12-02 14:39:19"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=pending 200 4.410 ms - 684","service":"api-service","timestamp":"2025-12-02 14:39:19"}
+{"level":"info","message":"GET /api/v1/shifts 200 1.647 ms - 468","service":"api-service","timestamp":"2025-12-02 14:39:20"}
+{"level":"info","message":"GET /api/v1/shifts 200 1.137 ms - 468","service":"api-service","timestamp":"2025-12-02 14:39:20"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 3.273 ms - 109","service":"api-service","timestamp":"2025-12-02 14:39:23"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 1.325 ms - 109","service":"api-service","timestamp":"2025-12-02 14:39:23"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.442 ms - 927","service":"api-service","timestamp":"2025-12-02 14:39:25"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.899 ms - 927","service":"api-service","timestamp":"2025-12-02 14:39:25"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 0.905 ms - 198","service":"api-service","timestamp":"2025-12-02 14:39:25"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.781 ms - 22889","service":"api-service","timestamp":"2025-12-02 14:39:25"}
+{"level":"info","message":"GET /api/v1/employees?page=1&limit=10 200 5.252 ms - 927","service":"api-service","timestamp":"2025-12-02 14:39:26"}
+{"level":"info","message":"GET /api/v1/employees?page=1&limit=10 200 2.473 ms - 927","service":"api-service","timestamp":"2025-12-02 14:39:26"}
+{"level":"info","message":"GET /api/v1/employees/692caa7ac611985b5b97414b/details 200 8.337 ms - 827","service":"api-service","timestamp":"2025-12-02 14:39:28"}
+{"level":"info","message":"GET /api/v1/employees/692caa7ac611985b5b97414b/details 200 3.453 ms - 827","service":"api-service","timestamp":"2025-12-02 14:39:28"}
+{"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 5.081 ms - 671","service":"api-service","timestamp":"2025-12-02 14:39:28"}
+{"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 1.925 ms - 671","service":"api-service","timestamp":"2025-12-02 14:39:28"}
+{"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 7.187 ms - 671","service":"api-service","timestamp":"2025-12-02 14:39:38"}
+{"level":"info","message":"GET /api/v1/employees?limit=100 200 6.286 ms - 927","service":"api-service","timestamp":"2025-12-02 14:39:38"}
+{"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 2.337 ms - 671","service":"api-service","timestamp":"2025-12-02 14:39:38"}
+{"level":"info","message":"GET /api/v1/employees?limit=100 200 2.088 ms - 927","service":"api-service","timestamp":"2025-12-02 14:39:38"}
+{"level":"info","message":"GET /api/v1/employees/692caa7ac611985b5b97414b/details 200 5.132 ms - 827","service":"api-service","timestamp":"2025-12-02 14:41:52"}
+{"level":"info","message":"GET /api/v1/employees/692caa7ac611985b5b97414b/details 200 3.062 ms - 827","service":"api-service","timestamp":"2025-12-02 14:41:52"}
+{"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 4.304 ms - 671","service":"api-service","timestamp":"2025-12-02 14:41:52"}
+{"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 2.398 ms - 671","service":"api-service","timestamp":"2025-12-02 14:41:52"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 8.949 ms - 927","service":"api-service","timestamp":"2025-12-02 14:55:44"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.083 ms - 198","service":"api-service","timestamp":"2025-12-02 14:55:44"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.403 ms - 927","service":"api-service","timestamp":"2025-12-02 14:55:44"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 5.169 ms - 22889","service":"api-service","timestamp":"2025-12-02 14:55:44"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 2.700 ms - 468","service":"api-service","timestamp":"2025-12-02 14:55:46"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.618 ms - 927","service":"api-service","timestamp":"2025-12-02 14:55:46"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 2.235 ms - 468","service":"api-service","timestamp":"2025-12-02 14:55:46"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.447 ms - 927","service":"api-service","timestamp":"2025-12-02 14:55:46"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.411 ms - 198","service":"api-service","timestamp":"2025-12-02 14:55:46"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 2.969 ms - 22926","service":"api-service","timestamp":"2025-12-02 14:55:46"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 3.228 ms - 468","service":"api-service","timestamp":"2025-12-02 14:57:58"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 6.334 ms - 927","service":"api-service","timestamp":"2025-12-02 14:57:58"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.188 ms - 468","service":"api-service","timestamp":"2025-12-02 14:57:58"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 1.678 ms - 927","service":"api-service","timestamp":"2025-12-02 14:57:58"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 3.750 ms - 198","service":"api-service","timestamp":"2025-12-02 14:57:58"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 12.777 ms - 22926","service":"api-service","timestamp":"2025-12-02 14:57:58"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 11.513 ms - 468","service":"api-service","timestamp":"2025-12-02 15:00:22"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 2.846 ms - 468","service":"api-service","timestamp":"2025-12-02 15:00:22"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 17.243 ms - 927","service":"api-service","timestamp":"2025-12-02 15:00:22"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.071 ms - 927","service":"api-service","timestamp":"2025-12-02 15:00:22"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.037 ms - 198","service":"api-service","timestamp":"2025-12-02 15:00:22"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 2.664 ms - 22926","service":"api-service","timestamp":"2025-12-02 15:00:22"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 2.210 ms - 468","service":"api-service","timestamp":"2025-12-02 15:08:41"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.164 ms - 927","service":"api-service","timestamp":"2025-12-02 15:08:41"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.154 ms - 468","service":"api-service","timestamp":"2025-12-02 15:08:41"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 1.743 ms - 927","service":"api-service","timestamp":"2025-12-02 15:08:41"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.198 ms - 198","service":"api-service","timestamp":"2025-12-02 15:08:41"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 3.532 ms - 22926","service":"api-service","timestamp":"2025-12-02 15:08:41"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.924 ms - 927","service":"api-service","timestamp":"2025-12-02 15:13:15"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 5.712 ms - 468","service":"api-service","timestamp":"2025-12-02 15:13:15"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 1.807 ms - 927","service":"api-service","timestamp":"2025-12-02 15:13:15"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 0.746 ms - 468","service":"api-service","timestamp":"2025-12-02 15:13:15"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 0.674 ms - 198","service":"api-service","timestamp":"2025-12-02 15:13:15"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 2.634 ms - 22926","service":"api-service","timestamp":"2025-12-02 15:13:15"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 6.336 ms - 927","service":"api-service","timestamp":"2025-12-02 15:59:13"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 6.616 ms - 468","service":"api-service","timestamp":"2025-12-02 15:59:13"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.489 ms - 927","service":"api-service","timestamp":"2025-12-02 15:59:13"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.271 ms - 468","service":"api-service","timestamp":"2025-12-02 15:59:13"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.508 ms - 198","service":"api-service","timestamp":"2025-12-02 15:59:13"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 3.276 ms - 22926","service":"api-service","timestamp":"2025-12-02 15:59:13"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-30T18%3A30%3A00.000Z&endDate=2025-12-31T18%3A29%3A59.999Z 200 6.262 ms - 22926","service":"api-service","timestamp":"2025-12-02 15:59:18"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-10-31T18%3A30%3A00.000Z&endDate=2025-11-30T18%3A29%3A59.999Z 200 3.743 ms - 155","service":"api-service","timestamp":"2025-12-02 15:59:19"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-09-30T18%3A30%3A00.000Z&endDate=2025-10-31T18%3A29%3A59.999Z 200 3.194 ms - 155","service":"api-service","timestamp":"2025-12-02 15:59:21"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-08-31T18%3A30%3A00.000Z&endDate=2025-09-30T18%3A29%3A59.999Z 200 3.290 ms - 155","service":"api-service","timestamp":"2025-12-02 15:59:21"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-07-31T18%3A30%3A00.000Z&endDate=2025-08-31T18%3A29%3A59.999Z 200 3.681 ms - 155","service":"api-service","timestamp":"2025-12-02 15:59:22"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-06-30T18%3A30%3A00.000Z&endDate=2025-07-31T18%3A29%3A59.999Z 200 2.868 ms - 155","service":"api-service","timestamp":"2025-12-02 15:59:23"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 5.194 ms - 22926","service":"api-service","timestamp":"2025-12-02 15:59:33"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.763 ms - 927","service":"api-service","timestamp":"2025-12-02 15:59:41"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.627 ms - 927","service":"api-service","timestamp":"2025-12-02 15:59:41"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 3.421 ms - 198","service":"api-service","timestamp":"2025-12-02 15:59:41"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 3.238 ms - 22889","service":"api-service","timestamp":"2025-12-02 15:59:41"}
+{"level":"info","message":"POST /api/v1/attendance/clock-in 201 7.898 ms - 779","service":"api-service","timestamp":"2025-12-02 15:59:45"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.376 ms - 196","service":"api-service","timestamp":"2025-12-02 15:59:45"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.880 ms - 23570","service":"api-service","timestamp":"2025-12-02 15:59:45"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 4.480 ms - 468","service":"api-service","timestamp":"2025-12-02 15:59:48"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 7.888 ms - 927","service":"api-service","timestamp":"2025-12-02 15:59:48"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.073 ms - 468","service":"api-service","timestamp":"2025-12-02 15:59:48"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.088 ms - 927","service":"api-service","timestamp":"2025-12-02 15:59:48"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.931 ms - 196","service":"api-service","timestamp":"2025-12-02 15:59:48"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 3.459 ms - 23607","service":"api-service","timestamp":"2025-12-02 15:59:48"}
+{"level":"info","message":"POST /api/v1/attendance/clock-out 201 5.835 ms - 650","service":"api-service","timestamp":"2025-12-02 16:00:14"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 5.169 ms - 24158","service":"api-service","timestamp":"2025-12-02 16:00:14"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.238 ms - 468","service":"api-service","timestamp":"2025-12-02 16:02:23"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.799 ms - 927","service":"api-service","timestamp":"2025-12-02 16:02:23"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.257 ms - 198","service":"api-service","timestamp":"2025-12-02 16:02:23"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 2.990 ms - 24158","service":"api-service","timestamp":"2025-12-02 16:02:23"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.337 ms - 468","service":"api-service","timestamp":"2025-12-02 16:02:35"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.814 ms - 927","service":"api-service","timestamp":"2025-12-02 16:02:35"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 0.863 ms - 198","service":"api-service","timestamp":"2025-12-02 16:02:35"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 3.309 ms - 24158","service":"api-service","timestamp":"2025-12-02 16:02:35"}
+{"level":"info","message":"POST /api/v1/attendance/clock-in 201 5.220 ms - 779","service":"api-service","timestamp":"2025-12-02 16:03:18"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 4.021 ms - 24839","service":"api-service","timestamp":"2025-12-02 16:03:18"}
+{"level":"info","message":"POST /api/v1/attendance/clock-out 201 5.128 ms - 781","service":"api-service","timestamp":"2025-12-02 16:03:19"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 4.446 ms - 25521","service":"api-service","timestamp":"2025-12-02 16:03:19"}
+{"level":"info","message":"POST /api/v1/attendance/clock-in 201 6.625 ms - 779","service":"api-service","timestamp":"2025-12-02 16:03:22"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 4.194 ms - 26202","service":"api-service","timestamp":"2025-12-02 16:03:22"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 7.025 ms - 26202","service":"api-service","timestamp":"2025-12-02 16:03:47"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.593 ms - 927","service":"api-service","timestamp":"2025-12-02 16:03:49"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.128 ms - 927","service":"api-service","timestamp":"2025-12-02 16:03:49"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.790 ms - 196","service":"api-service","timestamp":"2025-12-02 16:03:49"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 3.152 ms - 26165","service":"api-service","timestamp":"2025-12-02 16:03:49"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 2.751 ms - 109","service":"api-service","timestamp":"2025-12-02 16:04:08"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 1.974 ms - 109","service":"api-service","timestamp":"2025-12-02 16:04:08"}
+{"level":"info","message":"GET /api/v1/shifts 200 1.251 ms - 468","service":"api-service","timestamp":"2025-12-02 16:04:09"}
+{"level":"info","message":"GET /api/v1/shifts 200 0.822 ms - 468","service":"api-service","timestamp":"2025-12-02 16:04:09"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=pending 200 6.328 ms - 684","service":"api-service","timestamp":"2025-12-02 16:04:10"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=pending 200 2.840 ms - 684","service":"api-service","timestamp":"2025-12-02 16:04:10"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 2.820 ms - 109","service":"api-service","timestamp":"2025-12-02 16:04:11"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 1.598 ms - 109","service":"api-service","timestamp":"2025-12-02 16:04:11"}
+{"level":"info","message":"GET /api/v1/shifts 200 3.204 ms - 468","service":"api-service","timestamp":"2025-12-02 16:04:15"}
+{"level":"info","message":"GET /api/v1/shifts 200 2.309 ms - 468","service":"api-service","timestamp":"2025-12-02 16:04:15"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 1.807 ms - 109","service":"api-service","timestamp":"2025-12-02 16:04:21"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 1.582 ms - 109","service":"api-service","timestamp":"2025-12-02 16:04:21"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 1.281 ms - 109","service":"api-service","timestamp":"2025-12-02 16:33:53"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 0.491 ms - 109","service":"api-service","timestamp":"2025-12-02 16:33:53"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 6.538 ms - 109","service":"api-service","timestamp":"2025-12-02 17:21:59"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 1.642 ms - 109","service":"api-service","timestamp":"2025-12-02 17:21:59"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 5.113 ms - 468","service":"api-service","timestamp":"2025-12-02 17:22:33"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 8.575 ms - 927","service":"api-service","timestamp":"2025-12-02 17:22:33"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.035 ms - 468","service":"api-service","timestamp":"2025-12-02 17:22:33"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 1.739 ms - 927","service":"api-service","timestamp":"2025-12-02 17:22:33"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 0.710 ms - 196","service":"api-service","timestamp":"2025-12-02 17:22:33"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 2.885 ms - 26202","service":"api-service","timestamp":"2025-12-02 17:22:33"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-30T18%3A30%3A00.000Z&endDate=2025-12-31T18%3A29%3A59.999Z 200 4.930 ms - 26202","service":"api-service","timestamp":"2025-12-02 17:22:37"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-10-31T18%3A30%3A00.000Z&endDate=2025-11-30T18%3A29%3A59.999Z 200 3.577 ms - 155","service":"api-service","timestamp":"2025-12-02 17:22:38"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-09-30T18%3A30%3A00.000Z&endDate=2025-10-31T18%3A29%3A59.999Z 200 3.682 ms - 155","service":"api-service","timestamp":"2025-12-02 17:22:39"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-08-31T18%3A30%3A00.000Z&endDate=2025-09-30T18%3A29%3A59.999Z 200 3.836 ms - 155","service":"api-service","timestamp":"2025-12-02 17:22:40"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-07-31T18%3A30%3A00.000Z&endDate=2025-08-31T18%3A29%3A59.999Z 200 3.627 ms - 155","service":"api-service","timestamp":"2025-12-02 17:22:40"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-06-30T18%3A30%3A00.000Z&endDate=2025-07-31T18%3A29%3A59.999Z 200 3.778 ms - 155","service":"api-service","timestamp":"2025-12-02 17:22:41"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 2.688 ms - 26202","service":"api-service","timestamp":"2025-12-02 17:22:50"}
+{"level":"info","message":"POST /api/v1/attendance/clock-out 201 9.567 ms - 781","service":"api-service","timestamp":"2025-12-02 17:23:12"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 4.130 ms - 26884","service":"api-service","timestamp":"2025-12-02 17:23:12"}
+{"level":"info","message":"POST /api/v1/attendance/clock-in 201 5.374 ms - 779","service":"api-service","timestamp":"2025-12-02 17:23:16"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 4.544 ms - 27565","service":"api-service","timestamp":"2025-12-02 17:23:16"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.131 ms - 927","service":"api-service","timestamp":"2025-12-02 17:23:31"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.341 ms - 927","service":"api-service","timestamp":"2025-12-02 17:23:31"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 3.743 ms - 196","service":"api-service","timestamp":"2025-12-02 17:23:31"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 3.824 ms - 27528","service":"api-service","timestamp":"2025-12-02 17:23:31"}
+{"level":"info","message":"POST /api/v1/attendance/clock-out 201 8.389 ms - 781","service":"api-service","timestamp":"2025-12-02 17:23:40"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.407 ms - 198","service":"api-service","timestamp":"2025-12-02 17:23:40"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 4.027 ms - 28210","service":"api-service","timestamp":"2025-12-02 17:23:40"}
+{"level":"info","message":"POST /api/v1/attendance/clock-in 201 2.950 ms - 778","service":"api-service","timestamp":"2025-12-02 17:23:41"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.027 ms - 196","service":"api-service","timestamp":"2025-12-02 17:23:41"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.922 ms - 28890","service":"api-service","timestamp":"2025-12-02 17:23:41"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 3.787 ms - 468","service":"api-service","timestamp":"2025-12-02 17:23:42"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 6.795 ms - 927","service":"api-service","timestamp":"2025-12-02 17:23:42"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.461 ms - 468","service":"api-service","timestamp":"2025-12-02 17:23:42"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.176 ms - 927","service":"api-service","timestamp":"2025-12-02 17:23:42"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.157 ms - 196","service":"api-service","timestamp":"2025-12-02 17:23:42"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 2.944 ms - 28927","service":"api-service","timestamp":"2025-12-02 17:23:42"}
+{"level":"info","message":"POST /api/v1/attendance/clock-out 201 9.230 ms - 779","service":"api-service","timestamp":"2025-12-02 17:23:44"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 4.591 ms - 29607","service":"api-service","timestamp":"2025-12-02 17:23:44"}
+{"level":"info","message":"POST /api/v1/attendance/clock-in 201 7.521 ms - 779","service":"api-service","timestamp":"2025-12-02 17:23:44"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 4.837 ms - 30288","service":"api-service","timestamp":"2025-12-02 17:23:44"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 1.670 ms - 109","service":"api-service","timestamp":"2025-12-02 17:24:14"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 1.211 ms - 109","service":"api-service","timestamp":"2025-12-02 17:24:14"}
+{"level":"info","message":"GET /api/v1/shifts 200 3.234 ms - 468","service":"api-service","timestamp":"2025-12-02 17:24:15"}
+{"level":"info","message":"GET /api/v1/shifts 200 1.968 ms - 468","service":"api-service","timestamp":"2025-12-02 17:24:15"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 2.087 ms - 109","service":"api-service","timestamp":"2025-12-02 17:24:18"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 1.517 ms - 109","service":"api-service","timestamp":"2025-12-02 17:24:18"}
+{"level":"info","message":"POST /api/v1/holidays 201 3.540 ms - 348","service":"api-service","timestamp":"2025-12-02 17:24:28"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 1.899 ms - 385","service":"api-service","timestamp":"2025-12-02 17:24:28"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 2.347 ms - 385","service":"api-service","timestamp":"2025-12-02 17:24:31"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 1.453 ms - 385","service":"api-service","timestamp":"2025-12-02 17:24:31"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 2.158 ms - 385","service":"api-service","timestamp":"2025-12-02 17:24:31"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 1.345 ms - 385","service":"api-service","timestamp":"2025-12-02 17:24:31"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 2.168 ms - 385","service":"api-service","timestamp":"2025-12-02 17:24:32"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 1.377 ms - 385","service":"api-service","timestamp":"2025-12-02 17:24:32"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 1.932 ms - 385","service":"api-service","timestamp":"2025-12-02 17:24:32"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 1.195 ms - 385","service":"api-service","timestamp":"2025-12-02 17:24:32"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 2.150 ms - 385","service":"api-service","timestamp":"2025-12-02 17:24:32"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 1.403 ms - 385","service":"api-service","timestamp":"2025-12-02 17:24:32"}
+{"level":"info","message":"PUT /api/v1/holidays/692ed3748b7ee56f782f1a05 200 8.525 ms - 383","service":"api-service","timestamp":"2025-12-02 17:24:37"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 2.831 ms - 388","service":"api-service","timestamp":"2025-12-02 17:24:37"}
+{"level":"info","message":"GET /api/v1/shifts 200 2.242 ms - 468","service":"api-service","timestamp":"2025-12-02 17:24:45"}
+{"level":"info","message":"GET /api/v1/shifts 200 2.434 ms - 468","service":"api-service","timestamp":"2025-12-02 17:24:45"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 1.833 ms - 388","service":"api-service","timestamp":"2025-12-02 17:24:49"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 0.904 ms - 388","service":"api-service","timestamp":"2025-12-02 17:24:49"}
+{"level":"info","message":"GET /api/v1/shifts 200 1.878 ms - 468","service":"api-service","timestamp":"2025-12-02 17:25:02"}
+{"level":"info","message":"GET /api/v1/shifts 200 1.144 ms - 468","service":"api-service","timestamp":"2025-12-02 17:25:02"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 2.311 ms - 388","service":"api-service","timestamp":"2025-12-02 17:25:05"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 2.008 ms - 388","service":"api-service","timestamp":"2025-12-02 17:25:05"}
+{"level":"info","message":"GET /api/v1/shifts 200 2.340 ms - 468","service":"api-service","timestamp":"2025-12-02 17:25:06"}
+{"level":"info","message":"GET /api/v1/shifts 200 2.084 ms - 468","service":"api-service","timestamp":"2025-12-02 17:25:06"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 2.699 ms - 468","service":"api-service","timestamp":"2025-12-02 17:25:07"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.959 ms - 927","service":"api-service","timestamp":"2025-12-02 17:25:07"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.926 ms - 468","service":"api-service","timestamp":"2025-12-02 17:25:07"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.819 ms - 927","service":"api-service","timestamp":"2025-12-02 17:25:07"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.495 ms - 196","service":"api-service","timestamp":"2025-12-02 17:25:07"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 4.443 ms - 30288","service":"api-service","timestamp":"2025-12-02 17:25:07"}
+{"level":"info","message":"GET /api/v1/employees?page=1&limit=10 200 3.834 ms - 927","service":"api-service","timestamp":"2025-12-02 17:25:08"}
+{"level":"info","message":"GET /api/v1/employees?page=1&limit=10 200 3.106 ms - 927","service":"api-service","timestamp":"2025-12-02 17:25:08"}
+{"level":"info","message":"GET /api/v1/employees/692caa7ac611985b5b97414b/details 200 8.890 ms - 827","service":"api-service","timestamp":"2025-12-02 17:25:11"}
+{"level":"info","message":"GET /api/v1/employees/692caa7ac611985b5b97414b/details 200 4.062 ms - 827","service":"api-service","timestamp":"2025-12-02 17:25:11"}
+{"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 4.521 ms - 671","service":"api-service","timestamp":"2025-12-02 17:25:11"}
+{"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 2.945 ms - 671","service":"api-service","timestamp":"2025-12-02 17:25:11"}
+{"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 6.251 ms - 671","service":"api-service","timestamp":"2025-12-02 17:25:12"}
+{"level":"info","message":"GET /api/v1/employees?limit=100 200 5.441 ms - 927","service":"api-service","timestamp":"2025-12-02 17:25:12"}
+{"level":"info","message":"GET /api/v1/employee-job-info/employee/692caa7ac611985b5b97414b/current 200 2.449 ms - 671","service":"api-service","timestamp":"2025-12-02 17:25:12"}
+{"level":"info","message":"GET /api/v1/employees?limit=100 200 2.379 ms - 927","service":"api-service","timestamp":"2025-12-02 17:25:12"}
+{"level":"info","message":"GET /api/v1/shifts 200 3.175 ms - 468","service":"api-service","timestamp":"2025-12-02 17:25:17"}
+{"level":"info","message":"GET /api/v1/shifts 200 1.759 ms - 468","service":"api-service","timestamp":"2025-12-02 17:25:17"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=pending 200 7.577 ms - 684","service":"api-service","timestamp":"2025-12-02 17:25:21"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=pending 200 3.668 ms - 684","service":"api-service","timestamp":"2025-12-02 17:25:21"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=approved 200 3.646 ms - 167","service":"api-service","timestamp":"2025-12-02 17:25:25"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=rejected 200 5.265 ms - 167","service":"api-service","timestamp":"2025-12-02 17:25:26"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=approved 200 5.736 ms - 167","service":"api-service","timestamp":"2025-12-02 17:25:27"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=pending 200 7.349 ms - 684","service":"api-service","timestamp":"2025-12-02 17:25:28"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.087 ms - 927","service":"api-service","timestamp":"2025-12-02 17:25:33"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.058 ms - 927","service":"api-service","timestamp":"2025-12-02 17:25:33"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2025&month=12 200 2.717 ms - 315","service":"api-service","timestamp":"2025-12-02 17:25:33"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 6.021 ms - 927","service":"api-service","timestamp":"2025-12-02 17:25:35"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.171 ms - 927","service":"api-service","timestamp":"2025-12-02 17:25:35"}
+{"level":"info","message":"GET /api/v1/regularization/requests?employeeId=692caa7ac611985b5b97414b 200 5.541 ms - 684","service":"api-service","timestamp":"2025-12-02 17:25:35"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 2.878 ms - 468","service":"api-service","timestamp":"2025-12-02 17:25:37"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.740 ms - 927","service":"api-service","timestamp":"2025-12-02 17:25:37"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 2.031 ms - 468","service":"api-service","timestamp":"2025-12-02 17:25:37"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.240 ms - 927","service":"api-service","timestamp":"2025-12-02 17:25:37"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.630 ms - 196","service":"api-service","timestamp":"2025-12-02 17:25:37"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 3.303 ms - 30288","service":"api-service","timestamp":"2025-12-02 17:25:37"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.208 ms - 927","service":"api-service","timestamp":"2025-12-02 17:25:39"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 4.255 ms - 196","service":"api-service","timestamp":"2025-12-02 17:25:39"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 7.033 ms - 927","service":"api-service","timestamp":"2025-12-02 17:25:39"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 4.437 ms - 30251","service":"api-service","timestamp":"2025-12-02 17:25:39"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 4.160 ms - 468","service":"api-service","timestamp":"2025-12-02 17:27:46"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 6.739 ms - 927","service":"api-service","timestamp":"2025-12-02 17:27:46"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.055 ms - 468","service":"api-service","timestamp":"2025-12-02 17:27:46"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 1.943 ms - 927","service":"api-service","timestamp":"2025-12-02 17:27:46"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.303 ms - 196","service":"api-service","timestamp":"2025-12-02 17:27:46"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 2.611 ms - 30288","service":"api-service","timestamp":"2025-12-02 17:27:46"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.530 ms - 927","service":"api-service","timestamp":"2025-12-02 17:28:29"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.048 ms - 927","service":"api-service","timestamp":"2025-12-02 17:28:29"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.967 ms - 196","service":"api-service","timestamp":"2025-12-02 17:28:29"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 4.209 ms - 30251","service":"api-service","timestamp":"2025-12-02 17:28:29"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.762 ms - 468","service":"api-service","timestamp":"2025-12-02 17:28:37"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.920 ms - 927","service":"api-service","timestamp":"2025-12-02 17:28:37"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.106 ms - 468","service":"api-service","timestamp":"2025-12-02 17:28:37"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 2.043 ms - 927","service":"api-service","timestamp":"2025-12-02 17:28:37"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.273 ms - 196","service":"api-service","timestamp":"2025-12-02 17:28:37"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 3.112 ms - 30288","service":"api-service","timestamp":"2025-12-02 17:28:37"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.982 ms - 927","service":"api-service","timestamp":"2025-12-02 17:28:53"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.244 ms - 927","service":"api-service","timestamp":"2025-12-02 17:28:53"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 3.037 ms - 196","service":"api-service","timestamp":"2025-12-02 17:28:53"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 1.940 ms - 30251","service":"api-service","timestamp":"2025-12-02 17:28:53"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 1.681 ms - 388","service":"api-service","timestamp":"2025-12-02 17:29:04"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 1.086 ms - 388","service":"api-service","timestamp":"2025-12-02 17:29:04"}
+{"level":"info","message":"GET /api/v1/shifts 200 1.328 ms - 468","service":"api-service","timestamp":"2025-12-02 17:29:05"}
+{"level":"info","message":"GET /api/v1/shifts 200 0.676 ms - 468","service":"api-service","timestamp":"2025-12-02 17:29:05"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=pending 200 5.580 ms - 684","service":"api-service","timestamp":"2025-12-02 17:29:06"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=pending 200 3.754 ms - 684","service":"api-service","timestamp":"2025-12-02 17:29:06"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=pending 200 2.735 ms - 684","service":"api-service","timestamp":"2025-12-02 17:35:48"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=pending 200 1.991 ms - 684","service":"api-service","timestamp":"2025-12-02 17:35:48"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 4.849 ms - 927","service":"api-service","timestamp":"2025-12-02 18:29:16"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.633 ms - 927","service":"api-service","timestamp":"2025-12-02 18:29:16"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 2.770 ms - 196","service":"api-service","timestamp":"2025-12-02 18:29:16"}
+{"level":"info","message":"GET /api/v1/attendance/today/692caa7ac611985b5b97414b 200 2.391 ms - 30251","service":"api-service","timestamp":"2025-12-02 18:29:16"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 3.077 ms - 388","service":"api-service","timestamp":"2025-12-02 18:29:32"}
+{"level":"info","message":"GET /api/v1/holidays?year=2025 200 1.458 ms - 388","service":"api-service","timestamp":"2025-12-02 18:29:32"}
+{"level":"info","message":"GET /api/v1/shifts 200 2.110 ms - 468","service":"api-service","timestamp":"2025-12-02 18:29:33"}
+{"level":"info","message":"GET /api/v1/shifts 200 1.858 ms - 468","service":"api-service","timestamp":"2025-12-02 18:29:33"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=pending 200 7.510 ms - 684","service":"api-service","timestamp":"2025-12-02 18:29:34"}
+{"level":"info","message":"GET /api/v1/regularization/requests?status=pending 200 3.893 ms - 684","service":"api-service","timestamp":"2025-12-02 18:29:34"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.271 ms - 927","service":"api-service","timestamp":"2025-12-02 18:29:35"}
+{"level":"info","message":"GET /api/v1/attendance/monthly/692caa7ac611985b5b97414b?year=2025&month=12 200 2.242 ms - 315","service":"api-service","timestamp":"2025-12-02 18:29:35"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 5.517 ms - 927","service":"api-service","timestamp":"2025-12-02 18:29:35"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 3.307 ms - 468","service":"api-service","timestamp":"2025-12-02 18:30:02"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 6.553 ms - 927","service":"api-service","timestamp":"2025-12-02 18:30:02"}
+{"level":"info","message":"GET /api/v1/shifts?isActive=true 200 1.595 ms - 468","service":"api-service","timestamp":"2025-12-02 18:30:02"}
+{"level":"info","message":"GET /api/v1/employees?limit=1 200 3.815 ms - 927","service":"api-service","timestamp":"2025-12-02 18:30:02"}
+{"level":"info","message":"GET /api/v1/attendance/status/692caa7ac611985b5b97414b 200 1.887 ms - 196","service":"api-service","timestamp":"2025-12-02 18:30:02"}
+{"level":"info","message":"GET /api/v1/attendance/logs/692caa7ac611985b5b97414b?startDate=2025-11-02T18%3A30%3A00.000Z&endDate=2025-12-02T18%3A29%3A59.999Z 200 4.282 ms - 30288","service":"api-service","timestamp":"2025-12-02 18:30:02"}

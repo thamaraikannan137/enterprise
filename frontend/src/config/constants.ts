@@ -30,6 +30,10 @@ export const API_ENDPOINTS = {
   DEPARTMENTS: '/v1/departments',
   LOCATIONS: '/v1/locations',
   LEGAL_ENTITIES: '/v1/legal-entities',
+  ATTENDANCE: '/v1/attendance',
+  REGULARIZATION: '/v1/regularization',
+  SHIFTS: '/v1/shifts',
+  HOLIDAYS: '/v1/holidays',
   AUTH: {
     LOGIN: '/v1/auth/login',
     LOGOUT: '/v1/auth/logout',
