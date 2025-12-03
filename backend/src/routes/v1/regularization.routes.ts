@@ -17,3 +17,4 @@ router.post('/requests/:id/reject', regularizationController.rejectRequest.bind(
 
 export default router;
 
+

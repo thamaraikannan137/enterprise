@@ -18,3 +18,4 @@ export interface CreateHolidayInput {
   locationId?: string;
 }
 
+

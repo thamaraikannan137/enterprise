@@ -71,3 +71,4 @@ class HolidayController {
 
 export default new HolidayController();
 
+
