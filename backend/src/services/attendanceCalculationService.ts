@@ -110,8 +110,14 @@ class AttendanceCalculationService {
     }
 
     // First IN and Last OUT
-    const firstIn = validPairs[0].inTime;
-    const lastOut = validPairs[validPairs.length - 1].outTime;
+    const firstPair = validPairs[0];
+    const lastPair = validPairs[validPairs.length - 1];
+    if (!firstPair || !lastPair) {
+      return { grossHours: 0, effectiveHours: 0, breakHours: 0 };
+    }
+
+    const firstIn = firstPair.inTime;
+    const lastOut = lastPair.outTime;
 
     // Gross Hours = Last OUT - First IN
     const grossHours = (lastOut.getTime() - firstIn.getTime()) / (1000 * 60 * 60);
@@ -128,16 +134,19 @@ class AttendanceCalculationService {
   // Detect late arrival
   detectLateArrival(
     firstIn: Date,
-    shiftStartTime: string,
+    shiftStartTime: string | undefined,
     gracePeriod: number = 0
   ): {
     isLate: boolean;
     lateMinutes: number;
     message: string;
   } {
+    if (!shiftStartTime) {
+      return { isLate: false, lateMinutes: 0, message: 'On time' };
+    }
     const [hours, minutes] = shiftStartTime.split(':').map(Number);
     const shiftStart = new Date(firstIn);
-    shiftStart.setHours(hours, minutes, 0, 0);
+    shiftStart.setHours(hours || 0, minutes || 0, 0, 0);
 
     const arrivalTime = new Date(firstIn);
     const lateMinutes = (arrivalTime.getTime() - shiftStart.getTime()) / (1000 * 60);
@@ -237,7 +246,7 @@ class AttendanceCalculationService {
     }).lean();
 
     // Pair logs
-    const pairs = this.pairInOutLogs(logs as IAttendanceLog[]);
+    const pairs = this.pairInOutLogs(logs as unknown as IAttendanceLog[]);
 
     // Calculate hours
     const { grossHours, effectiveHours, breakHours } = this.calculateHours(pairs);
@@ -276,8 +285,9 @@ class AttendanceCalculationService {
     }
 
     // Find first and last logs
-    const firstLog = logs[0] ? new Date(logs[0].timestamp) : undefined;
-    const lastLog = logs[logs.length - 1] ? new Date(logs[logs.length - 1].timestamp) : undefined;
+    const firstLog = logs.length > 0 && logs[0] ? new Date(logs[0].timestamp) : undefined;
+    const lastLogEntry = logs.length > 0 ? logs[logs.length - 1] : undefined;
+    const lastLog = lastLogEntry ? new Date(lastLogEntry.timestamp) : undefined;
     const firstIn = logs.find((log) => log.punchStatus === 0)
       ? new Date(logs.find((log) => log.punchStatus === 0)!.timestamp)
       : undefined;
@@ -347,6 +357,29 @@ class AttendanceCalculationService {
       deductionSource: [],
       penaltiesCount: 0,
       totalTimeEntries: logs.length,
+      timeEntries: logs.map((log) => ({
+        actualTimestamp: log.actualTimestamp || log.timestamp,
+        adjustedTimestamp: log.adjustedTimestamp || null,
+        originalPunchStatus: log.originalPunchStatus ?? log.punchStatus,
+        modifiedPunchStatus: log.modifiedPunchStatus ?? log.punchStatus,
+        punchStatus: log.punchStatus,
+        attendanceLogSource: log.attendanceLogSource ?? 1,
+        attendanceLogSourceIdentifier: log.attendanceLogSourceIdentifier || null,
+        premiseId: log.premiseId || 0,
+        premiseName: log.premiseName || 'Web Clock In',
+        pairSubSequentLogs: log.pairSubSequentLogs || false,
+        locationAddress: log.locationAddress || null,
+        hasAddress: log.hasAddress || false,
+        ipAddress: log.ipAddress || null,
+        manualClockinType: log.manualClockinType ?? 1,
+        isAdjusted: log.isAdjusted || false,
+        isDeleted: log.isDeleted || false,
+        isManuallyAdded: log.isManuallyAdded || false,
+        timestamp: log.timestamp,
+        note: log.note || null,
+        attachmentId: log.attachmentId || null,
+        attachment: (log as any).attachment || null,
+      })),
     };
 
     // Upsert summary

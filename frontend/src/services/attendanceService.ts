@@ -124,5 +124,23 @@ export const attendanceService = {
     const response = await apiClient.get<ApiResponse<any>>(endpoint);
     return response.data;
   },
+
+  /**
+   * Get attendance summaries for a date range (similar to Keka format)
+   * Returns array of daily summaries with validInOutPairs and timeEntries
+   */
+  getAttendanceSummaryRange: async (
+    employeeId: string,
+    startDate: string,
+    endDate: string
+  ): Promise<any[]> => {
+    const params = new URLSearchParams();
+    params.append('startDate', startDate);
+    params.append('endDate', endDate);
+
+    const endpoint = `${API_ENDPOINTS.ATTENDANCE}/summary-range/${employeeId}?${params.toString()}`;
+    const response = await apiClient.get<ApiResponse<any[]>>(endpoint);
+    return response.data;
+  },
 };
 

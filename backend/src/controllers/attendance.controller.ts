@@ -166,6 +166,33 @@ class AttendanceController {
       next(error);
     }
   }
+
+  // Get attendance summaries for a date range (similar to Keka format)
+  async getAttendanceSummaryRange(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { employeeId } = req.params;
+      const { startDate, endDate } = req.query;
+
+      if (!employeeId) {
+        throw new BadRequestError('Employee ID is required');
+      }
+
+      if (!startDate || !endDate) {
+        throw new BadRequestError('Start date and end date are required');
+      }
+
+      const summaries = await attendanceService.getAttendanceSummaryRange(
+        employeeId,
+        new Date(startDate as string),
+        new Date(endDate as string)
+      );
+      
+      // Return array directly (matches Keka format)
+      sendSuccess(res, 'Attendance summaries retrieved successfully', summaries);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 export default new AttendanceController();

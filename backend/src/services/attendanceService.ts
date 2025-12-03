@@ -328,6 +328,143 @@ class AttendanceService {
 
     return summary;
   }
+
+  // Convert Date to ISO string helper
+  private dateToISO(date: Date | undefined | null): string | null {
+    if (!date) return null;
+    return new Date(date).toISOString();
+  }
+
+  // Format summary to match Keka structure with ISO strings
+  private formatSummaryForKeka(summary: any): any {
+    if (!summary) return null;
+
+    return {
+      id: summary.id || summary._id?.toString(),
+      employeeId: summary.employeeId,
+      attendanceDate: this.dateToISO(summary.attendanceDate),
+      dayType: summary.dayType ?? 0,
+      attendanceDayStatus: summary.attendanceDayStatus ?? 2,
+      leaveDayStatuses: summary.leaveDayStatuses || [],
+      leaveDayDuration: summary.leaveDayDuration || 0,
+      isFirstHalfLeave: summary.isFirstHalfLeave || false,
+      dynamicShiftTimings: summary.dynamicShiftTimings || false,
+      shiftSlotStartTime: this.dateToISO(summary.shiftSlotStartTime),
+      shiftSlotEndTime: this.dateToISO(summary.shiftSlotEndTime),
+      shiftStartTime: this.dateToISO(summary.shiftStartTime),
+      shiftEndTime: this.dateToISO(summary.shiftEndTime),
+      validInOutPairs: (summary.validInOutPairs || []).map((pair: any) => ({
+        inTime: this.dateToISO(pair.inTime),
+        outTime: this.dateToISO(pair.outTime),
+        totalDuration: pair.totalDuration || 0,
+      })),
+      totalEffectiveHours: summary.totalEffectiveHours || 0,
+      effectiveHoursInHHMM: summary.effectiveHoursInHHMM || '0h 0m',
+      totalGrossHours: summary.totalGrossHours || 0,
+      grossHoursInHHMM: summary.grossHoursInHHMM || '0h 0m',
+      shiftBreakDuration: summary.shiftBreakDuration || 0,
+      totalBreakDuration: summary.totalBreakDuration || 0,
+      breakDurationInHHMM: summary.breakDurationInHHMM || '0:00',
+      lateArrivalDifference: summary.lateArrivalDifference || 0,
+      hasLocation: summary.hasLocation || false,
+      isRemoteClockIn: summary.isRemoteClockIn || false,
+      arrivalMessage: summary.arrivalMessage || 'On time',
+      isInMissing: summary.isInMissing || false,
+      isArrivedLate: summary.isArrivedLate || false,
+      isAnomalyDetected: summary.isAnomalyDetected || false,
+      shiftDuration: summary.shiftDuration || 8,
+      shiftSlotStartFrom: summary.shiftSlotStartFrom || 0,
+      shiftEffectiveDuration: summary.shiftEffectiveDuration || 8,
+      firstLogOfTheDay: this.dateToISO(summary.firstLogOfTheDay),
+      firstInOfTheDay: this.dateToISO(summary.firstInOfTheDay),
+      lastLogOfTheDay: this.dateToISO(summary.lastLogOfTheDay),
+      lastOutOfTheDay: this.dateToISO(summary.lastOutOfTheDay),
+      isAutoAssignedShift: summary.isAutoAssignedShift || false,
+      shiftPolicyName: summary.shiftPolicyName || '',
+      halfDayDuration: summary.halfDayDuration || 4,
+      leaveDetails: summary.leaveDetails || [],
+      systemGenerated: summary.systemGenerated ?? true,
+      deductionSource: summary.deductionSource || [],
+      penaltyCauseNote: summary.penaltyCauseNote || null,
+      penaltiesCount: summary.penaltiesCount || 0,
+      totalTimeEntries: summary.totalTimeEntries || 0,
+      timeEntries: (summary.timeEntries || []).map((entry: any) => ({
+        actualTimestamp: this.dateToISO(entry.actualTimestamp || entry.timestamp),
+        adjustedTimestamp: this.dateToISO(entry.adjustedTimestamp),
+        originalPunchStatus: entry.originalPunchStatus ?? entry.punchStatus ?? 0,
+        modifiedPunchStatus: entry.modifiedPunchStatus ?? entry.punchStatus ?? 0,
+        punchStatus: entry.punchStatus ?? 0,
+        attendanceLogSource: entry.attendanceLogSource ?? 1,
+        attendanceLogSourceIdentifier: entry.attendanceLogSourceIdentifier || null,
+        premiseId: entry.premiseId || 0,
+        premiseName: entry.premiseName || 'Web Clock In',
+        pairSubSequentLogs: entry.pairSubSequentLogs || false,
+        locationAddress: entry.locationAddress || null,
+        hasAddress: entry.hasAddress || false,
+        ipAddress: entry.ipAddress || null,
+        manualClockinType: entry.manualClockinType ?? 1,
+        isAdjusted: entry.isAdjusted || false,
+        isDeleted: entry.isDeleted || false,
+        isManuallyAdded: entry.isManuallyAdded || false,
+        timestamp: this.dateToISO(entry.timestamp),
+        note: entry.note || null,
+        attachmentId: entry.attachmentId || null,
+        attachment: entry.attachment || null,
+      })),
+    };
+  }
+
+  // Get attendance summaries for a date range (similar to Keka format)
+  async getAttendanceSummaryRange(
+    employeeId: string,
+    startDate: Date,
+    endDate: Date
+  ): Promise<any[]> {
+    const attendanceCalculationService = (await import('./attendanceCalculationService.ts')).default;
+    const AttendanceSummary = (await import('../models/AttendanceSummary.ts')).default;
+
+    const summaries: any[] = [];
+    const currentDate = new Date(startDate);
+    currentDate.setHours(0, 0, 0, 0);
+    const end = new Date(endDate);
+    end.setHours(23, 59, 59, 999);
+
+    // Iterate through each day in the range
+    while (currentDate <= end) {
+      const dateKey = new Date(currentDate);
+      dateKey.setHours(0, 0, 0, 0);
+
+      // Try to get existing summary
+      let summary = await AttendanceSummary.findOne({
+        employeeId,
+        attendanceDate: dateKey,
+      }).lean();
+
+      // If no summary exists OR summary exists but doesn't have timeEntries, calculate it
+      // (This ensures timeEntries are populated for both new and existing summaries)
+      if (!summary || !summary.timeEntries || summary.timeEntries.length === 0) {
+        summary = await attendanceCalculationService.processDailyAttendance(
+          employeeId,
+          dateKey
+        );
+      }
+
+      // Format summary to match Keka structure with ISO strings
+      const formattedSummary = this.formatSummaryForKeka(summary);
+      if (formattedSummary) {
+        summaries.push(formattedSummary);
+      }
+
+      // Move to next day
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+
+    // Sort by date descending (most recent first)
+    return summaries.sort(
+      (a, b) =>
+        new Date(b.attendanceDate!).getTime() - new Date(a.attendanceDate!).getTime()
+    );
+  }
 }
 
 export default new AttendanceService();

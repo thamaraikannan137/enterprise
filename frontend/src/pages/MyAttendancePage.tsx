@@ -30,7 +30,6 @@ import { shiftService } from '../services/shiftService';
 import { useAppSelector } from '../store';
 import { useToast } from '../contexts/ToastContext';
 import { getCurrentLocationWithAddress } from '../utils/locationUtils';
-import type { AttendanceLog } from '../types/attendance';
 import type { Shift } from '../types/shift';
 import PersonIcon from '@mui/icons-material/Person';
 import GroupsIcon from '@mui/icons-material/Groups';
@@ -219,17 +218,19 @@ export const MyAttendancePage = ({ employeeId }: AttendanceDashboardPageProps) =
 
       const { startDate, endDate } = getDateRangeForPeriod(selectedPeriod);
 
-      const logsResponse = await attendanceService.getAttendanceLogs(currentEmployeeId, {
-        startDate: startDate.toISOString(),
-        endDate: endDate.toISOString(),
-      });
+      // Use summary endpoint instead of logs endpoint (no 50 limit issue)
+      const summaries = await attendanceService.getAttendanceSummaryRange(
+        currentEmployeeId,
+        startDate.toISOString(),
+        endDate.toISOString()
+      );
 
-      // Process logs into day attendance
-      const processedLogs = processAttendanceLogs(logsResponse.logs, startDate, endDate);
+      // Process summaries into day attendance
+      const processedLogs = processAttendanceSummaries(summaries, startDate, endDate);
       setAttendanceLogs(processedLogs);
 
       // Calculate stats (mock for now - would need actual calculation)
-      // In real implementation, calculate from logsResponse.logs
+      // In real implementation, calculate from summaries
       
     } catch (err: any) {
       setError(err.message || 'Failed to load attendance data');
@@ -238,81 +239,65 @@ export const MyAttendancePage = ({ employeeId }: AttendanceDashboardPageProps) =
     }
   };
 
-  const processClockEvents = (dayLogs: AttendanceLog[]): { segments: AttendanceSegment[]; allEvents: ClockEvent[]; totalMinutes: number } => {
-    // Sort logs by timestamp
-    const sortedLogs = [...dayLogs].sort((a, b) => 
-      new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
-    );
-    
-    const allEvents: ClockEvent[] = sortedLogs.map(log => ({
-      timestamp: log.timestamp,
-      event: log.event,
-    }));
-    
+  // Process validInOutPairs from summary into segments
+  const processValidInOutPairs = (validInOutPairs: any[]): { segments: AttendanceSegment[]; allEvents: ClockEvent[] } => {
     const segments: AttendanceSegment[] = [];
-    let totalMinutes = 0;
-    let currentInTime: string | null = null;
+    const allEvents: ClockEvent[] = [];
     
-    for (const log of sortedLogs) {
-      if (log.event === 'IN') {
-        // If there's a pending IN without OUT, close it first
-        if (currentInTime) {
-          // Use current IN time as OUT (edge case)
-          segments.push({
-            inTime: currentInTime,
-            outTime: log.timestamp,
-            duration: 0,
-          });
-        }
-        currentInTime = log.timestamp;
-      } else if (log.event === 'OUT' && currentInTime) {
-        const inTime = new Date(currentInTime);
-        const outTime = new Date(log.timestamp);
-        const duration = Math.floor((outTime.getTime() - inTime.getTime()) / (1000 * 60));
-        
-        segments.push({
-          inTime: currentInTime,
-          outTime: log.timestamp,
-          duration,
-        });
-        
-        totalMinutes += duration;
-        currentInTime = null;
-      }
-    }
-    
-    // Handle case where last event is IN (not clocked out yet)
-    if (currentInTime) {
-      const now = new Date();
-      const inTime = new Date(currentInTime);
-      const duration = Math.floor((now.getTime() - inTime.getTime()) / (1000 * 60));
+    for (const pair of validInOutPairs) {
+      const inTime = pair.inTime; // Already ISO string from API
+      const outTime = pair.outTime; // Already ISO string or null
       
-      segments.push({
-        inTime: currentInTime,
-        outTime: null,
-        duration,
+      // Add events
+      allEvents.push({
+        timestamp: inTime,
+        event: 'IN',
       });
       
-      totalMinutes += duration;
+      if (outTime) {
+        allEvents.push({
+          timestamp: outTime,
+          event: 'OUT',
+        });
+      }
+      
+      // Calculate duration in minutes
+      let duration = 0;
+      if (outTime) {
+        const inDate = new Date(inTime);
+        const outDate = new Date(outTime);
+        duration = Math.floor((outDate.getTime() - inDate.getTime()) / (1000 * 60));
+      } else {
+        // If no outTime, calculate from now
+        const inDate = new Date(inTime);
+        const now = new Date();
+        duration = Math.floor((now.getTime() - inDate.getTime()) / (1000 * 60));
+      }
+      
+      segments.push({
+        inTime: inTime,
+        outTime: outTime || null,
+        duration,
+      });
     }
     
-    return { segments, allEvents, totalMinutes };
+    // Sort events by timestamp
+    allEvents.sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
+    
+    return { segments, allEvents };
   };
 
-  const processAttendanceLogs = (logs: AttendanceLog[], startDate: Date, endDate: Date): DayAttendance[] => {
-    const dayMap = new Map<string, AttendanceLog[]>();
+  const processAttendanceSummaries = (summaries: any[], startDate: Date, endDate: Date): DayAttendance[] => {
+    const summaryMap = new Map<string, any>();
     
-    logs.forEach(log => {
-      const date = new Date(log.timestamp);
+    summaries.forEach(summary => {
+      const date = new Date(summary.attendanceDate);
       // Use local date to avoid timezone issues
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, '0');
       const day = String(date.getDate()).padStart(2, '0');
       const dateKey = `${year}-${month}-${day}`;
-      if (!dayMap.has(dateKey)) {
-        dayMap.set(dateKey, []);
-      }
-      dayMap.get(dateKey)!.push(log);
+      summaryMap.set(dateKey, summary);
     });
 
     const result: DayAttendance[] = [];
@@ -334,73 +319,56 @@ export const MyAttendancePage = ({ employeeId }: AttendanceDashboardPageProps) =
         const month = String(date.getMonth() + 1).padStart(2, '0');
         const dayStr = String(date.getDate()).padStart(2, '0');
         const dateKey = `${year}-${month}-${dayStr}`;
-        const dayLogs = dayMap.get(dateKey) || [];
+        const summary = summaryMap.get(dateKey);
         
         const dayOfWeek = date.getDay();
         const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
       
-      if (isWeekend) {
-        result.push({
-          date: dateKey,
-          grossHours: 'Full day Weekly-off',
-          arrival: '',
-          arrivalStatus: null,
-          logStatus: 'pending',
-          attendanceVisual: null,
-        });
-      } else if (dayLogs.length > 0) {
-        const { segments, allEvents, totalMinutes } = processClockEvents(dayLogs);
-        
-        // Calculate gross hours from total minutes
-        const hoursInt = Math.floor(totalMinutes / 60);
-        const minutesInt = totalMinutes % 60;
-        const grossHours = totalMinutes > 0 ? `${hoursInt}h ${minutesInt}m` : '0h 0m +';
-        
-        // Get first IN log for arrival calculation
-        const firstInLog = dayLogs.find(log => log.event === 'IN');
-        let arrival = 'On Time';
-        let arrivalStatus: 'on-time' | 'late' | null = 'on-time';
-        
-        if (firstInLog) {
-          const inTime = new Date(firstInLog.timestamp);
-          // Check if late (assuming shift starts at 9 AM)
-          const shiftStart = new Date(inTime);
-          shiftStart.setHours(9, 0, 0, 0);
-          if (inTime > shiftStart) {
-            const lateMinutes = Math.floor((inTime.getTime() - shiftStart.getTime()) / (1000 * 60));
-            const lateHours = Math.floor(lateMinutes / 60);
-            const lateMins = lateMinutes % 60;
-            arrival = `${lateHours}:${String(lateMins).padStart(2, '0')}:${String(Math.floor((lateMinutes % 1) * 60)).padStart(2, '0')} late`;
-            arrivalStatus = 'late';
-          }
+        if (isWeekend) {
+          result.push({
+            date: dateKey,
+            grossHours: 'Full day Weekly-off',
+            arrival: '',
+            arrivalStatus: null,
+            logStatus: 'pending',
+            attendanceVisual: null,
+          });
+        } else if (summary && summary.validInOutPairs && summary.validInOutPairs.length > 0) {
+          const { segments, allEvents } = processValidInOutPairs(summary.validInOutPairs);
+          
+          // Use gross hours from summary (already formatted)
+          const grossHours = summary.grossHoursInHHMM || '0h 0m';
+          
+          // Use arrival message from summary
+          let arrival = summary.arrivalMessage || 'On Time';
+          let arrivalStatus: 'on-time' | 'late' | null = summary.isArrivedLate ? 'late' : 'on-time';
+          
+          // Determine log status
+          const hasUnclosedIn = segments.some(s => s.outTime === null);
+          const logStatus = segments.length > 0 && !hasUnclosedIn ? 'success' : hasUnclosedIn ? 'warning' : 'pending';
+          
+          result.push({
+            date: dateKey,
+            grossHours,
+            arrival,
+            arrivalStatus,
+            logStatus,
+            attendanceVisual: {
+              hasData: true,
+              segments,
+              allEvents,
+            },
+          });
+        } else {
+          result.push({
+            date: dateKey,
+            grossHours: '0h 0m',
+            arrival: '',
+            arrivalStatus: null,
+            logStatus: 'pending',
+            attendanceVisual: null,
+          });
         }
-        
-        // Determine log status
-        const hasUnclosedIn = segments.some(s => s.outTime === null);
-        const logStatus = segments.length > 0 && !hasUnclosedIn ? 'success' : hasUnclosedIn ? 'warning' : 'pending';
-        
-        result.push({
-          date: dateKey,
-          grossHours,
-          arrival,
-          arrivalStatus,
-          logStatus,
-          attendanceVisual: {
-            hasData: true,
-            segments,
-            allEvents,
-          },
-        });
-      } else {
-        result.push({
-          date: dateKey,
-          grossHours: '0h 0m',
-          arrival: '',
-          arrivalStatus: null,
-          logStatus: 'pending',
-          attendanceVisual: null,
-        });
-      }
       }
     } else {
       // For 30 days view, show from today backwards (today + 29 previous days = 30 days total)
@@ -417,7 +385,7 @@ export const MyAttendancePage = ({ employeeId }: AttendanceDashboardPageProps) =
         const month = String(date.getMonth() + 1).padStart(2, '0');
         const day = String(date.getDate()).padStart(2, '0');
         const dateKey = `${year}-${month}-${day}`;
-        const dayLogs = dayMap.get(dateKey) || [];
+        const summary = summaryMap.get(dateKey);
         
         const dayOfWeek = date.getDay();
         const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
@@ -431,32 +399,15 @@ export const MyAttendancePage = ({ employeeId }: AttendanceDashboardPageProps) =
             logStatus: 'pending',
             attendanceVisual: null,
           });
-        } else if (dayLogs.length > 0) {
-          const { segments, allEvents, totalMinutes } = processClockEvents(dayLogs);
+        } else if (summary && summary.validInOutPairs && summary.validInOutPairs.length > 0) {
+          const { segments, allEvents } = processValidInOutPairs(summary.validInOutPairs);
           
-          // Calculate gross hours from total minutes
-          const hoursInt = Math.floor(totalMinutes / 60);
-          const minutesInt = totalMinutes % 60;
-          const grossHours = totalMinutes > 0 ? `${hoursInt}h ${minutesInt}m` : '0h 0m +';
+          // Use gross hours from summary (already formatted)
+          const grossHours = summary.grossHoursInHHMM || '0h 0m';
           
-          // Get first IN log for arrival calculation
-          const firstInLog = dayLogs.find(log => log.event === 'IN');
-          let arrival = 'On Time';
-          let arrivalStatus: 'on-time' | 'late' | null = 'on-time';
-          
-          if (firstInLog) {
-            const inTime = new Date(firstInLog.timestamp);
-            // Check if late (assuming shift starts at 9 AM)
-            const shiftStart = new Date(inTime);
-            shiftStart.setHours(9, 0, 0, 0);
-            if (inTime > shiftStart) {
-              const lateMinutes = Math.floor((inTime.getTime() - shiftStart.getTime()) / (1000 * 60));
-              const lateHours = Math.floor(lateMinutes / 60);
-              const lateMins = lateMinutes % 60;
-              arrival = `${lateHours}:${String(lateMins).padStart(2, '0')}:${String(Math.floor((lateMinutes % 1) * 60)).padStart(2, '0')} late`;
-              arrivalStatus = 'late';
-            }
-          }
+          // Use arrival message from summary
+          let arrival = summary.arrivalMessage || 'On Time';
+          let arrivalStatus: 'on-time' | 'late' | null = summary.isArrivedLate ? 'late' : 'on-time';
           
           // Determine log status
           const hasUnclosedIn = segments.some(s => s.outTime === null);

@@ -17,6 +17,7 @@ router.get('/today/:employeeId', attendanceController.getTodayAttendance.bind(at
 router.get('/logs/:employeeId', attendanceController.getAttendanceLogs.bind(attendanceController));
 router.get('/monthly/:employeeId', attendanceController.getMonthlyAttendance.bind(attendanceController));
 router.get('/summary/:employeeId', attendanceController.getAttendanceSummary.bind(attendanceController));
+router.get('/summary-range/:employeeId', attendanceController.getAttendanceSummaryRange.bind(attendanceController));
 
 export default router;
 

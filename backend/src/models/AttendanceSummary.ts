@@ -77,6 +77,29 @@ export interface IAttendanceSummary extends Document {
   
   // Metadata
   totalTimeEntries: number;
+  timeEntries?: Array<{
+    actualTimestamp?: Date;
+    adjustedTimestamp?: Date;
+    originalPunchStatus: number;
+    modifiedPunchStatus: number;
+    punchStatus: number;
+    attendanceLogSource: number;
+    attendanceLogSourceIdentifier?: string;
+    premiseId?: number;
+    premiseName?: string;
+    pairSubSequentLogs: boolean;
+    locationAddress?: any;
+    hasAddress: boolean;
+    ipAddress?: string;
+    manualClockinType: number;
+    isAdjusted: boolean;
+    isDeleted: boolean;
+    isManuallyAdded: boolean;
+    timestamp: Date;
+    note?: string;
+    attachmentId?: mongoose.Types.ObjectId;
+    attachment?: any;
+  }>;
   created_by?: mongoose.Types.ObjectId;
   createdAt: Date;
   updatedAt: Date;
@@ -286,6 +309,84 @@ const attendanceSummarySchema = new Schema<IAttendanceSummary>(
       type: Number,
       default: 0,
     },
+    timeEntries: [
+      {
+        actualTimestamp: {
+          type: Date,
+        },
+        adjustedTimestamp: {
+          type: Date,
+        },
+        originalPunchStatus: {
+          type: Number,
+          default: 0,
+        },
+        modifiedPunchStatus: {
+          type: Number,
+          default: 0,
+        },
+        punchStatus: {
+          type: Number,
+          required: true,
+        },
+        attendanceLogSource: {
+          type: Number,
+          default: 1,
+        },
+        attendanceLogSourceIdentifier: {
+          type: String,
+        },
+        premiseId: {
+          type: Number,
+        },
+        premiseName: {
+          type: String,
+        },
+        pairSubSequentLogs: {
+          type: Boolean,
+          default: false,
+        },
+        locationAddress: {
+          type: Schema.Types.Mixed,
+        },
+        hasAddress: {
+          type: Boolean,
+          default: false,
+        },
+        ipAddress: {
+          type: String,
+        },
+        manualClockinType: {
+          type: Number,
+          default: 1,
+        },
+        isAdjusted: {
+          type: Boolean,
+          default: false,
+        },
+        isDeleted: {
+          type: Boolean,
+          default: false,
+        },
+        isManuallyAdded: {
+          type: Boolean,
+          default: false,
+        },
+        timestamp: {
+          type: Date,
+          required: true,
+        },
+        note: {
+          type: String,
+        },
+        attachmentId: {
+          type: Schema.Types.ObjectId,
+        },
+        attachment: {
+          type: Schema.Types.Mixed,
+        },
+      },
+    ],
     created_by: {
       type: Schema.Types.ObjectId,
       ref: 'User',
